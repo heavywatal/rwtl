@@ -2,6 +2,7 @@
 
 S3method(print,grob)
 export(col2hex)
+export(evenness)
 export(exponent)
 export(grid_grob)
 export(heaviside)

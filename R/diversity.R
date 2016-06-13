@@ -17,3 +17,13 @@ simpson_index = function(freqs) {
     freqs = freqs[freqs > 0]
     sum(freqs ^ 2) / (sum(freqs) ^ 2)
 }
+
+#' H / H_max
+#' @param species a factor vector
+#' @return a number
+#' @rdname diversity
+#' @export
+evenness = function(species) {
+    freqs = table(species)
+    shannon_index(freqs) / log(length(freqs))
+}
