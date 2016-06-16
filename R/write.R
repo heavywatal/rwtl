@@ -4,9 +4,9 @@
 #' @rdname write
 #' @export
 save_as = function(obj, dir='.') {
-    obj_name = as.character(substitute(obj))
-    filepath = file.path(dir, paste0(obj_name, '.rda'))
-    save(list=obj_name, file=filepath)
+    obj_name = deparse(substitute(obj))
+    filepath = file.path(dir, paste0(obj_name, '.rds'))
+    saveRDS(obj, file=filepath)
     cat('wrote: ', filepath, '\n')
 }
 
