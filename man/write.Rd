@@ -2,16 +2,41 @@
 % Please edit documentation in R/write.R
 \name{save_as}
 \alias{save_as}
+\alias{write_gz_table}
 \title{Save R object with its name}
 \usage{
-save_as(x, dir = ".")
+save_as(obj, dir = ".")
+
+write_gz_table(x, path, delim = "\\t", na = "NA", append = FALSE,
+  col_names = !append, ...)
 }
 \arguments{
-\item{x}{R object}
+\item{obj}{R object}
 
 \item{dir}{a string}
+
+\item{x}{A data frame to write to disk}
+
+\item{path}{Path to write to.}
+
+\item{delim}{Delimiter used to seperate values. Defaults to \code{" "}. Must be
+a single character.}
+
+\item{na}{String used for missing values. Defaults to NA. Missing values
+will never be quoted; strings with the same value as \code{na} will
+always be quoted.}
+
+\item{append}{If \code{FALSE}, will overwrite existing file. If \code{TRUE},
+will append to existing file. In both cases, if file does not exist a new
+file is created.}
+
+\item{col_names}{Write columns names at the top of the file?}
+
+\item{...}{passed to gzfile()}
 }
 \description{
 Save R object with its name
+
+Write gzipped file with write.table() and gzfile()
 }
 
