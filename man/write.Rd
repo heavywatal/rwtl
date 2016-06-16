@@ -2,12 +2,12 @@
 % Please edit documentation in R/write.R
 \name{save_as}
 \alias{save_as}
-\alias{write_gz_table}
+\alias{write_df}
 \title{Save R object with its name}
 \usage{
 save_as(obj, dir = ".")
 
-write_gz_table(x, path, delim = "\\t", na = "NA", append = FALSE,
+write_df(x, path, delim = "\\t", na = "NA", append = FALSE,
   col_names = !append, ...)
 }
 \arguments{
@@ -32,11 +32,11 @@ file is created.}
 
 \item{col_names}{Write columns names at the top of the file?}
 
-\item{...}{passed to gzfile()}
+\item{...}{passed to `*zfile()`}
 }
 \description{
 Save R object with its name
 
-Write gzipped file with write.table() and gzfile()
+Write commpressed file according to the filename
 }
 
