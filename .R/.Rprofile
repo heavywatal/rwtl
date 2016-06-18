@@ -70,18 +70,12 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
 
 .First = function() {
     if (interactive()) {
-        if (.Platform$GUI != 'AQUA' && Sys.getenv('EMACS') == '') {
-            utils::loadhistory(file=Sys.getenv('R_HISTFILE'))
-        }
-        require(devtools)
-        require(pipeR)
-        require(ggplot2)
-        require(readr)
-        require(stringr)
-        require(tidyr)
-        require(plyr)
-        require(dplyr, warn.conflicts=FALSE)
-        require(wtl)
+        cran = c('pipeR', 'plyr', 'dplyr',
+            'readr', 'tidyr', 'purrr', 'tibble',
+            'stringr', 'ggplot2', 'grid', 'devtools')
+        github = c('wtl')
+        cat('Loading:', cran, github, '\n')
+        options(defaultPackages=c(getOption('defaultPackages'), cran, github))
         if (require(extrafont)) {
             # Only TTF
             #grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Linux Libertine`) #BUG?
@@ -90,6 +84,9 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
             grDevices::pdfFonts(mono= grDevices::pdfFonts()$`Ubuntu Mono`)
             grDevices::pdfFonts(mincho= grDevices::pdfFonts()$TakaoMincho)
             grDevices::pdfFonts(gothic= grDevices::pdfFonts()$TakaoGothic)
+        }
+        if (.Platform$GUI != 'AQUA' && Sys.getenv('EMACS') == '') {
+            utils::loadhistory(file=Sys.getenv('R_HISTFILE'))
         }
         print(utils::sessionInfo(), locale=FALSE)
         cat(date(), '\n')
