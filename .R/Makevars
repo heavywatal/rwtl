@@ -1,3 +1,5 @@
+CFLAGS = -g -Wall -O2 -march=native -mtune=native
+CXXFLAGS = $(CFLAGS)
+CXX1XFLAGS = $(CXXFLAGS)
 CXX1XSTD = -std=c++14
-CXX1XFLAGS = -Wall -mtune=native -g -O2
 LDFLAGS = -L${HOME}/local/lib -L${HOME}/local/boost/lib
