@@ -106,9 +106,11 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
 })}
 
 # Bioconductor
-.library_bioc = function(domain=c('org', 'jp'), ask=FALSE) {
-    domain = match.arg(domain)
-    options(BioC_mirror=sprintf('https://bioconductor.%s/', domain))
-    source('https://www.bioconductor.org/biocLite.R')
+.library_bioc = function(
+  mirror=c('bioc.ism.ac.jp', 'bioconductor.riken.jp', 'bioconductor.org'),
+  ask=FALSE) {
+    mirror = match.arg(mirror)
+    options(BioC_mirror=sprintf('https://%s/', mirror))
+    source(sprintf('https://%s/biocLite.R', mirror))
     biocLite(ask=ask)
 }
