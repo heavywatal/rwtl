@@ -18,6 +18,7 @@ Imports:
     stringr,
     readr,
     ggplot2,
+    RColorBrewer,
     pipeR
 URL: https://github.com/heavywatal/rwtl
 BugReports: https://github.com/heavywatal/rwtl/issues
