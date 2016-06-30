@@ -12,8 +12,11 @@ options(repos=c(CRAN="https://cloud.r-project.org/"))
 # Print warning for each occurrence
 options(warn=1)
 
-# Maximum number of rows of print(tbl_df)
+# Maximum number of rows to print(tbl_df)
 options(tibble.print_max=30L)
+
+# Number of rows to print(tbl_df) if exceeded the maximum
+options(tibble.print_min=30L)
 
 # Font
 if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
