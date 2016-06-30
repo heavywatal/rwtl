@@ -15,6 +15,9 @@ options(pkgType=.Platform$pkgType)
 # Print warning for each occurrence
 options(warn=1)
 
+# Maximum number of rows of print(tbl_df)
+options(tibble.print_max=30L)
+
 # Font
 if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
     setHook(packageEvent("grDevices", "onLoad"), function(...) {
