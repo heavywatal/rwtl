@@ -9,9 +9,6 @@ options(repos=c(CRAN="https://cloud.r-project.org/"))
 #options(repos=c(CRAN="https://cran.rstudio.com/"))
 #options(repos=c(CRAN="https://cran.ism.ac.jp/"))
 
-# Prefer binary installation
-options(pkgType=.Platform$pkgType)
-
 # Print warning for each occurrence
 options(warn=1)
 
