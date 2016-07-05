@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: person('Watal M.', 'Iwasaki', email='user@example.com', role=c('aut', 'cre'))
 Description: Personal R package.
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.2.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -12,14 +12,15 @@ Suggests:
     rgl
 Imports:
     devtools,
-    tidyr,
     dplyr,
-    purrr,
-    stringr,
-    readr,
     ggplot2,
+    pipeR,
+    purrr,
+    readr,
+    stringr,
+    tibble,
+    tidyr,
     RColorBrewer,
-    pipeR
 URL: https://github.com/heavywatal/rwtl
 BugReports: https://github.com/heavywatal/rwtl/issues
 RoxygenNote: 5.0.1

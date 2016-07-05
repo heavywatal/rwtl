@@ -38,7 +38,7 @@ read_boost_ini = function(filename) {
 #' @rdname read
 #' @export
 read_cb = function(...) {
-    utils::read.table(pipe("pbpaste"), ...)
+    utils::read.table(pipe("pbpaste"), ...) %>>% tibble::as_tibble()
 }
 
 #' get commandline arguments
