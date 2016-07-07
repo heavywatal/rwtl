@@ -87,7 +87,8 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
         cat(getwd(), '\n')
     }
     .adjust_width()
-    if (try(library(extrafont, logical.return=TRUE))) {
+    tryCatch({
+        library(extrafont)
         # Only TTF
         #grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Linux Libertine`) #BUG?
         grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Noto Serif`)
@@ -95,7 +96,7 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
         grDevices::pdfFonts(mono= grDevices::pdfFonts()$`Ubuntu Mono`)
         grDevices::pdfFonts(mincho= grDevices::pdfFonts()$TakaoMincho)
         grDevices::pdfFonts(gothic= grDevices::pdfFonts()$TakaoGothic)
-    }
+    }, error=function(e) {cat('Warning: library(extrafont) failed\n')})
 }
 
 .Last = function() {try({
