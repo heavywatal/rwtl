@@ -87,7 +87,7 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
         cat(getwd(), '\n')
     }
     .adjust_width()
-    if (require(extrafont)) {
+    if (try(library(extrafont, logical.return=TRUE))) {
         # Only TTF
         #grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Linux Libertine`) #BUG?
         grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Noto Serif`)
