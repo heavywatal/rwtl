@@ -10,7 +10,7 @@
 scan_matrix(filename, what = double(0), sep = "", skip = 0L,
   header = FALSE)
 
-read_boost_ini(filename)
+read_boost_ini(file)
 
 read_cb(...)
 
@@ -26,6 +26,8 @@ command_args()
 \item{skip}{an integer}
 
 \item{header}{a logical}
+
+\item{file}{filename or text}
 
 \item{...}{passed to read.table()}
 }

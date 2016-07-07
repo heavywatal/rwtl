@@ -22,11 +22,12 @@ scan_matrix = function(filename, what=double(0), sep="", skip=0L, header=FALSE) 
 }
 
 #' Read an INI-like config file of boost::program_options
+#' @param file filename or text
 #' @return a data.frame
 #' @rdname read
 #' @export
-read_boost_ini = function(filename) {
-    readr::read_delim(filename, '=', col_names=c('key', 'val'), comment='#') %>>%
+read_boost_ini = function(file) {
+    readr::read_delim(file, '=', col_names=c('key', 'val'), comment='#') %>>%
     dplyr::summarise_each(dplyr::funs(paste0(., collapse='\t'))) %>>%
     {paste(.$key, .$val, sep='\n')} %>>%
     readr::read_tsv()
