@@ -79,15 +79,6 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
         github = c('wtl')
         cat('Loading:', cran, github, '\n')
         options(defaultPackages=c(getOption('defaultPackages'), cran, github))
-        if (require(extrafont)) {
-            # Only TTF
-            #grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Linux Libertine`) #BUG?
-            grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Noto Serif`)
-            grDevices::pdfFonts(sans= grDevices::pdfFonts()$`Source Sans Pro`)
-            grDevices::pdfFonts(mono= grDevices::pdfFonts()$`Ubuntu Mono`)
-            grDevices::pdfFonts(mincho= grDevices::pdfFonts()$TakaoMincho)
-            grDevices::pdfFonts(gothic= grDevices::pdfFonts()$TakaoGothic)
-        }
         if (.Platform$GUI != 'AQUA' && Sys.getenv('EMACS') == '') {
             utils::loadhistory(file=Sys.getenv('R_HISTFILE'))
         }
@@ -96,6 +87,15 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
         cat(getwd(), '\n')
     }
     .adjust_width()
+    if (require(extrafont)) {
+        # Only TTF
+        #grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Linux Libertine`) #BUG?
+        grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Noto Serif`)
+        grDevices::pdfFonts(sans= grDevices::pdfFonts()$`Source Sans Pro`)
+        grDevices::pdfFonts(mono= grDevices::pdfFonts()$`Ubuntu Mono`)
+        grDevices::pdfFonts(mincho= grDevices::pdfFonts()$TakaoMincho)
+        grDevices::pdfFonts(gothic= grDevices::pdfFonts()$TakaoGothic)
+    }
 }
 
 .Last = function() {try({
