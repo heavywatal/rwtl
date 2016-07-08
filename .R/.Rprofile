@@ -18,6 +18,9 @@ options(tibble.print_max=30L)
 # Number of rows to print(tbl_df) if exceeded the maximum
 options(tibble.print_min=30L)
 
+# Suppress annoying function
+options(readr.num_columns=0L)
+
 # Font
 if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
     setHook(packageEvent("grDevices", "onLoad"), function(...) {
