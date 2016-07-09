@@ -99,7 +99,7 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
         grDevices::pdfFonts(mono= grDevices::pdfFonts()$`Ubuntu Mono`)
         grDevices::pdfFonts(mincho= grDevices::pdfFonts()$TakaoMincho)
         grDevices::pdfFonts(gothic= grDevices::pdfFonts()$TakaoGothic)
-    }, error=function(e) {cat('Warning: library(extrafont) failed\n')})
+    }, error=function(e) {warning(e)})
 }
 
 .Last = function() {try({
