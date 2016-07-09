@@ -99,7 +99,7 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
         grDevices::pdfFonts(mono= grDevices::pdfFonts()$`Ubuntu Mono`)
         grDevices::pdfFonts(mincho= grDevices::pdfFonts()$TakaoMincho)
         grDevices::pdfFonts(gothic= grDevices::pdfFonts()$TakaoGothic)
-    }, error=function(e) {warning(e)})
+    }, error=warning)
 }
 
 .Last = function() {try({
