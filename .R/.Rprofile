@@ -64,7 +64,6 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
 
 .adjust_width = function(width=Sys.getenv("COLUMNS")) {
     if (width == '') {
-        if (.Platform$GUI != "X11") {return()}
         if (Sys.getenv("RSTUDIO") == "1") {return()}
         stty = system("stty -a", intern=TRUE, ignore.stderr=TRUE)[1]
         if (is.na(stty)) {return()}
