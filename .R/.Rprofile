@@ -12,6 +12,9 @@ options(repos=c(CRAN="https://cloud.r-project.org/"))
 # Print warning for each occurrence
 options(warn=1)
 
+# Show a summary of the call stack
+options(showWarnCalls=TRUE, showErrorCalls=TRUE)
+
 # Maximum number of rows to print(tbl_df)
 options(tibble.print_max=30L)
 
