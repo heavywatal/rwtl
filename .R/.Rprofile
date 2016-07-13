@@ -9,8 +9,11 @@ options(repos=c(CRAN="https://cloud.r-project.org/"))
 #options(repos=c(CRAN="https://cran.rstudio.com/"))
 #options(repos=c(CRAN="https://cran.ism.ac.jp/"))
 
-# Print warning for each occurrence
-options(warn=1)
+# Show more warnings
+options(warn=1,
+        warnPartialMatchArgs=TRUE,
+        warnPartialMatchAttr=TRUE,
+        warnPartialMatchDollar=TRUE)
 
 # Show a summary of the call stack
 options(showWarnCalls=TRUE, showErrorCalls=TRUE)
