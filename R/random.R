@@ -1,10 +1,11 @@
-#' Shortcut for grid::viewport()
+#' Generate random integers between [a, b]
 #' @param n integer
 #' @param a integer
 #' @param b integer
-#' @return n integers between [a, b]
+#' @return n integer vector
 #' @rdname random
 #' @export
+#' @examples table(randint(600L, 1L, 6L))
 randint = function(n, a, b) {
-    as.integer(stats::runif(n, a, b + 1))
+    1L - a + sample.int(b, n, replace=TRUE)
 }

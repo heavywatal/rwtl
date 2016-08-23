@@ -2,7 +2,7 @@
 % Please edit documentation in R/random.R
 \name{randint}
 \alias{randint}
-\title{Shortcut for grid::viewport()}
+\title{Generate random integers between [a, b]}
 \usage{
 randint(n, a, b)
 }
@@ -14,9 +14,12 @@ randint(n, a, b)
 \item{b}{integer}
 }
 \value{
-n integers between [a, b]
+n integer vector
 }
 \description{
-Shortcut for grid::viewport()
+Generate random integers between [a, b]
+}
+\examples{
+table(randint(600L, 1L, 6L))
 }
 
