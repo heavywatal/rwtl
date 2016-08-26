@@ -28,45 +28,43 @@ options(tibble.print_min=30L)
 options(readr.num_columns=0L)
 
 # Font
-if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
-    setHook(packageEvent("grDevices", "onLoad"), function(...) {
+setHook(packageEvent("grDevices", "onLoad"), function(...) {
+    grDevices::pdfFonts(
+        serif= grDevices::pdfFonts()$Palatino,
+        mincho= grDevices::pdfFonts()$Japan1,
+        gothic= grDevices::pdfFonts()$Japan1GothicBBB
+    )
+    grDevices::pdf.options(family="serif")
+    if (capabilities("aqua")) {
+        .styles = c('', ' Bold', ' Italic', ' Bold Italic')
         grDevices::quartzFonts(
-            serif=grDevices::quartzFont(
-                c("Noto Serif",
-                  "Noto Serif Bold",
-                  "Noto Serif Italic",
-                  "Noto Serif Bold Italic")),
-            sans=grDevices::quartzFont(
-                c("Source Sans Pro",
-                  "Source Sans Pro Bold",
-                  "Source Sans Pro Italic",
-                  "Source Sans Pro Bold Italic")),
-            mono=grDevices::quartzFont(
-                c("Ubuntu Mono",
-                  "Ubuntu Mono Bold",
-                  "Ubuntu Mono Italic",
-                  "Ubuntu Mono Bold Italic")),
-            mincho=grDevices::quartzFont(
-                c("Hiragino Mincho ProN W3",
-                  "Hiragino Mincho ProN W6",
-                  "Hiragino Mincho ProN W3",
-                  "Hiragino Mincho ProN W6")),
-            gothic=grDevices::quartzFont(
-                c("Hiragino Kaku Gothic ProN W3",
-                  "Hiragino Kaku Gothic ProN W6",
-                  "Hiragino Kaku Gothic ProN W3",
-                  "Hiragino Kaku Gothic ProN W6"))
+            serif=  grDevices::quartzFont(
+                    paste0('Noto Serif', .styles)),
+            sans=   grDevices::quartzFont(
+                    paste0('Source Sans Pro', .styles)),
+            mono=   grDevices::quartzFont(
+                    paste0('Ubuntu Mono', .styles)),
+            mincho= grDevices::quartzFont(
+                    paste0("Hiragino Mincho ProN W", c(3, 6, 3, 6))),
+            gothic= grDevices::quartzFont(
+                    paste0("Hiragino Kaku Gothic ProN W", c(3, 6, 3, 6)))
         )
-        grDevices::ps.options(family="Japan1GothicBBB")
-        grDevices::pdf.options(family="Japan1GothicBBB")
-    })
-    attach(NULL, name="QuartzEnv")
-    assign("familyset_hook",
-        function() {
+        grDevices::quartz.options(family='sans')  # does not work
+        attach(NULL, name="QuartzEnv")
+        assign("set_family", function() {
             if (names(dev.cur()) == "quartz") {par(family="sans")}
         }, pos="QuartzEnv")
-    setHook("plot.new", get("familyset_hook", pos="QuartzEnv"))
-}
+        setHook("plot.new", get("set_family", pos="QuartzEnv"))
+    }
+})
+
+setHook(packageEvent("extrafont", "attach"), function(...) {
+    tryCatch({
+        grDevices::pdfFonts(
+          sans= grDevices::pdfFonts()$`Source Sans Pro`,
+          mono= grDevices::pdfFonts()$`Ubuntu Mono`)
+    }, error=warning)
+})
 
 .adjust_width = function(width=Sys.getenv("COLUMNS")) {
     if (width == '') {
@@ -77,15 +75,15 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
         width = grep("\\d+", unlist(strsplit(colmuns, " ")), value=TRUE)
     }
     options(width=width)
+    cat('width:', getOption('width'), '\n')
 }
 
 .First = function() {
     if (interactive()) {
         cran = c('pipeR', 'plyr', 'dplyr',
             'readr', 'tidyr', 'purrr', 'tibble',
-            'stringr', 'ggplot2', 'grid', 'devtools')
+            'stringr', 'ggplot2', 'grid', 'devtools', 'extrafont')
         github = c('wtl')
-        cat('Loading:', cran, github, '\n')
         options(defaultPackages=c(getOption('defaultPackages'), cran, github))
         if (.Platform$GUI != 'AQUA' && Sys.getenv('EMACS') == '') {
             utils::loadhistory(file=Sys.getenv('R_HISTFILE'))
@@ -93,18 +91,9 @@ if (capabilities("aqua") && !nchar(Sys.getenv('SSH_CONNECTION'))) {
         print(utils::sessionInfo(), locale=FALSE)
         cat(date(), '\n')
         cat(getwd(), '\n')
+        cat('Loading:', cran, github, '\n')
     }
     .adjust_width()
-    tryCatch({
-        library(extrafont)
-        # Only TTF
-        #grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Linux Libertine`) #BUG?
-        grDevices::pdfFonts(serif= grDevices::pdfFonts()$`Noto Serif`)
-        grDevices::pdfFonts(sans= grDevices::pdfFonts()$`Source Sans Pro`)
-        grDevices::pdfFonts(mono= grDevices::pdfFonts()$`Ubuntu Mono`)
-        grDevices::pdfFonts(mincho= grDevices::pdfFonts()$TakaoMincho)
-        grDevices::pdfFonts(gothic= grDevices::pdfFonts()$TakaoGothic)
-    }, error=warning)
 }
 
 .Last = function() {try({
