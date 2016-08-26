@@ -21,3 +21,27 @@ pch_plot = function() {
 col2hex = function(color=grDevices::colors()) {
     grDevices::rgb(t(grDevices::col2rgb(color)), max=255)
 }
+
+#' Simple theme
+#' @inheritParams ggplot2::ggtheme
+#' @rdname graphics
+#' @export
+theme_wtl = function(base_size=12, base_family='sans') {
+    ggplot2::theme_bw(base_size, base_family)+
+    ggplot2::theme(panel.grid.minor=ggplot2::element_blank())
+}
+
+#' Save PDF with quartz
+#' @inheritParams ggplot2::ggsave
+#' @param height see ggplot2::ggsave
+#' @rdname graphics
+#' @export
+ggsave_quartz = function(
+        filename, plot=ggplot2::last_plot(), device=grDevices::quartz,
+        path=NULL, scale=1, width=7, height=7,
+        units=c('in', 'cm', 'mm'), dpi=300, limitsize=TRUE) {
+    ext = tools::file_ext(filename)
+    stopifnot(ext %in% c('png', 'pdf'))
+    ggplot2::ggsave(filename, plot, device, path,
+         scale, width, height, units, dpi, limitsize, type=ext)
+}

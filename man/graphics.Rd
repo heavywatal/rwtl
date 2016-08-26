@@ -2,15 +2,54 @@
 % Please edit documentation in R/graphics.R
 \name{pch_plot}
 \alias{col2hex}
+\alias{ggsave_quartz}
 \alias{pch_plot}
+\alias{theme_wtl}
 \title{Plot pch variations}
 \usage{
 pch_plot()
 
 col2hex(color = grDevices::colors())
+
+theme_wtl(base_size = 12, base_family = "sans")
+
+ggsave_quartz(filename, plot = ggplot2::last_plot(),
+  device = grDevices::quartz, path = NULL, scale = 1, width = 7,
+  height = 7, units = c("in", "cm", "mm"), dpi = 300, limitsize = TRUE)
 }
 \arguments{
 \item{color}{a character vector}
+
+\item{base_size}{base font size}
+
+\item{base_family}{base font family}
+
+\item{filename}{File name to create on disk.}
+
+\item{plot}{Plot to save, defaults to last plot displayed.}
+
+\item{device}{Device to use (function or any of the recognized extensions,
+e.g. \code{"pdf"}). By default, extracted from filename extension.
+\code{ggsave} currently recognises eps/ps, tex (pictex), pdf, jpeg, tiff,
+png, bmp, svg and wmf (windows only).}
+
+\item{path}{Path to save plot to (combined with filename).}
+
+\item{scale}{Multiplicative scaling factor.}
+
+\item{width}{Plot dimensions, defaults to size of current graphics
+device.}
+
+\item{height}{see ggplot2::ggsave}
+
+\item{units}{Units for width and height when specified explicitly (in, cm,
+or mm)}
+
+\item{dpi}{Resolution used for raster outputs.}
+
+\item{limitsize}{When \code{TRUE} (the default), \code{ggsave} will not
+save images larger than 50x50 inches, to prevent the common error of
+specifying dimensions in pixels.}
 }
 \value{
 a character vector
@@ -19,5 +58,9 @@ a character vector
 Plot pch variations
 
 Translate coloname to hex
+
+Simple theme
+
+Save PDF with quartz
 }
 
