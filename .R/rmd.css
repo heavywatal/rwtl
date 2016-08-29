@@ -13,3 +13,7 @@ pre, code, kbd {
 img, .plotly, .rglWebGL {
     display: inline-block;
 }
+
+body .main-container {
+    max-width: inherit;
+}
