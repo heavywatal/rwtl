@@ -12,6 +12,7 @@ pre, code, kbd {
 
 img, .plotly, .rglWebGL {
     display: inline-block;
+    vertical-align: top;
 }
 
 body .main-container {
