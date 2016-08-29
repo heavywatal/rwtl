@@ -75,7 +75,7 @@ setHook(packageEvent("extrafont", "attach"), function(...) {
         width = grep("\\d+", unlist(strsplit(colmuns, " ")), value=TRUE)
     }
     options(width=width)
-    cat('width:', getOption('width'), '\n')
+    if (interactive()) {cat('width:', getOption('width'), '\n')}
 }
 
 .First = function() {
