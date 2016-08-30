@@ -11,7 +11,7 @@ options(repos=c(CRAN="https://cloud.r-project.org/"))
 
 # Show more warnings
 options(warn=1,
-        warnPartialMatchArgs=TRUE,
+        warnPartialMatchArgs=FALSE,
         warnPartialMatchAttr=TRUE,
         warnPartialMatchDollar=TRUE)
 
