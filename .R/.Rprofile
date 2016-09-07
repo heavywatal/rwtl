@@ -66,18 +66,6 @@ setHook(packageEvent("extrafont", "attach"), function(...) {
     }, error=warning)
 })
 
-.adjust_width = function(width=Sys.getenv("COLUMNS")) {
-    if (width == '') {
-        if (Sys.getenv("RSTUDIO") == "1") {return()}
-        stty = system("stty -a", intern=TRUE, ignore.stderr=TRUE)[1]
-        if (is.na(stty)) {return()}
-        colmuns = grep("columns", unlist(strsplit(stty, ";")), value=TRUE)
-        width = grep("\\d+", unlist(strsplit(colmuns, " ")), value=TRUE)
-    }
-    options(width=width)
-    if (interactive()) {cat('width:', getOption('width'), '\n')}
-}
-
 .First = function() {
     if (interactive()) {
         cran = c('pipeR', 'plyr', 'dplyr',
@@ -93,7 +81,6 @@ setHook(packageEvent("extrafont", "attach"), function(...) {
         cat(getwd(), '\n')
         cat('Loading:', cran, github, '\n')
     }
-    .adjust_width()
 }
 
 .Last = function() {try({
@@ -105,13 +92,3 @@ setHook(packageEvent("extrafont", "attach"), function(...) {
         print(utils::sessionInfo(), locale=FALSE)
     }
 })}
-
-# Bioconductor
-.library_bioc = function(
-  mirror=c('bioc.ism.ac.jp', 'bioconductor.riken.jp', 'bioconductor.org'),
-  ask=FALSE) {
-    mirror = match.arg(mirror)
-    options(BioC_mirror=sprintf('https://%s/', mirror))
-    source(sprintf('https://%s/biocLite.R', mirror))
-    biocLite(ask=ask)
-}
