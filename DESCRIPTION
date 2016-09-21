@@ -21,6 +21,7 @@ Imports:
     stringr,
     tibble,
     tidyr,
+    tidyverse,
     RColorBrewer,
 URL: https://github.com/heavywatal/rwtl
 BugReports: https://github.com/heavywatal/rwtl/issues
