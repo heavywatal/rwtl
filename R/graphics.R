@@ -42,7 +42,7 @@ theme_clean = function(base_size=12, base_family='sans') {
 #' @rdname graphics
 #' @export
 theme_wtl = function(base_size=12, base_family='sans') {
-    ggplot2::theme_grey(base_size, base_family)+theme_clean(base_family)
+    ggplot2::theme_grey(base_size, base_family)+theme_clean(base_size, base_family)
 }
 
 #' Set L-shaped axes
