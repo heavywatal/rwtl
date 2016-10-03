@@ -33,16 +33,18 @@ theme_clean = function(base_size=12, base_family='sans') {
         panel.border= ggplot2::element_rect(colour='grey50', fill=NA),
         panel.grid.major= ggplot2::element_line(colour='grey90', size=0.2),
         panel.grid.minor= ggplot2::element_blank(),
+        axis.line.x= ggplot2::element_blank(),
+        axis.line.y= ggplot2::element_blank(),
         strip.background = ggplot2::element_rect(fill="grey90", colour="grey50", size=0.2),
-        legend.key= ggplot2::element_rect(fill=NA))
+        legend.key= ggplot2::element_blank())
 }
 
-#' Complete theme
+#' Complete theme based on theme_bw()
 #' @inheritParams ggplot2::ggtheme
 #' @rdname graphics
 #' @export
 theme_wtl = function(base_size=12, base_family='sans') {
-    ggplot2::theme_grey(base_size, base_family)+theme_clean(base_size, base_family)
+    ggplot2::theme_bw(base_size, base_family)+theme_clean(base_size, base_family)
 }
 
 #' Set L-shaped axes
@@ -53,7 +55,7 @@ axis_line = function(colour=NULL, size=NULL, linetype=NULL, lineend=NULL) {
     el = ggplot2::element_line(colour=colour, size=size, linetype=linetype, lineend=lineend)
     ggplot2::theme(
         panel.border= ggplot2::element_blank(),
-        axis.line.x= el, axis.line.y= el)  # workaround for ggplot2 2.1.0
+        axis.line= el, axis.line.x= el, axis.line.y= el)  # workaround for ggplot2 2.1.0
 }
 
 #' Save PDF with quartz

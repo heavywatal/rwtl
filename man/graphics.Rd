@@ -75,7 +75,7 @@ Translate coloname to hex
 
 Incomplete theme that does not overwrite other elements
 
-Complete theme
+Complete theme based on theme_bw()
 
 Set L-shaped axes
 
