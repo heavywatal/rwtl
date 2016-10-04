@@ -17,6 +17,7 @@ Imports:
     dplyr,
     foreach,
     ggplot2,
+    lazyeval,
     pipeR,
     purrr,
     readr,
