@@ -7,13 +7,17 @@
 \title{purrr::map-like function in parallel}
 \usage{
 map_par(.x, .f, ..., .combine, .multicombine = TRUE, .inorder = TRUE,
-  .cores = parallel::detectCores(logical = FALSE))
+  .packages = NULL, .cores = parallel::detectCores(logical = FALSE),
+  .cluster = c("FORK", "PSOCK"))
 
 map_par_df(.x, .f, ..., .id = NULL, .multicombine = TRUE, .inorder = TRUE,
-  .cores = parallel::detectCores(logical = FALSE))
+  .packages = NULL, .cores = parallel::detectCores(logical = FALSE),
+  .cluster = c("FORK", "PSOCK"))
 
-invoke_par(.f, .x, ..., .env = NULL, .combine, .multicombine = FALSE,
-  .inorder = TRUE, .cores = parallel::detectCores(logical = FALSE))
+invoke_par(.f, .x, ..., .env = NULL, .combine, .multicombine = TRUE,
+  .inorder = TRUE, .packages = NULL,
+  .cores = parallel::detectCores(logical = FALSE), .cluster = c("FORK",
+  "PSOCK"))
 }
 \arguments{
 \item{.x}{A list or atomic vector.}
@@ -60,7 +64,14 @@ invoke_par(.f, .x, ..., .env = NULL, .combine, .multicombine = FALSE,
     setting \code{.inorder} to \code{FALSE} can give improved performance.
     The default value is \code{TRUE}.}
 
+\item{.packages}{character vector of packages that the tasks depend on.
+    If \code{ex} requires a \code{R} package to be loaded, this option
+    can be used to load that package on each of the workers.
+    Ignored when used with \code{\%do\%}.}
+
 \item{.cores}{integer}
+
+\item{.cluster}{type of parallel::makeCluster()}
 
 \item{.id}{If not \code{NULL} a variable with this name will be created
 giving either the name or the index of the data frame.}
