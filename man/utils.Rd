@@ -3,11 +3,14 @@
 \name{easierprof}
 \alias{adjust_width}
 \alias{easierprof}
+\alias{refresh}
 \title{Simple wrapper of Rprof() and summaryRprof()}
 \usage{
 easierprof(expr, interval = 0.02, memory = FALSE)
 
 adjust_width(width = Sys.getenv("COLUMNS"))
+
+refresh(pkg = "rwtl", dir = "~/git")
 }
 \arguments{
 \item{expr}{R expression}
@@ -17,6 +20,10 @@ adjust_width(width = Sys.getenv("COLUMNS"))
 \item{memory}{logical}
 
 \item{width}{integer}
+
+\item{pkg}{repository name}
+
+\item{dir}{parent directory of the repository}
 }
 \value{
 summaryRprof()
@@ -25,5 +32,7 @@ summaryRprof()
 Simple wrapper of Rprof() and summaryRprof()
 
 Set options(width) according to the current environment
+
+Workaround to achieve devtools::document(..., export_all=FALSE)
 }
 

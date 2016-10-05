@@ -28,3 +28,15 @@ adjust_width = function(width=Sys.getenv("COLUMNS")) {
     options(width=width)
     if (interactive()) {message('width: ', getOption('width'))}
 }
+
+#' Workaround to achieve devtools::document(..., export_all=FALSE)
+#' @param pkg repository name
+#' @param dir parent directory of the repository
+#' @rdname utils
+#' @export
+refresh = function(pkg='rwtl', dir='~/git') {
+    pkg = file.path(dir, pkg)
+    devtools::document(pkg)
+    # load_all(pkg) is called in document()
+    suppressMessages(devtools::load_all(pkg, export_all=FALSE, quiet=TRUE))
+}
