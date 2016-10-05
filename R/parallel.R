@@ -34,8 +34,14 @@ map_par_df = function(.x, .f, ..., .id=NULL,
         .combine=dplyr::bind_rows, .multicombine=.multicombine,
         .inorder=.inorder, .packages=.packages,
         .cores=.cores, .cluster=.cluster)
-    if (is.character(.id) && !is.null(names(.x))) {
-        .out = mutate_left_(.out, stats::setNames(c(~names(.x)), .id))
+    if (is.character(.id)) {
+        if (is.null(names(.x))) {
+            warning('.id is ignored because names(.x) is NULL')
+        } else if (!.inorder) {
+            warning('.id is ignored because .inorder is FALSE')
+        } else {
+            .out = mutate_left_(.out, stats::setNames(c(~names(.x)), .id))
+        }
     }
     .out
 }
