@@ -10,10 +10,10 @@ Encoding: UTF-8
 LazyData: true
 Suggests:
     BiocInstaller,
-    doParallel,
     rgl
 Imports:
     devtools,
+    doParallel,
     dplyr,
     foreach,
     ggplot2,
