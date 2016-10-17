@@ -4,7 +4,7 @@
 \alias{runif.int}
 \title{Generate random integers between [a, b]}
 \usage{
-runif.int(n, min, max)
+runif.int(n, min = 0L, max = .Machine$integer.max - 1L)
 }
 \arguments{
 \item{n}{number of observations}
