@@ -3,12 +3,16 @@
 \name{easierprof}
 \alias{adjust_width}
 \alias{easierprof}
+\alias{less}
 \alias{refresh}
 \title{Simple wrapper of Rprof() and summaryRprof()}
 \usage{
 easierprof(expr, interval = 0.02, memory = FALSE)
 
 adjust_width(width = Sys.getenv("COLUMNS"))
+
+less(x, method = c("print", "dput"), max.print = getOption("max.print"),
+  ...)
 
 refresh(pkg = "rwtl", dir = "~/git")
 }
@@ -21,6 +25,17 @@ refresh(pkg = "rwtl", dir = "~/git")
 
 \item{width}{integer}
 
+\item{x}{An \R object, or a character string naming an object.}
+
+\item{method}{The default method is to dump the object \emph{via}
+    \code{\link{dput}}.  An alternative is to use \code{print} and
+    capture the output to be shown in the pager.  Can be abbreviated.}
+
+\item{max.print}{maximum number of rows to print}
+
+\item{...}{additional arguments for \code{\link{dput}},
+    \code{\link{print}} or \code{\link{file.show}} (such as \code{title}).}
+
 \item{pkg}{repository name}
 
 \item{dir}{parent directory of the repository}
@@ -32,6 +47,8 @@ summaryRprof()
 Simple wrapper of Rprof() and summaryRprof()
 
 Set options(width) according to the current environment
+
+Shortcut of page(x, method='print')
 
 Workaround to achieve devtools::document(..., export_all=FALSE)
 }

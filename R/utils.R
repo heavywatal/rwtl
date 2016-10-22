@@ -29,6 +29,19 @@ adjust_width = function(width=Sys.getenv("COLUMNS")) {
     if (interactive()) {message('width: ', getOption('width'))}
 }
 
+#' Shortcut of page(x, method='print')
+#' @inheritParams utils::page
+#' @param max.print maximum number of rows to print
+#' @rdname utils
+#' @export
+less = function(x, method=c('print', 'dput'), max.print=getOption('max.print'), ...) {
+    opts = options(max.print=max.print,
+            tibble.print_max=max.print,
+            tibble.print_min=max.print)
+    on.exit(options(opts))
+    utils::page(x, match.arg(method), ...)
+}
+
 #' Workaround to achieve devtools::document(..., export_all=FALSE)
 #' @param pkg repository name
 #' @param dir parent directory of the repository
