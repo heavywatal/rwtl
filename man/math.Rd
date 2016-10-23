@@ -8,6 +8,7 @@
 \alias{mantissa}
 \alias{permutate}
 \alias{probit}
+\alias{scientific_notation}
 \alias{sigmoid}
 \title{Permutation}
 \usage{
@@ -26,6 +27,8 @@ heaviside(x, h0 = NA)
 exponent(x, base = exp(1))
 
 mantissa(x, base = exp(1))
+
+scientific_notation(x, base = 10)
 }
 \arguments{
 \item{n, }{k numeric vectors}
@@ -75,5 +78,7 @@ Heaviside step function
 exponent
 
 mantissa, significand, coefficient
+
+Split number into mantissa and exponent
 }
 

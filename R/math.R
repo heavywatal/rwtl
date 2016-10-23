@@ -56,3 +56,12 @@ exponent = function(x, base=exp(1)) {
 mantissa = function(x, base=exp(1)) {
     x / base ^ exponent(x, base)
 }
+
+#' Split number into mantissa and exponent
+#' @rdname math
+#' @export
+scientific_notation = function(x, base=10) {
+    exponent = floor(log(abs(x), base))
+    mantissa = x / base ^ exponent
+    stats::setNames(c(mantissa, exponent), c("mantissa", "exponent"))
+}
