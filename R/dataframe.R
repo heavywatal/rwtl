@@ -2,6 +2,7 @@
 #' @param .data tbl
 #' @param ... colnames or expressions
 #' @param .dots vector of strings or expressions
+#' @return tbl
 #' @rdname dataframe
 #' @export
 move_left_ = function(.data, ..., .dots) {
@@ -26,4 +27,17 @@ mutate_left_ = function(.data, .dots) {
 #' @export
 mutate_left = function(.data, ...) {
     mutate_left_(.data, lazyeval::lazy_dots(...))
+}
+
+#########1#########2#########3#########4#########5#########6#########7#########
+
+#' Shortcut for tidyr::crossing() with repeats
+#' @inheritParams base::rep.int
+#' @return tbl
+#' @rdname itertools
+#' @export
+crossing_rep = function(x, times=1L) {
+    rep.int(list(x), times) %>>%
+    stats::setNames(paste0('v', seq_along(.))) %>>%
+    tidyr::crossing_()
 }

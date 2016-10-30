@@ -22,6 +22,9 @@ mutate_left(.data, ...)
 
 \item{.dots}{vector of strings or expressions}
 }
+\value{
+tbl
+}
 \description{
 Move specified columns to left
 }
