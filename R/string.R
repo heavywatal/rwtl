@@ -1,7 +1,14 @@
+#' Split a single string into a vector
+#' @inheritParams stringr::str_detect
+#' @inheritParams stringr::str_split
+#' @return character vectors
+#' @rdname string
+#' @export
+split_chr = function(string, pattern='\\s+', n=Inf) {
+    stringr::str_split(string, pattern, n) %>>% purrr::flatten_chr()
+}
+
 #' Pythonic method to manupilate strings
-#' @param string a character vector
-#' @param pattern a separator string as ICU regex
-#' @param n the number of splits to do
 #' @return a list of character vectors
 #' @rdname string
 #' @export
