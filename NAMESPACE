@@ -2,6 +2,7 @@
 
 S3method(print,grob)
 export(adjust_width)
+export(as_chr)
 export(axis_line)
 export(brewer_palette)
 export(chr)

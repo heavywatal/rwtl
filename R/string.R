@@ -32,3 +32,13 @@ ord = function(char) {
 chr = function(i) {
     intToUtf8(i)
 }
+
+#' Convert expr into character vector
+#' @param ... expressions
+#' @rdname string
+#' @export
+as_chr = function(...) {
+    lazyeval::lazy_dots(...) %>>%
+    purrr::map_chr(~deparse(.x$expr)) %>>%
+    stats::setNames(NULL)
+}
