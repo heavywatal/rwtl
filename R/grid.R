@@ -43,3 +43,25 @@ grid_grob = function(grobs, nrow=NULL, ncol=NULL, byrow=FALSE) {
 #' @rdname grid
 #' @export
 print.grob = function(x, ...) grid::grid.draw(x, ...)
+
+#' Read PNG file as grob
+#' @param file path to PNG file
+#' @return grob
+#' @rdname grid
+#' @export
+read_png = function(file) {
+    grid::rasterGrob(png::readPNG(file))
+}
+
+#' Convert grob to gg
+#' @param grob graphical object
+#' @return ggplot
+#' @rdname grid
+#' @export
+as_gg = function(grob) {
+    ggplot2::ggplot(data.frame(x=0:1, y=0:1))+
+    ggplot2::annotation_custom(grob)+
+    ggplot2::scale_x_continuous(limits=0:1, expand=c(0,0))+
+    ggplot2::scale_y_continuous(limits=0:1, expand=c(0,0))+
+    ggplot2::theme_void()
+}
