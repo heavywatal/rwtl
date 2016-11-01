@@ -2,8 +2,8 @@
 % Please edit documentation in R/grid.R
 \name{viewport_layout}
 \alias{as_gg}
+\alias{gprint}
 \alias{grid_grob}
-\alias{print.grob}
 \alias{read_png}
 \alias{viewport_layout}
 \title{Shortcut for grid::viewport()}
@@ -12,7 +12,7 @@ viewport_layout(row, col)
 
 grid_grob(grobs, nrow = NULL, ncol = NULL, byrow = FALSE)
 
-\method{print}{grob}(x, ...)
+gprint(x, newpage = TRUE, recording = FALSE)
 
 read_png(file)
 
@@ -31,7 +31,10 @@ as_gg(grob)
 
 \item{x}{An object of class \code{"grob"} or NULL.}
 
-\item{...}{further arguments passed to or from other methods.}
+\item{newpage}{logical}
+
+\item{recording}{A logical value to indicate whether the drawing
+    operation should be recorded on the Grid display list.}
 
 \item{file}{path to PNG file}
 

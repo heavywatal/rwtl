@@ -38,11 +38,15 @@ grid_grob = function(grobs, nrow=NULL, ncol=NULL, byrow=FALSE) {
 }
 
 #' Shortcut for grid::grid.draw()
+#' @param newpage logical
 #' @inheritParams grid::grid.draw
-#' @inheritParams base::print
 #' @rdname grid
 #' @export
-print.grob = function(x, ...) grid::grid.draw(x, ...)
+gprint = function(x, newpage=TRUE, recording=FALSE) {
+    if (newpage) grid::grid.newpage(recording)
+    grid::grid.draw(x, recording)
+    invisible(x)
+}
 
 #' Read PNG file as grob
 #' @param file path to PNG file
