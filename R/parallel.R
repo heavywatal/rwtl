@@ -11,13 +11,18 @@ map_par = function(.x, .f, ...,
     .cores=parallel::detectCores(logical=FALSE),
     .cluster=c('FORK', 'PSOCK')) {
 
-    .f = purrr::as_function(.f, ...)
+    if (is.function(.f)) {
+        .fun = purrr::partial(.f, ...)
+    } else {
+        .fun = purrr::as_function(.f, ...)
+    }
     .cores = min(.cores, length(.x))
     cluster = parallel::makeCluster(.cores, match.arg(.cluster), outfile='')
     on.exit(parallel::stopCluster(cluster))
     doParallel::registerDoParallel(cluster)
-    foreach::foreach(args=.x, .combine=.combine, .multicombine=.multicombine, .inorder=.inorder, .packages=.packages) %dopar% {
-        .f(args)
+    x = NULL # to suppress warning
+    foreach::foreach(x=.x, .combine=.combine, .multicombine=.multicombine, .inorder=.inorder, .packages=.packages) %dopar% {
+        .fun(x)
     }
 }
 
