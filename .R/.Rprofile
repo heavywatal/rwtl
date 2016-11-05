@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # Disable annoying X11 popup
 options(menu.graphics=FALSE)
 
