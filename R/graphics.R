@@ -36,3 +36,11 @@ ggsave_quartz = function(
     ggplot2::ggsave(filename, plot, device, path,
          scale, width, height, units, dpi, limitsize, type=ext)
 }
+
+#' Axis label formatter: scale_*_log10(labels=format_log10)
+#' @param breaks numeric
+#' @rdname graphics
+#' @export
+format_log10 = function(breaks) {
+    parse(text=paste0('10^', log10(breaks)))
+}
