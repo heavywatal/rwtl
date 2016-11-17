@@ -6,24 +6,34 @@
 \alias{theme_wtl}
 \title{Incomplete theme that does not overwrite other elements}
 \usage{
-theme_clean(base_size = 12, base_family = "sans")
+theme_clean()
 
 theme_wtl(base_size = 12, base_family = "sans")
 
-axis_line(colour = NULL, size = NULL, linetype = NULL, lineend = NULL)
+axis_line(colour = NULL, size = NULL, linetype = NULL, lineend = NULL,
+  arrow = NULL, inherit.blank = FALSE)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size, base_family}{see ggplot2::ggtheme}
 
-\item{base_family}{base font family}
+\item{colour}{Line/border colour. Color is an alias for colour.}
 
-\item{colour}{line colour}
+\item{size}{Line/border size in mm; text size in pts.}
 
-\item{size}{line size}
+\item{linetype}{Line type. An integer (0:8), a name (blank, solid,
+dashed, dotted, dotdash, longdash, twodash), or a string with
+an even number (up to eight) of hexadecimal digits which give the
+lengths in consecutive positions in the string.}
 
-\item{linetype}{line type}
+\item{lineend}{Line end Line end style (round, butt, square)}
 
-\item{lineend}{line end}
+\item{arrow}{Arrow specification, as created by \code{\link[grid]{arrow}}}
+
+\item{inherit.blank}{Should this element inherit the existence of an
+\code{element_blank} among its parents? If \code{TRUE} the existence of
+a blank element among its parents will cause this element to be blank as
+well. If \code{FALSE} any blank parent element will be ignored when
+calculating final element state.}
 }
 \description{
 Incomplete theme that does not overwrite other elements

@@ -24,7 +24,7 @@ col2hex = function(color=grDevices::colors()) {
 
 #' Save PDF with quartz
 #' @inheritParams ggplot2::ggsave
-#' @param height see ggplot2::ggsave
+#' @param height,units see ggplot2::ggsave
 #' @rdname graphics
 #' @export
 ggsave_quartz = function(

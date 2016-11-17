@@ -20,7 +20,7 @@ maximum depending on palette}
 
 \item{reverse}{logical}
 
-\item{...}{Other arguments passed on to \code{\link{discrete_scale}}
+\item{...}{Other arguments passed on to \code{\link{continuous_scale}}
 to control name, limits, breaks, labels and so forth.}
 }
 \description{
