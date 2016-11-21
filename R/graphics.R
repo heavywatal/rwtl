@@ -22,6 +22,21 @@ col2hex = function(color=grDevices::colors()) {
     grDevices::rgb(t(grDevices::col2rgb(color)), max=255)
 }
 
+#' Simple alternative to hist() with ggplot2
+#' @param x vector
+#' @param ... passed to geom_*()
+#' @return gg
+#' @rdname graphics
+#' @export
+gghist = function(x, ...) {
+    if (is.double(x)) {
+        geom = ggplot2::geom_histogram
+    } else {
+        geom = ggplot2::geom_bar
+    }
+    ggplot2::ggplot(tibble::tibble(x=x), ggplot2::aes(x)) + geom(...)
+}
+
 #' Save PDF with quartz
 #' @inheritParams ggplot2::ggsave
 #' @param height,units see ggplot2::ggsave

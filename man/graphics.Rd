@@ -3,6 +3,7 @@
 \name{pch_plot}
 \alias{col2hex}
 \alias{format_log10}
+\alias{gghist}
 \alias{ggsave_quartz}
 \alias{pch_plot}
 \title{Plot pch variations}
@@ -10,6 +11,8 @@
 pch_plot()
 
 col2hex(color = grDevices::colors())
+
+gghist(x, ...)
 
 ggsave_quartz(filename, plot = ggplot2::last_plot(),
   device = grDevices::quartz, path = NULL, scale = 1, width = 7,
@@ -19,6 +22,10 @@ format_log10(breaks)
 }
 \arguments{
 \item{color}{a character vector}
+
+\item{x}{vector}
+
+\item{...}{passed to geom_*()}
 
 \item{filename}{File name to create on disk.}
 
@@ -47,11 +54,15 @@ specifying dimensions in pixels.}
 }
 \value{
 a character vector
+
+gg
 }
 \description{
 Plot pch variations
 
 Translate coloname to hex
+
+Simple alternative to hist() with ggplot2
 
 Save PDF with quartz
 
