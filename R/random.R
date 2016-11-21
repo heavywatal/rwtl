@@ -4,6 +4,7 @@
 #' @return n integer vector
 #' @rdname random
 #' @export
+#' @seealso purrr::rdunif
 #' @examples table(runif.int(600L, 1L, 6L))
 runif.int = function(n, min=0L, max=.Machine$integer.max - 1L) {
     min_1 = min - 1L

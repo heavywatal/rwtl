@@ -20,4 +20,7 @@ Generate random integers between [a, b]
 \examples{
 table(runif.int(600L, 1L, 6L))
 }
+\seealso{
+purrr::rdunif
+}
 
