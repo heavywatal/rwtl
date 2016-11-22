@@ -14,18 +14,19 @@ brewer_palette = function(name, n=0L) {
         stop(sprintf('"%s" not in brewer.pal', name))
     }
     info = RColorBrewer::brewer.pal.info[name,]
-    if (n < 1) {n = info$maxcolors}
+    if (n < 1L) {n = info$maxcolors}
     RColorBrewer::brewer.pal(n, name)
 }
 
 #' Shortcut of scale_colour_gradientn(colours=brewer.pal(n, name))
 #' @inheritParams RColorBrewer::brewer.pal
 #' @inheritParams ggplot2::scale_colour_gradientn
+#' @param palette string
 #' @param reverse logical
 #' @rdname palette
 #' @export
-scale_brewer_colour = function(name, n=0L, reverse=FALSE, ...) {
-    pal = brewer_palette(name, n)
+scale_brewer_colour = function(palette, n=0L, reverse=FALSE, ...) {
+    pal = brewer_palette(palette, n)
     if (reverse) {pal = rev(pal)}
     ggplot2::scale_colour_gradientn(colours=pal, ...)
 }
@@ -35,8 +36,8 @@ scale_brewer_colour = function(name, n=0L, reverse=FALSE, ...) {
 #' @inheritParams ggplot2::scale_fill_gradientn
 #' @rdname palette
 #' @export
-scale_brewer_fill = function(name, n=0L, reverse=FALSE, ...) {
-    pal = brewer_palette(name, n)
+scale_brewer_fill = function(palette, n=0L, reverse=FALSE, ...) {
+    pal = brewer_palette(palette, n)
     if (reverse) {pal = rev(pal)}
     ggplot2::scale_fill_gradientn(colours=pal, ...)
 }

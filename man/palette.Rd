@@ -8,15 +8,17 @@
 \usage{
 brewer_palette(name, n = 0L)
 
-scale_brewer_colour(name, n = 0L, reverse = FALSE, ...)
+scale_brewer_colour(palette, n = 0L, reverse = FALSE, ...)
 
-scale_brewer_fill(name, n = 0L, reverse = FALSE, ...)
+scale_brewer_fill(palette, n = 0L, reverse = FALSE, ...)
 }
 \arguments{
 \item{name}{A palette name from the lists below}
 
 \item{n}{Number of different colors in the palette, minimum 3, 
 maximum depending on palette}
+
+\item{palette}{string}
 
 \item{reverse}{logical}
 
