@@ -9,7 +9,8 @@
 map_par = function(.x, .f, ...,
     .combine, .multicombine=TRUE, .inorder=TRUE, .packages=NULL,
     .cores=parallel::detectCores(logical=FALSE),
-    .cluster=c('FORK', 'PSOCK')) {
+    .cluster=c('FORK', 'PSOCK'),
+    .errorhandling=c('stop', 'remove', 'pass')) {
 
     if (is.function(.f)) {
         .fun = purrr::partial(.f, ...)
@@ -21,7 +22,7 @@ map_par = function(.x, .f, ...,
     on.exit(parallel::stopCluster(cluster))
     doParallel::registerDoParallel(cluster)
     x = NULL # to suppress warning
-    foreach::foreach(x=.x, .combine=.combine, .multicombine=.multicombine, .inorder=.inorder, .packages=.packages) %dopar% {
+    foreach::foreach(x=.x, .combine=.combine, .multicombine=.multicombine, .inorder=.inorder, .packages=.packages, .errorhandling=.errorhandling) %dopar% {
         .fun(x)
     }
 }
@@ -34,12 +35,13 @@ map_par = function(.x, .f, ...,
 map_par_df = function(.x, .f, ..., .id=NULL,
     .multicombine=TRUE, .inorder=TRUE, .packages=NULL,
     .cores=parallel::detectCores(logical=FALSE),
-    .cluster=c('FORK', 'PSOCK')) {
+    .cluster=c('FORK', 'PSOCK'),
+    .errorhandling=c('stop', 'remove', 'pass')) {
 
     .out = map_par(.x, .f, ...,
         .combine=dplyr::bind_rows, .multicombine=.multicombine,
         .inorder=.inorder, .packages=.packages,
-        .cores=.cores, .cluster=.cluster)
+        .cores=.cores, .cluster=.cluster, .errorhandling=.errorhandling)
     if (is.character(.id)) {
         if (is.null(names(.x))) {
             warning('.id is ignored because names(.x) is NULL')
