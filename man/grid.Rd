@@ -4,7 +4,7 @@
 \alias{as_gg}
 \alias{gprint}
 \alias{grid_grob}
-\alias{read_png}
+\alias{png_grob}
 \alias{viewport_layout}
 \title{Shortcut for grid::viewport()}
 \usage{
@@ -14,7 +14,7 @@ grid_grob(grobs, nrow = NULL, ncol = NULL, byrow = FALSE)
 
 gprint(x, newpage = TRUE, recording = FALSE)
 
-read_png(file)
+png_grob(file)
 
 as_gg(grob)
 }

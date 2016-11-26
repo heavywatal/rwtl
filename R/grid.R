@@ -53,7 +53,7 @@ gprint = function(x, newpage=TRUE, recording=FALSE) {
 #' @return grob
 #' @rdname grid
 #' @export
-read_png = function(file) {
+png_grob = function(file) {
     grid::rasterGrob(png::readPNG(file))
 }
 
