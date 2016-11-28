@@ -14,8 +14,13 @@ brewer_palette = function(name, n=0L) {
         stop(sprintf('"%s" not in brewer.pal', name))
     }
     info = RColorBrewer::brewer.pal.info[name,]
-    if (n < 1L) {n = info$maxcolors}
-    RColorBrewer::brewer.pal(n, name)
+    if (n < 2L) {n = info$maxcolors}
+    palette = RColorBrewer::brewer.pal(n, name)
+    if (n < 3L) {
+        palette[c(1,3)]
+    } else {
+        palette
+    }
 }
 
 #' Shortcut of scale_colour_gradientn(colours=brewer.pal(n, name))
