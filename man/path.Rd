@@ -3,14 +3,11 @@
 \name{isdir}
 \alias{isdir}
 \alias{splitext}
-\alias{this_file}
 \title{A shortcut}
 \usage{
 isdir(...)
 
 splitext(path)
-
-this_file()
 }
 \arguments{
 \item{...}{character vectors conatining file paths}
@@ -21,14 +18,10 @@ this_file()
 a logical vector
 
 a character vector (root, ext)
-
-a character; NULL in interactive mode
 }
 \description{
 A shortcut
 
 os.path.splitext() in Python
-
-script path in Rscript
 }
 

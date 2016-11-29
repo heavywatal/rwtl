@@ -13,13 +13,3 @@ isdir = function(...) file.info(...)$isdir
 splitext = function(path) {
     unlist(rsplit(path, "\\.", 1))
 }
-
-#' script path in Rscript
-#' @return a character; NULL in interactive mode
-#' @rdname path
-#' @export
-this_file = function() {
-    args = commandArgs(trailingOnly=FALSE)
-    file_arg = grep("--file=", args, value=TRUE)
-    stringr::str_replace(file_arg, '^--file=', '')
-}

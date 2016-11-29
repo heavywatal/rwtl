@@ -41,16 +41,3 @@ read_boost_ini = function(file) {
 read_cb = function(...) {
     utils::read.table(pipe("pbpaste"), ...) %>>% tibble::as_tibble()
 }
-
-#' get commandline arguments
-#' @return a list
-#' @rdname read
-#' @export
-command_args = function() {
-    .argv = commandArgs(trailingOnly=FALSE)
-    l = list()
-    l$file = sub('^--file=', '', grep('^--file=', .argv, value=TRUE))
-    l$srcdir = dirname(normalizePath(l$file))
-    l$args = grep('^[^-]', .argv[-1], value=TRUE)
-    return(l)
-}
