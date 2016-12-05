@@ -4,8 +4,6 @@ options(menu.graphics=FALSE)
 # Choose server
 options(download.file.method = "libcurl")
 options(repos=c(CRAN="https://cloud.r-project.org/"))
-#options(repos=c(CRAN="https://cran.rstudio.com/"))
-#options(repos=c(CRAN="https://cran.ism.ac.jp/"))
 
 # Show more warnings
 options(warn=1,
