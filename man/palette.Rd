@@ -2,15 +2,15 @@
 % Please edit documentation in R/palette.R
 \name{brewer_palette}
 \alias{brewer_palette}
-\alias{scale_brewer_colour}
-\alias{scale_brewer_fill}
+\alias{scale_colour_gradientb}
+\alias{scale_fill_gradientb}
 \title{Wrapper of brewer.pal()}
 \usage{
 brewer_palette(name, n = 0L)
 
-scale_brewer_colour(palette, n = 0L, reverse = FALSE, ...)
+scale_colour_gradientb(palette, n = 0L, reverse = FALSE, ...)
 
-scale_brewer_fill(palette, n = 0L, reverse = FALSE, ...)
+scale_fill_gradientb(palette, n = 0L, reverse = FALSE, ...)
 }
 \arguments{
 \item{name}{A palette name from the lists below}

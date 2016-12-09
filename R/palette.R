@@ -30,7 +30,7 @@ brewer_palette = function(name, n=0L) {
 #' @param reverse logical
 #' @rdname palette
 #' @export
-scale_brewer_colour = function(palette, n=0L, reverse=FALSE, ...) {
+scale_colour_gradientb = function(palette, n=0L, reverse=FALSE, ...) {
     pal = brewer_palette(palette, n)
     if (reverse) {pal = rev(pal)}
     ggplot2::scale_colour_gradientn(colours=pal, ...)
@@ -41,7 +41,7 @@ scale_brewer_colour = function(palette, n=0L, reverse=FALSE, ...) {
 #' @inheritParams ggplot2::scale_fill_gradientn
 #' @rdname palette
 #' @export
-scale_brewer_fill = function(palette, n=0L, reverse=FALSE, ...) {
+scale_fill_gradientb = function(palette, n=0L, reverse=FALSE, ...) {
     pal = brewer_palette(palette, n)
     if (reverse) {pal = rev(pal)}
     ggplot2::scale_fill_gradientn(colours=pal, ...)
