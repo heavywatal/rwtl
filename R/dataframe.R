@@ -29,6 +29,21 @@ mutate_left = function(.data, ...) {
     mutate_left_(.data, lazyeval::lazy_dots(...))
 }
 
+#' @rdname dataframe
+#' @export
+class_at_ = function(.data, ..., .dots) {
+    .data = dplyr::select_(.data, ..., .dots=.dots)
+    dplyr::summarize_all(.data, class) %>>%
+    purrr::flatten_chr() %>>%
+    stats::setNames(names(.data))
+}
+
+#' @rdname dataframe
+#' @export
+class_at = function(.data, ...) {
+    class_at_(.data, .dots=lazyeval::lazy_dots(...))
+}
+
 #########1#########2#########3#########4#########5#########6#########7#########
 
 #' Shortcut for tidyr::crossing() with repeats
