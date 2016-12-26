@@ -10,7 +10,7 @@ gprint(x, newpage = TRUE, recording = FALSE)
 
 png_grob(file)
 
-as_gg(grob)
+as_gg(grob, base_size = 12, base_family = "sans")
 }
 \arguments{
 \item{x}{An object of class \code{"grob"} or NULL.}
@@ -23,6 +23,8 @@ as_gg(grob)
 \item{file}{path to PNG file}
 
 \item{grob}{graphical object}
+
+\item{base_size, base_family}{see ggplot2::ggtheme}
 }
 \value{
 grob

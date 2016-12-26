@@ -20,13 +20,14 @@ png_grob = function(file) {
 
 #' Convert grob to gg
 #' @param grob graphical object
+#' @param base_size,base_family see ggplot2::ggtheme
 #' @return ggplot
 #' @rdname grid
 #' @export
-as_gg = function(grob) {
+as_gg = function(grob, base_size=12, base_family='sans') {
     ggplot2::ggplot(data.frame(x=0:1, y=0:1))+
     ggplot2::annotation_custom(grob)+
     ggplot2::scale_x_continuous(limits=0:1, expand=c(0,0))+
     ggplot2::scale_y_continuous(limits=0:1, expand=c(0,0))+
-    ggplot2::theme_void()
+    ggplot2::theme_void(base_size, base_family)
 }
