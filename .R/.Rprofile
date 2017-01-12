@@ -14,10 +14,6 @@ options(warn=1,
 # Show a summary of the call stack
 options(showWarnCalls=TRUE, showErrorCalls=TRUE)
 
-# Improve visibility of prompt symbols
-options(prompt='\033[1m> \033[0m')
-options(continue='\033[1m+ \033[0m')
-
 # Maximum number of rows to print(tbl_df)
 options(tibble.print_max=30L)
 
