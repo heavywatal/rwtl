@@ -19,4 +19,3 @@ tbl
 \description{
 Shortcut for tidyr::crossing() with repeats
 }
-

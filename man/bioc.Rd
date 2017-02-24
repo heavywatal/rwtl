@@ -15,4 +15,3 @@ library_bioc(mirror = c("bioc.ism.ac.jp", "bioconductor.riken.jp",
 \description{
 source('*/biocLite.R') and biocLite()
 }
-

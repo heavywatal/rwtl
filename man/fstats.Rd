@@ -24,4 +24,3 @@ Calculate Kst by Hudson, Boos, and Kaplan (1992)
 
 Calculate Fst by Hudson, Slatkin, and Maddison (1992)
 }
-

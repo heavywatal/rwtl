@@ -34,12 +34,24 @@ adjust_width = function(width=Sys.getenv("COLUMNS")) {
 #' @param max.print maximum number of rows to print
 #' @rdname utils
 #' @export
-less = function(x, method=c('print', 'dput'), max.print=getOption('max.print'), ...) {
+less = function(x, method=c('print', 'dput'), max.print=getOption('max.print'), width=getOption('width'), ...) {
+    opts = options(max.print=max.print,
+            tibble.print_max=max.print,
+            tibble.print_min=max.print,
+            width=width)
+    on.exit(options(opts))
+    utils::page(x, match.arg(method), ...)
+}
+
+#' Print big tibble as it is
+#' @rdname utils
+#' @export
+max_print = function(x, max.print=getOption('max.print'), ...) {
     opts = options(max.print=max.print,
             tibble.print_max=max.print,
             tibble.print_min=max.print)
     on.exit(options(opts))
-    utils::page(x, match.arg(method), ...)
+    print(x, ...)
 }
 
 #' Workaround to achieve devtools::document(..., export_all=FALSE)

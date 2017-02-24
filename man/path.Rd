@@ -24,4 +24,3 @@ A shortcut
 
 os.path.splitext() in Python
 }
-

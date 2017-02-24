@@ -35,4 +35,3 @@ Shortcut of scale_fill_gradientn(colours=brewer.pal(n, name))
 \examples{
 ggplot2::scale_colour_gradientn(colours=brewer_palette('RdBu'))
 }
-

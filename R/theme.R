@@ -14,7 +14,7 @@ theme_clean = function() {
 }
 
 #' Complete theme based on theme_bw()
-#' @inheritParams ggplot2::ggtheme
+#' @inheritParams ggplot2::theme_bw
 #' @param base_size,base_family see ggplot2::ggtheme
 #' @rdname theme
 #' @export

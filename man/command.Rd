@@ -19,4 +19,3 @@ get commandline arguments
 
 script path in Rscript
 }
-

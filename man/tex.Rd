@@ -28,4 +28,3 @@ Print power of ten
 
 Translate data.frame to LaTeX table
 }
-

@@ -39,4 +39,3 @@ Save R object with its name
 
 Write commpressed file according to the filename
 }
-
