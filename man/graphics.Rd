@@ -5,7 +5,6 @@
 \alias{col2hex}
 \alias{gghist}
 \alias{ggsave_quartz}
-\alias{format_log10}
 \title{Plot pch variations}
 \usage{
 pch_plot()
@@ -17,8 +16,6 @@ gghist(x, ...)
 ggsave_quartz(filename, plot = ggplot2::last_plot(),
   device = grDevices::quartz, path = NULL, scale = 1, width = 7,
   height = 7, units = c("in", "cm", "mm"), dpi = 300, limitsize = TRUE)
-
-format_log10(breaks)
 }
 \arguments{
 \item{color}{a character vector}
@@ -49,8 +46,6 @@ If not supplied, uses the size of current graphics device.}
 \item{limitsize}{When \code{TRUE} (the default), \code{ggsave} will not
 save images larger than 50x50 inches, to prevent the common error of
 specifying dimensions in pixels.}
-
-\item{breaks}{numeric}
 }
 \value{
 a character vector
@@ -65,6 +60,4 @@ Translate coloname to hex
 Simple alternative to hist() with ggplot2
 
 Save PDF with quartz
-
-Axis label formatter: scale_*_log10(labels=format_log10)
 }

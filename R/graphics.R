@@ -52,10 +52,21 @@ ggsave_quartz = function(
          scale, width, height, units, dpi, limitsize, type=ext)
 }
 
-#' Axis label formatter: scale_*_log10(labels=format_log10)
-#' @param breaks numeric
-#' @rdname graphics
+#########1#########2#########3#########4#########5#########6#########7#########
+
+#' Axis breaks: scale_*_log10(breaks=breaks_log10)
+#' @param limits numeric
+#' @rdname axis-label
 #' @export
-format_log10 = function(breaks) {
+breaks_log10 = function(limits) {
+    loglims = log10(limits)
+    10 ^ seq(floor(min(loglims)), ceiling(max(loglims)))
+}
+
+#' Axis label formatter: scale_*_log10(labels=labels_log10)
+#' @param breaks numeric
+#' @rdname axis-label
+#' @export
+labels_log10 = function(breaks) {
     parse(text=paste0('10^', log10(breaks)))
 }
