@@ -9,6 +9,14 @@ gprint = function(x, newpage=TRUE, recording=FALSE) {
     invisible(x)
 }
 
+#' List method for making multi-page PDF via ggsave()
+#' @inheritParams grid::grid.draw
+#' @rdname grid
+#' @export
+grid.draw.list = function(x, recording=FALSE) {
+    purrr::walk(x, grid::grid.draw, recording)
+}
+
 #' Read PNG file as grob
 #' @param file path to PNG file
 #' @return grob

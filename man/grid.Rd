@@ -2,11 +2,14 @@
 % Please edit documentation in R/grid.R
 \name{gprint}
 \alias{gprint}
+\alias{grid.draw.list}
 \alias{png_grob}
 \alias{as_gg}
 \title{Shortcut for grid::grid.draw()}
 \usage{
 gprint(x, newpage = TRUE, recording = FALSE)
+
+grid.draw.list(x, recording = FALSE)
 
 png_grob(file)
 
@@ -33,6 +36,8 @@ ggplot
 }
 \description{
 Shortcut for grid::grid.draw()
+
+List method for making multi-page PDF via ggsave()
 
 Read PNG file as grob
 
