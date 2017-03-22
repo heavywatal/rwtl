@@ -7,17 +7,17 @@
 \title{purrr::map-like function in parallel}
 \usage{
 map_par(.x, .f, ..., .combine, .multicombine = TRUE, .inorder = TRUE,
-  .packages = NULL, .cores = parallel::detectCores(logical = FALSE),
-  .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop", "remove",
-  "pass"))
+  .packages = NULL, .export = NULL, .cores = parallel::detectCores(logical
+  = FALSE), .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop",
+  "remove", "pass"))
 
 map_par_df(.x, .f, ..., .id = NULL, .multicombine = TRUE, .inorder = TRUE,
-  .packages = NULL, .cores = parallel::detectCores(logical = FALSE),
-  .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop", "remove",
-  "pass"))
+  .packages = NULL, .export = NULL, .cores = parallel::detectCores(logical
+  = FALSE), .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop",
+  "remove", "pass"))
 
 invoke_par(.f, .x, ..., .env = NULL, .combine, .multicombine = TRUE,
-  .inorder = TRUE, .packages = NULL,
+  .inorder = TRUE, .packages = NULL, .export = NULL,
   .cores = parallel::detectCores(logical = FALSE), .cluster = c("FORK",
   "PSOCK"))
 }
@@ -70,6 +70,11 @@ invoke_par(.f, .x, ..., .env = NULL, .combine, .multicombine = TRUE,
     If \code{ex} requires a \code{R} package to be loaded, this option
     can be used to load that package on each of the workers.
     Ignored when used with \code{\%do\%}.}
+
+\item{.export}{character vector of variables to export.
+    This can be useful when accessing a variable that isn't defined in the
+    current environment.
+    The default value in \code{NULL}.}
 
 \item{.cores}{integer}
 

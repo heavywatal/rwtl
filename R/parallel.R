@@ -7,7 +7,7 @@
 #' @rdname parallel
 #' @export
 map_par = function(.x, .f, ...,
-    .combine, .multicombine=TRUE, .inorder=TRUE, .packages=NULL,
+    .combine, .multicombine=TRUE, .inorder=TRUE, .packages=NULL, .export=NULL,
     .cores=parallel::detectCores(logical=FALSE),
     .cluster=c('FORK', 'PSOCK'),
     .errorhandling=c('stop', 'remove', 'pass')) {
@@ -22,7 +22,7 @@ map_par = function(.x, .f, ...,
     on.exit(parallel::stopCluster(cluster))
     doParallel::registerDoParallel(cluster)
     x = NULL # to suppress warning
-    foreach::foreach(x=.x, .combine=.combine, .multicombine=.multicombine, .inorder=.inorder, .packages=.packages, .errorhandling=.errorhandling) %dopar% {
+    foreach::foreach(x=.x, .combine=.combine, .multicombine=.multicombine, .inorder=.inorder, .packages=.packages, .export=.export, .errorhandling=.errorhandling) %dopar% {
         .fun(x)
     }
 }
@@ -33,14 +33,14 @@ map_par = function(.x, .f, ...,
 #' @rdname parallel
 #' @export
 map_par_df = function(.x, .f, ..., .id=NULL,
-    .multicombine=TRUE, .inorder=TRUE, .packages=NULL,
+    .multicombine=TRUE, .inorder=TRUE, .packages=NULL, .export=NULL,
     .cores=parallel::detectCores(logical=FALSE),
     .cluster=c('FORK', 'PSOCK'),
     .errorhandling=c('stop', 'remove', 'pass')) {
 
     .out = map_par(.x, .f, ...,
         .combine=dplyr::bind_rows, .multicombine=.multicombine,
-        .inorder=.inorder, .packages=.packages,
+        .inorder=.inorder, .packages=.packages, .export=.export,
         .cores=.cores, .cluster=.cluster, .errorhandling=.errorhandling)
     if (is.character(.id)) {
         if (is.null(names(.x))) {
@@ -60,7 +60,7 @@ map_par_df = function(.x, .f, ..., .id=NULL,
 #' @rdname parallel
 #' @export
 invoke_par = function(.f, .x, ..., .env=NULL,
-    .combine, .multicombine=TRUE, .inorder=TRUE, .packages=NULL,
+    .combine, .multicombine=TRUE, .inorder=TRUE, .packages=NULL, .export=NULL,
     .cores=parallel::detectCores(logical=FALSE),
     .cluster=c('FORK', 'PSOCK')) {
 
@@ -68,7 +68,7 @@ invoke_par = function(.f, .x, ..., .env=NULL,
     cluster = parallel::makeCluster(.cores, match.arg(.cluster), outfile='')
     on.exit(parallel::stopCluster(cluster))
     doParallel::registerDoParallel(cluster)
-    foreach::foreach(args=.x, .combine=.combine, .multicombine=.multicombine, .inorder=.inorder, .packages=.packages) %dopar% {
+    foreach::foreach(args=.x, .combine=.combine, .multicombine=.multicombine, .inorder=.inorder, .packages=.packages, .export=.export) %dopar% {
         purrr::invoke(.f, args, ..., .env=.env)
     }
 }
