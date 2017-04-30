@@ -7,11 +7,11 @@
 crossing_rep(x, times = 1L)
 }
 \arguments{
-\item{x}{a vector (of any mode including a list) or a factor or (for
+\item{x}{a vector (of any mode including a \code{\link{list}}) or a factor or (for
     \code{rep} only) a \code{POSIXct} or \code{POSIXlt} or \code{Date}
     object; or an S4 object containing such an object.}
 
-\item{times}{see \code{\dots}.}
+\item{times}{see \code{\dots} above.}
 }
 \value{
 tbl

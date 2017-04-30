@@ -1,15 +1,18 @@
 Package: wtl
 Title: Personal R package
 Version: 0.0.0.9000
-Authors@R: person('Watal M.', 'Iwasaki', email='user@example.com', role=c('aut', 'cre'))
+Authors@R: person('Watal M.', 'Iwasaki', email='heavy.watal@gmail.com', role=c('aut', 'cre'))
 Description: Personal R package.
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests:
     BiocInstaller,
+    cowplot,
+    gridExtra,
+    igraph,
     png,
     rgl
 Imports:
