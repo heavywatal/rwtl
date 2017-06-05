@@ -22,7 +22,7 @@ Imports:
     foreach,
     ggplot2,
     lazyeval,
-    pipeR,
+    magrittr,
     purrr,
     readr,
     stringr,

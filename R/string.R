@@ -5,7 +5,7 @@
 #' @rdname string
 #' @export
 split_chr = function(string, pattern='\\s+', n=Inf) {
-    stringr::str_split(string, pattern, n) %>>% purrr::flatten_chr()
+    stringr::str_split(string, pattern, n) %>% purrr::flatten_chr()
 }
 
 #' Pythonic method to manupilate strings
@@ -38,7 +38,7 @@ chr = function(i) {
 #' @rdname string
 #' @export
 as_chr = function(...) {
-    lazyeval::lazy_dots(...) %>>%
-    purrr::map_chr(~deparse(.x$expr)) %>>%
+    lazyeval::lazy_dots(...) %>%
+    purrr::map_chr(~deparse(.x$expr)) %>%
     stats::setNames(NULL)
 }

@@ -19,7 +19,7 @@ move_left = function(.data, ...) {
 #' @rdname dataframe
 #' @export
 mutate_left_ = function(.data, .dots) {
-    dplyr::mutate_(.data, .dots=.dots) %>>%
+    dplyr::mutate_(.data, .dots=.dots) %>%
     move_left_(.dots=names(.dots))
 }
 
@@ -33,8 +33,8 @@ mutate_left = function(.data, ...) {
 #' @export
 class_at_ = function(.data, ..., .dots) {
     .data = dplyr::select_(.data, ..., .dots=.dots)
-    dplyr::summarize_all(.data, class) %>>%
-    purrr::flatten_chr() %>>%
+    dplyr::summarize_all(.data, class) %>%
+    purrr::flatten_chr() %>%
     stats::setNames(names(.data))
 }
 
@@ -52,7 +52,7 @@ class_at = function(.data, ...) {
 #' @rdname itertools
 #' @export
 crossing_rep = function(x, times=1L) {
-    rep.int(list(x), times) %>>%
-    stats::setNames(paste0('v', seq_along(.))) %>>%
+    rep.int(list(x), times) %>%
+    stats::setNames(paste0('v', seq_along(.))) %>%
     tidyr::crossing_()
 }

@@ -19,7 +19,7 @@ theme_clean = function() {
 #' @rdname theme
 #' @export
 theme_wtl = function(base_size=12, base_family='sans') {
-    ggplot2::theme_bw(base_size, base_family) %>>%
+    ggplot2::theme_bw(base_size, base_family) %>%
     ggplot2::`%+replace%`(theme_clean())
 }
 

@@ -27,9 +27,9 @@ scan_matrix = function(filename, what=double(0), sep="", skip=0L, header=FALSE) 
 #' @rdname read
 #' @export
 read_boost_ini = function(file) {
-    readr::read_delim(file, '=', col_names=c('key', 'val'), comment='#', trim_ws=TRUE) %>>%
-    dplyr::summarise_each(dplyr::funs(paste0(., collapse='\t'))) %>>%
-    {paste(.$key, .$val, sep='\n')} %>>%
+    readr::read_delim(file, '=', col_names=c('key', 'val'), comment='#', trim_ws=TRUE) %>%
+    dplyr::summarise_each(dplyr::funs(paste0(., collapse='\t'))) %>%
+    {paste(.$key, .$val, sep='\n')} %>%
     readr::read_tsv()
 }
 
@@ -39,5 +39,5 @@ read_boost_ini = function(file) {
 #' @rdname read
 #' @export
 read_cb = function(...) {
-    utils::read.table(pipe("pbpaste"), ...) %>>% tibble::as_tibble()
+    utils::read.table(pipe("pbpaste"), ...) %>% tibble::as_tibble()
 }
