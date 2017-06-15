@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 body {
+    margin: 1rem;
     color: #444444;
     font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
 }
@@ -8,6 +9,11 @@ body {
 pre, code, kbd {
     font-family: "Ubuntu Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
     font-size: inherit;
+}
+
+pre {
+    background-color: #f6f6f6;
+    padding: 0.8rem;
 }
 
 img, .plotly, .rglWebGL {
