@@ -1,4 +1,6 @@
-CFLAGS = -g -Wall -O2 -march=native -mtune=native
+CFLAGS = -Wall -g -O2 -march=native -mtune=native
 CXXFLAGS = $(CFLAGS)
-CXX1XFLAGS = $(CFLAGS)
-LDFLAGS = -L${HOME}/local/lib -L${HOME}/local/boost/lib -L${HOME}/.homebrew/lib  -L/usr/local/lib
+CXX11FLAGS = $(CFLAGS)
+CXX14FLAGS = $(CFLAGS)
+CXX17FLAGS = $(CFLAGS)
+LDFLAGS = -L${HOME}/local/lib -L${HOME}/local/boost/lib -L${HOME}/.linuxbrew/lib -L${HOME}/.homebrew/lib  -L/usr/local/lib

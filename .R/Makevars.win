@@ -1,0 +1,7 @@
+CXX14 = $(BINPREF)g++ $(M_ARCH)
+CXX17 = $(BINPREF)g++ $(M_ARCH)
+CXX14FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=native
+CXX17FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=native
+CXX14STD = -std=c++14
+CXX17STD = -std=c++1z
+LDFLAGS = -L${HOME}/local/lib -L${HOME}/local/boost/lib -L${HOME}/.linuxbrew/lib -L${HOME}/.homebrew/lib  -L/usr/local/lib
