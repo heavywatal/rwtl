@@ -4,4 +4,5 @@ CXX14FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=native
 CXX17FLAGS = -O2 -Wall $(DEBUGFLAG) -mtune=native
 CXX14STD = -std=c++14
 CXX17STD = -std=c++1z
-LDFLAGS = -L${HOME}/local/lib -L${HOME}/local/boost/lib -L${HOME}/.linuxbrew/lib -L${HOME}/.homebrew/lib  -L/usr/local/lib
+CPPFLAGS = -IC:/cygwin64/home/$(USERNAME)/local/include -IC:/cygwin64/usr/include
+LDFLAGS = -LC:/cygwin64/home/$(USERNAME)/local/lib -LC:/cygwin64/usr/lib

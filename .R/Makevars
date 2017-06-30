@@ -3,4 +3,5 @@ CXXFLAGS = $(CFLAGS)
 CXX11FLAGS = $(CFLAGS)
 CXX14FLAGS = $(CFLAGS)
 CXX17FLAGS = $(CFLAGS)
-LDFLAGS = -L${HOME}/local/lib -L${HOME}/local/boost/lib -L${HOME}/.linuxbrew/lib -L${HOME}/.homebrew/lib  -L/usr/local/lib
+CPPFLAGS = -I${HOME}/local/include -I${HOME}/.linuxbrew/include -I${HOME}/.homebrew/include -I/usr/local/include
+LDFLAGS = -L${HOME}/local/lib -L${HOME}/.linuxbrew/lib -L${HOME}/.homebrew/lib -L/usr/local/lib
