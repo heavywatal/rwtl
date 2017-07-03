@@ -24,7 +24,7 @@ map_par = function(.x, .f, ...,
     x = NULL # to suppress warning
     foreach::foreach(x=.x, .combine=.combine, .multicombine=.multicombine, .inorder=.inorder, .packages=.packages, .export=.export, .errorhandling=.errorhandling) %dopar% {
         .fun(x)
-    }
+    } %>% stats::setNames(names(.x))
 }
 
 #' purrr::map_df-like function in parallel
@@ -38,20 +38,14 @@ map_par_df = function(.x, .f, ..., .id=NULL,
     .cluster=c('FORK', 'PSOCK'),
     .errorhandling=c('stop', 'remove', 'pass')) {
 
-    .out = map_par(.x, .f, ...,
-        .combine=dplyr::bind_rows, .multicombine=.multicombine,
-        .inorder=.inorder, .packages=.packages, .export=.export,
-        .cores=.cores, .cluster=.cluster, .errorhandling=.errorhandling)
-    if (is.character(.id)) {
-        if (is.null(names(.x))) {
-            warning('.id is ignored because names(.x) is NULL')
-        } else if (!.inorder) {
-            warning('.id is ignored because .inorder is FALSE')
-        } else {
-            .out = mutate_left_(.out, stats::setNames(c(~names(.x)), .id))
-        }
+    if (!missing(.id) && !.inorder) {
+        warning('.id is ignored because .inorder is FALSE')
+        .id = NULL
     }
-    .out
+    res = map_par(.x, .f, ...,
+        .multicombine=.multicombine, .inorder=.inorder, .packages=.packages, .export=.export,
+        .cores=.cores, .cluster=.cluster, .errorhandling=.errorhandling)
+    dplyr::bind_rows(res, .id=.id)
 }
 
 #' purrr::invoke-like function in parallel

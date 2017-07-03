@@ -1,47 +1,27 @@
 #' Move specified columns to left
-#' @param .data tbl
+#' @param .data tibble
 #' @param ... colnames or expressions
-#' @param .dots vector of strings or expressions
 #' @return tbl
 #' @rdname dataframe
 #' @export
-move_left_ = function(.data, ..., .dots) {
-    dplyr::select_(.data, ..., ~dplyr::one_of(.dots), ~dplyr::everything())
-}
-
-#' @rdname dataframe
-#' @export
 move_left = function(.data, ...) {
-    .dots = purrr::map_chr(lazyeval::lazy_dots(...), ~deparse(.x$expr))
-    move_left_(.data, .dots=.dots)
-}
-
-#' @rdname dataframe
-#' @export
-mutate_left_ = function(.data, .dots) {
-    dplyr::mutate_(.data, .dots=.dots) %>%
-    move_left_(.dots=names(.dots))
+    dplyr::select(.data, ..., dplyr::everything())
 }
 
 #' @rdname dataframe
 #' @export
 mutate_left = function(.data, ...) {
-    mutate_left_(.data, lazyeval::lazy_dots(...))
-}
-
-#' @rdname dataframe
-#' @export
-class_at_ = function(.data, ..., .dots) {
-    .data = dplyr::select_(.data, ..., .dots=.dots)
-    dplyr::summarize_all(.data, class) %>%
-    purrr::flatten_chr() %>%
-    stats::setNames(names(.data))
+    dplyr::mutate(.data, ...) %>%
+    move_left(names(rlang::quos(...)))
 }
 
 #' @rdname dataframe
 #' @export
 class_at = function(.data, ...) {
-    class_at_(.data, .dots=lazyeval::lazy_dots(...))
+    .data = dplyr::select(.data, ...)
+    dplyr::summarize_all(.data, class) %>%
+    purrr::flatten_chr() %>%
+    stats::setNames(names(.data))
 }
 
 #########1#########2#########3#########4#########5#########6#########7#########
