@@ -55,6 +55,7 @@ setHook(packageEvent("grDevices", "onLoad"), function(...) {
 })
 
 setHook(packageEvent("extrafont", "attach"), function(...) {
+    if (is.null(extrafont::fonts())) {return(invisible())}
     tryCatch({
         grDevices::pdfFonts(
           sans= grDevices::pdfFonts()$`Source Sans Pro`,
