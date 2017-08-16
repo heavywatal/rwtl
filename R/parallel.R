@@ -27,12 +27,12 @@ map_par = function(.x, .f, ...,
     } %>% stats::setNames(names(.x))
 }
 
-#' purrr::map_df-like function in parallel
-#' @inheritParams purrr::map_df
+#' purrr::map_dfr-like function in parallel
+#' @inheritParams purrr::map_dfr
 #' @return tibble
 #' @rdname parallel
 #' @export
-map_par_df = function(.x, .f, ..., .id=NULL,
+map_par_dfr = function(.x, .f, ..., .id=NULL,
     .multicombine=TRUE, .inorder=TRUE, .packages=NULL, .export=NULL,
     .cores=parallel::detectCores(logical=FALSE),
     .cluster=c('FORK', 'PSOCK'),

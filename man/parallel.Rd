@@ -2,7 +2,7 @@
 % Please edit documentation in R/parallel.R
 \name{map_par}
 \alias{map_par}
-\alias{map_par_df}
+\alias{map_par_dfr}
 \alias{invoke_par}
 \title{purrr::map-like function in parallel}
 \usage{
@@ -11,10 +11,10 @@ map_par(.x, .f, ..., .combine, .multicombine = TRUE, .inorder = TRUE,
   = FALSE), .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop",
   "remove", "pass"))
 
-map_par_df(.x, .f, ..., .id = NULL, .multicombine = TRUE, .inorder = TRUE,
-  .packages = NULL, .export = NULL, .cores = parallel::detectCores(logical
-  = FALSE), .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop",
-  "remove", "pass"))
+map_par_dfr(.x, .f, ..., .id = NULL, .multicombine = TRUE,
+  .inorder = TRUE, .packages = NULL, .export = NULL,
+  .cores = parallel::detectCores(logical = FALSE), .cluster = c("FORK",
+  "PSOCK"), .errorhandling = c("stop", "remove", "pass"))
 
 invoke_par(.f, .x, ..., .env = NULL, .combine, .multicombine = TRUE,
   .inorder = TRUE, .packages = NULL, .export = NULL,
@@ -115,7 +115,7 @@ list
 \description{
 purrr::map-like function in parallel
 
-purrr::map_df-like function in parallel
+purrr::map_dfr-like function in parallel
 
 purrr::invoke-like function in parallel
 }
