@@ -34,5 +34,5 @@ class_at = function(.data, ...) {
 crossing_rep = function(x, times=1L) {
     rep.int(list(x), times) %>%
     stats::setNames(paste0('v', seq_along(.))) %>%
-    tidyr::crossing_()
+    {purrr::invoke(tidyr::crossing, .)}
 }
