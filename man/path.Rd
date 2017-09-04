@@ -2,10 +2,13 @@
 % Please edit documentation in R/path.R
 \name{isdir}
 \alias{isdir}
+\alias{mkdir}
 \alias{splitext}
 \title{A shortcut}
 \usage{
 isdir(...)
+
+mkdir(path, recursive = FALSE, mode = "0755")
 
 splitext(path)
 }
@@ -13,6 +16,13 @@ splitext(path)
 \item{...}{character vectors conatining file paths}
 
 \item{path}{a string}
+
+\item{recursive}{logical. Should elements of the path other than the
+    last be created?  If true, like the Unix command \command{mkdir -p}.}
+
+\item{mode}{the mode to be used on Unix-alikes: it will be
+    coerced by \code{\link{as.octmode}}.  For \code{Sys.chmod} it is
+    recycled along \code{paths}.}
 }
 \value{
 a logical vector
