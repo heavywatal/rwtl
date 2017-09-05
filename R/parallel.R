@@ -15,7 +15,7 @@ map_par = function(.x, .f, ...,
     if (is.function(.f)) {
         .fun = purrr::partial(.f, ...)
     } else {
-        .fun = purrr::as_function(.f, ...)
+        .fun = purrr::as_mapper(.f, ...)
     }
     .cores = min(.cores, length(.x))
     cluster = parallel::makeCluster(.cores, match.arg(.cluster), outfile='')
