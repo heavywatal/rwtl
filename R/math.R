@@ -12,7 +12,7 @@ permutate = function(n, k) choose(n, k) * factorial(k)
 #' @export
 probit = function(p) {stats::qnorm(p)}
 
-#' Logit functon: log-odds; the inverse of sigmoid
+#' Logit function: log-odds; the inverse of sigmoid
 #' @param base a numeric
 #' @return a numeric vector
 #' @rdname math

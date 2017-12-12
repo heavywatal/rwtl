@@ -8,7 +8,7 @@ split_chr = function(string, pattern='\\s+', n=Inf) {
     stringr::str_split(string, pattern, n) %>% purrr::flatten_chr()
 }
 
-#' Pythonic method to manupilate strings
+#' Pythonic method to manipulate strings
 #' @return a list of character vectors
 #' @rdname string
 #' @export

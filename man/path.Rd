@@ -13,7 +13,7 @@ mkdir(path, recursive = FALSE, mode = "0755")
 splitext(path)
 }
 \arguments{
-\item{...}{character vectors conatining file paths}
+\item{...}{character vectors containing file paths}
 
 \item{path}{a string}
 

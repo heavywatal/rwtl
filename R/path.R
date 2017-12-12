@@ -1,5 +1,5 @@
 #' A shortcut
-#' @param ... character vectors conatining file paths
+#' @param ... character vectors containing file paths
 #' @return a logical vector
 #' @rdname path
 #' @export

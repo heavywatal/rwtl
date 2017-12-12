@@ -67,7 +67,7 @@ Permutation
 
 Probit function
 
-Logit functon: log-odds; the inverse of sigmoid
+Logit function: log-odds; the inverse of sigmoid
 
 Sigmoid function: the inverse of logit
 

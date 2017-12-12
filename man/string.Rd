@@ -57,7 +57,7 @@ a list of character vectors
 \description{
 Split a single string into a vector
 
-Pythonic method to manupilate strings
+Pythonic method to manipulate strings
 
 Pythonic alias of charToRaw()
 

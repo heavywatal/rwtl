@@ -55,7 +55,7 @@ gg
 \description{
 Plot pch variations
 
-Translate coloname to hex
+Translate color name to hex
 
 Simple alternative to hist() with ggplot2
 

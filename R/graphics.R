@@ -13,7 +13,7 @@ pch_plot = function() {
     graphics::mtext(paste0("col='", col, "', bg='", bg, "'"))
 }
 
-#' Translate coloname to hex
+#' Translate color name to hex
 #' @param color a character vector
 #' @return a character vector
 #' @rdname graphics
