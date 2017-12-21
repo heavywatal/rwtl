@@ -65,10 +65,10 @@ setHook(packageEvent("extrafont", "attach"), function(...) {
 
 .First = function() {
     if (interactive()) {
-        cran = c('tidyverse', 'devtools', 'extrafont')
+        cran = c('tidyverse', 'devtools')
         github = c('wtl')
         options(defaultPackages=c(getOption('defaultPackages'), cran, github))
-        if (.Platform$GUI != 'AQUA' && Sys.getenv('EMACS') == '') {
+        if (!(.Platform$GUI %in% c('AQUA', 'Rgui')) && Sys.getenv('EMACS') == '') {
             utils::loadhistory(file=Sys.getenv('R_HISTFILE'))
         }
         print(utils::sessionInfo(), locale=FALSE)
@@ -80,7 +80,7 @@ setHook(packageEvent("extrafont", "attach"), function(...) {
 
 .Last = function() {try({
     if (interactive()) {
-        if (.Platform$GUI != 'AQUA' && Sys.getenv('EMACS') == '') {
+        if (!(.Platform$GUI %in% c('AQUA', 'Rgui')) && Sys.getenv('EMACS') == '') {
             utils::savehistory(file=Sys.getenv('R_HISTFILE'))
         }
         print(ls(envir=globalenv(), all.names=TRUE))
