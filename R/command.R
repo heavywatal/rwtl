@@ -3,12 +3,12 @@
 #' @rdname command
 #' @export
 command_args = function() {
-    .argv = commandArgs(trailingOnly=FALSE)
-    l = list()
-    l$file = sub('^--file=', '', grep('^--file=', .argv, value=TRUE))
-    l$srcdir = dirname(normalizePath(l$file))
-    l$args = grep('^[^-]', .argv[-1], value=TRUE)
-    return(l)
+  .argv = commandArgs(trailingOnly = FALSE)
+  l = list()
+  l$file = sub("^--file=", "", grep("^--file=", .argv, value = TRUE))
+  l$srcdir = dirname(normalizePath(l$file))
+  l$args = grep("^[^-]", .argv[-1], value = TRUE)
+  return(l)
 }
 
 #' script path in Rscript
@@ -16,7 +16,7 @@ command_args = function() {
 #' @rdname command
 #' @export
 this_file = function() {
-    args = commandArgs(trailingOnly=FALSE)
-    file_arg = grep("--file=", args, value=TRUE)
-    stringr::str_replace(file_arg, '^--file=', '')
+  args = commandArgs(trailingOnly = FALSE)
+  file_arg = grep("--file=", args, value = TRUE)
+  stringr::str_replace(file_arg, "^--file=", "")
 }

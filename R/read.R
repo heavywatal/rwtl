@@ -8,17 +8,25 @@
 #' @rdname read
 #' @export
 scan_matrix = function(filename, what=double(0), sep="", skip=0L, header=FALSE) {
-    p = pipe(paste("wc -l <", file), open="r")
-    nlines = scan(p, n=1, quiet=TRUE)
-    close(p)
-    repeat {
-        if (skip>=nlines) {return (NULL)}
-        label = scan(file, what=character(), sep=sep, skip=skip, nlines=1, quiet=TRUE, comment.char="#")
-        if (length(label)>0) {break} else {skip = skip+1}
+  p = pipe(paste("wc -l <", file), open = "r")
+  nlines = scan(p, n = 1, quiet = TRUE)
+  close(p)
+  repeat {
+    if (skip >= nlines) {
+      return(NULL)
     }
-    mtrx = matrix(scan(file, what=what, sep=sep, skip=skip+ifelse(header,1,0), quiet=TRUE, comment.char="#"), ncol=length(label), byrow=T)
-    if (header) {colnames(mtrx) = label}
-    mtrx
+    label = scan(file, what = character(), sep = sep, skip = skip, nlines = 1, quiet = TRUE, comment.char = "#")
+    if (length(label) > 0) {
+      break
+    } else {
+      skip = skip + 1
+    }
+  }
+  mtrx = matrix(scan(file, what = what, sep = sep, skip = skip + ifelse(header, 1, 0), quiet = TRUE, comment.char = "#"), ncol = length(label), byrow = T)
+  if (header) {
+    colnames(mtrx) = label
+  }
+  mtrx
 }
 
 #' Read an INI-like config file of boost::program_options
@@ -27,9 +35,11 @@ scan_matrix = function(filename, what=double(0), sep="", skip=0L, header=FALSE) 
 #' @rdname read
 #' @export
 read_boost_ini = function(file) {
-    readr::read_delim(file, '=', col_names=c('key', 'val'), comment='#', trim_ws=TRUE) %>%
-    dplyr::summarise_all(dplyr::funs(paste0(., collapse='\t'))) %>%
-    {paste(.$key, .$val, sep='\n')} %>%
+  readr::read_delim(file, "=", col_names = c("key", "val"), comment = "#", trim_ws = TRUE) %>%
+    dplyr::summarise_all(dplyr::funs(paste0(., collapse = "\t"))) %>%
+    {
+      paste(.$key, .$val, sep = "\n")
+    } %>%
     readr::read_tsv()
 }
 
@@ -39,5 +49,5 @@ read_boost_ini = function(file) {
 #' @rdname read
 #' @export
 read_cb = function(...) {
-    utils::read.table(pipe("pbpaste"), ...) %>% tibble::as_tibble()
+  utils::read.table(pipe("pbpaste"), ...) %>% tibble::as_tibble()
 }

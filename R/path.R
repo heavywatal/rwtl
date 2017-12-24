@@ -8,8 +8,8 @@ isdir = function(...) file.info(...)$isdir
 #' @inheritParams base::dir.create
 #' @rdname path
 #' @export
-mkdir = function(path, recursive=FALSE, mode='0755') {
-    dir.create(path, showWarnings=TRUE, recursive=recursive, mode=mode)
+mkdir = function(path, recursive=FALSE, mode="0755") {
+  dir.create(path, showWarnings = TRUE, recursive = recursive, mode = mode)
 }
 
 #' os.path.splitext() in Python
@@ -18,5 +18,5 @@ mkdir = function(path, recursive=FALSE, mode='0755') {
 #' @rdname path
 #' @export
 splitext = function(path) {
-    unlist(rsplit(path, "\\.", 1))
+  unlist(rsplit(path, "\\.", 1))
 }

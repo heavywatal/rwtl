@@ -1,3 +1,3 @@
 .onLoad = function(libname, pkgname) {
-    adjust_width()
+  adjust_width()
 }
