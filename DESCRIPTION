@@ -27,6 +27,7 @@ Imports:
     readr,
     rlang,
     stringr,
+    styler,
     tibble,
     tidyr,
     tidyverse,
