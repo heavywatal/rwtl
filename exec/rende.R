@@ -1,4 +1,4 @@
-# !/usr/bin/env Rscript
+#!/usr/bin/env Rscript
 argv = commandArgs(trailingOnly = TRUE)
 infile = argv[1]
 outdir = argv[2]
