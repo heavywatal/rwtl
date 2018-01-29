@@ -65,7 +65,7 @@ setHook(packageEvent("extrafont", "attach"), function(...) {
 
 .First = function() {
     if (interactive()) {
-        cran = c('tidyverse', 'devtools')
+        cran = c('tidyverse', 'fs', 'devtools')
         github = c('wtl')
         options(defaultPackages=c(getOption('defaultPackages'), cran, github))
         if (!(.Platform$GUI %in% c('AQUA', 'Rgui')) && Sys.getenv('EMACS') == '') {
