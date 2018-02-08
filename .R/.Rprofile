@@ -89,6 +89,7 @@ setHook(packageEvent("extrafont", "attach"), function(...) {
     cat(date(), "\n")
     cat(getwd(), "\n")
     cat("Loading:", cran, github, "\n")
+    wtl::adjust_width()
   }
 }
 
