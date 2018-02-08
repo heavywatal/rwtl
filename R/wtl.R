@@ -4,3 +4,5 @@
 #' @importFrom magrittr %>%
 #' @importFrom foreach %dopar%
 NULL
+# to suppress NOTE
+utils::globalVariables(c(".", "n"))
