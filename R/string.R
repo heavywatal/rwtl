@@ -1,5 +1,4 @@
 #' Split a single string into a vector
-#' @inheritParams stringr::str_detect
 #' @inheritParams stringr::str_split
 #' @return character vectors
 #' @rdname string
