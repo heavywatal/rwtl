@@ -24,6 +24,17 @@ col2hex = function(color=grDevices::colors()) {
   grDevices::rgb(t(grDevices::col2rgb(color)), max = 255)
 }
 
+#' Calculate mean and sd for ggplot2::stat_summary()
+#' @inheritParams ggplot2::mean_se
+#' @rdname graphics
+#' @export
+mean_sd = function(x, mult = 1.96) {
+  x = stats::na.omit(x)
+  div = mult * stats::sd(x)
+  mu = mean(x)
+  data.frame(y = mu, ymin = mu - div, ymax = mu + div)
+}
+
 #' Simple alternative to hist() with ggplot2
 #' @param x vector
 #' @param ... passed to geom_*()

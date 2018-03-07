@@ -3,6 +3,7 @@
 \name{pch_plot}
 \alias{pch_plot}
 \alias{col2hex}
+\alias{mean_sd}
 \alias{gghist}
 \alias{ggsave_quartz}
 \title{Plot pch variations}
@@ -10,6 +11,8 @@
 pch_plot()
 
 col2hex(color = grDevices::colors())
+
+mean_sd(x, mult = 1.96)
 
 gghist(x, ...)
 
@@ -21,6 +24,8 @@ ggsave_quartz(filename, plot = ggplot2::last_plot(),
 \item{color}{a character vector}
 
 \item{x}{vector}
+
+\item{mult}{number of multiples of standard error}
 
 \item{...}{passed to geom_*()}
 
@@ -56,6 +61,8 @@ gg
 Plot pch variations
 
 Translate color name to hex
+
+Calculate mean and sd for ggplot2::stat_summary()
 
 Simple alternative to hist() with ggplot2
 
