@@ -36,3 +36,18 @@ crossing_rep = function(x, times=1L) {
       purrr::invoke(tidyr::crossing, .)
     }
 }
+
+#' Get rle (run-length encoding) as tibble
+#' @param x atomic vector
+#' @param .name column name in output
+#' @return tbl with start and end index columns
+#' @rdname rle_df
+#' @export
+rle_df = function(x, .name="value") {
+  x = rle(x)
+  tibble::tibble(
+    !!.name := x$values,
+    start = 0L,
+    end = cumsum(x$lengths)) %>%
+  dplyr::mutate(start = dplyr::lag(.data$end, 1L, 0L) + 1L)
+}
