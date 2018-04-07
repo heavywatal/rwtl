@@ -4,7 +4,7 @@
 #' @rdname igraph
 #' @export
 igraph_layout = function(graph, layout = igraph::nicely(), ...) {
-  nodes = igraph_layout_nodes(graph)
+  nodes = igraph_layout_nodes(graph, layout, ...)
   to_nodes = dplyr::rename(nodes, xend = "x", yend = "y")
   igraph::as_data_frame(graph, "edges") %>%
     tibble::as_tibble() %>%
