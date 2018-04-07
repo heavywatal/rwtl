@@ -46,8 +46,9 @@ crossing_rep = function(x, times=1L) {
 rle_df = function(x, .name="value") {
   x = rle(x)
   tibble::tibble(
-    !!.name := x$values,
+    !! .name := x$values,
     start = 0L,
-    end = cumsum(x$lengths)) %>%
-  dplyr::mutate(start = dplyr::lag(.data$end, 1L, 0L) + 1L)
+    end = cumsum(x$lengths)
+  ) %>%
+    dplyr::mutate(start = dplyr::lag(.data$end, 1L, 0L) + 1L)
 }
