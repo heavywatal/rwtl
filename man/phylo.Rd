@@ -4,6 +4,7 @@
 \alias{node_labels}
 \alias{named_edges}
 \alias{phylo2igraph}
+\alias{ape_layout_unrooted}
 \title{Utilities for phylo class of ape package}
 \usage{
 node_labels(x)
@@ -11,9 +12,15 @@ node_labels(x)
 named_edges(x)
 
 phylo2igraph(x)
+
+ape_layout_unrooted(phy, rotate = 0)
 }
 \arguments{
 \item{x}{phylo object}
+
+\item{phy}{phylo object}
+
+\item{rotate}{angle in radian}
 }
 \description{
 Utilities for phylo class of ape package
