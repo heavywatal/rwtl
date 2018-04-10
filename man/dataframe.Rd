@@ -3,12 +3,15 @@
 \name{move_left}
 \alias{move_left}
 \alias{mutate_left}
+\alias{center_range}
 \alias{class_at}
 \title{Move specified columns to left}
 \usage{
 move_left(.data, ...)
 
 mutate_left(.data, ...)
+
+center_range(.data, ...)
 
 class_at(.data, ...)
 }

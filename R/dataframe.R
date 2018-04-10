@@ -17,6 +17,12 @@ mutate_left = function(.data, ...) {
 
 #' @rdname dataframe
 #' @export
+center_range = function(.data, ...) {
+  dplyr::mutate_at(.data, dplyr::vars(...), function(x) {x - mean(range(x))})
+}
+
+#' @rdname dataframe
+#' @export
 class_at = function(.data, ...) {
   .data = dplyr::select(.data, ...)
   dplyr::summarize_all(.data, class) %>%
