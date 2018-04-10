@@ -24,11 +24,13 @@ phylo2igraph = function(x) {
 }
 
 #' @param phy phylo object
+#' @param centering boolean
 #' @param rotate angle in radian
 #' @rdname phylo
 #' @export
-ape_layout_unrooted = function(phy, rotate=0) {
+ape_layout_unrooted = function(phy, centering=TRUE, rotate=0) {
   nodes = ape_unrooted_xy(phy, rotate = rotate)
+  if (centering) {nodes = center_range(nodes, "x", "y")}
   to_nodes = dplyr::rename(nodes, xend = "x", yend = "y")
   phy$edge %>%
     tibble::as_tibble() %>%

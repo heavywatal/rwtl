@@ -13,12 +13,14 @@ named_edges(x)
 
 phylo2igraph(x)
 
-ape_layout_unrooted(phy, rotate = 0)
+ape_layout_unrooted(phy, centering = TRUE, rotate = 0)
 }
 \arguments{
 \item{x}{phylo object}
 
 \item{phy}{phylo object}
+
+\item{centering}{boolean}
 
 \item{rotate}{angle in radian}
 }
