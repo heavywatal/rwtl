@@ -30,7 +30,9 @@ phylo2igraph = function(x) {
 #' @export
 ape_layout_unrooted = function(phy, centering=TRUE, rotate=0) {
   nodes = ape_unrooted_xy(phy, rotate = rotate)
-  if (centering) {nodes = center_range(nodes, "x", "y")}
+  if (centering) {
+    nodes = center_range(nodes, "x", "y")
+  }
   to_nodes = dplyr::rename(nodes, xend = "x", yend = "y")
   phy$edge %>%
     tibble::as_tibble() %>%

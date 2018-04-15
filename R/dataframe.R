@@ -18,7 +18,9 @@ mutate_left = function(.data, ...) {
 #' @rdname dataframe
 #' @export
 center_range = function(.data, ...) {
-  dplyr::mutate_at(.data, dplyr::vars(...), function(x) {x - mean(range(x))})
+  dplyr::mutate_at(.data, dplyr::vars(...), function(x) {
+    x - mean(range(x))
+  })
 }
 
 #' @rdname dataframe
