@@ -13,31 +13,31 @@ easierprof = function(expr, interval=0.02, memory=FALSE) {
   utils::summaryRprof(.tmpfile, memory = ifelse(memory, "both", "none"))
 }
 
-#' Set options(width) according to the current environment
-#' @param width integer
+#' Set width and height according to the current environment
+#' @param max.print maximum number of rows to print
 #' @rdname utils
 #' @export
-adjust_width = function(width=Sys.getenv("COLUMNS")) {
-  if (width == "") {
-    if (Sys.getenv("RSTUDIO") == "1") {
-      return()
-    }
-    stty = system("stty -a", intern = TRUE, ignore.stderr = TRUE)[1]
-    if (is.na(stty)) {
-      return()
-    }
-    colmuns = grep("columns", unlist(strsplit(stty, ";")), value = TRUE)
-    width = grep("\\d+", unlist(strsplit(colmuns, " ")), value = TRUE)
-  }
-  options(width = width)
+adjust_print_options = function(max.print = 30L) {
+  # COLUMNS and LINES are unreadable during startup
+  stty_size = system("stty size", intern = TRUE)
+  stopifnot(length(stty_size) > 0L)
+  stty_size = strsplit(stty_size, " ")[[1L]]
+  tibble_height = min(as.integer(stty_size[1L]) - 6L, max.print)
+  options(
+    width = as.integer(stty_size[2L]),
+    tibble.print_max = tibble_height,
+    tibble.print_min = tibble_height
+  )
   if (interactive()) {
     message("width: ", getOption("width"))
+    message("tibble.print_max: ", getOption("tibble.print_max"))
+    message("tibble.print_min: ", getOption("tibble.print_min"))
   }
 }
 
 #' Shortcut of page(x, method='print')
 #' @inheritParams utils::page
-#' @param max.print maximum number of rows to print
+#' @param width integer
 #' @rdname utils
 #' @export
 less = function(x, method=c("print", "dput"),

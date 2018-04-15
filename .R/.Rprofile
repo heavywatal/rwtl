@@ -20,8 +20,6 @@ options(
 )
 
 options(
-  tibble.print_max = 30L,
-  tibble.print_min = 30L,
   pillar.subtle = FALSE,
   pillar.neg = FALSE,
   readr.num_columns = 0L
@@ -39,7 +37,7 @@ options(
     cat(date(), "\n")
     cat(getwd(), "\n")
     cat("Loading:", cran, github, "\n")
-    wtl::adjust_width()
+    wtl::adjust_print_options()
   }
 }
 

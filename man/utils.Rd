@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{easierprof}
 \alias{easierprof}
-\alias{adjust_width}
+\alias{adjust_print_options}
 \alias{less}
 \alias{max_print}
 \alias{refresh}
@@ -11,7 +11,7 @@
 \usage{
 easierprof(expr, interval = 0.02, memory = FALSE)
 
-adjust_width(width = Sys.getenv("COLUMNS"))
+adjust_print_options(max.print = 30L)
 
 less(x, method = c("print", "dput"), max.print = getOption("max.print"),
   width = getOption("width"), ...)
@@ -29,7 +29,7 @@ install_tibble134()
 
 \item{memory}{logical}
 
-\item{width}{integer}
+\item{max.print}{maximum number of rows to print}
 
 \item{x}{An \R object, or a character string naming an object.}
 
@@ -37,7 +37,7 @@ install_tibble134()
     \code{\link{dput}}.  An alternative is to use \code{print} and
     capture the output to be shown in the pager.  Can be abbreviated.}
 
-\item{max.print}{maximum number of rows to print}
+\item{width}{integer}
 
 \item{...}{additional arguments for \code{\link{dput}},
     \code{\link{print}} or \code{\link{file.show}} (such as \code{title}).}
@@ -52,7 +52,7 @@ summaryRprof()
 \description{
 Simple wrapper of Rprof() and summaryRprof()
 
-Set options(width) according to the current environment
+Set width and height according to the current environment
 
 Shortcut of page(x, method='print')
 
