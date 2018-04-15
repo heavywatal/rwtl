@@ -2,38 +2,34 @@
 % Please edit documentation in R/style.R
 \name{eq_assign_style}
 \alias{eq_assign_style}
-\title{tidyverse_style but use equal sign = for assignment}
+\alias{styler_style}
+\title{Apply tidyverse_style, but use equal sign = for assignment}
 \usage{
-eq_assign_style(scope = "tokens", strict = TRUE, indent_by = 2,
-  start_comments_with_one_space = FALSE,
-  reindention = styler::tidyverse_reindention(),
-  math_token_spacing = styler::tidyverse_math_token_spacing())
+eq_assign_style(...)
+
+styler_style(path = ".", ..., style = eq_assign_style, filetype = "R",
+  recursive = TRUE, exclude_files = NULL)
 }
 \arguments{
-\item{scope}{The extent of manipulation. Can range from "none" (least
-invasive) to "token" (most invasive). See 'Details'. This argument is a
-vector of length one.}
+\item{...}{Arguments passed on to the \code{style} function.}
 
-\item{strict}{A logical value indicating whether a set of strict
-or not so strict transformer functions should be returned. Compare the
-functions returned with or without \code{strict = TRUE}. For example,
-\code{strict = TRUE} means force \emph{one} space e.g. after "," and \emph{one} line break
-e.g. after a closing curly brace. \code{strict = FALSE} means to set spaces and
-line breaks to one if there is none and leave the code untouched otherwise.
-See 'Examples'.}
+\item{path}{Path to a directory with files to transform.}
 
-\item{indent_by}{How many spaces of indention should be inserted after
-operators such as '('.}
+\item{style}{A function that creates a style guide to use, by default
+\code{\link[=tidyverse_style]{tidyverse_style()}} (without the parentheses). Not used
+further except to construct the argument \code{transformers}. See
+\code{\link[=style_guides]{style_guides()}} for details.}
 
-\item{start_comments_with_one_space}{Whether or not comments should start
-with only one space (see \code{start_comments_with_space()}).}
+\item{filetype}{Vector of file extensions indicating which filetypes should
+be styled. Case is ignored, and the \code{.} is optional, e.g. \code{c(".R", ".Rmd")}
+or \code{c("r", "rmd")}.}
 
-\item{reindention}{A list of parameters for regex re-indention, most
-conveniently constructed using \code{\link[=specify_reindention]{specify_reindention()}}.}
+\item{recursive}{A logical value indicating whether or not files in subdirectories
+of \code{path} should be styled as well.}
 
-\item{math_token_spacing}{A list of parameters that define spacing around
-math token, conveniently constructed using \code{\link[=specify_math_token_spacing]{specify_math_token_spacing()}}.}
+\item{exclude_files}{Character vector with paths to files that should be
+excluded from styling.}
 }
 \description{
-tidyverse_style but use equal sign = for assignment
+Apply tidyverse_style, but use equal sign = for assignment
 }
