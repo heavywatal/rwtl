@@ -6,4 +6,4 @@
 #' @importFrom foreach %dopar%
 NULL
 # to suppress NOTE
-utils::globalVariables(c(".", "n"))
+utils::globalVariables(c("."))
