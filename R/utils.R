@@ -25,11 +25,15 @@ adjust_print_options = function(max.print = 30L) {
   tibble_height = min(as.integer(stty_size[1L]) - 6L, max.print)
   options(
     width = as.integer(stty_size[2L]),
+    datatable.print.nrows = tibble_height,
+    datatable.print.topn = tibble_height %/% 2L,
     tibble.print_max = tibble_height,
     tibble.print_min = tibble_height
   )
   if (interactive()) {
     message("width: ", getOption("width"))
+    message("datatable.print.nrows: ", getOption("datatable.print.nrows"))
+    message("datatable.print.topn: ", getOption("datatable.print.topn"))
     message("tibble.print_max: ", getOption("tibble.print_max"))
     message("tibble.print_min: ", getOption("tibble.print_min"))
   }

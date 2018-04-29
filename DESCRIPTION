@@ -12,6 +12,7 @@ Suggests:
     ape,
     BiocInstaller,
     cowplot,
+    data.table,
     extrafont,
     gridExtra,
     igraph,

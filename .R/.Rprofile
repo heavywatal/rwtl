@@ -20,6 +20,8 @@ options(
 )
 
 options(
+  datatable.print.class = TRUE,
+  datatable.print.colnames = "top",
   pillar.subtle = FALSE,
   pillar.neg = FALSE,
   readr.num_columns = 0L
@@ -38,6 +40,8 @@ options(
     cat(getwd(), "\n")
     cat("Loading:", cran, github, "\n")
     wtl::adjust_print_options()
+    assign("print.tbl_df", data.table:::print.data.table, envir = .GlobalEnv)
+    assign("print.tbl", data.table:::print.data.table, envir = .GlobalEnv)
   }
 }
 
