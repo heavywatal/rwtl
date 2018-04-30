@@ -3,8 +3,8 @@
 \name{easierprof}
 \alias{easierprof}
 \alias{adjust_print_options}
-\alias{less}
 \alias{max_print}
+\alias{less}
 \alias{refresh}
 \alias{install_tibble134}
 \title{Simple wrapper of Rprof() and summaryRprof()}
@@ -13,10 +13,9 @@ easierprof(expr, interval = 0.02, memory = FALSE)
 
 adjust_print_options(max.print = 30L)
 
-less(x, method = c("print", "dput"), max.print = getOption("max.print"),
-  width = getOption("width"), ...)
+max_print(x, max.print = getOption("max.print"), width = Inf, ...)
 
-max_print(x, max.print = getOption("max.print"), ...)
+less(x, max.print = getOption("max.print"), width = Inf, ...)
 
 refresh(pkg = "rwtl", dir = "~/git")
 
@@ -31,16 +30,11 @@ install_tibble134()
 
 \item{max.print}{maximum number of rows to print}
 
-\item{x}{An \R object, or a character string naming an object.}
-
-\item{method}{The default method is to dump the object \emph{via}
-    \code{\link{dput}}.  An alternative is to use \code{print} and
-    capture the output to be shown in the pager.  Can be abbreviated.}
+\item{x}{an object used to select a method.}
 
 \item{width}{integer}
 
-\item{...}{additional arguments for \code{\link{dput}},
-    \code{\link{print}} or \code{\link{file.show}} (such as \code{title}).}
+\item{...}{further arguments passed to or from other methods.}
 
 \item{pkg}{repository name}
 
@@ -54,9 +48,9 @@ Simple wrapper of Rprof() and summaryRprof()
 
 Set width and height according to the current environment
 
-Shortcut of page(x, method='print')
-
 Print big tibble as it is
+
+Shortcut of page(x, method='print')
 
 Workaround to achieve devtools::document(..., export_all=FALSE)
 }
