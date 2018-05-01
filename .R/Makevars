@@ -1,2 +1,0 @@
-# CPPFLAGS = -I${HOME}/local/include -I${HOME}/.linuxbrew/include
-# LDFLAGS = -L${HOME}/local/lib -L${HOME}/.linuxbrew/lib
