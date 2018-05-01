@@ -4,22 +4,39 @@
 \alias{map_par}
 \alias{map_par_dfr}
 \alias{invoke_par}
+\alias{mcmap}
+\alias{mcmap_lgl}
+\alias{mcmap_int}
+\alias{mcmap_dbl}
+\alias{mcmap_chr}
+\alias{mcmap_dfr}
 \title{purrr::map-like function in parallel}
 \usage{
 map_par(.x, .f, ..., .combine, .multicombine = TRUE, .inorder = TRUE,
-  .packages = NULL, .export = NULL, .cores = parallel::detectCores(logical
-  = FALSE), .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop",
-  "remove", "pass"))
+  .packages = NULL, .export = NULL, .mc.cores = getOption("mc.cores", 2L),
+  .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop", "remove",
+  "pass"))
 
 map_par_dfr(.x, .f, ..., .id = NULL, .multicombine = TRUE,
   .inorder = TRUE, .packages = NULL, .export = NULL,
-  .cores = parallel::detectCores(logical = FALSE), .cluster = c("FORK",
-  "PSOCK"), .errorhandling = c("stop", "remove", "pass"))
+  .mc.cores = getOption("mc.cores", 2L), .cluster = c("FORK", "PSOCK"),
+  .errorhandling = c("stop", "remove", "pass"))
 
 invoke_par(.f, .x, ..., .env = NULL, .combine, .multicombine = TRUE,
   .inorder = TRUE, .packages = NULL, .export = NULL,
-  .cores = parallel::detectCores(logical = FALSE), .cluster = c("FORK",
-  "PSOCK"))
+  .mc.cores = getOption("mc.cores", 2L), .cluster = c("FORK", "PSOCK"))
+
+mcmap(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+
+mcmap_lgl(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+
+mcmap_int(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+
+mcmap_dbl(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+
+mcmap_chr(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+
+mcmap_dfr(.x, .f, ..., .id = NULL, .mc.cores = getOption("mc.cores", 2L))
 }
 \arguments{
 \item{.x}{A list or atomic vector.}
@@ -82,7 +99,7 @@ to extract named attributes. If a component is not present, the value of
     current environment.
     The default value in \code{NULL}.}
 
-\item{.cores}{integer}
+\item{.mc.cores}{integer}
 
 \item{.cluster}{type of parallel::makeCluster()}
 
@@ -109,6 +126,8 @@ as \code{.f} the name of a function rather than its value, or as
 list
 
 tibble
+
+list
 
 list
 }
