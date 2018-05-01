@@ -27,6 +27,10 @@ options(
   readr.num_columns = 0L
 )
 
+options(
+  mc.cores = parallel::detectCores(logical = FALSE)
+)
+
 .First = function() {
   if (interactive()) {
     cran = c("tidyverse", "fs", "devtools")
