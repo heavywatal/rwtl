@@ -4,8 +4,7 @@
 \alias{library_bioc}
 \title{source('*/biocLite.R') and biocLite()}
 \usage{
-library_bioc(mirror = c("bioc.ism.ac.jp", "bioconductor.riken.jp",
-  "bioconductor.org"), ask = FALSE)
+library_bioc(mirror = getOption("BioC_mirror"), ask = FALSE)
 }
 \arguments{
 \item{mirror}{URL for BioC_mirror}

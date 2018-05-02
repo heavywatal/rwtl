@@ -1,30 +1,37 @@
-#' Incomplete theme that does not overwrite other elements
-#' @rdname theme
-#' @export
-theme_clean = function() {
-  ggplot2::theme(
-    panel.background = ggplot2::element_rect(fill = NA, colour = NA),
-    panel.border = ggplot2::element_rect(fill = NA, colour = "grey20"),
-    panel.grid.major = ggplot2::element_line(colour = "grey92"),
-    panel.grid.minor = ggplot2::element_blank(),
-    strip.background = ggplot2::element_rect(fill = "grey85", colour = "grey20"),
-    legend.key = ggplot2::element_blank(),
-    axis.line = ggplot2::element_blank(),
-    complete = TRUE
-  )
-}
-
-#' Complete theme based on theme_bw()
-#' @inheritParams ggplot2::theme_bw
+#' Shortcut for ggplot theme
+#' @md
+#'
+#' @description
+#' `theme_wtl` is a slightly modified `theme_bw`.
 #' @param base_size,base_family see ggplot2::ggtheme
 #' @rdname theme
 #' @export
-theme_wtl = function(base_size=12, base_family="sans") {
-  ggplot2::theme_bw(base_size, base_family) %>%
-    ggplot2::`%+replace%`(theme_clean())
+theme_wtl = function(base_size=12, base_family="") {
+  ggplot2::theme_bw(
+    base_size = base_size,
+    base_family = base_family
+  ) +
+    ggplot2::theme(
+      panel.background = ggplot2::element_rect(fill = NA, colour = NA),
+      panel.grid.minor = ggplot2::element_blank(),
+      axis.text = ggplot2::element_text(colour = "grey10"),
+      legend.key = ggplot2::element_rect(fill = NA, colour = NA)
+    )
 }
 
-#' Set L-shaped axes
+#' `erase` is a shortcut for `theme(... = element_blank())`.
+#' @param ... elements to be blank
+#' @param .names string vector of element names
+#' @rdname theme
+#' @export
+erase = function(..., .names = NULL) {
+  quosures = rlang::quos(...)
+  names = c(sapply(quosures, rlang::quo_name), .names)
+  elements = rlang::rep_along(names, list(ggplot2::element_blank()))
+  rlang::invoke(ggplot2::theme, rlang::set_names(elements, names))
+}
+
+#' `axis_line` sets L-shaped axes.
 #' @inheritParams ggplot2::element_line
 #' @rdname theme
 #' @export
