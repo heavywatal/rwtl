@@ -31,18 +31,20 @@ print_options = function(height, width) {
 adjust_print_options = function(max.print = 30L) {
   # COLUMNS and LINES are unreadable during startup
   stty_size = system("stty size", intern = TRUE)
-  stopifnot(length(stty_size) > 0L)
-  stty_size = strsplit(stty_size, " ")[[1L]]
+  message("stty size: ", stty_size)
+  stty_size = as.integer(strsplit(stty_size, " ")[[1L]])
+  stopifnot(length(stty_size) > 1L)
+  stopifnot(stty_size > 10L)
   print_options(
-    height = min(as.integer(stty_size[1L]) - 6L, max.print),
-    width = as.integer(stty_size[2L])
+    height = min(stty_size[1L] - 6L, max.print),
+    width = stty_size[2L]
   )
   if (interactive()) {
-    message("width: ", getOption("width"))
     message("datatable.print.nrows: ", getOption("datatable.print.nrows"))
     message("datatable.print.topn: ", getOption("datatable.print.topn"))
     message("tibble.print_max: ", getOption("tibble.print_max"))
     message("tibble.print_min: ", getOption("tibble.print_min"))
+    message("width: ", getOption("width"))
   }
 }
 

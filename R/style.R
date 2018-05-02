@@ -32,10 +32,6 @@ styler_style = function(path=".", ..., style = eq_assign_style, filetype = "R",
       )
     }
   } else {
-    if (fs::file_exists(path)) {
-      styler::style_file(path, ..., style = style)
-    } else {
-      styler::style_file(path, ..., style = style)
-    }
+    styler::style_file(path, ..., style = style)
   }
 }
