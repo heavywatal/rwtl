@@ -6,7 +6,7 @@
 permutate = function(n, k) choose(n, k) * factorial(k)
 
 #' Probit function
-#' @param p a numeric vector [0, 1]
+#' @param p a numeric vector between 0 and 1
 #' @return a numeric vector
 #' @rdname math
 #' @export

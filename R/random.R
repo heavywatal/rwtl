@@ -1,4 +1,4 @@
-#' Generate random integers between [a, b]
+#' Generate random integers between a and b
 #' @param n number of observations
 #' @param min,max lower and upper limits of the distribution
 #' @return n integer vector

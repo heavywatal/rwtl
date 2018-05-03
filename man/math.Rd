@@ -35,7 +35,7 @@ scientific_notation(x, base = 10)
 
 \item{k}{a numeric vector}
 
-\item{p}{a numeric vector [0, 1]}
+\item{p}{a numeric vector between 0 and 1}
 
 \item{base}{a numeric}
 

@@ -42,7 +42,7 @@ calculating final element state.}
 \description{
 \code{theme_wtl} is a slightly modified \code{theme_bw}.
 
-`erase` is a shortcut for `theme(... = element_blank())`.
+\code{erase} is a shortcut for \code{theme(... = element_blank())}.
 
-`axis_line` sets L-shaped axes.
+\code{axis_line} sets L-shaped axes.
 }

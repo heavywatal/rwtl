@@ -2,7 +2,7 @@
 % Please edit documentation in R/random.R
 \name{runif.int}
 \alias{runif.int}
-\title{Generate random integers between [a, b]}
+\title{Generate random integers between a and b}
 \usage{
 runif.int(n, min = 0L, max = .Machine$integer.max - 1L)
 }
@@ -15,7 +15,7 @@ runif.int(n, min = 0L, max = .Machine$integer.max - 1L)
 n integer vector
 }
 \description{
-Generate random integers between [a, b]
+Generate random integers between a and b
 }
 \examples{
 table(runif.int(600L, 1L, 6L))

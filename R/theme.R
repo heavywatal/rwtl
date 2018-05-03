@@ -1,5 +1,4 @@
 #' Shortcut for ggplot theme
-#' @md
 #'
 #' @description
 #' `theme_wtl` is a slightly modified `theme_bw`.
