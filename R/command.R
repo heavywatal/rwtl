@@ -1,4 +1,7 @@
-#' get commandline arguments
+#' Parse command line arguments
+#'
+#' @description
+#' `command_args` is an extention of `commandArgs()`
 #' @return a list
 #' @rdname command
 #' @export
@@ -11,7 +14,7 @@ command_args = function() {
   return(l)
 }
 
-#' script path in Rscript
+#' `this_file` extracts script path from `commandArgs()`
 #' @return a character; NULL in interactive mode
 #' @rdname command
 #' @export

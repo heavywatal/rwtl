@@ -3,7 +3,7 @@
 \name{command_args}
 \alias{command_args}
 \alias{this_file}
-\title{get commandline arguments}
+\title{Parse command line arguments}
 \usage{
 command_args()
 
@@ -15,7 +15,7 @@ a list
 a character; NULL in interactive mode
 }
 \description{
-get commandline arguments
+\code{command_args} is an extention of \code{commandArgs()}
 
-script path in Rscript
+\code{this_file} extracts script path from \code{commandArgs()}
 }
