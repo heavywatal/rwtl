@@ -83,10 +83,3 @@ refresh = function(pkg="rwtl", dir="~/git") {
   # load_all(pkg) is called in document()
   suppressMessages(devtools::load_all(pkg, export_all = FALSE, quiet = TRUE))
 }
-
-#' @rdname utils
-#' @export
-install_tibble134 = function() {
-  devtools::install_version("styler", "1.0.0")
-  devtools::install_version("tibble", "1.3.4")
-}

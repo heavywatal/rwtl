@@ -6,7 +6,6 @@
 \alias{max_print}
 \alias{less}
 \alias{refresh}
-\alias{install_tibble134}
 \title{Simple wrapper of Rprof() and summaryRprof()}
 \usage{
 easierprof(expr, interval = 0.02, memory = FALSE)
@@ -18,8 +17,6 @@ max_print(x, max.print = getOption("max.print"), width = Inf, ...)
 less(x, max.print = getOption("max.print"), width = Inf, ...)
 
 refresh(pkg = "rwtl", dir = "~/git")
-
-install_tibble134()
 }
 \arguments{
 \item{expr}{R expression}
