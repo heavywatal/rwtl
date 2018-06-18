@@ -15,7 +15,7 @@ shannon_index = function(freqs, base=exp(1)) {
 #' @export
 simpson_index = function(freqs) {
   freqs = freqs[freqs > 0]
-  sum(freqs ^ 2) / (sum(freqs) ^ 2)
+  sum(freqs**2) / (sum(freqs)**2)
 }
 
 #' H / H_max

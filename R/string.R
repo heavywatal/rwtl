@@ -38,6 +38,6 @@ chr = function(i) {
 #' @export
 as_chr = function(...) {
   lazyeval::lazy_dots(...) %>%
-    purrr::map_chr(~deparse(.x$expr)) %>%
+    purrr::map_chr(~ deparse(.x$expr)) %>%
     stats::setNames(NULL)
 }

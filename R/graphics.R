@@ -73,7 +73,7 @@ ggsave_quartz = function(
 #' @export
 breaks_log10 = function(limits) {
   loglims = log10(limits)
-  10 ^ seq(floor(min(loglims)), ceiling(max(loglims)))
+  10**seq(floor(min(loglims)), ceiling(max(loglims)))
 }
 
 #' Axis label formatter: scale_*_log10(labels=labels_log10)

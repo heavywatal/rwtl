@@ -43,6 +43,6 @@ split_ms = function(msout) {
 as_int_matrix = function(samples) {
   stringr::str_split(samples, "") %>%
     purrr::map(as.integer) %>%
-    unlist(recursive = FALSE, use.names=FALSE) %>%
+    unlist(recursive = FALSE, use.names = FALSE) %>%
     matrix(ncol = length(samples), byrow = FALSE)
 }
