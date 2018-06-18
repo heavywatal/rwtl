@@ -3,11 +3,17 @@
 \name{ms}
 \alias{ms}
 \alias{parse_ms}
-\title{Execute ms as an external program}
+\alias{split_ms}
+\alias{as_int_matrix}
+\title{Functions to run ms and parse ms-like output}
 \usage{
 ms(nsam = 4L, nreps = 2L, theta = 5)
 
-parse_ms(lines)
+parse_ms(msout)
+
+split_ms(msout)
+
+as_int_matrix(samples)
 }
 \arguments{
 \item{nsam}{number of samples}
@@ -16,15 +22,25 @@ parse_ms(lines)
 
 \item{theta}{population mutation rate}
 
-\item{lines}{output of system('ms')}
+\item{msout}{string vector of ms-like output}
+
+\item{samples}{string vector}
 }
 \value{
-string vector
+\code{ms} returns a string vector
 
-list of string vector
+\code{parse_ms} returns a list of integer matrices
+
+\code{split_ms} returns a list of string vector
+
+\code{as_int_matrix} returns an integer matrix
 }
 \description{
-Execute ms as an external program
+\code{ms} executes ms as an external program
 
-Read ms output and return a list of '01' string vector
+\code{parse_ms} transforms ms-like output into a list of matrices
+
+\code{split_ms} splits ms-like output by replications
+
+\code{as_int_matrix} converts a string vector into an integer matrix
 }
