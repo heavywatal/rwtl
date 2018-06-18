@@ -9,11 +9,11 @@
 \usage{
 ms(nsam = 4L, nreps = 2L, theta = 5)
 
-parse_ms(msout)
+parse_ms(msout, byrow = FALSE)
 
 split_ms(msout)
 
-as_int_matrix(samples)
+as_int_matrix(samples, byrow = FALSE)
 }
 \arguments{
 \item{nsam}{number of samples}
@@ -23,6 +23,8 @@ as_int_matrix(samples)
 \item{theta}{population mutation rate}
 
 \item{msout}{string vector of ms-like output}
+
+\item{byrow}{logical value passed to \code{matrix}}
 
 \item{samples}{string vector}
 }

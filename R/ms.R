@@ -15,11 +15,12 @@ ms = function(nsam=4L, nreps=2L, theta=5.0) {
 
 #' `parse_ms` transforms ms-like output into a list of matrices
 #' @param msout string vector of ms-like output
+#' @param byrow logical value passed to `matrix`
 #' @return `parse_ms` returns a list of integer matrices
 #' @rdname ms
 #' @export
-parse_ms = function(msout) {
-  split_ms(msout) %>% purrr::map(as_int_matrix)
+parse_ms = function(msout, byrow = FALSE) {
+  split_ms(msout) %>% purrr::map(as_int_matrix, byrow = byrow)
 }
 
 #' `split_ms` splits ms-like output by replications
@@ -40,9 +41,13 @@ split_ms = function(msout) {
 #' @return `as_int_matrix` returns an integer matrix
 #' @rdname ms
 #' @export
-as_int_matrix = function(samples) {
-  stringr::str_split(samples, "") %>%
+as_int_matrix = function(samples, byrow = FALSE) {
+  v = stringr::str_split(samples, "") %>%
     purrr::map(as.integer) %>%
-    unlist(recursive = FALSE, use.names = FALSE) %>%
-    matrix(ncol = length(samples), byrow = FALSE)
+    unlist(recursive = FALSE, use.names = FALSE)
+  if (byrow) {
+    matrix(v, nrow = length(samples), byrow = TRUE)
+  } else {
+    matrix(v, ncol = length(samples), byrow = FALSE)
+  }
 }
