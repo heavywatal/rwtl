@@ -1,18 +1,31 @@
-#' Move specified columns to left
+#' Utilities for data.frame
+#'
+#' `move_left` moves specified columns to the left
 #' @param .data tibble
 #' @param ... colnames or expressions
-#' @return tbl
 #' @rdname dataframe
 #' @export
 move_left = function(.data, ...) {
   dplyr::select(.data, ..., dplyr::everything())
 }
 
+#' `mutate_left` adds new columns to the left
 #' @rdname dataframe
 #' @export
 mutate_left = function(.data, ...) {
   dplyr::mutate(.data, ...) %>%
     move_left(names(rlang::quos(...)))
+}
+
+#' `mutate_jitter` adds random variations to given columns
+#' @param amount magnitude of random variations to add
+#' @rdname dataframe
+#' @export
+mutate_jitter = function(.data, ..., amount) {
+  #TODO receive values from ... instead of amount
+  dplyr::mutate_at(.data, dplyr::vars(...), function(x) {
+    x + stats::runif(length(x), -amount, amount)
+  })
 }
 
 #' @rdname dataframe
