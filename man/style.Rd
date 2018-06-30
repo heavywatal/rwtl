@@ -20,7 +20,7 @@ styler_style(path = ".", ..., style = eq_assign_style, filetype = "R",
 further except to construct the argument \code{transformers}. See
 \code{\link[=style_guides]{style_guides()}} for details.}
 
-\item{filetype}{Vector of file extensions indicating which filetypes should
+\item{filetype}{Vector of file extensions indicating which file types should
 be styled. Case is ignored, and the \code{.} is optional, e.g. \code{c(".R", ".Rmd")}
 or \code{c("r", "rmd")}.}
 
