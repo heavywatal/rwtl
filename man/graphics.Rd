@@ -34,7 +34,7 @@ ggsave_quartz(filename, plot = ggplot2::last_plot(),
 \item{plot}{Plot to save, defaults to last plot displayed.}
 
 \item{device}{Device to use. Can be either be a device function
-(e.g. \code{\link{png}}), or one of "eps", "ps", "tex" (pictex),
+(e.g. \code{\link[=png]{png()}}), or one of "eps", "ps", "tex" (pictex),
 "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only).}
 
 \item{path}{Path to save plot to (combined with filename).}
@@ -46,7 +46,8 @@ If not supplied, uses the size of current graphics device.}
 
 \item{height, units}{see ggplot2::ggsave}
 
-\item{dpi}{Plot resolution. Applies only to raster output types.}
+\item{dpi}{Plot resolution. Also accepts a string input: "retina" (320),
+"print" (300), or "screen" (72). Applies only to raster output types.}
 
 \item{limitsize}{When \code{TRUE} (the default), \code{ggsave} will not
 save images larger than 50x50 inches, to prevent the common error of

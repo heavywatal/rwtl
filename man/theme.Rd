@@ -31,7 +31,7 @@ lengths in consecutive positions in the string.}
 
 \item{lineend}{Line end Line end style (round, butt, square)}
 
-\item{arrow}{Arrow specification, as created by \code{\link[grid]{arrow}}}
+\item{arrow}{Arrow specification, as created by \code{\link[grid:arrow]{grid::arrow()}}}
 
 \item{inherit.blank}{Should this element inherit the existence of an
 \code{element_blank} among its parents? If \code{TRUE} the existence of
