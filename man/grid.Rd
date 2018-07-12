@@ -5,7 +5,7 @@
 \alias{grid.draw.list}
 \alias{png_grob}
 \alias{as_gg}
-\title{Shortcut for grid::grid.draw()}
+\title{Wrappers of grid functions}
 \usage{
 gprint(x, newpage = TRUE, recording = FALSE)
 
@@ -29,17 +29,12 @@ as_gg(grob, base_size = 12, base_family = "sans")
 
 \item{base_size, base_family}{see ggplot2::ggtheme}
 }
-\value{
-grob
-
-ggplot
-}
 \description{
-Shortcut for grid::grid.draw()
+\code{gprint} is a shortcut for grid::grid.draw()
 
-List method for making multi-page PDF via ggsave()
+\code{grid.draw.list} enables writing multi-page PDF via ggsave()
 
-Read PNG file as grob
+\code{png_grob} creates a grob from a PNG file
 
-Convert grob to gg
+\code{as_gg} converts grob to gg
 }

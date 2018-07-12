@@ -1,9 +1,11 @@
-#' purrr::map-like function in parallel
+#' Parallel execution in the purrr::map style
+#'
+#' `map_par`, `map_par_dfr`, and `invoke_par` are shortcuts to make a cluster
+#' and use it with `foreach::foreach`.
 #' @inheritParams purrr::map
 #' @inheritParams foreach::foreach
 #' @param .mc.cores integer
 #' @param .cluster type of parallel::makeCluster()
-#' @return list
 #' @rdname parallel
 #' @export
 map_par = function(.x, .f, ..., .combine, .multicombine=TRUE,
@@ -26,9 +28,7 @@ map_par = function(.x, .f, ..., .combine, .multicombine=TRUE,
   } %>% stats::setNames(names(.x))
 }
 
-#' purrr::map_dfr-like function in parallel
 #' @inheritParams purrr::map_dfr
-#' @return tibble
 #' @rdname parallel
 #' @export
 map_par_dfr = function(.x, .f, ..., .id=NULL, .multicombine=TRUE,
@@ -48,9 +48,7 @@ map_par_dfr = function(.x, .f, ..., .id=NULL, .multicombine=TRUE,
   dplyr::bind_rows(res, .id = .id)
 }
 
-#' purrr::invoke-like function in parallel
 #' @inheritParams purrr::invoke
-#' @return list
 #' @rdname parallel
 #' @export
 invoke_par = function(.f, .x, ..., .env=NULL, .combine, .multicombine=TRUE,
@@ -66,7 +64,7 @@ invoke_par = function(.f, .x, ..., .env=NULL, .combine, .multicombine=TRUE,
   }
 }
 
-#' @return list
+#' `mcmap` is a variant of `parallel::mclapply` that accepts a formula as `.f`.
 #' @rdname parallel
 #' @export
 mcmap = function(.x, .f, ..., .mc.cores=getOption("mc.cores", 2L)) {

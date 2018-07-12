@@ -1,4 +1,4 @@
-#' Wrapper of brewer.pal()
+#' `brewer_palette` is a wrapper of `brewer.pal`
 #' @inheritParams RColorBrewer::brewer.pal
 #' @examples
 #' ggplot2::scale_colour_gradientn(colours=brewer_palette('RdBu'))
@@ -25,7 +25,8 @@ brewer_palette = function(name, n=0L) {
   }
 }
 
-#' Shortcut of scale_colour_gradientn(colours=brewer.pal(n, name))
+#' `scale_colour_gradientb` is a shortcut of
+#' `scale_colour_gradientn(colours=brewer.pal(n, name))`
 #' @inheritParams RColorBrewer::brewer.pal
 #' @inheritParams ggplot2::scale_colour_gradientn
 #' @param palette string
@@ -40,7 +41,8 @@ scale_colour_gradientb = function(palette, n=0L, reverse=FALSE, ...) {
   ggplot2::scale_colour_gradientn(colours = pal, ...)
 }
 
-#' Shortcut of scale_fill_gradientn(colours=brewer.pal(n, name))
+#' `scale_fill_gradientb` is a shortcut of
+#' `scale_fill_gradientn(colours=brewer.pal(n, name))`
 #' @inheritParams RColorBrewer::brewer.pal
 #' @inheritParams ggplot2::scale_fill_gradientn
 #' @rdname palette

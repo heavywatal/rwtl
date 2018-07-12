@@ -1,7 +1,7 @@
-#' Shannon index
+#' Diversity index
+#'
 #' @param freqs a numeric vector
 #' @param base a numeric
-#' @return a numeric
 #' @rdname diversity
 #' @export
 shannon_index = function(freqs, base=exp(1)) {
@@ -9,8 +9,6 @@ shannon_index = function(freqs, base=exp(1)) {
   -sum(freqs * log(freqs, base))
 }
 
-#' Simpson index
-#' @return a numeric
 #' @rdname diversity
 #' @export
 simpson_index = function(freqs) {
@@ -18,9 +16,8 @@ simpson_index = function(freqs) {
   sum(freqs**2) / (sum(freqs)**2)
 }
 
-#' H / H_max
+#' `evenness` calculates H / H_max
 #' @param species a factor vector
-#' @return a number
 #' @rdname diversity
 #' @export
 evenness = function(species) {

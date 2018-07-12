@@ -9,11 +9,6 @@ command_args()
 
 this_file()
 }
-\value{
-a list
-
-a character; NULL in interactive mode
-}
 \description{
 \code{command_args} is an extention of \code{commandArgs()}
 

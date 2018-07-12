@@ -10,7 +10,7 @@
 \alias{mcmap_dbl}
 \alias{mcmap_chr}
 \alias{mcmap_dfr}
-\title{purrr::map-like function in parallel}
+\title{Parallel execution in the purrr::map style}
 \usage{
 map_par(.x, .f, ..., .combine, .multicombine = TRUE, .inorder = TRUE,
   .packages = NULL, .export = NULL, .mc.cores = getOption("mc.cores", 2L),
@@ -122,19 +122,9 @@ evaluate a constructed expression. This only matters if you pass
 as \code{.f} the name of a function rather than its value, or as
 \code{.x} symbols of objects rather than their values.}
 }
-\value{
-list
-
-tibble
-
-list
-
-list
-}
 \description{
-purrr::map-like function in parallel
+\code{map_par}, \code{map_par_dfr}, and \code{invoke_par} are shortcuts to make a cluster
+and use it with \code{foreach::foreach}.
 
-purrr::map_dfr-like function in parallel
-
-purrr::invoke-like function in parallel
+\code{mcmap} is a variant of \code{parallel::mclapply} that accepts a formula as \code{.f}.
 }

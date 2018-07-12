@@ -2,7 +2,6 @@
 #'
 #' @description
 #' `command_args` is an extention of `commandArgs()`
-#' @return a list
 #' @rdname command
 #' @export
 command_args = function() {
@@ -15,7 +14,6 @@ command_args = function() {
 }
 
 #' `this_file` extracts script path from `commandArgs()`
-#' @return a character; NULL in interactive mode
 #' @rdname command
 #' @export
 this_file = function() {

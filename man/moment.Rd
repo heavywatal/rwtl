@@ -5,7 +5,7 @@
 \alias{skewness}
 \alias{kurtosis}
 \alias{bimodality}
-\title{calculate moment for arbitrary order}
+\title{Moment for arbitrary order}
 \usage{
 moment(x, order, n = length(x))
 
@@ -23,7 +23,7 @@ bimodality(x)
 \item{n}{length of x}
 }
 \description{
-calculate moment for arbitrary order
+Moment for arbitrary order
 
 kurtosis - 3 is called excess kurtosis, which is 0 for normal distribution
 }

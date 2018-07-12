@@ -4,7 +4,7 @@
 \alias{brewer_palette}
 \alias{scale_colour_gradientb}
 \alias{scale_fill_gradientb}
-\title{Wrapper of brewer.pal()}
+\title{\code{brewer_palette} is a wrapper of \code{brewer.pal}}
 \usage{
 brewer_palette(name, n = 0L)
 
@@ -88,11 +88,13 @@ expand the scale by 5\% on each side for continuous variables, and by
 }}
 }
 \description{
-Wrapper of brewer.pal()
+\code{brewer_palette} is a wrapper of \code{brewer.pal}
 
-Shortcut of scale_colour_gradientn(colours=brewer.pal(n, name))
+\code{scale_colour_gradientb} is a shortcut of
+\code{scale_colour_gradientn(colours=brewer.pal(n, name))}
 
-Shortcut of scale_fill_gradientn(colours=brewer.pal(n, name))
+\code{scale_fill_gradientb} is a shortcut of
+\code{scale_fill_gradientn(colours=brewer.pal(n, name))}
 }
 \examples{
 ggplot2::scale_colour_gradientn(colours=brewer_palette('RdBu'))

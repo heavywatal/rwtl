@@ -1,4 +1,5 @@
-#' calculate moment for arbitrary order
+#' Moment for arbitrary order
+#'
 #' @param x numeric vector
 #' @param order integer
 #' @param n length of x

@@ -6,11 +6,10 @@
 \alias{logit}
 \alias{sigmoid}
 \alias{logistic}
-\alias{heaviside}
 \alias{exponent}
 \alias{mantissa}
 \alias{scientific_notation}
-\title{Permutation}
+\title{Shortcut to mathematical functions}
 \usage{
 permutate(n, k)
 
@@ -22,8 +21,6 @@ sigmoid(x, gain = 1)
 
 logistic(x, r = 1, k = 1, x0 = 0)
 
-heaviside(x, h0 = NA)
-
 exponent(x, base = exp(1))
 
 mantissa(x, base = exp(1))
@@ -31,9 +28,7 @@ mantissa(x, base = exp(1))
 scientific_notation(x, base = 10)
 }
 \arguments{
-\item{n, }{k numeric vectors}
-
-\item{k}{a numeric vector}
+\item{n, k}{numeric vectors}
 
 \item{p}{a numeric vector between 0 and 1}
 
@@ -46,38 +41,9 @@ scientific_notation(x, base = 10)
 \item{r}{a numeric vector}
 
 \item{x0}{a numeric vector}
-
-\item{h0}{return value if x==0}
-}
-\value{
-numeric
-
-a numeric vector
-
-a numeric vector
-
-a numeric vector
-
-a numeric vector
-
-a numeric vector
 }
 \description{
-Permutation
+Shortcut to mathematical functions
 
-Probit function
-
-Logit function: log-odds; the inverse of sigmoid
-
-Sigmoid function: the inverse of logit
-
-Logistic function
-
-Heaviside step function
-
-exponent
-
-mantissa, significand, coefficient
-
-Split number into mantissa and exponent
+\code{scientific_notation} splits number into mantissa and exponent
 }

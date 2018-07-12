@@ -4,7 +4,7 @@
 \alias{shannon_index}
 \alias{simpson_index}
 \alias{evenness}
-\title{Shannon index}
+\title{Diversity index}
 \usage{
 shannon_index(freqs, base = exp(1))
 
@@ -19,17 +19,8 @@ evenness(species)
 
 \item{species}{a factor vector}
 }
-\value{
-a numeric
-
-a numeric
-
-a number
-}
 \description{
-Shannon index
+Diversity index
 
-Simpson index
-
-H / H_max
+\code{evenness} calculates H / H_max
 }
