@@ -15,7 +15,8 @@ evenness(species)
 \arguments{
 \item{freqs}{a numeric vector}
 
-\item{base}{a numeric}
+\item{base}{a positive or complex number: the base with respect to which
+    logarithms are computed.  Defaults to \eqn{e}=\code{exp(1)}.}
 
 \item{species}{a factor vector}
 }

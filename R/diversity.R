@@ -1,19 +1,19 @@
 #' Diversity index
 #'
 #' @param freqs a numeric vector
-#' @param base a numeric
+#' @inheritParams base::log
 #' @rdname diversity
 #' @export
 shannon_index = function(freqs, base=exp(1)) {
-  freqs = freqs[freqs > 0] / sum(freqs)
+  freqs = freqs / sum(freqs)
   -sum(freqs * log(freqs, base))
 }
 
 #' @rdname diversity
 #' @export
 simpson_index = function(freqs) {
-  freqs = freqs[freqs > 0]
-  sum(freqs**2) / (sum(freqs)**2)
+  freqs = freqs / sum(freqs)
+  sum(freqs**2)
 }
 
 #' `evenness` calculates H / H_max

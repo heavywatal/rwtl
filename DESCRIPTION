@@ -17,7 +17,8 @@ Suggests:
     gridExtra,
     igraph,
     png,
-    rgl
+    rgl,
+    testthat
 Imports:
     devtools,
     doParallel,
