@@ -2,15 +2,16 @@
 % Please edit documentation in R/bioc.R
 \name{library_bioc}
 \alias{library_bioc}
-\title{source('*/biocLite.R') and biocLite()}
+\title{Shortcut for \code{source()} and \code{biocLite()}}
 \usage{
-library_bioc(mirror = getOption("BioC_mirror"), ask = FALSE)
+library_bioc(mirror = getOption("BioC_mirror", "https://bioconductor.org"),
+  ...)
 }
 \arguments{
 \item{mirror}{URL for BioC_mirror}
 
-\item{ask}{passed to biocLite()}
+\item{...}{passed to \code{biocLite()}}
 }
 \description{
-source('*/biocLite.R') and biocLite()
+Shortcut for \code{source()} and \code{biocLite()}
 }
