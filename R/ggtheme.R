@@ -3,7 +3,7 @@
 #' @description
 #' `theme_wtl` is a slightly modified `theme_bw`.
 #' @param base_size,base_family see ggplot2::ggtheme
-#' @rdname theme
+#' @rdname ggtheme
 #' @export
 theme_wtl = function(base_size=12, base_family="") {
   ggplot2::theme_bw(
@@ -21,7 +21,7 @@ theme_wtl = function(base_size=12, base_family="") {
 #' `erase` is a shortcut for `theme(... = element_blank())`.
 #' @param ... elements to be blank
 #' @param .names string vector of element names
-#' @rdname theme
+#' @rdname ggtheme
 #' @export
 erase = function(..., .names = NULL) {
   quosures = rlang::quos(...)
@@ -32,7 +32,7 @@ erase = function(..., .names = NULL) {
 
 #' `axis_line` sets L-shaped axes.
 #' @inheritParams ggplot2::element_line
-#' @rdname theme
+#' @rdname ggtheme
 #' @export
 axis_line = function(colour=NULL, size=NULL, linetype=NULL, lineend=NULL, arrow=NULL, inherit.blank=FALSE) {
   el = ggplot2::element_line(colour = colour, size = size, linetype = linetype, lineend = lineend, arrow = arrow, inherit.blank = inherit.blank)
