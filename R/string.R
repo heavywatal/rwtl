@@ -1,14 +1,14 @@
-#' Split a single string into a vector
+#' String utility
+#'
+#' `split_chr` splits a string and return a flattened vector
 #' @inheritParams stringr::str_split
-#' @return character vectors
 #' @rdname string
 #' @export
 split_chr = function(string, pattern="\\s+", n=Inf) {
   stringr::str_split(string, pattern, n) %>% purrr::flatten_chr()
 }
 
-#' Pythonic method to manipulate strings
-#' @return a list of character vectors
+#' `rsplit` splits a string from right
 #' @rdname string
 #' @export
 rsplit = function(string, pattern, n=42L) {
@@ -16,7 +16,7 @@ rsplit = function(string, pattern, n=42L) {
   stringr::str_split(string, pattern)
 }
 
-#' Pythonic alias of charToRaw()
+#' `ord` is a pythonic alias of `charToRaw()`
 #' @param char character
 #' @rdname string
 #' @export
@@ -24,7 +24,7 @@ ord = function(char) {
   strtoi(charToRaw(char), 16L)
 }
 
-#' Pythonic alias of intToUtf8()
+#' `chr` is a pythonic alias of `intToUtf8()`
 #' @param i integer
 #' @rdname string
 #' @export
@@ -32,7 +32,7 @@ chr = function(i) {
   intToUtf8(i)
 }
 
-#' Convert expr into character vector
+#' `as_chr` converts expr into character vector
 #' @param ... expressions
 #' @rdname string
 #' @export

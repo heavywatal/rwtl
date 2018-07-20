@@ -6,7 +6,7 @@
 \alias{ord}
 \alias{chr}
 \alias{as_chr}
-\title{Split a single string into a vector}
+\title{String utility}
 \usage{
 split_chr(string, pattern = "\\\\s+", n = Inf)
 
@@ -49,19 +49,14 @@ the result will be padded with empty strings.}
 
 \item{...}{expressions}
 }
-\value{
-character vectors
-
-a list of character vectors
-}
 \description{
-Split a single string into a vector
+\code{split_chr} splits a string and return a flattened vector
 
-Pythonic method to manipulate strings
+\code{rsplit} splits a string from right
 
-Pythonic alias of charToRaw()
+\code{ord} is a pythonic alias of \code{charToRaw()}
 
-Pythonic alias of intToUtf8()
+\code{chr} is a pythonic alias of \code{intToUtf8()}
 
-Convert expr into character vector
+\code{as_chr} converts expr into character vector
 }

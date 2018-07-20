@@ -12,11 +12,6 @@ now(format = "\%Y\%m\%d_\%H\%M\%S")
 \arguments{
 \item{format}{string}
 }
-\value{
-string
-
-string
-}
 \description{
 Snippet for time in R
 }

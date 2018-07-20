@@ -11,9 +11,6 @@ runif.int(n, min = 0L, max = .Machine$integer.max - 1L)
 
 \item{min, max}{lower and upper limits of the distribution}
 }
-\value{
-n integer vector
-}
 \description{
 Generate random integers between a and b
 }

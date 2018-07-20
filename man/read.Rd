@@ -4,7 +4,7 @@
 \alias{scan_matrix}
 \alias{read_boost_ini}
 \alias{read_cb}
-\title{Scan a simple CSV and make a matrix}
+\title{Functions to read files}
 \usage{
 scan_matrix(filename, what = double(0), sep = "", skip = 0L,
   header = FALSE)
@@ -26,19 +26,12 @@ read_cb(...)
 
 \item{file}{filename or text}
 
-\item{...}{passed to read.table()}
-}
-\value{
-a matrix
-
-a data.frame
-
-a data.frame
+\item{...}{passed to \code{read.table()}}
 }
 \description{
-Scan a simple CSV and make a matrix
+\code{scan_matrix} scans a simple CSV and make a matrix
 
-Read an INI-like config file of boost::program_options
+\code{read_boost_ini} reads an INI-like config file of boost::program_options
 
-read paste board into data.frame
+\code{read_cb} reads paste board into data.frame
 }
