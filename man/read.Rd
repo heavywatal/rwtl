@@ -29,9 +29,9 @@ read_cb(...)
 \item{...}{passed to \code{read.table()}}
 }
 \description{
-\code{scan_matrix} scans a simple CSV and make a matrix
+\code{scan_matrix} scans a simple CSV and make a matrix.
 
-\code{read_boost_ini} reads an INI-like config file of boost::program_options
+\code{read_boost_ini} reads an INI-like config file of boost::program_options.
 
-\code{read_cb} reads paste board into data.frame
+\code{read_cb} reads paste board into data.frame.
 }

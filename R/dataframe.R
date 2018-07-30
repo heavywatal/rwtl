@@ -1,6 +1,6 @@
 #' Utilities for data.frame
 #'
-#' `move_left` moves specified columns to the left
+#' `move_left` moves specified columns to the left.
 #' @param .data tibble
 #' @param ... colnames or expressions
 #' @rdname dataframe
@@ -9,7 +9,8 @@ move_left = function(.data, ...) {
   dplyr::select(.data, ..., dplyr::everything())
 }
 
-#' `mutate_left` adds new columns to the left
+#' @description
+#' `mutate_left` adds new columns to the left.
 #' @rdname dataframe
 #' @export
 mutate_left = function(.data, ...) {
@@ -17,7 +18,8 @@ mutate_left = function(.data, ...) {
     move_left(names(rlang::quos(...)))
 }
 
-#' `mutate_jitter` adds random variations to given columns
+#' @description
+#' `mutate_jitter` adds random variations to given columns.
 #' @param amount magnitude of random variations to add
 #' @rdname dataframe
 #' @export
@@ -45,7 +47,7 @@ class_at = function(.data, ...) {
     stats::setNames(names(.data))
 }
 
-#' Shortcut for tidyr::crossing() with repeats
+#' Shortcut for tidyr::crossing() with repeats.
 #' @inheritParams base::rep.int
 #' @return tbl
 #' @rdname itertools
@@ -58,7 +60,7 @@ crossing_rep = function(x, times=1L) {
     }
 }
 
-#' Get rle (run-length encoding) as tibble
+#' Get rle (run-length encoding) as tibble.
 #' @param x atomic vector
 #' @param .name column name in output
 #' @return tbl with start and end index columns

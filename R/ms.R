@@ -1,7 +1,7 @@
 #' Functions to run ms and parse ms-like output
 #'
 #' @description
-#' `ms` executes ms as an external program
+#' `ms` executes ms as an external program.
 #' @param nsam number of samples
 #' @param nreps number of repeats
 #' @param theta population mutation rate
@@ -13,7 +13,8 @@ ms = function(nsam=4L, nreps=2L, theta=5.0) {
   system2("ms", args, stdout = TRUE, stderr = FALSE)
 }
 
-#' `parse_ms` transforms ms-like output into a list of matrices
+#' @description
+#' `parse_ms` transforms ms-like output into a list of matrices.
 #' @param msout string vector of ms-like output
 #' @param byrow logical value passed to `matrix`
 #' @return `parse_ms` returns a list of integer matrices
@@ -23,7 +24,8 @@ parse_ms = function(msout, byrow = FALSE) {
   split_ms(msout) %>% purrr::map(as_int_matrix, byrow = byrow)
 }
 
-#' `split_ms` splits ms-like output by replications
+#' @description
+#' `split_ms` splits ms-like output by replications.
 #' @return `split_ms` returns a list of string vector
 #' @rdname ms
 #' @export
@@ -36,7 +38,8 @@ split_ms = function(msout) {
     purrr::map(utils::tail, -4L)
 }
 
-#' `as_int_matrix` converts a string vector into an integer matrix
+#' @description
+#' `as_int_matrix` converts a string vector into an integer matrix.
 #' @param samples string vector
 #' @return `as_int_matrix` returns an integer matrix
 #' @rdname ms

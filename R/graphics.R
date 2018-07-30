@@ -1,6 +1,6 @@
 #' Utilities for graphics
 #'
-#' `pch_plot` shows pch variations
+#' `pch_plot` shows pch variations.
 #' @rdname graphics
 #' @export
 pch_plot = function() {
@@ -17,7 +17,8 @@ pch_plot = function() {
   graphics::mtext(paste0("col='", col, "', bg='", bg, "'"))
 }
 
-#' `col2hex` translates color name to hex
+#' @description
+#' `col2hex` translates color name to hex.
 #' @param color a character vector
 #' @rdname graphics
 #' @export

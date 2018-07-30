@@ -2,7 +2,7 @@
 % Please edit documentation in R/dataframe.R
 \name{crossing_rep}
 \alias{crossing_rep}
-\title{Shortcut for tidyr::crossing() with repeats}
+\title{Shortcut for tidyr::crossing() with repeats.}
 \usage{
 crossing_rep(x, times = 1L)
 }
@@ -17,5 +17,5 @@ crossing_rep(x, times = 1L)
 tbl
 }
 \description{
-Shortcut for tidyr::crossing() with repeats
+Shortcut for tidyr::crossing() with repeats.
 }

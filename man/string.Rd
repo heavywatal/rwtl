@@ -50,13 +50,13 @@ the result will be padded with empty strings.}
 \item{...}{expressions}
 }
 \description{
-\code{split_chr} splits a string and return a flattened vector
+\code{split_chr} splits a string and return a flattened vector.
 
-\code{rsplit} splits a string from right
+\code{rsplit} splits a string from right.
 
-\code{ord} is a pythonic alias of \code{charToRaw()}
+\code{ord} is a pythonic alias of \code{charToRaw()}.
 
-\code{chr} is a pythonic alias of \code{intToUtf8()}
+\code{chr} is a pythonic alias of \code{intToUtf8()}.
 
-\code{as_chr} converts expr into character vector
+\code{as_chr} converts expr into character vector.
 }

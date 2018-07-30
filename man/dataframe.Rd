@@ -26,9 +26,9 @@ class_at(.data, ...)
 \item{amount}{magnitude of random variations to add}
 }
 \description{
-\code{move_left} moves specified columns to the left
+\code{move_left} moves specified columns to the left.
 
-\code{mutate_left} adds new columns to the left
+\code{mutate_left} adds new columns to the left.
 
-\code{mutate_jitter} adds random variations to given columns
+\code{mutate_jitter} adds random variations to given columns.
 }

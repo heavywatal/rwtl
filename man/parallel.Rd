@@ -13,9 +13,9 @@
 \title{Parallel execution in the purrr::map style}
 \usage{
 map_par(.x, .f, ..., .combine, .multicombine = TRUE, .inorder = TRUE,
-  .packages = NULL, .export = NULL, .mc.cores = getOption("mc.cores", 2L),
-  .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop", "remove",
-  "pass"))
+  .packages = NULL, .export = NULL, .mc.cores = getOption("mc.cores",
+  2L), .cluster = c("FORK", "PSOCK"), .errorhandling = c("stop",
+  "remove", "pass"))
 
 map_par_dfr(.x, .f, ..., .id = NULL, .multicombine = TRUE,
   .inorder = TRUE, .packages = NULL, .export = NULL,
@@ -36,7 +36,8 @@ mcmap_dbl(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
 
 mcmap_chr(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
 
-mcmap_dfr(.x, .f, ..., .id = NULL, .mc.cores = getOption("mc.cores", 2L))
+mcmap_dfr(.x, .f, ..., .id = NULL, .mc.cores = getOption("mc.cores",
+  2L))
 }
 \arguments{
 \item{.x}{A list or atomic vector.}

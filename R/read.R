@@ -1,6 +1,6 @@
 #' Functions to read files
 #'
-#' `scan_matrix` scans a simple CSV and make a matrix
+#' `scan_matrix` scans a simple CSV and make a matrix.
 #' @param filename a string
 #' @param what type of data
 #' @param sep a string
@@ -30,7 +30,8 @@ scan_matrix = function(filename, what=double(0), sep="", skip=0L, header=FALSE) 
   mtrx
 }
 
-#' `read_boost_ini` reads an INI-like config file of boost::program_options
+#' @description
+#' `read_boost_ini` reads an INI-like config file of boost::program_options.
 #' @param file filename or text
 #' @rdname read
 #' @export
@@ -43,7 +44,8 @@ read_boost_ini = function(file) {
     readr::read_tsv()
 }
 
-#' `read_cb` reads paste board into data.frame
+#' @description
+#' `read_cb` reads paste board into data.frame.
 #' @param ... passed to `read.table()`
 #' @rdname read
 #' @export

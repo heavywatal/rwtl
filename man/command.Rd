@@ -10,7 +10,7 @@ command_args()
 this_file()
 }
 \description{
-\code{command_args} is an extention of \code{commandArgs()}
+\code{command_args} is an extention of \code{commandArgs()}.
 
-\code{this_file} extracts script path from \code{commandArgs()}
+\code{this_file} extracts script path from \code{commandArgs()}.
 }

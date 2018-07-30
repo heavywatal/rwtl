@@ -2,7 +2,7 @@
 % Please edit documentation in R/dataframe.R
 \name{rle_df}
 \alias{rle_df}
-\title{Get rle (run-length encoding) as tibble}
+\title{Get rle (run-length encoding) as tibble.}
 \usage{
 rle_df(x, .name = "value")
 }
@@ -15,5 +15,5 @@ rle_df(x, .name = "value")
 tbl with start and end index columns
 }
 \description{
-Get rle (run-length encoding) as tibble
+Get rle (run-length encoding) as tibble.
 }

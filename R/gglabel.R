@@ -10,6 +10,7 @@ breaks_log10 = function(limits) {
   10**seq(floor(min(loglims)), ceiling(max(loglims)))
 }
 
+#' @description
 #' `labels_log10` is an axis label formatter to be passed to
 #' the `labels` argument of `ggplot2::scale_*_log10()`.
 #' @param breaks numeric

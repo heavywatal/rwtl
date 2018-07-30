@@ -1,6 +1,6 @@
 #' Utility functions
 #'
-#' `refresh` is a shortcut for `devtools::document(..., export_all=FALSE)`
+#' `refresh` is a shortcut for `devtools::document(..., export_all=FALSE)`.
 #' @param pkg repository name
 #' @param dir parent directory of the repository
 #' @rdname utils
@@ -12,7 +12,8 @@ refresh = function(pkg="rwtl", dir="~/git") {
   suppressMessages(devtools::load_all(pkg, export_all = FALSE, quiet = TRUE))
 }
 
-#' `easierprof` is a simple wrapper of `Rprof()` and `summaryRprof()`
+#' @description
+#' `easierprof` is a simple wrapper of `Rprof()` and `summaryRprof()`.
 #' @param expr R expression
 #' @param interval numeric
 #' @param memory logical

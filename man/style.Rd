@@ -7,8 +7,8 @@
 \usage{
 eq_assign_style(...)
 
-styler_style(path = ".", ..., style = eq_assign_style, filetype = "R",
-  recursive = TRUE, exclude_files = NULL)
+styler_style(path = ".", ..., style = eq_assign_style,
+  filetype = "R", recursive = TRUE, exclude_files = NULL)
 }
 \arguments{
 \item{...}{Arguments passed on to the \code{style} function.}

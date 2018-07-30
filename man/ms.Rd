@@ -38,11 +38,11 @@ as_int_matrix(samples, byrow = FALSE)
 \code{as_int_matrix} returns an integer matrix
 }
 \description{
-\code{ms} executes ms as an external program
+\code{ms} executes ms as an external program.
 
-\code{parse_ms} transforms ms-like output into a list of matrices
+\code{parse_ms} transforms ms-like output into a list of matrices.
 
-\code{split_ms} splits ms-like output by replications
+\code{split_ms} splits ms-like output by replications.
 
-\code{as_int_matrix} converts a string vector into an integer matrix
+\code{as_int_matrix} converts a string vector into an integer matrix.
 }

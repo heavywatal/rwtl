@@ -14,7 +14,8 @@ gghist = function(x, ...) {
   ggplot2::ggplot(tibble::tibble(x = x), ggplot2::aes(x)) + geom(...)
 }
 
-#' `ggsave_quartz` is a shortcut of `ggplot2::ggsave()` with quartz device
+#' @description
+#' `ggsave_quartz` is a shortcut of `ggplot2::ggsave()` with quartz device.
 #' @inheritParams ggplot2::ggsave
 #' @rdname ggmisc
 #' @export
@@ -30,7 +31,8 @@ ggsave_quartz = function(
   )
 }
 
-#' `mean_sd` calculates mean and sd for `ggplot2::stat_summary()`
+#' @description
+#' `mean_sd` calculates mean and sd for `ggplot2::stat_summary()`.
 #' @inheritParams ggplot2::mean_se
 #' @rdname graphics
 #' @export

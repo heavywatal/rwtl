@@ -21,7 +21,7 @@ easierprof(expr, interval = 0.02, memory = FALSE)
 \item{memory}{logical}
 }
 \description{
-\code{refresh} is a shortcut for \code{devtools::document(..., export_all=FALSE)}
+\code{refresh} is a shortcut for \code{devtools::document(..., export_all=FALSE)}.
 
-\code{easierprof} is a simple wrapper of \code{Rprof()} and \code{summaryRprof()}
+\code{easierprof} is a simple wrapper of \code{Rprof()} and \code{summaryRprof()}.
 }

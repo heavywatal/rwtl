@@ -4,8 +4,8 @@
 \alias{library_bioc}
 \title{Shortcut for \code{source()} and \code{biocLite()}}
 \usage{
-library_bioc(mirror = getOption("BioC_mirror", "https://bioconductor.org"),
-  ...)
+library_bioc(mirror = getOption("BioC_mirror",
+  "https://bioconductor.org"), ...)
 }
 \arguments{
 \item{mirror}{URL for BioC_mirror}

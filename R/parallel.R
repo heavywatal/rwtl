@@ -64,6 +64,7 @@ invoke_par = function(.f, .x, ..., .env=NULL, .combine, .multicombine=TRUE,
   }
 }
 
+#' @description
 #' `mcmap` is a variant of `parallel::mclapply` that accepts a formula as `.f`.
 #' @rdname parallel
 #' @export

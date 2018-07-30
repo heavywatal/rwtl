@@ -6,7 +6,7 @@
 #' @param ... further arguments passed to `print`
 
 #' @description
-#' `adjust_print_options` sets width and height according to the current environment
+#' `adjust_print_options` sets width and height according to the current environment.
 #' @rdname print
 #' @export
 adjust_print_options = function(max.print = 30L) {
@@ -29,7 +29,8 @@ adjust_print_options = function(max.print = 30L) {
   }
 }
 
-#' `max_print` prints a big tibble as it is
+#' @description
+#' `max_print` prints a big tibble as it is.
 #' @rdname print
 #' @export
 max_print = function(x, max.print=getOption("max.print"), width=Inf, ...) {
@@ -38,7 +39,8 @@ max_print = function(x, max.print=getOption("max.print"), width=Inf, ...) {
   print(x, ...)
 }
 
-#' `less` is a shortcut of page(x, method='print')
+#' @description
+#' `less` is a shortcut of page(x, method='print').
 #' @rdname print
 #' @export
 less = function(x, max.print=getOption("max.print"), width=Inf, ...) {

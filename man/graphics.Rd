@@ -4,7 +4,7 @@
 \alias{mean_sd}
 \alias{pch_plot}
 \alias{col2hex}
-\title{\code{mean_sd} calculates mean and sd for \code{ggplot2::stat_summary()}}
+\title{Utilities for graphics}
 \usage{
 mean_sd(x, mult = 1.96)
 
@@ -20,9 +20,9 @@ col2hex(color = grDevices::colors())
 \item{color}{a character vector}
 }
 \description{
-\code{mean_sd} calculates mean and sd for \code{ggplot2::stat_summary()}
+\code{mean_sd} calculates mean and sd for \code{ggplot2::stat_summary()}.
 
-\code{pch_plot} shows pch variations
+\code{pch_plot} shows pch variations.
 
-\code{col2hex} translates color name to hex
+\code{col2hex} translates color name to hex.
 }

@@ -9,7 +9,8 @@ gghist(x, ...)
 
 ggsave_quartz(filename, plot = ggplot2::last_plot(),
   device = grDevices::quartz, path = NULL, scale = 1, width = 7,
-  height = 7, units = c("in", "cm", "mm"), dpi = 300, limitsize = TRUE)
+  height = 7, units = c("in", "cm", "mm"), dpi = 300,
+  limitsize = TRUE)
 }
 \arguments{
 \item{x}{vector}
@@ -47,5 +48,5 @@ specifying dimensions in pixels.}
 \description{
 \code{gghist} is a simple alternative to \code{hist()}
 
-\code{ggsave_quartz} is a shortcut of \code{ggplot2::ggsave()} with quartz device
+\code{ggsave_quartz} is a shortcut of \code{ggplot2::ggsave()} with quartz device.
 }

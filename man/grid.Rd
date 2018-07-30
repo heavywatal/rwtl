@@ -30,11 +30,11 @@ as_gg(grob, base_size = 12, base_family = "sans")
 \item{base_size, base_family}{see ggplot2::ggtheme}
 }
 \description{
-\code{gprint} is a shortcut for grid::grid.draw()
+\code{gprint} is a shortcut for grid::grid.draw().
 
-\code{grid.draw.list} enables writing multi-page PDF via ggsave()
+\code{grid.draw.list} enables writing multi-page PDF via ggsave().
 
-\code{png_grob} creates a grob from a PNG file
+\code{png_grob} creates a grob from a PNG file.
 
-\code{as_gg} converts grob to gg
+\code{as_gg} converts grob to gg.
 }
