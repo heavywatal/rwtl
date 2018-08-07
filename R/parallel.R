@@ -69,10 +69,7 @@ invoke_par = function(.f, .x, ..., .env=NULL, .combine, .multicombine=TRUE,
 #' @rdname parallel
 #' @export
 mcmap = function(.x, .f, ..., .mc.cores=getOption("mc.cores", 2L)) {
-  if (rlang::is_formula(.f)) {
-    .f = rlang::as_function(.f)
-  }
-  parallel::mclapply(.x, .f, ..., mc.cores = .mc.cores)
+  parallel::mclapply(.x, rlang::as_function(.f), ..., mc.cores = .mc.cores)
 }
 
 #' @rdname parallel
