@@ -53,11 +53,9 @@ class_at = function(.data, ...) {
 #' @rdname itertools
 #' @export
 crossing_rep = function(x, times=1L) {
-  rep.int(list(x), times) %>%
-    stats::setNames(paste0("v", seq_along(.))) %>%
-    {
-      purrr::invoke(tidyr::crossing, .)
-    }
+  x = rep.int(list(x), times)
+  x = stats::setNames(x, paste0("v", seq_len(times)))
+  purrr::invoke(tidyr::crossing, x)
 }
 
 #' Get rle (run-length encoding) as tibble.
