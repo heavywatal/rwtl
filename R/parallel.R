@@ -2,6 +2,7 @@
 #'
 #' `map_par`, `map_par_dfr`, and `invoke_par` are shortcuts to make a cluster
 #' and use it with `foreach::foreach`.
+#' @importFrom foreach %dopar%
 #' @inheritParams purrr::map
 #' @inheritParams foreach::foreach
 #' @param .mc.cores integer
