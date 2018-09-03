@@ -18,18 +18,6 @@ mutate_left = function(.data, ...) {
     move_left(names(rlang::quos(...)))
 }
 
-#' @description
-#' `mutate_jitter` adds random variations to given columns.
-#' @param amount magnitude of random variations to add
-#' @rdname dataframe
-#' @export
-mutate_jitter = function(.data, ..., amount) {
-  #TODO receive values from ... instead of amount
-  dplyr::mutate_at(.data, dplyr::vars(...), function(x) {
-    x + stats::runif(length(x), -amount, amount)
-  })
-}
-
 #' @rdname dataframe
 #' @export
 center_range = function(.data, ...) {

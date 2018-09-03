@@ -15,9 +15,6 @@ to a layout specification function.}
 \item{...}{Further modifiers, see a complete list below.
 For the \code{print} methods, it is ignored.}
 }
-\value{
-tibble
-}
 \description{
 Utilities for igraph class
 }

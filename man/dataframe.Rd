@@ -3,7 +3,6 @@
 \name{move_left}
 \alias{move_left}
 \alias{mutate_left}
-\alias{mutate_jitter}
 \alias{center_range}
 \alias{class_at}
 \title{Utilities for data.frame}
@@ -11,8 +10,6 @@
 move_left(.data, ...)
 
 mutate_left(.data, ...)
-
-mutate_jitter(.data, ..., amount)
 
 center_range(.data, ...)
 
@@ -22,13 +19,9 @@ class_at(.data, ...)
 \item{.data}{tibble}
 
 \item{...}{colnames or expressions}
-
-\item{amount}{magnitude of random variations to add}
 }
 \description{
 \code{move_left} moves specified columns to the left.
 
 \code{mutate_left} adds new columns to the left.
-
-\code{mutate_jitter} adds random variations to given columns.
 }

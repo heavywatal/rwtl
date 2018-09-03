@@ -1,6 +1,5 @@
 #' Utilities for igraph class
 #' @inheritParams igraph::layout_
-#' @return tibble
 #' @rdname igraph
 #' @export
 igraph_layout = function(graph, layout = igraph::nicely(), ...) {
