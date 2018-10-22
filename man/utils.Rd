@@ -2,9 +2,12 @@
 % Please edit documentation in R/utils.R
 \name{easierprof}
 \alias{easierprof}
+\alias{getenv}
 \title{Utility functions}
 \usage{
 easierprof(expr, interval = 0.02, memory = FALSE)
+
+getenv(pattern = NULL)
 }
 \arguments{
 \item{expr}{R expression}
@@ -12,7 +15,11 @@ easierprof(expr, interval = 0.02, memory = FALSE)
 \item{interval}{numeric}
 
 \item{memory}{logical}
+
+\item{pattern}{R expression}
 }
 \description{
 \code{easierprof} is a simple wrapper of \code{Rprof()} and \code{summaryRprof()}.
+
+\code{getenv} converts a result of \code{Sys.getenv()} to data.frame.
 }
