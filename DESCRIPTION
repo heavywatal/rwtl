@@ -17,7 +17,6 @@ Suggests:
     png,
     testthat
 Imports:
-    devtools,
     doParallel,
     dplyr,
     foreach,
