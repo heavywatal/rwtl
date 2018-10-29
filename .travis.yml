@@ -1,9 +1,10 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
-language: R
+language: r
 sudo: false
 cache: packages
-
 env:
   global:
   - _R_CHECK_FORCE_SUGGESTS_=false
+notifications:
+  email: false
+  slack:
+    secure: YIBPnJiBoiTvMD08BNWp3b78RWhu5XDSa0unGXIPvV3LqGn0uzf93C6DkUDxSmIgjlcZpYeNxV+01y/YPQlRQVrPoMrrKTaOz+WrXMMes/7SBfRuw7rwNijw935uKWAHfwX076uHTiwtX1WWZnrcyexYH2xQdq6yKJRgUsYH7+csCrIOdA36ikkTwusgklu6ir0lPhddWbCh/LM7hj/mJcJR+t05siI7PRzeqYVJ0Knkz49ifLGMWD4tTH/lE2DSGafbTcRxs7MpkdxmX5vGzN++3JdOzeLCrYIc+Puc0U/LbE0bVZDVhLMAiLrnVd1B8Ih4ZYPHtiIx5WIryg95AeNHEYiWl6/MhIlXg2L93rwd6KT5qnbt7R/8n9jh3BW84w36ZDdrBtF1plUuLAE4Ce5tb6JbmeWNLVGvtdUIB0wAo6mVh1dbebzCasB9mVZczLSLx5p74JChJHWH8hczdOmPaIgJR/zRdJ6uQujqmAvaQUZU04JF+fiwOCUorynjcKuVB8xwMdclimzjyzEoj1akUigNBk8h6xyfn4rFSz0az3GeSM8rBT723GGQzZtzU7MTr/NBWw0+DkaBmqFomPv3nofqy3CmfsHiTHErbCZvtPnxI9uQTqdkIBMDtKRx2zDPj++9SrMyjhnbFf0BoSkZ7rBlPxHepC7yvduCrqQ=
