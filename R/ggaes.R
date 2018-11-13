@@ -4,6 +4,9 @@
 #' @param ... passed to `ggplot2::aes()`
 #' @rdname ggaes
 #' @export
+#' @examples
+#' ggplot2::ggplot(iris, ggplot2::aes(Sepal.Length, Sepal.Width)) +
+#'   ggplot2::geom_point(aes_try(iris, colour = Species, fill = NOEXIST))
 aes_try = function(.data, ...) {
   .aes_try_impl(ggplot2::aes, .data, ...)
 }

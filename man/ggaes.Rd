@@ -20,3 +20,7 @@ aes_try_string(.data, ...)
 \description{
 Variants of \code{ggplot2::aes()} to ignore errors in evaluation
 }
+\examples{
+ggplot2::ggplot(iris, ggplot2::aes(Sepal.Length, Sepal.Width)) +
+  ggplot2::geom_point(aes_try(iris, colour = Species, fill = NOEXIST))
+}
