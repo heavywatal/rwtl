@@ -4,17 +4,17 @@
 #' @rdname graphics
 #' @export
 pch_plot = function() {
-  col = "red"
-  bg = "orange"
-  graphics::plot(
-    0, 0, xlim = c(0, 6), ylim = c(0, 4),
-    type = "n", axes = FALSE, xlab = "", ylab = ""
+  df = tibble::tibble(
+    pch = seq_len(128L) - 1L,
+    x = pch %% 16L,
+    y = pch %/% 16L
   )
-  a = rep(0:5, rep(5, 6))
-  b = c(4:0, 4:0, 4:0, 4:0, 4:0, 4:0)
-  graphics::points(a + 0.3, b, pch = 0:29, cex = 3, col = col, bg = bg)
-  graphics::text(a, b, 0:29)
-  graphics::mtext(paste0("col='", col, "', bg='", bg, "'"))
+  ggplot2::ggplot(df, ggplot2::aes(x, y)) +
+    ggplot2::geom_text(ggplot2::aes(label = pch), size = 4, position = ggplot2::position_nudge(0, 0.3)) +
+    ggplot2::geom_point(ggplot2::aes(shape = pch), size = 5, stroke=2, fill="tomato") +
+    ggplot2::scale_shape_identity() +
+    ggplot2::scale_y_reverse() +
+    ggplot2::theme_void()
 }
 
 #' @description
