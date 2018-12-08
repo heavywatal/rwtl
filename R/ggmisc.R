@@ -20,14 +20,15 @@ gghist = function(x, ...) {
 #' @rdname ggmisc
 #' @export
 ggsave_quartz = function(
-                         filename, plot=ggplot2::last_plot(), device=grDevices::quartz,
-                         path=NULL, scale=1, width=7, height=7,
-                         units=c("in", "cm", "mm"), dpi=300, limitsize=TRUE) {
+                         filename, plot = ggplot2::last_plot(), device = grDevices::quartz,
+                         path = NULL, scale = 1, width = 7, height = 7,
+                         units = c("in", "cm", "mm"), dpi = 300, limitsize = TRUE) {
   ext = tools::file_ext(filename)
   stopifnot(ext %in% c("png", "pdf"))
   ggplot2::ggsave(
     filename, plot, device, path,
-    scale, width, height, units, dpi, limitsize, type = ext
+    scale, width, height, units, dpi, limitsize,
+    type = ext
   )
 }
 

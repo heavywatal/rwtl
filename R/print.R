@@ -33,7 +33,7 @@ adjust_print_options = function(max.print = 30L) {
 #' `max_print` prints a big tibble as it is.
 #' @rdname print
 #' @export
-max_print = function(x, max.print=getOption("max.print"), width=Inf, ...) {
+max_print = function(x, max.print = getOption("max.print"), width = Inf, ...) {
   opts = print_options(height = max.print, width = width)
   on.exit(options(opts))
   print(x, ...)
@@ -43,7 +43,7 @@ max_print = function(x, max.print=getOption("max.print"), width=Inf, ...) {
 #' `less` is a shortcut of page(x, method='print').
 #' @rdname print
 #' @export
-less = function(x, max.print=getOption("max.print"), width=Inf, ...) {
+less = function(x, max.print = getOption("max.print"), width = Inf, ...) {
   file = tempfile("Rpage.")
   sink(file)
   max_print(x, max.print = max.print, width = width, ...)

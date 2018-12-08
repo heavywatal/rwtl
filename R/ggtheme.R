@@ -5,7 +5,7 @@
 #' @param base_size,base_family see ggplot2::ggtheme
 #' @rdname ggtheme
 #' @export
-theme_wtl = function(base_size=12, base_family="") {
+theme_wtl = function(base_size = 12, base_family = "") {
   ggplot2::theme_bw(
     base_size = base_size,
     base_family = base_family
@@ -36,7 +36,7 @@ erase = function(..., .names = NULL) {
 #' @inheritParams ggplot2::element_line
 #' @rdname ggtheme
 #' @export
-axis_line = function(colour=NULL, size=NULL, linetype=NULL, lineend=NULL, arrow=NULL, inherit.blank=FALSE) {
+axis_line = function(colour = NULL, size = NULL, linetype = NULL, lineend = NULL, arrow = NULL, inherit.blank = FALSE) {
   el = ggplot2::element_line(colour = colour, size = size, linetype = linetype, lineend = lineend, arrow = arrow, inherit.blank = inherit.blank)
   ggplot2::theme(panel.border = ggplot2::element_blank(), axis.line = el)
 }

@@ -9,11 +9,11 @@
 #' @param .cluster type of parallel::makeCluster()
 #' @rdname parallel
 #' @export
-map_par = function(.x, .f, ..., .combine, .multicombine=TRUE,
-                   .inorder=TRUE, .packages=NULL, .export=NULL,
-                   .mc.cores=getOption("mc.cores", 2L),
-                   .cluster=c("FORK", "PSOCK"),
-                   .errorhandling=c("stop", "remove", "pass")) {
+map_par = function(.x, .f, ..., .combine, .multicombine = TRUE,
+                   .inorder = TRUE, .packages = NULL, .export = NULL,
+                   .mc.cores = getOption("mc.cores", 2L),
+                   .cluster = c("FORK", "PSOCK"),
+                   .errorhandling = c("stop", "remove", "pass")) {
   if (is.function(.f)) {
     .fun = purrr::partial(.f, ...)
   } else {
@@ -32,11 +32,11 @@ map_par = function(.x, .f, ..., .combine, .multicombine=TRUE,
 #' @inheritParams purrr::map_dfr
 #' @rdname parallel
 #' @export
-map_par_dfr = function(.x, .f, ..., .id=NULL, .multicombine=TRUE,
-                       .inorder=TRUE, .packages=NULL, .export=NULL,
-                       .mc.cores=getOption("mc.cores", 2L),
-                       .cluster=c("FORK", "PSOCK"),
-                       .errorhandling=c("stop", "remove", "pass")) {
+map_par_dfr = function(.x, .f, ..., .id = NULL, .multicombine = TRUE,
+                       .inorder = TRUE, .packages = NULL, .export = NULL,
+                       .mc.cores = getOption("mc.cores", 2L),
+                       .cluster = c("FORK", "PSOCK"),
+                       .errorhandling = c("stop", "remove", "pass")) {
   if (!missing(.id) && !.inorder) {
     warning(".id is ignored because .inorder is FALSE")
     .id = NULL
@@ -52,10 +52,10 @@ map_par_dfr = function(.x, .f, ..., .id=NULL, .multicombine=TRUE,
 #' @inheritParams purrr::invoke
 #' @rdname parallel
 #' @export
-invoke_par = function(.f, .x, ..., .env=NULL, .combine, .multicombine=TRUE,
-                      .inorder=TRUE, .packages=NULL, .export=NULL,
-                      .mc.cores=getOption("mc.cores", 2L),
-                      .cluster=c("FORK", "PSOCK")) {
+invoke_par = function(.f, .x, ..., .env = NULL, .combine, .multicombine = TRUE,
+                      .inorder = TRUE, .packages = NULL, .export = NULL,
+                      .mc.cores = getOption("mc.cores", 2L),
+                      .cluster = c("FORK", "PSOCK")) {
   .mc.cores = min(.mc.cores, length(.x))
   cluster = parallel::makeCluster(.mc.cores, match.arg(.cluster), outfile = "")
   on.exit(parallel::stopCluster(cluster))
@@ -69,36 +69,36 @@ invoke_par = function(.f, .x, ..., .env=NULL, .combine, .multicombine=TRUE,
 #' `mcmap` is a variant of `parallel::mclapply` that accepts a formula as `.f`.
 #' @rdname parallel
 #' @export
-mcmap = function(.x, .f, ..., .mc.cores=getOption("mc.cores", 2L)) {
+mcmap = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
   parallel::mclapply(.x, rlang::as_function(.f), ..., mc.cores = .mc.cores)
 }
 
 #' @rdname parallel
 #' @export
-mcmap_lgl = function(.x, .f, ..., .mc.cores=getOption("mc.cores", 2L)) {
+mcmap_lgl = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
   purrr::as_vector(mcmap(.x, .f, ..., .mc.cores = .mc.cores), logical(1L))
 }
 
 #' @rdname parallel
 #' @export
-mcmap_int = function(.x, .f, ..., .mc.cores=getOption("mc.cores", 2L)) {
+mcmap_int = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
   purrr::as_vector(mcmap(.x, .f, ..., .mc.cores = .mc.cores), integer(1L))
 }
 
 #' @rdname parallel
 #' @export
-mcmap_dbl = function(.x, .f, ..., .mc.cores=getOption("mc.cores", 2L)) {
+mcmap_dbl = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
   purrr::as_vector(mcmap(.x, .f, ..., .mc.cores = .mc.cores), double(1L))
 }
 
 #' @rdname parallel
 #' @export
-mcmap_chr = function(.x, .f, ..., .mc.cores=getOption("mc.cores", 2L)) {
+mcmap_chr = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
   purrr::as_vector(mcmap(.x, .f, ..., .mc.cores = .mc.cores), character(1L))
 }
 
 #' @rdname parallel
 #' @export
-mcmap_dfr = function(.x, .f, ..., .id=NULL, .mc.cores=getOption("mc.cores", 2L)) {
+mcmap_dfr = function(.x, .f, ..., .id = NULL, .mc.cores = getOption("mc.cores", 2L)) {
   dplyr::bind_rows(mcmap(.x, .f, ..., .mc.cores = .mc.cores), .id = .id)
 }

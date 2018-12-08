@@ -16,7 +16,7 @@ probit = function(p) {
 #' @param base a numeric
 #' @rdname math
 #' @export
-logit = function(p, base=exp(1)) {
+logit = function(p, base = exp(1)) {
   log(p / (1 - p), base)
 }
 
@@ -25,7 +25,7 @@ logit = function(p, base=exp(1)) {
 #' @param gain a numeric
 #' @rdname math
 #' @export
-sigmoid = function(x, gain=1) {
+sigmoid = function(x, gain = 1) {
   1 / (1 + exp(-gain * x))
 }
 
@@ -33,26 +33,26 @@ sigmoid = function(x, gain=1) {
 #' @param x0 a numeric vector
 #' @rdname math
 #' @export
-logistic = function(x, r=1, k=1, x0=0) {
+logistic = function(x, r = 1, k = 1, x0 = 0) {
   k * sigmoid((x - x0), r * k)
 }
 
 #' @rdname math
 #' @export
-exponent = function(x, base=exp(1)) {
+exponent = function(x, base = exp(1)) {
   floor(log(abs(x), base))
 }
 
 #' @rdname math
 #' @export
-mantissa = function(x, base=exp(1)) {
+mantissa = function(x, base = exp(1)) {
   x / base**exponent(x, base)
 }
 
 #' `scientific_notation` splits number into mantissa and exponent
 #' @rdname math
 #' @export
-scientific_notation = function(x, base=10) {
+scientific_notation = function(x, base = 10) {
   exponent = floor(log(abs(x), base))
   mantissa = x / base**exponent
   stats::setNames(c(mantissa, exponent), c("mantissa", "exponent"))

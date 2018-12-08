@@ -96,5 +96,5 @@ expand the scale by 5\% on each side for continuous variables, and by
 \code{scale_fill_gradientn(colours=brewer.pal(n, name))}
 }
 \examples{
-ggplot2::scale_colour_gradientn(colours=brewer_palette('RdBu'))
+ggplot2::scale_colour_gradientn(colours = brewer_palette("RdBu"))
 }

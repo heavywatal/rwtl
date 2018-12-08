@@ -2,12 +2,12 @@
 #' @param format string
 #' @rdname time
 #' @export
-today = function(format="%Y%m%d") {
+today = function(format = "%Y%m%d") {
   base::format(Sys.time(), format)
 }
 
 #' @rdname time
 #' @export
-now = function(format="%Y%m%d_%H%M%S") {
+now = function(format = "%Y%m%d_%H%M%S") {
   base::format(Sys.time(), format)
 }

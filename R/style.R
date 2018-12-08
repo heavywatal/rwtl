@@ -16,18 +16,20 @@ eq_assign_style = function(...) {
 #' @inheritParams styler::style_dir
 #' @rdname style
 #' @export
-styler_style = function(path=".", ..., style = eq_assign_style, filetype = "R",
+styler_style = function(path = ".", ..., style = eq_assign_style, filetype = "R",
                         recursive = TRUE, exclude_files = NULL) {
   if (fs::is_dir(path)) {
     .pkg_files = c("DESCRIPTION", "NAMESPACE", "R")
     if (all(fs::file_exists(fs::path(path, .pkg_files)))) {
       styler::style_pkg(
-        path, ..., style = style, filetype = filetype,
+        path, ...,
+        style = style, filetype = filetype,
         exclude_files = c(exclude_files, "R/RcppExports.R")
       )
     } else {
       styler::style_dir(
-        path, ..., style = style, filetype = filetype, recursive = recursive,
+        path, ...,
+        style = style, filetype = filetype, recursive = recursive,
         exclude_files = exclude_files
       )
     }

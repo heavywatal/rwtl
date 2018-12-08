@@ -28,7 +28,7 @@ phylo2igraph = function(x) {
 #' @param rotate angle in radian
 #' @rdname phylo
 #' @export
-ape_layout_unrooted = function(phy, centering=TRUE, rotate=0) {
+ape_layout_unrooted = function(phy, centering = TRUE, rotate = 0) {
   nodes = ape_unrooted_xy(phy, rotate = rotate)
   if (centering) {
     nodes = center_range(nodes, "x", "y")
@@ -44,7 +44,7 @@ ape_layout_unrooted = function(phy, centering=TRUE, rotate=0) {
 
 # The algorithm was originally implemented in ape:::unrooted.xy()
 # https://cran.r-project.org/package=ape
-ape_unrooted_xy = function(phy, rotate=0) {
+ape_unrooted_xy = function(phy, rotate = 0) {
   node_depth = ape::node.depth(phy)
   edge_from = phy$edge[, 1L]
   edge_to = phy$edge[, 2L]

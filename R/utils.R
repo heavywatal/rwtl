@@ -7,7 +7,7 @@
 #' @param memory logical
 #' @rdname utils
 #' @export
-easierprof = function(expr, interval=0.02, memory=FALSE) {
+easierprof = function(expr, interval = 0.02, memory = FALSE) {
   .tmpfile = tempfile()
   utils::Rprof(.tmpfile, interval = interval, memory.profiling = memory)
   eval(substitute(expr))

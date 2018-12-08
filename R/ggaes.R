@@ -27,9 +27,11 @@ aes_try_string = function(.data, ...) {
   mapping = .function(...)
   is_ok = vapply(mapping, function(.x) {
     .x = rlang::quo_set_env(.x, emptyenv())
-    tryCatch(
-      {rlang::eval_tidy(.x, data = .data); TRUE},
-      error = function(e) FALSE
+    tryCatch({
+      rlang::eval_tidy(.x, data = .data)
+      TRUE
+    },
+    error = function(e) FALSE
     )
   }, logical(1L))
   mapping[is_ok]

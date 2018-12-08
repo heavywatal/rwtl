@@ -40,7 +40,7 @@ class_at = function(.data, ...) {
 #' @return tbl
 #' @rdname itertools
 #' @export
-crossing_rep = function(x, times=1L) {
+crossing_rep = function(x, times = 1L) {
   x = rep.int(list(x), times)
   x = stats::setNames(x, paste0("v", seq_len(times)))
   purrr::invoke(tidyr::crossing, x)
@@ -52,7 +52,7 @@ crossing_rep = function(x, times=1L) {
 #' @return tbl with start and end index columns
 #' @rdname rle_df
 #' @export
-rle_df = function(x, .name="value") {
+rle_df = function(x, .name = "value") {
   x = rle(x)
   tibble::tibble(
     !!.name := x$values,

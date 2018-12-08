@@ -5,7 +5,7 @@
 #' @param n number of subpopulations
 #' @rdname fstats
 #' @export
-fst_HBK = function(within, between, n=2) {
+fst_HBK = function(within, between, n = 2) {
   (between - within) / (between + within / (n - 1))
 }
 

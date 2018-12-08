@@ -8,7 +8,7 @@
 #' @return `ms` returns a string vector
 #' @rdname ms
 #' @export
-ms = function(nsam=4L, nreps=2L, theta=5.0) {
+ms = function(nsam = 4L, nreps = 2L, theta = 5.0) {
   args = paste(nsam, nreps, "-t", theta)
   system2("ms", args, stdout = TRUE, stderr = FALSE)
 }

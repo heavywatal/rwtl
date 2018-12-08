@@ -20,7 +20,7 @@ powerintf = function(fmt, n) {
 #' @param col.names logical
 #' @rdname tex
 #' @export
-write_tabular = function(x, file="", col.names=TRUE) {
+write_tabular = function(x, file = "", col.names = TRUE) {
   if ("Estimate" %in% names(x)) {
     x$"Estimate" = powerintf("%.3g", x$"Estimate")
     x$"Estimate" = sub("(.+)", "\\1", x$"Estimate")
@@ -37,12 +37,14 @@ write_tabular = function(x, file="", col.names=TRUE) {
   }
   if (col.names) {
     utils::write.table(
-      x[0, ], file = file, quote = FALSE, sep = " & ", eol = " \\\\ \\hline\n",
+      x[0, ],
+      file = file, quote = FALSE, sep = " & ", eol = " \\\\ \\hline\n",
       row.names = FALSE, col.names = TRUE
     )
   }
   utils::write.table(
-    x, file = file, quote = FALSE, sep = " & ", eol = " \\\\\n",
+    x,
+    file = file, quote = FALSE, sep = " & ", eol = " \\\\\n",
     row.names = FALSE, col.names = FALSE, append = TRUE
   )
 }

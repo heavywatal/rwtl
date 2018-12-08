@@ -8,7 +8,7 @@
 #' @param header a logical
 #' @rdname read
 #' @export
-scan_matrix = function(filename, what=double(0), sep="", skip=0L, header=FALSE) {
+scan_matrix = function(filename, what = double(0), sep = "", skip = 0L, header = FALSE) {
   p = pipe(paste("wc -l <", file), open = "r")
   nlines = scan(p, n = 1, quiet = TRUE)
   close(p)
@@ -38,7 +38,7 @@ scan_matrix = function(filename, what=double(0), sep="", skip=0L, header=FALSE) 
 read_boost_ini = function(file) {
   readr::read_delim(file, "=", col_names = c("key", "val"), comment = "#", trim_ws = TRUE) %>%
     dplyr::summarise_all(function(x) paste0(x, collapse = "\t")) %>%
-    paste0(collapse="\n") %>%
+    paste0(collapse = "\n") %>%
     readr::read_tsv()
 }
 

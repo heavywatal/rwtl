@@ -4,7 +4,7 @@
 #' @inheritParams base::log
 #' @rdname diversity
 #' @export
-shannon_index = function(freqs, base=exp(1)) {
+shannon_index = function(freqs, base = exp(1)) {
   freqs = freqs / sum(freqs)
   -sum(freqs * log(freqs, base))
 }
