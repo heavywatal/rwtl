@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 249.42 288.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    line, polyline, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<polyline points='7.58,76.38 7.58,211.62 124.71,279.25 241.83,211.62 241.83,76.38 124.71,8.75 7.58,76.38 7.58,211.62 ' style='stroke-width: 1.07; stroke: none; fill: #EEEEEE;' />
+<polyline points='7.58,76.38 7.58,211.62 124.71,279.25 241.83,211.62 241.83,76.38 124.71,8.75 7.58,76.38 7.58,211.62 ' style='stroke-width: 8.54; stroke: #808080; stroke-linecap: butt; stroke-linejoin: miter;' />
+<polyline points='38.64,168.59 49.18,194.94 210.77,105.36 ' style='stroke-width: 1.07; stroke: none; fill: #E08010;' />
+<polyline points='98.36,64.96 56.21,223.04 133.49,103.60 108.90,223.04 168.62,142.24 161.59,223.04 203.75,180.89 ' style='stroke-width: 10.82; stroke: #222222; stroke-linecap: butt; stroke-linejoin: bevel;' />
+<circle cx='172.13' cy='96.58' r='10.50pt' style='stroke-width: 0.71; stroke: #A4321A; fill: #A4321A;' />
+</svg>
