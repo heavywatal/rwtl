@@ -2,21 +2,29 @@
 % Please edit documentation in R/ggannotate.R
 \name{annotate_polygon}
 \alias{annotate_polygon}
+\alias{annotate_polygon2}
 \title{Variations of \code{ggplot2::annotate()}}
 \usage{
-annotate_polygon(x, y, radius = 1, stroke = 1, n = 6L, ...)
+annotate_polygon(x, y, n = 6L, radius = 1, stroke = 1, ...)
+
+annotate_polygon2(x, y, n = 6L, radius = 1, stroke = 1,
+  colour = "#666666", linejoin = "mitre", ...)
 }
 \arguments{
 \item{x, y}{center coordinate}
+
+\item{n}{number of sides}
 
 \item{radius}{size of polygon}
 
 \item{stroke}{line width}
 
-\item{n}{number of sides}
+\item{...}{passed to \code{ggplot2::annotate("polygon")}}
 
-\item{...}{passed to \code{ggplot2::annotate()}}
+\item{colour, linejoin}{passed to \code{ggplot2::annotate("path")}}
 }
 \description{
-\code{annotate_polygon()} is a shortcut of \code{ggplot2::annotate("polygon")}
+\code{annotate_polygon()} is a shortcut of \code{ggplot2::annotate("polygon")}.
+
+\code{annotate_polygon2()} has more control on line stroke.
 }
