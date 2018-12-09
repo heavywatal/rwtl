@@ -18,6 +18,21 @@ pch_plot = function() {
 }
 
 #' @description
+#' `gghist` is a simple alternative to `hist()`
+#' @param x vector
+#' @param ... passed to geom_*()
+#' @rdname graphics
+#' @export
+gghist = function(x, ...) {
+  if (is.double(x)) {
+    geom = ggplot2::geom_histogram
+  } else {
+    geom = ggplot2::geom_bar
+  }
+  ggplot2::ggplot(tibble::tibble(x = x), ggplot2::aes(x)) + geom(...)
+}
+
+#' @description
 #' `col2hex` translates color name to hex.
 #' @param color a character vector
 #' @rdname graphics

@@ -3,6 +3,7 @@
 \name{mean_sd}
 \alias{mean_sd}
 \alias{pch_plot}
+\alias{gghist}
 \alias{col2hex}
 \title{Utilities for graphics}
 \usage{
@@ -10,12 +11,16 @@ mean_sd(x, mult = 1.96)
 
 pch_plot()
 
+gghist(x, ...)
+
 col2hex(color = grDevices::colors())
 }
 \arguments{
-\item{x}{numeric vector}
+\item{x}{vector}
 
 \item{mult}{number of multiples of standard error}
+
+\item{...}{passed to geom_*()}
 
 \item{color}{a character vector}
 }
@@ -23,6 +28,8 @@ col2hex(color = grDevices::colors())
 \code{mean_sd} calculates mean and sd for \code{ggplot2::stat_summary()}.
 
 \code{pch_plot} shows pch variations.
+
+\code{gghist} is a simple alternative to \code{hist()}
 
 \code{col2hex} translates color name to hex.
 }

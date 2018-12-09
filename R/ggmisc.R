@@ -1,17 +1,18 @@
 #' Misc functions with ggplot2
 #'
-#' `gghist` is a simple alternative to `hist()`
-#' @param x vector
-#' @param ... passed to geom_*()
+#' @description
+#' `insert_layer` insert layers to an arbitrary position
+#' @param p gg object
+#' @param ... layers to add
+#' @param after position; 0L is back
 #' @rdname ggmisc
 #' @export
-gghist = function(x, ...) {
-  if (is.double(x)) {
-    geom = ggplot2::geom_histogram
-  } else {
-    geom = ggplot2::geom_bar
+insert_layer = function(p, ..., after = 0L) {
+  if (after < 0L) {
+    after = length(p$layers) + after
   }
-  ggplot2::ggplot(tibble::tibble(x = x), ggplot2::aes(x)) + geom(...)
+  p$layers = append(p$layers, ..., after = after)
+  p
 }
 
 #' @description
