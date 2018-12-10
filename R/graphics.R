@@ -21,15 +21,16 @@ pch_plot = function() {
 #' `gghist` is a simple alternative to `hist()`
 #' @param x vector
 #' @param ... passed to geom_*()
+#' @inheritParams ggplot2::geom_histogram
 #' @rdname graphics
 #' @export
-gghist = function(x, ...) {
+gghist = function(x, ..., binwidth = NULL, bins = NULL) {
+  p = ggplot2::ggplot(tibble::tibble(x = x), ggplot2::aes(x))
   if (is.double(x)) {
-    geom = ggplot2::geom_histogram
+    p + ggplot2::geom_histogram(..., binwidth = binwidth, bins = bins)
   } else {
-    geom = ggplot2::geom_bar
+    p + ggplot2::geom_bar(...)
   }
-  ggplot2::ggplot(tibble::tibble(x = x), ggplot2::aes(x)) + geom(...)
 }
 
 #' @description

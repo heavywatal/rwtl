@@ -11,7 +11,7 @@ mean_sd(x, mult = 1.96)
 
 pch_plot()
 
-gghist(x, ...)
+gghist(x, ..., binwidth = NULL, bins = NULL)
 
 col2hex(color = grDevices::colors())
 }
@@ -21,6 +21,18 @@ col2hex(color = grDevices::colors())
 \item{mult}{number of multiples of standard error}
 
 \item{...}{passed to geom_*()}
+
+\item{binwidth}{The width of the bins. Can be specified as a numeric value,
+or a function that calculates width from x.
+The default is to use \code{bins}
+bins that cover the range of the data. You should always override
+this value, exploring multiple widths to find the best to illustrate the
+stories in your data.
+
+The bin width of a date variable is the number of days in each time; the
+bin width of a time variable is the number of seconds.}
+
+\item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
 
 \item{color}{a character vector}
 }
