@@ -15,6 +15,9 @@ labels_log10(breaks)
 \item{breaks}{numeric}
 }
 \description{
+Helper functions to make labels in ggplot
+}
+\details{
 \code{breaks_log10} makes powers of ten for
 the \code{breaks} argument of \code{ggplot2::scale_*_log10()}.
 

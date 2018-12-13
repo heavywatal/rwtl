@@ -51,7 +51,8 @@ the result will be padded with empty strings.}
 }
 \description{
 \code{split_chr} splits a string and return a flattened vector.
-
+}
+\details{
 \code{rsplit} splits a string from right.
 
 \code{ord} is a pythonic alias of \code{charToRaw()}.

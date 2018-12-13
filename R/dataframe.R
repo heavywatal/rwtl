@@ -1,5 +1,6 @@
 #' Utilities for data.frame
 #'
+#' @details
 #' `move_left` moves specified columns to the left.
 #' @param .data tibble
 #' @param ... colnames or expressions
@@ -9,7 +10,7 @@ move_left = function(.data, ...) {
   dplyr::select(.data, ..., dplyr::everything())
 }
 
-#' @description
+#' @details
 #' `mutate_left` adds new columns to the left.
 #' @rdname dataframe
 #' @export

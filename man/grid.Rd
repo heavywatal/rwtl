@@ -31,7 +31,8 @@ as_gg(grob, base_size = 12, base_family = "sans")
 }
 \description{
 \code{gprint} is a shortcut for grid::grid.draw().
-
+}
+\details{
 \code{grid.draw.list} enables writing multi-page PDF via ggsave().
 
 \code{png_grob} creates a grob from a PNG file.

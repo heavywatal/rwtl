@@ -5,7 +5,7 @@
 #' @param max.print maximum number of rows to print
 #' @param ... further arguments passed to `print`
 
-#' @description
+#' @details
 #' `adjust_print_options` sets width and height according to the current environment.
 #' @rdname print
 #' @export
@@ -29,7 +29,7 @@ adjust_print_options = function(max.print = 30L) {
   }
 }
 
-#' @description
+#' @details
 #' `max_print` prints a big tibble as it is.
 #' @rdname print
 #' @export
@@ -39,7 +39,7 @@ max_print = function(x, max.print = getOption("max.print"), width = Inf, ...) {
   print(x, ...)
 }
 
-#' @description
+#' @details
 #' `less` is a shortcut of page(x, method='print').
 #' @rdname print
 #' @export

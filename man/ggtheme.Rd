@@ -40,6 +40,9 @@ well. If \code{FALSE} any blank parent element will be ignored when
 calculating final element state.}
 }
 \description{
+Shortcut for ggplot theme
+}
+\details{
 \code{theme_wtl} is a slightly modified \code{theme_bw}.
 
 \code{erase} is a shortcut for \code{theme(... = element_blank())}.

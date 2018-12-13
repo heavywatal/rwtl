@@ -17,7 +17,7 @@ pch_plot = function() {
     ggplot2::theme_void()
 }
 
-#' @description
+#' @details
 #' `gghist` is a simple alternative to `hist()`
 #' @param x vector
 #' @param ... passed to geom_*()
@@ -33,7 +33,7 @@ gghist = function(x, ..., binwidth = NULL, bins = NULL) {
   }
 }
 
-#' @description
+#' @details
 #' `col2hex` translates color name to hex.
 #' @param color a character vector
 #' @rdname graphics

@@ -30,7 +30,8 @@ read_cb(...)
 }
 \description{
 \code{scan_matrix} scans a simple CSV and make a matrix.
-
+}
+\details{
 \code{read_boost_ini} reads an INI-like config file of boost::program_options.
 
 \code{read_cb} reads paste board into data.frame.

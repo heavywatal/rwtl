@@ -126,6 +126,7 @@ as \code{.f} the name of a function rather than its value, or as
 \description{
 \code{map_par}, \code{map_par_dfr}, and \code{invoke_par} are shortcuts to make a cluster
 and use it with \code{foreach::foreach}.
-
+}
+\details{
 \code{mcmap} is a variant of \code{parallel::mclapply} that accepts a formula as \code{.f}.
 }

@@ -10,6 +10,9 @@ command_args()
 this_file()
 }
 \description{
+Parse command line arguments
+}
+\details{
 \code{command_args} is an extention of \code{commandArgs()}.
 
 \code{this_file} extracts script path from \code{commandArgs()}.

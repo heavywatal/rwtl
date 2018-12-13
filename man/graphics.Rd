@@ -37,9 +37,10 @@ bin width of a time variable is the number of seconds.}
 \item{color}{a character vector}
 }
 \description{
-\code{mean_sd} calculates mean and sd for \code{ggplot2::stat_summary()}.
-
 \code{pch_plot} shows pch variations.
+}
+\details{
+\code{mean_sd} calculates mean and sd for \code{ggplot2::stat_summary()}.
 
 \code{gghist} is a simple alternative to \code{hist()}
 

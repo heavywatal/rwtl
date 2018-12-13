@@ -1,6 +1,6 @@
 #' Variations of `ggplot2::annotate()`
 #'
-#' @description
+#' @details
 #' `annotate_polygon()` is a shortcut of `ggplot2::annotate("polygon")`.
 #' @param x,y center coordinate
 #' @param n number of sides
@@ -16,7 +16,7 @@ annotate_polygon = function(x, y, n = 6L, radius = 1, stroke = 1, ...) {
   ggplot2::annotate("polygon", x = x, y = y, size = stroke, ...)
 }
 
-#' @description
+#' @details
 #' `annotate_polygon2()` has more control on line stroke.
 #' @param colour,linejoin passed to `ggplot2::annotate("path")`
 #' @rdname ggannotate

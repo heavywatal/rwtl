@@ -22,6 +22,9 @@ less(x, max.print = getOption("max.print"), width = Inf, ...)
 \item{...}{further arguments passed to \code{print}}
 }
 \description{
+Configure print options.
+}
+\details{
 \code{adjust_print_options} sets width and height according to the current environment.
 
 \code{max_print} prints a big tibble as it is.

@@ -11,7 +11,7 @@ gprint = function(x, newpage = TRUE, recording = FALSE) {
   invisible(x)
 }
 
-#' @description
+#' @details
 #' `grid.draw.list` enables writing multi-page PDF via ggsave().
 #' @inheritParams grid::grid.draw
 #' @rdname grid
@@ -20,7 +20,7 @@ grid.draw.list = function(x, recording = FALSE) {
   purrr::walk(x, grid::grid.draw, recording)
 }
 
-#' @description
+#' @details
 #' `png_grob` creates a grob from a PNG file.
 #' @param file path to PNG file
 #' @rdname grid
@@ -29,7 +29,7 @@ png_grob = function(file) {
   grid::rasterGrob(png::readPNG(file))
 }
 
-#' @description
+#' @details
 #' `as_gg` converts grob to gg.
 #' @param grob graphical object
 #' @param base_size,base_family see ggplot2::ggtheme

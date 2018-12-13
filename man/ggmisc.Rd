@@ -48,6 +48,9 @@ save images larger than 50x50 inches, to prevent the common error of
 specifying dimensions in pixels.}
 }
 \description{
+Misc functions with ggplot2
+}
+\details{
 \code{insert_layer} insert layers to an arbitrary position
 
 \code{ggsave_quartz} is a shortcut of \code{ggplot2::ggsave()} with quartz device.

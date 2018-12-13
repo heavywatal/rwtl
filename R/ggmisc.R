@@ -1,6 +1,6 @@
 #' Misc functions with ggplot2
 #'
-#' @description
+#' @details
 #' `insert_layer` insert layers to an arbitrary position
 #' @param p gg object
 #' @param ... layers to add
@@ -15,7 +15,7 @@ insert_layer = function(p, ..., after = 0L) {
   p
 }
 
-#' @description
+#' @details
 #' `ggsave_quartz` is a shortcut of `ggplot2::ggsave()` with quartz device.
 #' @inheritParams ggplot2::ggsave
 #' @rdname ggmisc
@@ -33,7 +33,7 @@ ggsave_quartz = function(
   )
 }
 
-#' @description
+#' @details
 #' `mean_sd` calculates mean and sd for `ggplot2::stat_summary()`.
 #' @inheritParams ggplot2::mean_se
 #' @rdname graphics

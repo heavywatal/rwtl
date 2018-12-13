@@ -21,6 +21,9 @@ class_at(.data, ...)
 \item{...}{colnames or expressions}
 }
 \description{
+Utilities for data.frame
+}
+\details{
 \code{move_left} moves specified columns to the left.
 
 \code{mutate_left} adds new columns to the left.

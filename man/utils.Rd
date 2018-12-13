@@ -19,6 +19,9 @@ getenv(pattern = NULL)
 \item{pattern}{R expression}
 }
 \description{
+Utility functions
+}
+\details{
 \code{easierprof} is a simple wrapper of \code{Rprof()} and \code{summaryRprof()}.
 
 \code{getenv} converts a result of \code{Sys.getenv()} to data.frame.

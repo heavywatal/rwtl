@@ -1,5 +1,6 @@
 #' Helper functions to make labels in ggplot
 #'
+#' @details
 #' `breaks_log10` makes powers of ten for
 #' the `breaks` argument of `ggplot2::scale_*_log10()`.
 #' @param limits numeric
@@ -10,7 +11,7 @@ breaks_log10 = function(limits) {
   10**seq(floor(min(loglims)), ceiling(max(loglims)))
 }
 
-#' @description
+#' @details
 #' `labels_log10` is an axis label formatter to be passed to
 #' the `labels` argument of `ggplot2::scale_*_log10()`.
 #' @param breaks numeric

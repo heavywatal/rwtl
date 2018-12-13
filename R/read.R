@@ -30,7 +30,7 @@ scan_matrix = function(filename, what = double(0), sep = "", skip = 0L, header =
   mtrx
 }
 
-#' @description
+#' @details
 #' `read_boost_ini` reads an INI-like config file of boost::program_options.
 #' @param file filename or text
 #' @rdname read
@@ -42,7 +42,7 @@ read_boost_ini = function(file) {
     readr::read_tsv()
 }
 
-#' @description
+#' @details
 #' `read_cb` reads paste board into data.frame.
 #' @param ... passed to `read.table()`
 #' @rdname read

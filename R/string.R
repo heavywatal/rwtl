@@ -8,7 +8,7 @@ split_chr = function(string, pattern = "\\s+", n = Inf) {
   stringr::str_split(string, pattern, n) %>% purrr::flatten_chr()
 }
 
-#' @description
+#' @details
 #' `rsplit` splits a string from right.
 #' @rdname string
 #' @export
@@ -17,7 +17,7 @@ rsplit = function(string, pattern, n = 42L) {
   stringr::str_split(string, pattern)
 }
 
-#' @description
+#' @details
 #' `ord` is a pythonic alias of `charToRaw()`.
 #' @param char character
 #' @rdname string
@@ -26,7 +26,7 @@ ord = function(char) {
   strtoi(charToRaw(char), 16L)
 }
 
-#' @description
+#' @details
 #' `chr` is a pythonic alias of `intToUtf8()`.
 #' @param i integer
 #' @rdname string
@@ -35,7 +35,7 @@ chr = function(i) {
   intToUtf8(i)
 }
 
-#' @description
+#' @details
 #' `as_chr` converts expr into character vector.
 #' @param ... expressions
 #' @rdname string

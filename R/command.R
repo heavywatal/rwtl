@@ -1,6 +1,6 @@
 #' Parse command line arguments
 #'
-#' @description
+#' @details
 #' `command_args` is an extention of `commandArgs()`.
 #' @rdname command
 #' @export
@@ -13,7 +13,7 @@ command_args = function() {
   return(l)
 }
 
-#' @description
+#' @details
 #' `this_file` extracts script path from `commandArgs()`.
 #' @rdname command
 #' @export

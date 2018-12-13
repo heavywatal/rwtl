@@ -15,6 +15,9 @@ fst_HSM(within, between)
 \item{n}{number of subpopulations}
 }
 \description{
+Fst estimators
+}
+\details{
 \code{fst_HBK} calculates Kst by Hudson, Boos, and Kaplan (1992).
 
 \code{fst_HSM} calculates Fst by Hudson, Slatkin, and Maddison (1992).

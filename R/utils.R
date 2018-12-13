@@ -1,6 +1,6 @@
 #' Utility functions
 #'
-#' @description
+#' @details
 #' `easierprof` is a simple wrapper of `Rprof()` and `summaryRprof()`.
 #' @param expr R expression
 #' @param interval numeric
@@ -15,7 +15,7 @@ easierprof = function(expr, interval = 0.02, memory = FALSE) {
   utils::summaryRprof(.tmpfile, memory = ifelse(memory, "both", "none"))
 }
 
-#' @description
+#' @details
 #' `getenv` converts a result of `Sys.getenv()` to data.frame.
 #' @param pattern R expression
 #' @rdname utils
