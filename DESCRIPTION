@@ -16,6 +16,7 @@ Suggests:
     png,
     testthat
 Imports:
+    BiocManager,
     devtools,
     doParallel,
     dplyr,

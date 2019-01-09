@@ -2,9 +2,15 @@
 % Please edit documentation in R/package.R
 \name{clean_install}
 \alias{clean_install}
+\alias{bioc_valid}
+\alias{bioc_install}
 \title{Package utilities}
 \usage{
 clean_install(pkg = ".", upgrade = FALSE, ...)
+
+bioc_valid(..., type = binary_if_macos())
+
+bioc_install(..., ask = interactive(), type = binary_if_macos())
 }
 \arguments{
 \item{pkg}{package description, can be path or package name.  See
@@ -17,6 +23,19 @@ correspond to "always" and "never" respectively.}
 
 \item{...}{additional arguments passed to \code{\link[remotes:install_deps]{remotes::install_deps()}}
 when installing dependencies.}
+
+\item{type}{character, indicating the type of package to download and
+    install.  See \code{\link{install.packages}}.
+  }
+
+\item{ask}{logical indicating whether to ask the user to select
+    packages before they are downloaded and installed, or the character
+    string \code{"graphics"}, which brings up a widget to allow the user
+    to (de-)select from the list of packages which could be updated.
+    (The latter value only works on systems with a GUI version of
+    \code{\link{select.list}}, and is otherwise equivalent to
+    \code{ask = TRUE}.)
+  }
 }
 \description{
 Package utilities
@@ -24,4 +43,6 @@ Package utilities
 \details{
 \code{clean_install} is a shortcut of \code{devtools::clean_dll} and
 \code{devtools::install}.
+
+\code{bioc_valid} and \code{bioc_install} are thin wrappers of BiocManager functions.
 }
