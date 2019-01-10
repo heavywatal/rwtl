@@ -7,7 +7,7 @@
 #' @rdname package
 #' @export
 clean_install = function(pkg = ".", upgrade = FALSE, ...) {
-  devtools::clean_dll(pkg)
+  devtools::load_all(pkg, recompile = TRUE)
   devtools::document(pkg)
   devtools::install(pkg, upgrade = upgrade, ...)
 }
