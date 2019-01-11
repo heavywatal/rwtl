@@ -25,6 +25,7 @@ Imports:
     ggplot2,
     lazyeval,
     magrittr,
+    pkgbuild,
     purrr,
     readr,
     rlang,
