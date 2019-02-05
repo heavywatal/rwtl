@@ -10,7 +10,7 @@ adjust_print_options(max.print = 30L)
 
 max_print(x, max.print = getOption("max.print"), width = Inf, ...)
 
-less(x, max.print = getOption("max.print"), width = Inf, ...)
+less(x, ...)
 }
 \arguments{
 \item{max.print}{maximum number of rows to print}
@@ -29,5 +29,6 @@ Configure print options.
 
 \code{max_print} prints a big tibble as it is.
 
-\code{less} is a shortcut of page(x, method='print').
+\code{less} sends \code{x} to \code{getOption('pager')} in-memory. It is more efficient
+than \code{page(x, method='print')} that involves a temporary file.
 }

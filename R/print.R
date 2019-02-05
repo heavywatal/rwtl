@@ -40,15 +40,28 @@ max_print = function(x, max.print = getOption("max.print"), width = Inf, ...) {
 }
 
 #' @details
-#' `less` is a shortcut of page(x, method='print').
+#' `less` sends `x` to `getOption('pager')` in-memory. It is more efficient
+#' than `page(x, method='print')` that involves a temporary file.
 #' @rdname print
 #' @export
-less = function(x, max.print = getOption("max.print"), width = Inf, ...) {
-  file = tempfile("Rpage.")
+less = function(x, ...) UseMethod("less")
+
+#' @export
+less.default = function(x, ...) {
+  pager(print(x, ...))
+}
+
+#' @export
+less.data.frame = function(x, ..., max.print = getOption("max.print"), width = Inf) {
+  pager(max_print(x, max.print = max.print, width = width, ...))
+}
+
+pager = function(expr) {
+  file = pipe(getOption('pager'), open = "w")
+  on.exit(close(file))
   sink(file)
-  max_print(x, max.print = max.print, width = width, ...)
-  sink()
-  file.show(file, delete.file = TRUE)
+  on.exit(sink(NULL), add = TRUE, after = FALSE)
+  invisible(eval(expr))
 }
 
 print_options = function(height, width) {
