@@ -7,6 +7,7 @@
 \alias{less}
 \alias{grepp}
 \alias{\%G\%}
+\alias{redirect}
 \alias{adjust_print_options}
 \title{Utilities for printing and piping}
 \usage{
@@ -22,6 +23,8 @@ grepp(x, expr, ...)
 
 x \%G\% expr
 
+redirect(expr, file = "/dev/null")
+
 adjust_print_options(max.print = 30L)
 }
 \arguments{
@@ -36,6 +39,9 @@ adjust_print_options(max.print = 30L)
 \item{command}{to which the text is sent; string or expression.}
 
 \item{expr}{arguments to \code{grep -P}; string or expression.}
+
+\item{file}{a writable \link{connection} or a character string naming the
+    file to write to, or \code{NULL} to stop sink-ing.}
 }
 \description{
 Utilities for printing and piping
@@ -49,6 +55,8 @@ Utilities for printing and piping
 efficient than \code{page(x, method='print')} that involves a temporary file.
 
 \code{grepp} and \code{\%G\%} are shorthand for \code{x \%|\% "grep -P {expr}"}.
+
+\code{redirect} evaluates \code{expr} while \code{sink(file)} is in operation.
 
 \code{adjust_print_options} sets width and height according to the current environment.
 }

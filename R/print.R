@@ -87,8 +87,17 @@ sinkpipe = function(expr, command) {
   command = rlang::as_name(rlang::enquo(command))
   file = pipe(command, open = "w")
   on.exit(close(file))
+  redirect(expr, file)
+}
+
+#' @details
+#' `redirect` evaluates `expr` while `sink(file)` is in operation.
+#' @inheritParams base::sink
+#' @rdname print
+#' @export
+redirect = function(expr, file = "/dev/null") {
+  on.exit(sink(NULL))
   sink(file)
-  on.exit(sink(NULL), add = TRUE, after = FALSE)
   invisible(eval(expr))
 }
 
