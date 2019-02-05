@@ -1,9 +1,96 @@
-#' Configure print options.
+#' Utilities for printing and piping
 #'
+#' @examples
+#' \dontrun{
+#' max_print(mpg)
+#'
+#' mpg %>% less()
+#' mpg %>% grepp(manual)
+#' mpg %>% grepp("manual")
+#' mpg %>% pipeshell(wc)
+#'
+#' iris %|% wc
+#' iris %|% "wc -l"
+#' iris %|% `grep seto | less`
+#'
+#' vir = "seto"
+#' iris %G% vir
+#' iris %G% !!vir
+#' iris %G% `-v seto | less`
+#' }
 #' @param x an object to print
-#' @param width maximum number of columns to print
 #' @param max.print maximum number of rows to print
+#' @param width maximum number of columns to print
 #' @param ... further arguments passed to `print`
+#' @details
+#' `max_print` prints as many elements in a big tibble as possible.
+#' @rdname print
+#' @export
+max_print = function(x, max.print = getOption("max.print"), width = Inf, ...) {
+  opts = print_options(height = max.print, width = width, max.print = max.print)
+  on.exit(options(opts))
+  print(x, ...)
+}
+
+#' @details
+#' `pipeshell` and `%|%` send `x` to `command` via shell.
+#' @param command to which the text is sent; string or expression.
+#' @rdname print
+#' @export
+pipeshell = function(x, command, ...) UseMethod("pipeshell")
+
+#' @export
+pipeshell.default = function(x, command, ...) {
+  command = rlang::enquo(command)
+  sinkpipe(print(x, ...), !!command)
+}
+
+#' @export
+pipeshell.data.frame = function(x, command, ..., max.print = getOption("max.print"), width = Inf) {
+  command = rlang::enquo(command)
+  sinkpipe(max_print(x, max.print = max.print, width = width, ...), !!command)
+}
+
+#' @rdname print
+#' @export
+`%|%` = function(x, command) {
+  pipeshell(x, !!rlang::enquo(command))
+}
+
+#' @details
+#' `less` print `x` in `getOption('pager')`. The operation is in-memory and
+#' efficient than `page(x, method='print')` that involves a temporary file.
+#' @rdname print
+#' @export
+less = function(x, ...) {
+  pipeshell(x, command = !!getOption('pager'), ...)
+}
+
+#' @details
+#' `grepp` and `%G%` are shorthand for `x %|% "grep -P {expr}"`.
+#' @param expr arguments to `grep -P`; string or expression.
+#' @rdname print
+#' @export
+grepp = function(x, expr, ...) {
+  expr = rlang::as_name(rlang::enquo(expr))
+  command = paste("grep -P", expr)
+  pipeshell(x, command = !!command, ...)
+}
+
+#' @rdname print
+#' @export
+`%G%` = function(x, expr) {
+  grepp(x, !!rlang::enquo(expr))
+}
+
+sinkpipe = function(expr, command) {
+  command = rlang::as_name(rlang::enquo(command))
+  file = pipe(command, open = "w")
+  on.exit(close(file))
+  sink(file)
+  on.exit(sink(NULL), add = TRUE, after = FALSE)
+  invisible(eval(expr))
+}
 
 #' @details
 #' `adjust_print_options` sets width and height according to the current environment.
@@ -29,48 +116,14 @@ adjust_print_options = function(max.print = 30L) {
   }
 }
 
-#' @details
-#' `max_print` prints a big tibble as it is.
-#' @rdname print
-#' @export
-max_print = function(x, max.print = getOption("max.print"), width = Inf, ...) {
-  opts = print_options(height = max.print, width = width)
-  on.exit(options(opts))
-  print(x, ...)
-}
-
-#' @details
-#' `less` sends `x` to `getOption('pager')` in-memory. It is more efficient
-#' than `page(x, method='print')` that involves a temporary file.
-#' @rdname print
-#' @export
-less = function(x, ...) UseMethod("less")
-
-#' @export
-less.default = function(x, ...) {
-  pager(print(x, ...))
-}
-
-#' @export
-less.data.frame = function(x, ..., max.print = getOption("max.print"), width = Inf) {
-  pager(max_print(x, max.print = max.print, width = width, ...))
-}
-
-pager = function(expr) {
-  file = pipe(getOption('pager'), open = "w")
-  on.exit(close(file))
-  sink(file)
-  on.exit(sink(NULL), add = TRUE, after = FALSE)
-  invisible(eval(expr))
-}
-
-print_options = function(height, width) {
+print_options = function(height, width, ...) {
   options(
     datatable.print.nrows = height,
     datatable.print.topn = height %/% 2L,
     tibble.print_max = height,
     tibble.print_min = height,
     tibble.width = width,
-    width = min(width, 10000L)
+    width = min(width, 10000L),
+    ...
   )
 }
