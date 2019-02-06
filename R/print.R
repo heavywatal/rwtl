@@ -14,40 +14,38 @@
 #' @rdname print
 #' @export
 printdf <- function(x, n = getOption("tibble.print_max", 30L), ...) {
-  cat("# ", class(x)[1L], ": ", nrow(x), " x ", ncol(x), "\n", sep = "")
-  if (length(gvars <- dplyr::group_vars(x))) {
-    gvars = paste0(gvars, collapse = ", ")
-    cat("# ", dplyr::n_groups(x), " groups: ", gvars, "\n", sep = "")
-  }
+  printdf_summary(x)
   if (ncol(x) == 0L) return(invisible(x))
   original_x = x
-  class(x) = "data.frame" # remove tbl_df not to lose rownames when subsetting
-  classes = vapply(x, class_sum, "", USE.NAMES = FALSE)
-  if (n <= 0L) {
-    x = x[FALSE,]
+  class(x) = "data.frame" # remove tbl_df
+  class_row = vapply(x, class_sum, "", USE.NAMES = FALSE)
+  class_row = paste0("<", class_row, ">")
+  if (truncated <- nrow(x) > n) {
+    head_n = as.integer(ceiling(n / 2))
+    tail_n = n - head_n
+    head_idx = seq_len(head_n)
+    tail_idx = seq.int(to = nrow(x), length.out = tail_n)
+    x = x[c(head_idx, tail_idx),]
   }
-  topn = ceiling(n / 2)
-  if (nrow(x) > n) {
-    x = rbind(utils::head(x, topn), utils::tail(x, n - topn))
-    needs_separator = nrow(x) > 1L
-  } else {
-    needs_separator = FALSE
-  }
-  rn = rownames(x)
   x = do.call(cbind, lapply(x, format_column))
   # now x is a data.frame of formatted strings.
-  rownames(x) = rn
-  if (needs_separator) {
-    x = rbind(utils::head(x, topn), "--" = "", utils::tail(x, n - topn))
+  if (truncated) {
+    rnames = c("", head_idx, "--", tail_idx)
+    tail_idx = seq.int(to = nrow(x), length.out = tail_n)
+    x = rbind(class_row, x[head_idx,], "", x[tail_idx,])
+  } else {
+    rnames = c("", seq_len(nrow(x)))
+    x = rbind(class_row, x)
   }
-  x = rbind(" " = paste0("<", classes, ">"), x)
-  rownames(x) = format(rownames(x), justify="right")
+  row.names(x) = format(rnames, justify="right")
   print(x, right = TRUE, quote = FALSE, ...)
   invisible(original_x)
 }
 
 format_column = function(x) {
-  if (is.list(x))
+  if (is.data.frame(x))
+    purrr::pmap_chr(x, paste, sep = ", ")
+  else if (is.list(x))
     vapply(x, format_list_item, "", USE.NAMES = FALSE)
   else if (is.character(x))
     trunc_chr(x)
@@ -58,16 +56,18 @@ format_column = function(x) {
 format_list_item = function(x) {
   if (is.null(x)) {
     character(0L)
-  } else if (!is.null(dim(x))) {
-    d = paste0(dim(x), collapse = " x ")
-    paste0("<", class_sum(x), " [", d, "]>")
-  } else if (is.atomic(x)) {
-    paste0("<", class_sum(x), " [", length(x), "]>")
+  } else if (is.list(x) || is.atomic(x)) {
+    paste0("<", array_sum(x), ">")
   } else if (inherits(x, "formula")) {
     trunc_chr(format(x))
   } else {
     paste0("<", class_sum(x), ">")
   }
+}
+
+array_sum = function(x) {
+  d = paste0(DIM(x), collapse = " x ")
+  paste0(class_sum(x), " [", d, "]")
 }
 
 class_sum = function(x) {
@@ -85,12 +85,24 @@ class_sum = function(x) {
   )
 }
 
+DIM = function(x) {
+  if (length(d <- dim(x))) d else length(x)
+}
+
 trunc_chr <- function(x, n = 60L) {
   if (n > 0L) {
     idx = nchar(x) > n
     x[idx] = paste0(substr(x[idx], 1L, n), "...")
   }
   x
+}
+
+printdf_summary = function(x) {
+  cat("# ", array_sum(x), "\n", sep = "")
+  if (dplyr::is_grouped_df(x)) {
+    gvars = paste0(dplyr::group_vars(x), collapse = ", ")
+    cat("# Groups: ", gvars, " [", dplyr::n_groups(x), "]\n", sep = "")
+  }
 }
 
 #' @details
