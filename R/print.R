@@ -1,119 +1,122 @@
-#' Utilities for printing and piping
+#' Utilities for printing
 #'
 #' @examples
 #' \dontrun{
+#' printdf(mpg)
 #' max_print(mpg)
-#'
-#' mpg %>% less()
-#' mpg %>% grepp(manual)
-#' mpg %>% grepp("manual")
-#' mpg %>% pipeshell(wc)
-#'
-#' iris %|% wc
-#' iris %|% "wc -l"
-#' iris %|% `grep seto | less`
-#'
-#' vir = "seto"
-#' iris %G% vir
-#' iris %G% !!vir
-#' iris %G% `-v seto | less`
 #' }
 #' @param x an object to print
-#' @param max.print maximum number of rows to print
-#' @param width maximum number of columns to print
+#' @param n maximum number of rows to print
 #' @param ... further arguments passed to `print`
 #' @details
-#' `max_print` prints as many elements in a big tibble as possible.
+#' `printdf` is a simple cherry-picking from
+#' `tibble:::print.tbl` and `data.frame:::print.data.table`.
 #' @rdname print
 #' @export
-max_print = function(x, max.print = getOption("max.print"), width = Inf, ...) {
-  opts = print_options(height = max.print, width = width, max.print = max.print)
+printdf <- function(x, n = getOption("tibble.print_max", 30L), ...) {
+  cat("# ", class(x)[1L], ": ", nrow(x), " x ", ncol(x), "\n", sep = "")
+  if (length(gvars <- dplyr::group_vars(x))) {
+    gvars = paste0(gvars, collapse = ", ")
+    cat("# ", dplyr::n_groups(x), " groups: ", gvars, "\n", sep = "")
+  }
+  if (ncol(x) == 0L) return(invisible(x))
+  original_x = x
+  class(x) = "data.frame" # remove tbl_df not to lose rownames when subsetting
+  classes = vapply(x, class_sum, "", USE.NAMES = FALSE)
+  if (n <= 0L) {
+    x = x[FALSE,]
+  }
+  topn = ceiling(n / 2)
+  if (nrow(x) > n) {
+    x = rbind(utils::head(x, topn), utils::tail(x, n - topn))
+    needs_separator = nrow(x) > 1L
+  } else {
+    needs_separator = FALSE
+  }
+  rn = rownames(x)
+  x = do.call(cbind, lapply(x, format_column))
+  # now x is a data.frame of formatted strings.
+  rownames(x) = rn
+  if (needs_separator) {
+    x = rbind(utils::head(x, topn), "--" = "", utils::tail(x, n - topn))
+  }
+  x = rbind(" " = paste0("<", classes, ">"), x)
+  rownames(x) = format(rownames(x), justify="right")
+  print(x, right = TRUE, quote = FALSE, ...)
+  invisible(original_x)
+}
+
+format_column = function(x) {
+  if (is.list(x))
+    vapply(x, format_list_item, "", USE.NAMES = FALSE)
+  else if (is.character(x))
+    trunc_chr(x)
+  else
+    format(x, justify = "none")
+}
+
+format_list_item = function(x) {
+  if (is.null(x)) {
+    character(0L)
+  } else if (!is.null(dim(x))) {
+    d = paste0(dim(x), collapse = " x ")
+    paste0("<", class_sum(x), " [", d, "]>")
+  } else if (is.atomic(x)) {
+    paste0("<", class_sum(x), " [", length(x), "]>")
+  } else if (inherits(x, "formula")) {
+    trunc_chr(format(x))
+  } else {
+    paste0("<", class_sum(x), ">")
+  }
+}
+
+class_sum = function(x) {
+  switch(class(x)[1L],
+    logical = "lgl",
+    integer = "int",
+    numeric = "dbl",
+    character = "chr",
+    complex = "cpl",
+    factor = "fct",
+    ordered = "ord",
+    POSIXct = "dttm",
+    Date = "date",
+    class(x)[1L]
+  )
+}
+
+trunc_chr <- function(x, n = 60L) {
+  if (n > 0L) {
+    idx = nchar(x) > n
+    x[idx] = paste0(substr(x[idx], 1L, n), "...")
+  }
+  x
+}
+
+#' @details
+#' `max_print` prints as many elements in a big tibble as possible.
+#' @param width maximum number of columns to print
+#' @rdname print
+#' @export
+max_print = function(x, n = getOption("max.print"), width = Inf, ...) {
+  opts = options_print(height = n, width = width, max.print = n)
   on.exit(options(opts))
   print(x, ...)
-}
-
-#' @details
-#' `pipeshell` and `%|%` send `x` to `command` via shell.
-#' @param command to which the text is sent; string or expression.
-#' @rdname print
-#' @export
-pipeshell = function(x, command, ...) UseMethod("pipeshell")
-
-#' @export
-pipeshell.default = function(x, command, ...) {
-  command = rlang::enquo(command)
-  sinkpipe(print(x, ...), !!command)
-}
-
-#' @export
-pipeshell.data.frame = function(x, command, ..., max.print = getOption("max.print"), width = Inf) {
-  command = rlang::enquo(command)
-  sinkpipe(max_print(x, max.print = max.print, width = width, ...), !!command)
-}
-
-#' @rdname print
-#' @export
-`%|%` = function(x, command) {
-  pipeshell(x, !!rlang::enquo(command))
-}
-
-#' @details
-#' `less` print `x` in `getOption('pager')`. The operation is in-memory and
-#' efficient than `page(x, method='print')` that involves a temporary file.
-#' @rdname print
-#' @export
-less = function(x, ...) {
-  pipeshell(x, command = !!getOption('pager'), ...)
-}
-
-#' @details
-#' `grepp` and `%G%` are shorthand for `x %|% "grep -P {expr}"`.
-#' @param expr arguments to `grep -P`; string or expression.
-#' @rdname print
-#' @export
-grepp = function(x, expr, ...) {
-  expr = rlang::as_name(rlang::enquo(expr))
-  command = paste("grep -P", expr)
-  pipeshell(x, command = !!command, ...)
-}
-
-#' @rdname print
-#' @export
-`%G%` = function(x, expr) {
-  grepp(x, !!rlang::enquo(expr))
-}
-
-sinkpipe = function(expr, command) {
-  command = rlang::as_name(rlang::enquo(command))
-  file = pipe(command, open = "w")
-  on.exit(close(file))
-  redirect(expr, file)
-}
-
-#' @details
-#' `redirect` evaluates `expr` while `sink(file)` is in operation.
-#' @inheritParams base::sink
-#' @rdname print
-#' @export
-redirect = function(expr, file = "/dev/null") {
-  on.exit(sink(NULL))
-  sink(file)
-  invisible(eval(expr))
 }
 
 #' @details
 #' `adjust_print_options` sets width and height according to the current environment.
 #' @rdname print
 #' @export
-adjust_print_options = function(max.print = 30L) {
+adjust_print_options = function(n = 30L) {
   # COLUMNS and LINES are unreadable during startup
   stty_size = system("stty size", intern = TRUE)
   message("stty size: ", stty_size)
   stty_size = as.integer(strsplit(stty_size, " ")[[1L]])
   stopifnot(length(stty_size) > 1L)
   stopifnot(stty_size > 10L)
-  print_options(
-    height = min(stty_size[1L] - 6L, max.print),
+  options_print(
+    height = min(stty_size[1L] - 6L, n),
     width = stty_size[2L]
   )
   if (interactive()) {
@@ -125,7 +128,7 @@ adjust_print_options = function(max.print = 30L) {
   }
 }
 
-print_options = function(height, width, ...) {
+options_print = function(height, width, ...) {
   options(
     datatable.print.nrows = height,
     datatable.print.topn = height %/% 2L,
