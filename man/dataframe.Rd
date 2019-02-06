@@ -3,6 +3,8 @@
 \name{move_left}
 \alias{move_left}
 \alias{mutate_left}
+\alias{dedfcol}
+\alias{dedfcol_all}
 \alias{center_range}
 \alias{class_at}
 \title{Utilities for data.frame}
@@ -10,6 +12,10 @@
 move_left(.data, ...)
 
 mutate_left(.data, ...)
+
+dedfcol(.data, at)
+
+dedfcol_all(.data)
 
 center_range(.data, ...)
 
@@ -19,6 +25,8 @@ class_at(.data, ...)
 \item{.data}{tibble}
 
 \item{...}{colnames or expressions}
+
+\item{at}{target column}
 }
 \description{
 Utilities for data.frame
@@ -27,4 +35,6 @@ Utilities for data.frame
 \code{move_left} moves specified columns to the left.
 
 \code{mutate_left} adds new columns to the left.
+
+\code{dedfcol} and \code{dedfcol_all} dissolve data.frame columns in a tibble.
 }

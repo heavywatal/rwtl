@@ -19,6 +19,37 @@ mutate_left = function(.data, ...) {
     move_left(names(rlang::quos(...)))
 }
 
+#' @details
+#' `dedfcol` and `dedfcol_all` dissolve data.frame columns in a tibble.
+#' @param at target column
+#' @rdname dataframe
+#' @export
+dedfcol = function (.data, at) {
+  name = rlang::as_name(rlang::enquo(at))
+  subdf = .data[[name]]
+  names(subdf) = paste0(name, "$", names(subdf))
+  at = match(name, names(.data))
+  append_df(.data[-at], subdf, at - 1L)
+}
+
+#' @rdname dataframe
+#' @export
+dedfcol_all = function (.data) {
+  idx = vapply(.data, is.data.frame, FALSE, USE.NAMES = FALSE)
+  for (at in names(.data)[idx]) {
+    .data = dedfcol(.data, !!at)
+  }
+  .data
+}
+
+append_df = function (x, values, after = length(x)) {
+  structure(
+    append(x, values, after),
+    class = class(x),
+    row.names = row.names(x)
+  )
+}
+
 #' @rdname dataframe
 #' @export
 center_range = function(.data, ...) {

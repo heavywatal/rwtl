@@ -18,6 +18,7 @@ printdf <- function(x, n = getOption("tibble.print_max", 30L), ...) {
   if (ncol(x) == 0L) return(invisible(x))
   original_x = x
   class(x) = "data.frame" # remove tbl_df
+  x = dedfcol_all(x)
   class_row = vapply(x, class_sum, "", USE.NAMES = FALSE)
   class_row = paste0("<", class_row, ">")
   if (truncated <- nrow(x) > n) {
