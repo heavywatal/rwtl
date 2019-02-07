@@ -44,9 +44,7 @@ printdf <- function(x, n = getOption("tibble.print_max", 30L), ...) {
 }
 
 format_column = function(x) {
-  if (is.data.frame(x))
-    purrr::pmap_chr(x, paste, sep = ", ")
-  else if (is.list(x))
+  if (is.list(x))
     vapply(x, format_list_item, "", USE.NAMES = FALSE)
   else if (is.character(x))
     trunc_chr(x)
