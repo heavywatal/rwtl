@@ -1,9 +1,10 @@
 #' Utilities for graphics
 #'
 #' `pch_plot` shows pch variations.
+#' @param alpha,stroke passed to `geom_point`
 #' @rdname graphics
 #' @export
-pch_plot = function() {
+pch_plot = function(alpha = 1, stroke = 1) {
   df = tibble::tibble(
     pch = seq_len(128L) - 1L,
     x = .data$pch %% 16L,
@@ -11,7 +12,7 @@ pch_plot = function() {
   )
   ggplot2::ggplot(df, ggplot2::aes_(~x, ~y)) +
     ggplot2::geom_text(ggplot2::aes_(label = ~pch), size = 4, position = ggplot2::position_nudge(0, 0.3)) +
-    ggplot2::geom_point(ggplot2::aes_(shape = ~pch), size = 5, stroke = 2, fill = "tomato") +
+    ggplot2::geom_point(ggplot2::aes_(shape = ~pch), size = 5, alpha = alpha, stroke = stroke, fill = "tomato") +
     ggplot2::scale_shape_identity() +
     ggplot2::scale_y_reverse() +
     ggplot2::theme_void()

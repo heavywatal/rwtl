@@ -9,7 +9,7 @@
 \usage{
 mean_sd(x, mult = 1.96)
 
-pch_plot()
+pch_plot(alpha = 1, stroke = 1)
 
 gghist(x, ..., binwidth = NULL, bins = NULL)
 
@@ -19,6 +19,8 @@ col2hex(color = grDevices::colors())
 \item{x}{vector}
 
 \item{mult}{number of multiples of standard error}
+
+\item{alpha, stroke}{passed to \code{geom_point}}
 
 \item{...}{passed to geom_*()}
 
