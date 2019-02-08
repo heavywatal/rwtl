@@ -26,14 +26,14 @@ printdf <- function(x, n = getOption("tibble.print_max", 30L), ...) {
     tail_n = n - head_n
     head_idx = seq_len(head_n)
     tail_idx = seq.int(to = nrow(x), length.out = tail_n)
-    x = x[c(head_idx, tail_idx),]
+    x = x[c(head_idx, tail_idx), , drop = FALSE]
   }
   x = do.call(cbind, lapply(x, format_column))
   # now x is a data.frame of formatted strings.
   if (truncated) {
     rnames = c("", head_idx, "--", tail_idx)
     tail_idx = seq.int(to = nrow(x), length.out = tail_n)
-    x = rbind(class_row, x[head_idx,], "", x[tail_idx,])
+    x = rbind(class_row, x[head_idx, , drop = FALSE], "", x[tail_idx, , drop = FALSE])
   } else {
     rnames = c("", seq_len(nrow(x)))
     x = rbind(class_row, x)
