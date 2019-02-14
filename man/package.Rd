@@ -2,11 +2,18 @@
 % Please edit documentation in R/package.R
 \name{clean_install}
 \alias{clean_install}
+\alias{chk}
+\alias{tst}
 \alias{bioc_valid}
 \alias{bioc_install}
 \title{Package utilities}
 \usage{
 clean_install(pkg = ".", upgrade = FALSE, ...)
+
+chk(pkg = ".", install = FALSE, vignettes = FALSE,
+  args = c("--timings"), ...)
+
+tst(pkg = ".", ...)
 
 bioc_valid(..., type = binary_if_macos())
 
@@ -23,6 +30,14 @@ correspond to "always" and "never" respectively.}
 
 \item{...}{additional arguments passed to \code{\link[remotes:install_deps]{remotes::install_deps()}}
 when installing dependencies.}
+
+\item{install}{If FALSE, add \code{--no-install} to \code{args}}
+
+\item{vignettes}{If FALSE, add \code{--ignore-vignettes} to \code{args}}
+
+\item{args}{An optional character vector of additional command line
+arguments to be passed to \code{R CMD INSTALL}. This defaults to the
+value of the option \code{"devtools.install.args"}.}
 
 \item{type}{character, indicating the type of package to download and
     install.  See \code{\link{install.packages}}.
@@ -41,8 +56,10 @@ when installing dependencies.}
 Package utilities
 }
 \details{
-\code{clean_install} is a shortcut of \code{devtools::clean_dll} and
-\code{devtools::install}.
+\code{clean_install} is a shortcut of \code{devtools::document} and
+\code{devtools::install} without dependency upgrade.
+
+\code{chk} and \code{tst} are thin wrappers of \code{devtools::check} and \code{testthat::test_package}.
 
 \code{bioc_valid} and \code{bioc_install} are thin wrappers of BiocManager functions.
 }

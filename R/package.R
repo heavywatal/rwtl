@@ -1,8 +1,8 @@
 #' Package utilities
 #'
 #' @details
-#' `clean_install` is a shortcut of `devtools::clean_dll` and
-#' `devtools::install`.
+#' `clean_install` is a shortcut of `devtools::document` and
+#' `devtools::install` without dependency upgrade.
 #' @inheritParams devtools::install
 #' @rdname package
 #' @export
@@ -10,6 +10,30 @@ clean_install = function(pkg = ".", upgrade = FALSE, ...) {
   pkgbuild::compile_dll(pkg)
   devtools::document(pkg)
   devtools::install(pkg, upgrade = upgrade, ...)
+}
+
+#' @details
+#' `chk` and `tst` are thin wrappers of `devtools::check` and `testthat::test_package`.
+#' @param install If FALSE, add `--no-install` to `args`
+#' @param vignettes If FALSE, add `--ignore-vignettes` to `args`
+#' @rdname package
+#' @export
+chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = c("--timings"), ...) {
+  if (!install) {
+    args = c(args, "--no-install")
+    if (devtools::has_tests()) on.exit(tst(pkg))
+  }
+  if (!vignettes) {
+    args = c(args, "--ignore-vignettes")
+  }
+  devtools::check(pkg, vignettes = vignettes, args = args, ...)
+}
+
+#' @rdname package
+#' @export
+tst = function(pkg = ".", ...) {
+  package = devtools::as.package(pkg)$package
+  testthat::test_package(package, ...)
 }
 
 #' @details
