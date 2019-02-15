@@ -21,7 +21,7 @@ clean_install = function(pkg = ".", upgrade = FALSE, ...) {
 chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = c("--timings"), ...) {
   if (!install) {
     args = c(args, "--no-install")
-    if (devtools::has_tests()) on.exit(tst(pkg))
+    if (has_tests()) on.exit(tst(pkg))
   }
   if (!vignettes) {
     args = c(args, "--ignore-vignettes")
@@ -34,6 +34,10 @@ chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = c("--timing
 tst = function(pkg = ".", ...) {
   package = devtools::as.package(pkg)$package
   testthat::test_package(package, ...)
+}
+
+has_tests = function(pkg = ".") {
+  system.file("tests", package = devtools::as.package(pkg)$package) != ""
 }
 
 #' @details
