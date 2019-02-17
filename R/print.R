@@ -90,7 +90,7 @@ DIM = function(x) {
 
 trunc_chr <- function(x, n = 60L) {
   if (n > 0L) {
-    idx = nchar(x) > n
+    idx = nchar(x, keepNA = FALSE) > n
     x[idx] = paste0(substr(x[idx], 1L, n), "...")
   }
   x
