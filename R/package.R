@@ -62,6 +62,9 @@ bioc_install = function(..., ask = interactive(), type = binary_if_macos()) {
 }
 
 binary_if_macos = function() {
-  if (identical(Sys.info()[["sysname"]], "Darwin")) "binary"
-  else getOption("pkgType")
+  if (identical(Sys.info()[["sysname"]], "Darwin")) {
+    "binary"
+  } else {
+    getOption("pkgType")
+  }
 }

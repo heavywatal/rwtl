@@ -24,7 +24,7 @@ mutate_left = function(.data, ...) {
 #' @param at target column
 #' @rdname dataframe
 #' @export
-dedfcol = function (.data, at) {
+dedfcol = function(.data, at) {
   name = rlang::as_name(rlang::enquo(at))
   subdf = .data[[name]]
   names(subdf) = paste0(name, "$", names(subdf))
@@ -34,7 +34,7 @@ dedfcol = function (.data, at) {
 
 #' @rdname dataframe
 #' @export
-dedfcol_all = function (.data) {
+dedfcol_all = function(.data) {
   idx = vapply(.data, is.data.frame, FALSE, USE.NAMES = FALSE)
   for (at in names(.data)[idx]) {
     .data = dedfcol(.data, !!at)
@@ -42,7 +42,7 @@ dedfcol_all = function (.data) {
   .data
 }
 
-append_df = function (x, values, after = length(x)) {
+append_df = function(x, values, after = length(x)) {
   structure(
     append(x, values, after),
     class = class(x),

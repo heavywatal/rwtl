@@ -13,7 +13,7 @@
 #' `tibble:::print.tbl` and `data.frame:::print.data.table`.
 #' @rdname print
 #' @export
-printdf <- function(x, n = getOption("tibble.print_max", 30L), ...) {
+printdf = function(x, n = getOption("tibble.print_max", 30L), ...) {
   printdf_summary(x)
   if (ncol(x) == 0L) return(invisible(x))
   original_x = x
@@ -38,18 +38,19 @@ printdf <- function(x, n = getOption("tibble.print_max", 30L), ...) {
     rnames = c("", seq_len(nrow(x)))
     x = rbind(class_row, x)
   }
-  row.names(x) = format(rnames, justify="right")
+  row.names(x) = format(rnames, justify = "right")
   print(x, right = TRUE, quote = FALSE, ...)
   invisible(original_x)
 }
 
 format_column = function(x) {
-  if (is.list(x))
+  if (is.list(x)) {
     vapply(x, format_list_item, "", USE.NAMES = FALSE)
-  else if (is.character(x))
+  } else if (is.character(x)) {
     trunc_chr(x)
-  else
+  } else {
     format(x, justify = "none")
+  }
 }
 
 format_list_item = function(x) {
@@ -88,7 +89,7 @@ DIM = function(x) {
   if (length(d <- dim(x))) d else length(x)
 }
 
-trunc_chr <- function(x, n = 60L) {
+trunc_chr = function(x, n = 60L) {
   if (n > 0L) {
     idx = nchar(x, keepNA = FALSE) > n
     x[idx] = paste0(substr(x[idx], 1L, n), "...")

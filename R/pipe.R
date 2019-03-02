@@ -48,7 +48,7 @@ pipeshell.data.frame = function(x, command, ..., n = getOption("max.print"), wid
 #' @rdname pipe
 #' @export
 less = function(x, ...) {
-  pipeshell(x, command = !!getOption('pager'), ...)
+  pipeshell(x, command = !!getOption("pager"), ...)
 }
 
 #' @details
