@@ -121,16 +121,22 @@ max_print = function(x, n = getOption("max.print"), width = Inf, ...) {
 #' @rdname print
 #' @export
 adjust_print_options = function(n = 30L) {
-  # COLUMNS and LINES are unreadable during startup
-  stty_size = system("stty size", intern = TRUE)
-  message("stty size: ", stty_size)
-  stty_size = as.integer(strsplit(stty_size, " ")[[1L]])
-  stopifnot(length(stty_size) > 1L)
-  stopifnot(stty_size > 10L)
-  options_print(
-    height = min(stty_size[1L] - 6L, n),
-    width = stty_size[2L]
+  # During startup:
+  # - COLUMNS and LINES are not available
+  # - options("width") is fixed to 80
+  console_size = tryCatch(
+    stty_size(),
+    error = as.null,
+    warning = as.null
   )
+  if (length(console_size) == 2L) {
+    options_print(
+      height = min(console_size[1L] - 6L, n),
+      width = console_size[2L]
+    )
+  } else {
+    options_print(height = n)
+  }
   if (interactive()) {
     message("datatable.print.nrows: ", getOption("datatable.print.nrows"))
     message("datatable.print.topn: ", getOption("datatable.print.topn"))
@@ -140,14 +146,26 @@ adjust_print_options = function(n = 30L) {
   }
 }
 
-options_print = function(height, width, ...) {
+stty_size = function() {
+  as.integer(unlist(strsplit(system2("stty", "size", stdout = TRUE, stderr = FALSE), " ")))
+}
+
+options_print = function(height, width = NULL, ...) {
   options(
     datatable.print.nrows = height,
     datatable.print.topn = height %/% 2L,
     tibble.print_max = height,
     tibble.print_min = height,
     tibble.width = width,
-    width = min(width, 10000L),
+    width = sanitize_width(width),
     ...
   )
+}
+
+sanitize_width = function(x) {
+  if (is.numeric(x)) {
+    max(10L, min(x, 10000L))
+  } else {
+    getOption("width")
+  }
 }
