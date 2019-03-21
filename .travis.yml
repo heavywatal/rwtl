@@ -3,7 +3,15 @@ cache: packages
 env:
   global:
   - _R_CHECK_FORCE_SUGGESTS_=false
+  - _R_CHECK_SYSTEM_CLOCK_=FALSE
 notifications:
   email: false
   slack:
     secure: MRaw1CwYbI3FBUlgAXProroxd1uM9EAK/YXBvaDh4PzwiVVVd9FfTcBEknlJoOhHBnBlYCeMDdBAb7ITus1A1f4CSTbZPWBjka7JoMaAJ9lwc9wArKhf9/Bkl8FVvcMF4PKjAo+T/WiZZYbtpTe2rZrOjKSGRhQ/IIVYLiJAtT121meynXAxUI+h4jT468jHRMRFWKmCzQbSfY8FZqCXPguWIzTelzLgfYKo0R8dVObcBET5k4vuAVxUjF+QKnR1evbG2WcHplEQVudEI+TNFL61vSBtlxBKtxxG8iPJPlyQxPa+EvQMbelbnqbJpDSY7Hg+818dvxyKqZErbHpBNArBfAtY0i/L6O45bLvc5Tly1sK/SK+TXDbXn5N9IgHzxu9kIfHeLxRPvZjkhFeZPhk1m+MKYReeJ2A5ur3P+g05y9mD9boCHvM/cAXCTlNiFUfNaz65WHeKjCdA0YtWTXZR1o1w+7rrhySOaS2RrVcRJ4pZMeCPStsvdiPLRyGl4SPfWTNJMCXlOWh6rNf8vS64OcLWpL8fem8Ni6vKPmexgitqlaRsgL0uAmltCgYf24QICZBpw/x7fTLSrp64EV1t6j5oezb9WEeYODGJgpWNJRmSowfo7W/mSRMc0vhweTU+6Za8bFjbpUP/nL7574qSgaulf0p/svGKBnIwii0=
+matrix:
+  include:
+  - r: devel
+  - r: release
+    after_success:
+    - Rscript -e 'covr::codecov()'
+  - r: oldrel
