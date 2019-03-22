@@ -15,7 +15,9 @@
 #' @export
 printdf = function(x, n = getOption("tibble.print_max", 30L), ...) {
   printdf_summary(x)
+  if (is.null(dim(x))) return(print(x))
   if (ncol(x) == 0L) return(invisible(x))
+  if (is.matrix(x)) x = as.data.frame(x)
   original_x = x
   class(x) = "data.frame" # remove tbl_df
   x = dedfcol_all(x)
