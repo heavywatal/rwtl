@@ -2,7 +2,7 @@ language: r
 cache: packages
 env:
   global:
-  - _R_CHECK_FORCE_SUGGESTS_=false
+  - _R_CHECK_FORCE_SUGGESTS_=FALSE
   - _R_CHECK_SYSTEM_CLOCK_=FALSE
 notifications:
   email: false
@@ -14,4 +14,3 @@ matrix:
   - r: release
     after_success:
     - Rscript -e 'covr::codecov()'
-  - r: oldrel
