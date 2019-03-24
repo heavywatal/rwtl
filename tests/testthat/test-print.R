@@ -4,6 +4,9 @@ test_that("printdf works", {
   expect_output(printdf(NULL), "NULL")
   expect_output(printdf(letters), "chr")
   expect_output(printdf(data.frame(x = numeric(0L))), "data.frame \\[0 x 1\\]")
+  df0col = data.frame(letters)
+  df0col$letters = NULL
+  expect_output(printdf(df0col), "data.frame \\[26 x 0\\]")
   expect_output(printdf(VADeaths), "matrix \\[5 x 4\\]")
   expect_output(printdf(iris), "data.frame \\[150 x 5\\]")
   giris = dplyr::group_by(iris, Species)
