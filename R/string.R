@@ -12,7 +12,7 @@ split_chr = function(string, pattern = "\\s+", n = Inf) {
 #' `rsplit` splits a string from right.
 #' @rdname string
 #' @export
-rsplit = function(string, pattern, n = 42L) {
+rsplit = function(string, pattern = "\\s+", n = 42L) {
   pattern = sprintf("%s(?!(?:.*%s){%d})", pattern, pattern, n)
   stringr::str_split(string, pattern)
 }

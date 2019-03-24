@@ -10,7 +10,7 @@
 \usage{
 split_chr(string, pattern = "\\\\s+", n = Inf)
 
-rsplit(string, pattern, n = 42L)
+rsplit(string, pattern = "\\\\s+", n = 42L)
 
 ord(char)
 
