@@ -19,6 +19,6 @@ test_that("ord and chr work", {
   expect_equal(chr(97L), "a")
 })
 
-test_that("ord and chr work", {
+test_that("as_chr works", {
   expect_equal(as_chr(expr), "expr")
 })
