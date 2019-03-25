@@ -131,7 +131,7 @@ adjust_print_options = function(n = 30L) {
     error = as.null,
     warning = as.null
   )
-  if (length(console_size) == 2L) {
+  opts = if (length(console_size) == 2L) {
     options_print(
       height = min(console_size[1L] - 6L, n),
       width = console_size[2L]
@@ -146,6 +146,7 @@ adjust_print_options = function(n = 30L) {
     message("tibble.print_min: ", getOption("tibble.print_min"))
     message("width: ", getOption("width"))
   }
+  invisible(opts)
 }
 
 stty_size = function() {
