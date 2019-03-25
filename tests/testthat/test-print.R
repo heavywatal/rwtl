@@ -27,5 +27,7 @@ test_that("print option works", {
   expect_equal(sanitize_width(42L), 42L)
   expect_equal(sanitize_width(99999L), 10000L)
   expect_equal(sanitize_width(NULL), getOption("width"))
-  expect_message(adjust_print_options())
+  opts = adjust_print_options(6L)
+  on.exit(options(opts))
+  expect_equal(getOption("tibble.print_max"), 6L)
 })
