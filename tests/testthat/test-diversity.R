@@ -1,5 +1,3 @@
-context("test-diversity.R")
-
 test_that("shannon_index works", {
   expect_equal(shannon_index(numeric(0L)), 0)
   expect_equal(shannon_index(c(1)), 0)

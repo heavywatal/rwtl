@@ -1,5 +1,3 @@
-context("test-string")
-
 test_that("split_chr works", {
   expect_equal(split_chr("a  b\tc\nd"), c("a", "b", "c", "d"))
   expect_equal(split_chr("a  b\tc\nd", " "), c("a", "", "b\tc\nd"))

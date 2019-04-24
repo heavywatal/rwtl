@@ -1,5 +1,3 @@
-context("test-print")
-
 test_that("printdf works", {
   expect_output(printdf(NULL), "NULL")
   expect_output(printdf(letters), "chr")
