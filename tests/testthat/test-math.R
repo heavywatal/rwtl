@@ -1,0 +1,12 @@
+test_that("math functions work", {
+  expect_equal(permutate(5L, 1L), 5L)
+  expect_equal(permutate(5L, 2L), 20L)
+  expect_equal(permutate(5L, 3L), 60L)
+  expect_equal(permutate(5L, 4L), factorial(5L))
+  expect_equal(probit(0.5), 0)
+  expect_equal(logit(c(0, 0.5, 1)), c(-Inf, 0, Inf))
+  expect_equal(sigmoid(c(-Inf, 0, Inf)), c(0, 0.5, 1))
+  expect_equal(exponent(129.3, 10), 2)
+  expect_equal(mantissa(129.3, 10), 1.293)
+  expect_mapequal(scientific_notation(129.3), c(mantissa = 1.293, exponent = 2))
+})
