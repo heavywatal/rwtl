@@ -6,6 +6,7 @@ test_that("math functions work", {
   expect_equal(probit(0.5), 0)
   expect_equal(logit(c(0, 0.5, 1)), c(-Inf, 0, Inf))
   expect_equal(sigmoid(c(-Inf, 0, Inf)), c(0, 0.5, 1))
+  expect_equal(logistic(c(-Inf, 0, Inf)), c(0, 0.5, 1))
   expect_equal(exponent(129.3, 10), 2)
   expect_equal(mantissa(129.3, 10), 1.293)
   expect_mapequal(scientific_notation(129.3), c(mantissa = 1.293, exponent = 2))
