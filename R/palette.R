@@ -1,55 +1,33 @@
-#' `brewer_palette` is a wrapper of `brewer.pal`
-#' @inheritParams RColorBrewer::brewer.pal
-#' @examples
-#' ggplot2::scale_colour_gradientn(colours = brewer_palette("RdBu"))
-#' @rdname palette
-#' @export
-brewer_palette = function(name, n = 0L) {
-  if (missing(name)) {
-    return(RColorBrewer::brewer.pal.info)
-  }
-  if (!name %in% rownames(RColorBrewer::brewer.pal.info)) {
-    print(RColorBrewer::brewer.pal.info)
-    # RColorBrewer::display.brewer.all()
-    stop(sprintf('"%s" not in brewer.pal', name))
-  }
-  info = RColorBrewer::brewer.pal.info[name, ]
-  if (n < 2L) {
-    n = info$maxcolors
-  }
-  palette = RColorBrewer::brewer.pal(n, name)
-  if (n < 3L) {
-    palette[c(1, 3)]
-  } else {
-    palette
-  }
-}
-
-#' `scale_colour_gradientb` is a shortcut of
-#' `scale_colour_gradientn(colours=brewer.pal(n, name))`
-#' @inheritParams RColorBrewer::brewer.pal
+#' Colour palette for ggplot2
+#'
+#' @inheritParams scales::brewer_pal
 #' @inheritParams ggplot2::scale_colour_gradientn
-#' @param palette string
-#' @param reverse logical
+#' @param n Number of colors in the palette.
+#' @examples
+#' ggplot2::ggplot(mtcars, ggplot2::aes(disp, mpg, colour = hp, fill = wt)) +
+#'   ggplot2::geom_point(pch = 22, size = 4, stroke = 2) +
+#'   scale_colour_gradientb("RdYlGn", direction = -1) +
+#'   scale_fill_gradientb("Blues", direction = -1)
+
+#' @details `scale_colour_gradientb` is a shortcut of
+#'   `scale_colour_gradientn(colours = scales::brewer_pal(...))`
 #' @rdname palette
 #' @export
-scale_colour_gradientb = function(palette, n = 0L, reverse = FALSE, ...) {
-  pal = brewer_palette(palette, n)
-  if (reverse) {
+scale_colour_gradientb = function(palette, n = 5L, direction = 1, ...) {
+  pal = scales::brewer_pal(palette = palette, direction = direction)(n)
+  if (direction < 0) {
     pal = rev(pal)
   }
   ggplot2::scale_colour_gradientn(colours = pal, ...)
 }
 
-#' `scale_fill_gradientb` is a shortcut of
-#' `scale_fill_gradientn(colours=brewer.pal(n, name))`
-#' @inheritParams RColorBrewer::brewer.pal
-#' @inheritParams ggplot2::scale_fill_gradientn
+#' @details `scale_fill_gradientb` is a shortcut of
+#'   `scale_fill_gradientn(colours = scales::brewer_pal(...))`
 #' @rdname palette
 #' @export
-scale_fill_gradientb = function(palette, n = 0L, reverse = FALSE, ...) {
-  pal = brewer_palette(palette, n)
-  if (reverse) {
+scale_fill_gradientb = function(palette, n = 5L, direction = 1, ...) {
+  pal = scales::brewer_pal(palette = palette, direction = direction)(n)
+  if (direction < 0) {
     pal = rev(pal)
   }
   ggplot2::scale_fill_gradientn(colours = pal, ...)

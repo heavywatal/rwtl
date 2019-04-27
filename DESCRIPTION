@@ -30,11 +30,11 @@ Imports:
     purrr,
     readr,
     rlang,
+    scales,
     stringr,
     styler,
     tibble,
-    tidyr,
-    RColorBrewer,
+    tidyr
 URL: https://github.com/heavywatal/rwtl
 BugReports: https://github.com/heavywatal/rwtl/issues
 Roxygen: list(markdown = TRUE)
