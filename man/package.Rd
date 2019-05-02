@@ -23,10 +23,12 @@ bioc_install(..., ask = interactive(), type = binary_if_macos())
 \item{pkg}{package description, can be path or package name.  See
 \code{\link[=as.package]{as.package()}} for more information}
 
-\item{upgrade}{One of "ask", "always" or "never". "ask" prompts the user for
-which out of date packages to upgrade. For non-interactive sessions "ask" is
-equivalent to "always". \code{TRUE} and \code{FALSE} are also accepted and
-correspond to "always" and "never" respectively.}
+\item{upgrade}{One of "default", "ask", "always", or "never". "default"
+respects the value of the \code{R_REMOTES_UPGRADE} environment variable if set,
+and falls back to "ask" if unset. "ask" prompts the user for which out of
+date packages to upgrade. For non-interactive sessions "ask" is equivalent
+to "always". \code{TRUE} and \code{FALSE} are also accepted and correspond to
+"always" and "never" respectively.}
 
 \item{...}{additional arguments passed to \code{\link[remotes:install_deps]{remotes::install_deps()}}
 when installing dependencies.}
