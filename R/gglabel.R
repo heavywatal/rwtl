@@ -1,5 +1,10 @@
 #' Helper functions to make labels in ggplot
 #'
+#' @examples
+#' ggplot2::ggplot(tibble::tibble(x = seq_len(10), y = 2 ** x)) +
+#'   ggplot2::geom_point(aes(x = x, y = y)) +
+#'   scale_y_log10(breaks = breaks_log10, labels = labels_log10)
+
 #' @details
 #' `breaks_log10` makes powers of ten for
 #' the `breaks` argument of `ggplot2::scale_*_log10()`.
