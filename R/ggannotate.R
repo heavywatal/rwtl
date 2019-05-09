@@ -1,12 +1,17 @@
 #' Variations of `ggplot2::annotate()`
 #'
-#' @details
-#' `annotate_polygon()` is a shortcut of `ggplot2::annotate("polygon")`.
 #' @param x,y center coordinate
 #' @param n number of sides
 #' @param radius size of polygon
 #' @param stroke line width
 #' @param ... passed to `ggplot2::annotate("polygon")`
+#' @examples
+#' ggplot2::ggplot() +
+#'   annotate_polygon2(0, 0, n = 6L, radius = 5, fill = "#ffffff", colour = "#333333", stroke = 6) +
+#'   annotate_polygon(0, 0, n = 6L, radius = 2, fill = "#C41A41")
+
+#' @details
+#' `annotate_polygon()` is a shortcut of `ggplot2::annotate("polygon")`.
 #' @rdname ggannotate
 #' @export
 annotate_polygon = function(x, y, n = 6L, radius = 1, stroke = 1, ...) {

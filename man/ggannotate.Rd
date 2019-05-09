@@ -31,3 +31,8 @@ Variations of \code{ggplot2::annotate()}
 
 \code{annotate_polygon2()} has more control on line stroke.
 }
+\examples{
+ggplot2::ggplot() +
+  annotate_polygon2(0, 0, n = 6L, radius = 5, fill = "#ffffff", colour = "#333333", stroke = 6) +
+  annotate_polygon(0, 0, n = 6L, radius = 2, fill = "#C41A41")
+}
