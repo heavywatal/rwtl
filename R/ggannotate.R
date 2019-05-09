@@ -9,7 +9,6 @@
 #' ggplot2::ggplot() +
 #'   annotate_polygon2(0, 0, n = 6L, radius = 5, fill = "#ffffff", colour = "#333333", stroke = 6) +
 #'   annotate_polygon(0, 0, n = 6L, radius = 2, fill = "#C41A41")
-
 #' @details
 #' `annotate_polygon()` is a shortcut of `ggplot2::annotate("polygon")`.
 #' @rdname ggannotate

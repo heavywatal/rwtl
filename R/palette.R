@@ -8,7 +8,6 @@
 #'   ggplot2::geom_point(pch = 22, size = 4, stroke = 2) +
 #'   scale_colour_gradientb("RdYlGn", direction = -1) +
 #'   scale_fill_gradientb("Blues", direction = -1)
-
 #' @details `scale_colour_gradientb` is a shortcut of
 #'   `scale_colour_gradientn(colours = scales::brewer_pal(...))`
 #' @rdname palette

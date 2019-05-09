@@ -25,7 +25,7 @@ the \code{breaks} argument of \code{ggplot2::scale_*_log10()}.
 the \code{labels} argument of \code{ggplot2::scale_*_log10()}.
 }
 \examples{
-ggplot2::ggplot(tibble::tibble(x = seq_len(10), y = 2 ** x)) +
+ggplot2::ggplot(tibble::tibble(x = seq_len(10), y = 2**x)) +
   ggplot2::geom_point(ggplot2::aes(x = x, y = y)) +
   ggplot2::scale_y_log10(breaks = breaks_log10, labels = labels_log10)
 }
