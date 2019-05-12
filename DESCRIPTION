@@ -15,7 +15,7 @@ Suggests:
     extrafont,
     igraph,
     png,
-    testthat
+    testthat (>= 2.1.0)
 Imports:
     BiocManager,
     devtools,
