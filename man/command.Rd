@@ -2,18 +2,13 @@
 % Please edit documentation in R/command.R
 \name{command_args}
 \alias{command_args}
-\alias{this_file}
 \title{Parse command line arguments}
 \usage{
 command_args()
-
-this_file()
 }
 \description{
 Parse command line arguments
 }
 \details{
 \code{command_args} is an extention of \code{commandArgs()}.
-
-\code{this_file} extracts script path from \code{commandArgs()}.
 }
