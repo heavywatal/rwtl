@@ -47,6 +47,7 @@ has_tests = function(pkg = ".") {
 #' @export
 bioc_valid = function(..., type = binary_if_macos()) {
   v = BiocManager::valid(..., type = type)
+  if (isTRUE(v)) return(v)
   message("too_new:")
   print(v$too_new)
   message("out_of_date:")
