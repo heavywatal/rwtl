@@ -3,15 +3,12 @@
 \name{node_labels}
 \alias{node_labels}
 \alias{named_edges}
-\alias{phylo2igraph}
 \alias{ape_layout_unrooted}
 \title{Utilities for phylo class of ape package}
 \usage{
 node_labels(x)
 
 named_edges(x)
-
-phylo2igraph(x)
 
 ape_layout_unrooted(phy, centering = TRUE, rotate = 0)
 }

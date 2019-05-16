@@ -15,14 +15,6 @@ named_edges = function(x) {
   matrix(node_labels(x)[x$edge], ncol = 2L)
 }
 
-#' @rdname phylo
-#' @export
-phylo2igraph = function(x) {
-  named_edges(x) %>%
-    igraph::graph_from_edgelist() %>%
-    igraph::set_edge_attr("weight", value = x$edge.length)
-}
-
 #' @param phy phylo object
 #' @param centering boolean
 #' @param rotate angle in radian
