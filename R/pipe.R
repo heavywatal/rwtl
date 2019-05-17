@@ -5,7 +5,7 @@
 #' iris %>% less()
 #' iris %>% egrep(vir)
 #' iris %>% egrep("vir")
-#' iris %>% pipeshell(wc)
+#' letters %>% pipeshell(cat)
 #'
 #' iris %P% wc
 #' iris %P% "wc -l"

@@ -51,7 +51,7 @@ efficient than \code{page(x, method='print')} that involves a temporary file.
 iris \%>\% less()
 iris \%>\% egrep(vir)
 iris \%>\% egrep("vir")
-iris \%>\% pipeshell(wc)
+letters \%>\% pipeshell(cat)
 
 iris \%P\% wc
 iris \%P\% "wc -l"
