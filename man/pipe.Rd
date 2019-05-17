@@ -2,20 +2,20 @@
 % Please edit documentation in R/pipe.R
 \name{pipeshell}
 \alias{pipeshell}
-\alias{\%|\%}
+\alias{\%P\%}
 \alias{less}
-\alias{grepp}
+\alias{egrep}
 \alias{\%G\%}
 \alias{redirect}
 \title{Pipe text to system commands}
 \usage{
 pipeshell(x, command, ...)
 
-x \%|\% command
+x \%P\% command
 
 less(x, ...)
 
-grepp(x, expr, ...)
+egrep(x, expr, ...)
 
 x \%G\% expr
 
@@ -28,7 +28,7 @@ redirect(expr, file = "/dev/null")
 
 \item{...}{further arguments passed to \code{print}}
 
-\item{expr}{arguments to \code{grep -P}; string or expression.}
+\item{expr}{arguments to \code{egrep}; string or expression.}
 
 \item{file}{a writable \link{connection} or a character string naming the
     file to write to, or \code{NULL} to stop sink-ing.}
@@ -37,29 +37,28 @@ redirect(expr, file = "/dev/null")
 Pipe text to system commands
 }
 \details{
-\code{pipeshell} and \code{\%|\%} send \code{x} to \code{command} via shell.
+\code{pipeshell} and \code{\%P\%} send \code{x} to \code{command} via shell.
 
 \code{less} print \code{x} in \code{getOption('pager')}. The operation is in-memory and
 efficient than \code{page(x, method='print')} that involves a temporary file.
 
-\code{grepp} and \code{\%G\%} are shorthand for \code{x \%|\% "grep -P {expr}"}.
+\code{egrep} and \code{\%G\%} are shorthand for \code{x \%P\% "egrep {expr}"}.
 
 \code{redirect} evaluates \code{expr} while \code{sink(file)} is in operation.
 }
 \examples{
-\dontrun{
-mpg \%>\% less()
-mpg \%>\% grepp(manual)
-mpg \%>\% grepp("manual")
-mpg \%>\% pipeshell(wc)
+`\%>\%` = magrittr::`\%>\%`
+iris \%>\% less()
+iris \%>\% egrep(vir)
+iris \%>\% egrep("vir")
+iris \%>\% pipeshell(wc)
 
-iris \%|\% wc
-iris \%|\% "wc -l"
-iris \%|\% `grep seto | less`
+iris \%P\% wc
+iris \%P\% "wc -l"
+iris \%P\% `grep seto | less`
 
 vir = "seto"
 iris \%G\% vir
 iris \%G\% !!vir
 iris \%G\% `-v seto | less`
-}
 }
