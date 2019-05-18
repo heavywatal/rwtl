@@ -20,7 +20,6 @@ Imports:
     devtools,
     doParallel,
     dplyr,
-    foreach,
     fs,
     ggplot2,
     lazyeval,
