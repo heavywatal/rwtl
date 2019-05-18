@@ -1,4 +1,4 @@
 test_that("package utils work", {
-  expect_true(has_tests())
+  expect_type(has_tests(), "logical")
   expect_match(binary_if_macos(), "binary|source|both")
 })
