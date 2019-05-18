@@ -1,0 +1,10 @@
+test_that("ape wrappers work", {
+  tree = ape::rtree(n = 3L)
+  expect_setequal(node_labels(tree), c(paste0("t", seq_len(3L)), c("4", "5")))
+  expect_equal(dim(named_edges(tree)), c(4L, 2L))
+  .cn = c("from", "to", "x", "y", "xend", "yend", "axis", "label")
+  expect_setequal(names(ape_layout_unrooted(tree)), .cn)
+  .cn = c("id", "x", "y", "axis")
+  expect_setequal(names(ape_unrooted_xy(tree)), .cn)
+  expect_equal(nrow(ape_unrooted_xy(tree)), length(tree$tip.label) + tree$Nnode)
+})
