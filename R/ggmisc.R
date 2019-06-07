@@ -36,11 +36,20 @@ ggsave_quartz = function(
 #' @details
 #' `mean_sd` calculates mean and sd for `ggplot2::stat_summary()`.
 #' @inheritParams ggplot2::mean_se
-#' @rdname graphics
+#' @rdname ggmisc
 #' @export
 mean_sd = function(x, mult = 1.96) {
   x = stats::na.omit(x)
   div = mult * stats::sd(x)
   mu = mean(x)
   data.frame(y = mu, ymin = mu - div, ymax = mu + div)
+}
+
+#' @details
+#' `label_none` removes `strip.text` while keeping `strip.background`.
+#' @inheritParams ggplot2::label_value
+#' @rdname ggmisc
+#' @export
+label_none = function(labels, ...) {
+  lapply(labels, function(x) character(length(x)))
 }

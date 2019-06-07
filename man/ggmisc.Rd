@@ -3,6 +3,8 @@
 \name{insert_layer}
 \alias{insert_layer}
 \alias{ggsave_quartz}
+\alias{mean_sd}
+\alias{label_none}
 \title{Misc functions with ggplot2}
 \usage{
 insert_layer(p, ..., after = 0L)
@@ -11,6 +13,10 @@ ggsave_quartz(filename, plot = ggplot2::last_plot(),
   device = grDevices::quartz, path = NULL, scale = 1, width = 7,
   height = 7, units = c("in", "cm", "mm"), dpi = 300,
   limitsize = TRUE)
+
+mean_sd(x, mult = 1.96)
+
+label_none(labels, ...)
 }
 \arguments{
 \item{p}{gg object}
@@ -23,7 +29,7 @@ ggsave_quartz(filename, plot = ggplot2::last_plot(),
 
 \item{plot}{Plot to save, defaults to last plot displayed.}
 
-\item{device}{Device to use. Can either be a device function
+\item{device}{Device to use. Can be either be a device function
 (e.g. \code{\link[=png]{png()}}), or one of "eps", "ps", "tex" (pictex),
 "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only).}
 
@@ -46,6 +52,14 @@ If not supplied, uses the size of current graphics device.}
 \item{limitsize}{When \code{TRUE} (the default), \code{ggsave} will not
 save images larger than 50x50 inches, to prevent the common error of
 specifying dimensions in pixels.}
+
+\item{x}{numeric vector}
+
+\item{mult}{number of multiples of standard error}
+
+\item{labels}{Data frame of labels. Usually contains only one
+element, but faceting over multiple factors entails multiple
+label variables.}
 }
 \description{
 Misc functions with ggplot2
@@ -54,4 +68,8 @@ Misc functions with ggplot2
 \code{insert_layer} insert layers to an arbitrary position
 
 \code{ggsave_quartz} is a shortcut of \code{ggplot2::ggsave()} with quartz device.
+
+\code{mean_sd} calculates mean and sd for \code{ggplot2::stat_summary()}.
+
+\code{label_none} removes \code{strip.text} while keeping \code{strip.background}.
 }
