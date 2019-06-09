@@ -1,3 +1,12 @@
+test_that("crossing_rep works", {
+  x = seq_len(3L)
+  times = 2L
+  expect_silent({
+    y = crossing_rep(x, times)
+  })
+  expect_equal(dim(y), c(length(x) ** 2L, times))
+})
+
 test_that("rle works", {
   v = c(0, 0, 0, 1, 1, 2)
   expected = tibble::tibble(
