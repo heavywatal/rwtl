@@ -7,14 +7,15 @@
 #' }
 #' @param x an object to print
 #' @param n maximum number of rows to print
+#' @param summarize print class(x) and dim(x) if TRUE
 #' @param ... further arguments passed to `print`
 #' @details
 #' `printdf` is a simple cherry-picking from
 #' `tibble:::print.tbl` and `data.frame:::print.data.table`.
 #' @rdname print
 #' @export
-printdf = function(x, n = getOption("tibble.print_max", 30L), ...) {
-  printdf_summary(x)
+printdf = function(x, n = getOption("tibble.print_max", 30L), summarize = getOption("wtl.printdf.summarize", TRUE), ...) {
+  if (isTRUE(summarize)) printdf_summary(x)
   if (is.null(dim(x))) return(print(x))
   if (ncol(x) == 0L) return(invisible(x))
   if (is.matrix(x)) x = as.data.frame(x)

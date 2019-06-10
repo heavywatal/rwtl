@@ -6,7 +6,8 @@
 \alias{adjust_print_options}
 \title{Utilities for printing}
 \usage{
-printdf(x, n = getOption("tibble.print_max", 30L), ...)
+printdf(x, n = getOption("tibble.print_max", 30L),
+  summarize = getOption("wtl.printdf.summarize", TRUE), ...)
 
 max_print(x, n = getOption("max.print"), width = Inf, ...)
 
@@ -16,6 +17,8 @@ adjust_print_options(n = 30L)
 \item{x}{an object to print}
 
 \item{n}{maximum number of rows to print}
+
+\item{summarize}{print class(x) and dim(x) if TRUE}
 
 \item{...}{further arguments passed to \code{print}}
 
