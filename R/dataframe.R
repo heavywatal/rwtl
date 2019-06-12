@@ -46,7 +46,7 @@ append_df = function(x, values, after = length(x)) {
   structure(
     append(x, values, after),
     class = class(x),
-    row.names = row.names(x)
+    row.names = seq_len(nrow(x))
   )
 }
 
