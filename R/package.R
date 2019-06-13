@@ -37,7 +37,8 @@ tst = function(pkg = ".", ...) {
 }
 
 has_tests = function(pkg = ".") {
-  system.file("tests", package = devtools::as.package(pkg)$package) != ""
+  pkg = tryCatch(devtools::as.package(pkg), error = function(e) NULL)
+  !is.null(pkg) && (system.file("tests", package = pkg$package) != "")
 }
 
 #' @details
