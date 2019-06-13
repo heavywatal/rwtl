@@ -1,3 +1,11 @@
+test_that("*_left work", {
+  x = data.frame(y = 2L, z = 3L)
+  e = data.frame(z = 3L, y = 2L)
+  expect_equal(move_left(x, z), e)
+  e = data.frame(x = 1L, y = 2L, z = 3L)
+  expect_equal(mutate_left(x, x = 1L), e)
+})
+
 test_that("append_df works", {
   x = data.frame(x = 1L, z = 3L)
   values = data.frame(y = 2L)
