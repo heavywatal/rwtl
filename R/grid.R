@@ -17,7 +17,8 @@ gprint = function(x, newpage = TRUE, recording = FALSE) {
 #' @rdname grid
 #' @export
 grid.draw.list = function(x, recording = FALSE) {
-  purrr::walk(x, grid::grid.draw, recording)
+  lapply(x, grid::grid.draw, recording = recording)
+  invisible(x)
 }
 
 #' @details
