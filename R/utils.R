@@ -29,3 +29,21 @@ getenv = function(pattern = NULL) {
   }
   env
 }
+
+#' @details
+#' `reprex_tidyverse` wraps [reprex::reprex]
+#' @inheritParams printdf
+#' @param venue character; see [reprex::reprex]
+#' @param show logical
+#' @rdname utils
+#' @export
+reprex_tidyverse = function(n = 8L, venue = "r", show = FALSE) {
+  reprex::reprex(input = c(
+    "library(tidyverse)",
+    "registerS3method(\"print\", \"tbl_df\", wtl::printdf)",
+    sprintf("options(tibble.print_max = %dL)", n),
+    "",
+    clipr::read_clip()
+  ), venue = venue, show = show)
+  clipr::read_clip() %>% utils::tail(-4L) %>% clipr::write_clip()
+}

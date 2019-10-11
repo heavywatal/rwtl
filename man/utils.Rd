@@ -3,11 +3,14 @@
 \name{easierprof}
 \alias{easierprof}
 \alias{getenv}
+\alias{reprex_tidyverse}
 \title{Utility functions}
 \usage{
 easierprof(expr, interval = 0.02, memory = FALSE)
 
 getenv(pattern = NULL)
+
+reprex_tidyverse(n = 8L, venue = "r", show = FALSE)
 }
 \arguments{
 \item{expr}{R expression}
@@ -17,6 +20,12 @@ getenv(pattern = NULL)
 \item{memory}{logical}
 
 \item{pattern}{R expression}
+
+\item{n}{maximum number of rows to print}
+
+\item{venue}{character; see \link[reprex:reprex]{reprex::reprex}}
+
+\item{show}{logical}
 }
 \description{
 Utility functions
@@ -25,4 +34,6 @@ Utility functions
 \code{easierprof} is a simple wrapper of \code{Rprof()} and \code{summaryRprof()}.
 
 \code{getenv} converts a result of \code{Sys.getenv()} to data.frame.
+
+\code{reprex_tidyverse} wraps \link[reprex:reprex]{reprex::reprex}
 }

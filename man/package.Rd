@@ -20,8 +20,8 @@ bioc_valid(..., type = binary_if_macos())
 bioc_install(..., ask = interactive(), type = binary_if_macos())
 }
 \arguments{
-\item{pkg}{package description, can be path or package name.  See
-\code{\link[=as.package]{as.package()}} for more information}
+\item{pkg}{The package to use, can be a file path to the package or a
+package object.  See \code{\link[=as.package]{as.package()}} for more information.}
 
 \item{upgrade}{One of "default", "ask", "always", or "never". "default"
 respects the value of the \code{R_REMOTES_UPGRADE} environment variable if set,

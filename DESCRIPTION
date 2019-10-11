@@ -17,6 +17,7 @@ Suggests:
     testthat (>= 2.1.0)
 Imports:
     BiocManager,
+    clipr,
     devtools,
     doParallel,
     dplyr,
@@ -27,6 +28,7 @@ Imports:
     pkgbuild,
     purrr,
     readr,
+    reprex,
     rlang,
     scales,
     stringr,
