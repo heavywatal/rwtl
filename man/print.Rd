@@ -6,8 +6,12 @@
 \alias{adjust_print_options}
 \title{Utilities for printing}
 \usage{
-printdf(x, n = getOption("tibble.print_max", 30L),
-  summarize = getOption("wtl.printdf.summarize", TRUE), ...)
+printdf(
+  x,
+  n = getOption("tibble.print_max", 30L),
+  summarize = getOption("wtl.printdf.summarize", TRUE),
+  ...
+)
 
 max_print(x, n = getOption("max.print"), width = Inf, ...)
 

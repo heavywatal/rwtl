@@ -9,10 +9,18 @@
 \usage{
 insert_layer(p, ..., after = 0L)
 
-ggsave_quartz(filename, plot = ggplot2::last_plot(),
-  device = grDevices::quartz, path = NULL, scale = 1, width = 7,
-  height = 7, units = c("in", "cm", "mm"), dpi = 300,
-  limitsize = TRUE)
+ggsave_quartz(
+  filename,
+  plot = ggplot2::last_plot(),
+  device = grDevices::quartz,
+  path = NULL,
+  scale = 1,
+  width = 7,
+  height = 7,
+  units = c("in", "cm", "mm"),
+  dpi = 300,
+  limitsize = TRUE
+)
 
 mean_sd(x, mult = 1.96)
 

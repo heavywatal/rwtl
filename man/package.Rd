@@ -10,8 +10,7 @@
 \usage{
 clean_install(pkg = ".", upgrade = FALSE, ...)
 
-chk(pkg = ".", install = FALSE, vignettes = FALSE,
-  args = c("--timings"), ...)
+chk(pkg = ".", install = FALSE, vignettes = FALSE, args = c("--timings"), ...)
 
 tst(pkg = ".", ...)
 
@@ -21,7 +20,7 @@ bioc_install(..., ask = interactive(), type = binary_if_macos())
 }
 \arguments{
 \item{pkg}{The package to use, can be a file path to the package or a
-package object.  See \code{\link[=as.package]{as.package()}} for more information.}
+package object.  See \code{\link[devtools:as.package]{as.package()}} for more information.}
 
 \item{upgrade}{One of "default", "ask", "always", or "never". "default"
 respects the value of the \code{R_REMOTES_UPGRADE} environment variable if set,
@@ -42,7 +41,7 @@ arguments to be passed to \code{R CMD INSTALL}. This defaults to the
 value of the option \code{"devtools.install.args"}.}
 
 \item{type}{character, indicating the type of package to download and
-    install.  See \code{\link{install.packages}}.
+    install.  See \code{\link[utils]{install.packages}}.
   }
 
 \item{ask}{logical indicating whether to ask the user to select
@@ -50,7 +49,7 @@ value of the option \code{"devtools.install.args"}.}
     string \code{"graphics"}, which brings up a widget to allow the user
     to (de-)select from the list of packages which could be updated.
     (The latter value only works on systems with a GUI version of
-    \code{\link{select.list}}, and is otherwise equivalent to
+    \code{\link[utils]{select.list}}, and is otherwise equivalent to
     \code{ask = TRUE}.)
   }
 }

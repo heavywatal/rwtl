@@ -7,8 +7,16 @@
 \usage{
 annotate_polygon(x, y, n = 6L, radius = 1, stroke = 1, ...)
 
-annotate_polygon2(x, y, n = 6L, radius = 1, stroke = 1,
-  colour = "#666666", linejoin = "mitre", ...)
+annotate_polygon2(
+  x,
+  y,
+  n = 6L,
+  radius = 1,
+  stroke = 1,
+  colour = "#666666",
+  linejoin = "mitre",
+  ...
+)
 }
 \arguments{
 \item{x, y}{center coordinate}

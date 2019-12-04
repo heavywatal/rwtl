@@ -7,8 +7,14 @@
 \usage{
 eq_assign_style(...)
 
-styler_style(path = ".", ..., style = eq_assign_style,
-  filetype = "R", recursive = TRUE, exclude_files = NULL)
+styler_style(
+  path = ".",
+  ...,
+  style = eq_assign_style,
+  filetype = "R",
+  recursive = TRUE,
+  exclude_files = NULL
+)
 }
 \arguments{
 \item{...}{Arguments passed on to the \code{style} function.}
@@ -16,12 +22,14 @@ styler_style(path = ".", ..., style = eq_assign_style,
 \item{path}{Path to a directory with files to transform.}
 
 \item{style}{A function that creates a style guide to use, by default
-\code{\link[=tidyverse_style]{tidyverse_style()}} (without the parentheses). Not used
+\code{\link[styler:tidyverse_style]{tidyverse_style()}} (without the parentheses). Not used
 further except to construct the argument \code{transformers}. See
-\code{\link[=style_guides]{style_guides()}} for details.}
+\code{\link[styler:style_guides]{style_guides()}} for details.}
 
 \item{filetype}{Vector of file extensions indicating which file types should
-be styled. Case is ignored, and the \code{.} is optional, e.g. \code{c(".R", ".Rmd", ".Rnw")} or \code{c("r", "rmd", "rnw")}.}
+be styled. Case is ignored, and the \code{.} is optional, e.g.
+\code{c(".R", ".Rmd")}, or \code{c("r", "rmd")}. Supported values (after
+standardization) are: "r", "rprofile", "rmd", "rnw".}
 
 \item{recursive}{A logical value indicating whether or not files in subdirectories
 of \code{path} should be styled as well.}

@@ -30,19 +30,19 @@ redirect(expr, file = "/dev/null")
 
 \item{expr}{arguments to \code{egrep}; string or expression.}
 
-\item{file}{a writable \link{connection} or a character string naming the
+\item{file}{a writable \link[base]{connection} or a character string naming the
     file to write to, or \code{NULL} to stop sink-ing.}
 }
 \description{
 Pipe text to system commands
 }
 \details{
-\code{pipeshell} and \code{\%P\%} send \code{x} to \code{command} via shell.
+\code{pipeshell} and \verb{\%P\%} send \code{x} to \code{command} via shell.
 
 \code{less} print \code{x} in \code{getOption('pager')}. The operation is in-memory and
 efficient than \code{page(x, method='print')} that involves a temporary file.
 
-\code{egrep} and \code{\%G\%} are shorthand for \code{x \%P\% "egrep {expr}"}.
+\code{egrep} and \verb{\%G\%} are shorthand for \code{x \%P\% "egrep {expr}"}.
 
 \code{redirect} evaluates \code{expr} while \code{sink(file)} is in operation.
 }

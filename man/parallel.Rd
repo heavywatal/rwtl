@@ -19,8 +19,7 @@ mcmap_dbl(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
 
 mcmap_chr(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
 
-mcmap_dfr(.x, .f, ..., .id = NULL, .mc.cores = getOption("mc.cores",
-  2L))
+mcmap_dfr(.x, .f, ..., .id = NULL, .mc.cores = getOption("mc.cores", 2L))
 }
 \arguments{
 \item{.x}{A list or atomic vector.}

@@ -10,8 +10,14 @@ theme_wtl(base_size = 12, base_family = "")
 
 erase(..., .names = NULL)
 
-axis_line(colour = NULL, size = NULL, linetype = NULL,
-  lineend = NULL, arrow = NULL, inherit.blank = FALSE)
+axis_line(
+  colour = NULL,
+  size = NULL,
+  linetype = NULL,
+  lineend = NULL,
+  arrow = NULL,
+  inherit.blank = FALSE
+)
 }
 \arguments{
 \item{base_size, base_family}{see ggplot2::ggtheme}

@@ -19,10 +19,10 @@ Helper functions to make labels in ggplot
 }
 \details{
 \code{breaks_log10} makes powers of ten for
-the \code{breaks} argument of \code{ggplot2::scale_*_log10()}.
+the \code{breaks} argument of \verb{ggplot2::scale_*_log10()}.
 
 \code{labels_log10} is an axis label formatter to be passed to
-the \code{labels} argument of \code{ggplot2::scale_*_log10()}.
+the \code{labels} argument of \verb{ggplot2::scale_*_log10()}.
 }
 \examples{
 ggplot2::ggplot(tibble::tibble(x = seq_len(10), y = 2**x)) +
