@@ -1,15 +1,15 @@
 #' Package utilities
 #'
 #' @details
-#' `clean_install` is a shortcut of `devtools::document` and
-#' `devtools::install` without dependency upgrade.
+#' `document_install()` is a quick shortcut of `devtools::install()`
+#' following `devtools::document()`.
 #' @inheritParams devtools::install
 #' @rdname package
 #' @export
-clean_install = function(pkg = ".", upgrade = FALSE, ...) {
+document_install = function(pkg = ".", build = FALSE, upgrade = FALSE, ...) {
   pkgbuild::compile_dll(pkg)
   devtools::document(pkg)
-  devtools::install(pkg, upgrade = upgrade, ...)
+  devtools::install(pkg, build = build, upgrade = upgrade, ...)
 }
 
 #' @details
