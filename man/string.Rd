@@ -6,6 +6,7 @@
 \alias{ord}
 \alias{chr}
 \alias{as_chr}
+\alias{as_code}
 \title{String utility}
 \usage{
 split_chr(string, pattern = "\\\\s+", n = Inf)
@@ -17,6 +18,8 @@ ord(char)
 chr(i)
 
 as_chr(...)
+
+as_code(x)
 }
 \arguments{
 \item{string}{Input vector. Either a character vector, or something
@@ -48,6 +51,8 @@ the result will be padded with empty strings.}
 \item{i}{integer}
 
 \item{...}{expressions}
+
+\item{x}{vector}
 }
 \description{
 \code{split_chr} splits a string and return a flattened vector.
@@ -60,4 +65,6 @@ the result will be padded with empty strings.}
 \code{chr} is a pythonic alias of \code{intToUtf8()}.
 
 \code{as_chr} converts expr into character vector.
+
+\code{as_code} converts a vector into R code that generates it.
 }

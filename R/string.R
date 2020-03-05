@@ -45,3 +45,16 @@ as_chr = function(...) {
     purrr::map_chr(~ deparse(.x$expr)) %>%
     stats::setNames(NULL)
 }
+
+#' @details
+#' `as_code` converts a vector into R code that generates it.
+#' @param x vector
+#' @rdname string
+#' @export
+as_code = function(x) {
+  if (is.character(x)) {
+    x = paste0('"', x, '"')
+  }
+  x = paste(x, collapse = ", ")
+  paste0("c(", x, ")")
+}

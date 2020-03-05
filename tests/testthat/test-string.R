@@ -20,3 +20,10 @@ test_that("ord and chr work", {
 test_that("as_chr works", {
   expect_equal(as_chr(expr), "expr")
 })
+
+test_that("as_code works", {
+  x = 1:3
+  expect_equal(as_code(x), "c(1, 2, 3)")
+  x = letters[x]
+  expect_equal(as_code(x), 'c("a", "b", "c")')
+})
