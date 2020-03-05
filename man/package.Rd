@@ -43,7 +43,7 @@ when installing dependencies.}
 \item{vignettes}{If FALSE, add \code{--ignore-vignettes} to \code{args}}
 
 \item{args}{An optional character vector of additional command line
-arguments to be passed to \code{R CMD INSTALL}. This defaults to the
+arguments to be passed to \verb{R CMD INSTALL}. This defaults to the
 value of the option \code{"devtools.install.args"}.}
 
 \item{type}{character, indicating the type of package to download and
