@@ -45,5 +45,7 @@ reprex_tidyverse = function(n = 8L, venue = "r", show = FALSE) {
     "",
     clipr::read_clip()
   ), venue = venue, show = show)
-  clipr::read_clip() %>% utils::tail(-4L) %>% clipr::write_clip()
+  clipr::read_clip() %>%
+    utils::tail(-4L) %>%
+    clipr::write_clip()
 }

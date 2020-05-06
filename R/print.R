@@ -16,15 +16,20 @@
 #' @export
 printdf = function(x, n = getOption("tibble.print_max", 30L), summarize = getOption("wtl.printdf.summarize", TRUE), ...) {
   if (isTRUE(summarize)) printdf_summary(x)
-  if (is.null(dim(x))) return(print(x))
-  if (ncol(x) == 0L) return(invisible(x))
+  if (is.null(dim(x))) {
+    return(print(x))
+  }
+  if (ncol(x) == 0L) {
+    return(invisible(x))
+  }
   if (is.matrix(x)) x = as.data.frame(x)
   original_x = x
   class(x) = "data.frame" # remove tbl_df
   x = dedfcol_all(x)
   class_row = vapply(x, class_sum, "", USE.NAMES = FALSE)
   class_row = paste0("<", class_row, ">")
-  if (truncated <- nrow(x) > n) {
+  truncated = nrow(x) > n
+  if (truncated) {
     head_n = as.integer(ceiling(n / 2))
     tail_n = n - head_n
     head_idx = seq_len(head_n)
@@ -89,7 +94,8 @@ class_sum = function(x) {
 }
 
 DIM = function(x) {
-  if (length(d <- dim(x))) d else length(x)
+  d = dim(x)
+  if (length(d)) d else length(x)
 }
 
 trunc_chr = function(x, n = 60L) {

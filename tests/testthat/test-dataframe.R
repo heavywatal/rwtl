@@ -24,7 +24,7 @@ test_that("crossing_rep works", {
   expect_silent({
     y = crossing_rep(x, times)
   })
-  expect_equal(dim(y), c(length(x) ** 2L, times))
+  expect_equal(dim(y), c(length(x)**2L, times))
 })
 
 test_that("rle works", {
