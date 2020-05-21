@@ -27,7 +27,7 @@ ape_layout_unrooted = function(phy, centering = TRUE, rotate = 0) {
   }
   to_nodes = dplyr::rename(nodes, xend = "x", yend = "y")
   phy$edge %>%
-    tibble::as_tibble() %>%
+    tibble::as_tibble(.name_repair = "minimal") %>%
     stats::setNames(c("from", "to")) %>%
     dplyr::left_join(nodes %>% dplyr::select(-.data$axis), by = c(from = "id")) %>%
     dplyr::left_join(to_nodes, by = c(to = "id")) %>%
