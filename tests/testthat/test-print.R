@@ -13,6 +13,7 @@ test_that("printdf works", {
   expect_output(printdf(ggplot2::diamonds), "<ord>")
   potus = ggplot2::presidential %>% dplyr::mutate(end = as.POSIXct(end))
   expect_output(printdf(potus), "<date>\\s+<dttm>")
+  expect_output(printdf(tibble::tibble(presidents)), "<ts>")
 })
 
 test_that("max_print works", {

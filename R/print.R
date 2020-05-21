@@ -54,10 +54,15 @@ printdf = function(x, n = getOption("tibble.print_max", 30L), summarize = getOpt
 format_column = function(x) {
   if (is.list(x)) {
     vapply(x, format_list_item, "", USE.NAMES = FALSE)
-  } else if (is.character(x)) {
-    trunc_chr(x)
   } else {
-    format(x, justify = "none")
+    if (is.ts(x)) {
+      x = as.vector(x)
+    }
+    if (is.character(x)) {
+      trunc_chr(x)
+    } else {
+      format(x, justify = "none")
+    }
   }
 }
 
