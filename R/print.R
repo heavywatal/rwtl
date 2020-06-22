@@ -54,7 +54,9 @@ printdf = function(x, n = getOption("tibble.print_max", 30L), summarize = getOpt
 format_column = function(x) {
   if (is.list(x)) {
     if (inherits(x, "bench_expr")) {
-      trunc_chr(names(x))
+      keys = names(x)
+      values = vapply(x, deparse, "", USE.NAMES = FALSE)
+      trunc_chr(ifelse(keys == "", values, keys), 32L)
     } else {
       vapply(x, format_list_item, "", USE.NAMES = FALSE)
     }
