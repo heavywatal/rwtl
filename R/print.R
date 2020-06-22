@@ -53,7 +53,11 @@ printdf = function(x, n = getOption("tibble.print_max", 30L), summarize = getOpt
 
 format_column = function(x) {
   if (is.list(x)) {
-    vapply(x, format_list_item, "", USE.NAMES = FALSE)
+    if (inherits(x, "bench_expr")) {
+      trunc_chr(names(x))
+    } else {
+      vapply(x, format_list_item, "", USE.NAMES = FALSE)
+    }
   } else {
     if (stats::is.ts(x)) {
       x = as.vector(x)
@@ -68,7 +72,7 @@ format_column = function(x) {
 
 format_list_item = function(x) {
   if (is.null(x)) {
-    character(0L)
+    "<NULL>"
   } else if (is.list(x) || is.atomic(x)) {
     paste0("<", array_sum(x), ">")
   } else if (inherits(x, "formula")) {
