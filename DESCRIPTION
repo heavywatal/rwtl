@@ -19,7 +19,6 @@ Imports:
     BiocManager,
     clipr,
     devtools,
-    doParallel,
     dplyr,
     fs,
     ggplot2,
