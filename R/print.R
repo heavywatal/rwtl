@@ -55,7 +55,7 @@ format_column = function(x) {
   if (is.list(x)) {
     vapply(x, format_list_item, "", USE.NAMES = FALSE)
   } else {
-    if (is.ts(x)) {
+    if (stats::is.ts(x)) {
       x = as.vector(x)
     }
     if (is.character(x)) {
