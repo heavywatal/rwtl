@@ -23,7 +23,7 @@ named_edges = function(x) {
 ape_layout_unrooted = function(phy, centering = TRUE, rotate = 0) {
   nodes = ape_unrooted_xy(phy, rotate = rotate)
   if (centering) {
-    nodes = center_range(nodes, "x", "y")
+    nodes = center_range(nodes, c("x", "y"))
   }
   to_nodes = dplyr::rename(nodes, xend = "x", yend = "y")
   phy$edge %>%

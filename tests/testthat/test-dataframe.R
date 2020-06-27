@@ -15,7 +15,7 @@ test_that("append_df works", {
 
 test_that("class_at works", {
   e = c(name = "character", height = "integer", mass = "numeric")
-  expect_equal(class_at(dplyr::starwars, dplyr::vars(1:3)), e)
+  expect_equal(class_at(dplyr::starwars, 1:3), e)
 })
 
 test_that("crossing_rep works", {
