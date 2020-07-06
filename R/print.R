@@ -55,7 +55,7 @@ format_column = function(x) {
   if (is.list(x)) {
     if (inherits(x, "bench_expr")) {
       keys = names(x)
-      values = vapply(x, deparse, "", USE.NAMES = FALSE)
+      values = vapply(x, deparse, "", width.cutoff = 500L, USE.NAMES = FALSE)
       trunc_chr(ifelse(keys == "", values, keys), 32L)
     } else {
       vapply(x, format_list_item, "", USE.NAMES = FALSE)
