@@ -15,3 +15,13 @@ twist = function(x, n) {
     c(x[seq_len(-n) + (len + n)], x[seq(len + n)])
   }
 }
+
+#' @details
+#' [split_consecutive()] groups consecutive integers.
+#' @rdname vector
+#' @export
+split_consecutive = function(x) {
+  boundary = (diff(x) != 1L)
+  group = c(0L, cumsum(boundary))
+  unname(split(x, group))
+}
