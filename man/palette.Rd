@@ -16,7 +16,7 @@ index into the list of palettes of appropriate \code{type}}
 \item{n}{Number of colors in the palette.}
 
 \item{direction}{Sets the order of colours in the scale. If 1, the default,
-colours are as output by \code{\link[RColorBrewer:brewer.pal]{RColorBrewer::brewer.pal()}}. If -1, the
+colours are as output by \code{\link[RColorBrewer:ColorBrewer]{RColorBrewer::brewer.pal()}}. If -1, the
 order of colours is reversed.}
 
 \item{...}{
@@ -74,8 +74,8 @@ If the purpose is to zoom, use the limit argument in the coordinate system
 }}
     \item{\code{rescaler}}{A function used to scale the input values to the
 range [0, 1]. This is always \code{\link[scales:rescale]{scales::rescale()}}, except for
-diverging and n colour gradients (i.e., \code{\link[ggplot2:scale_colour_gradient2]{scale_colour_gradient2()}},
-\code{\link[ggplot2:scale_colour_gradientn]{scale_colour_gradientn()}}). The \code{rescaler} is ignored by position
+diverging and n colour gradients (i.e., \code{\link[ggplot2:scale_gradient]{scale_colour_gradient2()}},
+\code{\link[ggplot2:scale_gradient]{scale_colour_gradientn()}}). The \code{rescaler} is ignored by position
 scales, which always use \code{\link[scales:rescale]{scales::rescale()}}.}
     \item{\code{oob}}{One of:
 \itemize{

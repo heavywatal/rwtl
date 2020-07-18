@@ -23,5 +23,5 @@ Utilities for vector
 \code{\link[=split_consecutive]{split_consecutive()}} groups consecutive integers.
 }
 \seealso{
-\code{\link[dplyr:lead]{dplyr::lead()}}, \code{\link[dplyr:lag]{dplyr::lag()}}
+\code{\link[dplyr:lead-lag]{dplyr::lead()}}, \code{\link[dplyr:lead-lag]{dplyr::lag()}}
 }
