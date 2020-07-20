@@ -43,7 +43,7 @@ reprex_tidyverse = function(n = 8L, venue = "r", show = FALSE) {
     "registerS3method(\"print\", \"tbl_df\", wtl::printdf)",
     sprintf("options(tibble.print_max = %dL)", n),
     "",
-    clipr::read_clip()
+    clipr::read_clip() %>% stringr::str_subset("^#>", negate = TRUE)
   ), venue = venue, show = show)
   clipr::read_clip() %>%
     utils::tail(-4L) %>%
