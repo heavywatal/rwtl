@@ -1,5 +1,17 @@
 #' String utility
 #'
+#' @details
+#' `join` concatenats strings in a vector.
+#' @inheritParams stringr::str_c
+#' @param na.rm logical
+#' @rdname string
+#' @export
+join = function(string, sep = "", na.rm = FALSE) {
+  if (isTRUE(na.rm)) string = na.omit(string)
+  stringr::str_c(string, collapse = sep)
+}
+
+#' @details
 #' `split_chr` splits a string and return a flattened vector.
 #' @inheritParams stringr::str_split
 #' @rdname string
@@ -17,10 +29,12 @@ rsplit = function(string, pattern = "\\s+", n = 42L) {
   stringr::str_split(string, pattern)
 }
 
+#' Conversion between character and integer code point
+#'
 #' @details
 #' `ord` is a pythonic alias of `charToRaw()`.
 #' @param char character
-#' @rdname string
+#' @rdname chr
 #' @export
 ord = function(char) {
   strtoi(charToRaw(char), 16L)
@@ -29,7 +43,7 @@ ord = function(char) {
 #' @details
 #' `chr` is a pythonic alias of `intToUtf8()`.
 #' @param i integer
-#' @rdname string
+#' @rdname chr
 #' @export
 chr = function(i) {
   intToUtf8(i)
@@ -38,7 +52,7 @@ chr = function(i) {
 #' @details
 #' `as_chr` converts expr into character vector.
 #' @param ... expressions
-#' @rdname string
+#' @rdname chr
 #' @export
 as_chr = function(...) {
   lazyeval::lazy_dots(...) %>%
@@ -46,10 +60,9 @@ as_chr = function(...) {
     stats::setNames(NULL)
 }
 
-#' @details
 #' `as_code` converts a vector into R code that generates it.
 #' @param x vector
-#' @rdname string
+#' @rdname as_code
 #' @export
 as_code = function(x) {
   if (is.character(x)) {
