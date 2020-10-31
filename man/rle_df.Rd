@@ -2,18 +2,30 @@
 % Please edit documentation in R/dataframe.R
 \name{rle_df}
 \alias{rle_df}
+\alias{table_df}
 \title{Get rle (run-length encoding) as tibble.}
 \usage{
 rle_df(x, .name = "value")
+
+table_df(..., .name = "n")
 }
 \arguments{
 \item{x}{atomic vector}
 
 \item{.name}{column name in output}
+
+\item{...}{atomic vector}
 }
 \value{
 tbl with start and end index columns
 }
 \description{
 Get rle (run-length encoding) as tibble.
+
+\code{table_df()} counts elements in a vector.
+}
+\seealso{
+\code{\link[=rle]{rle()}}
+
+\code{\link[=table]{table()}}
 }

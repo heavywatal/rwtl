@@ -80,6 +80,7 @@ crossing_rep = function(x, times = 1L) {
 #' @param x atomic vector
 #' @param .name column name in output
 #' @return tbl with start and end index columns
+#' @seealso [rle()]
 #' @rdname rle_df
 #' @export
 rle_df = function(x, .name = "value") {
@@ -90,4 +91,15 @@ rle_df = function(x, .name = "value") {
     end = cumsum(x$lengths)
   ) %>%
     dplyr::mutate(start = dplyr::lag(.data$end, 1L, 0L) + 1L)
+}
+
+#' `table_df()` counts elements in a vector.
+#' @param ... atomic vector
+#' @rdname rle_df
+#' @export
+#' @seealso [table()]
+table_df = function(..., .name = "n") {
+  ls = list(...)
+  df = tibble::new_tibble(ls, nrow = length(ls[[1L]]))
+  dplyr::count(df, !!!rlang::syms(names(ls)), name = .name)
 }

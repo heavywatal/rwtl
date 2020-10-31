@@ -7,7 +7,7 @@
 #' @rdname string
 #' @export
 join = function(string, sep = "", na.rm = FALSE) {
-  if (isTRUE(na.rm)) string = na.omit(string)
+  if (isTRUE(na.rm)) string = stats::na.omit(string)
   stringr::str_c(string, collapse = sep)
 }
 
