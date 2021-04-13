@@ -14,6 +14,8 @@ gprint = function(x, newpage = TRUE, recording = FALSE) {
 #' @details
 #' `grid.draw.list` enables writing multi-page PDF via ggsave().
 #' @inheritParams grid::grid.draw
+#' @importFrom grid grid.draw
+#' @method grid.draw list
 #' @rdname grid
 #' @export
 grid.draw.list = function(x, recording = FALSE) {

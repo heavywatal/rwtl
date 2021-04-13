@@ -28,7 +28,7 @@ binary artefacts (like \file{.o}, \code{.so}) from appearing in your local
 package directory, but is considerably slower, because every compile has
 to start from scratch.}
 
-\item{upgrade}{One of "default", "ask", "always", or "never". "default"
+\item{upgrade}{Should package dependencies be upgraded? One of "default", "ask", "always", or "never". "default"
 respects the value of the \code{R_REMOTES_UPGRADE} environment variable if set,
 and falls back to "ask" if unset. "ask" prompts the user for which out of
 date packages to upgrade. For non-interactive sessions "ask" is equivalent

@@ -9,7 +9,7 @@
 \usage{
 gprint(x, newpage = TRUE, recording = FALSE)
 
-grid.draw.list(x, recording = FALSE)
+\method{grid.draw}{list}(x, recording = FALSE)
 
 png_grob(file)
 
