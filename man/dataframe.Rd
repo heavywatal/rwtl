@@ -5,6 +5,8 @@
 \alias{mutate_left}
 \alias{dedfcol}
 \alias{dedfcol_all}
+\alias{demtrxcol}
+\alias{demtrxcol_all}
 \alias{center_range}
 \alias{class_at}
 \title{Utilities for data.frame}
@@ -16,6 +18,10 @@ mutate_left(.data, ...)
 dedfcol(.data, at)
 
 dedfcol_all(.data)
+
+demtrxcol(.data, at)
+
+demtrxcol_all(.data)
 
 center_range(.data, .cols)
 
@@ -41,4 +47,6 @@ Utilities for data.frame
 \code{mutate_left} adds new columns to the left.
 
 \code{dedfcol} and \code{dedfcol_all} dissolve data.frame columns in a tibble.
+
+\code{demtrxcol} and \code{demtrxcol_all} dissolve matrix columns in a tibble.
 }

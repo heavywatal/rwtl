@@ -26,6 +26,7 @@ printdf = function(x, n = getOption("tibble.print_max", 30L), summarize = getOpt
   original_x = x
   class(x) = "data.frame" # remove tbl_df
   x = dedfcol_all(x)
+  x = demtrxcol_all(x)
   class_row = vapply(x, class_sum, "", USE.NAMES = FALSE)
   class_row = paste0("<", class_row, ">")
   truncated = nrow(x) > n
