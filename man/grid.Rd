@@ -3,15 +3,12 @@
 \name{gprint}
 \alias{gprint}
 \alias{grid.draw.list}
-\alias{png_grob}
 \alias{as_gg}
 \title{Wrappers of grid functions}
 \usage{
 gprint(x, newpage = TRUE, recording = FALSE)
 
 \method{grid.draw}{list}(x, recording = FALSE)
-
-png_grob(file)
 
 as_gg(grob, base_size = 12, base_family = "sans")
 }
@@ -23,8 +20,6 @@ as_gg(grob, base_size = 12, base_family = "sans")
 \item{recording}{A logical value to indicate whether the drawing
     operation should be recorded on the Grid display list.}
 
-\item{file}{path to PNG file}
-
 \item{grob}{graphical object}
 
 \item{base_size, base_family}{see ggplot2::ggtheme}
@@ -34,8 +29,6 @@ as_gg(grob, base_size = 12, base_family = "sans")
 }
 \details{
 \code{grid.draw.list} enables writing multi-page PDF via ggsave().
-
-\code{png_grob} creates a grob from a PNG file.
 
 \code{as_gg} converts grob to gg.
 }

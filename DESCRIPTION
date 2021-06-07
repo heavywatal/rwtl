@@ -12,7 +12,6 @@ Suggests:
     ape,
     covr,
     cowplot,
-    png,
     testthat (>= 2.1.0)
 Imports:
     BiocManager,

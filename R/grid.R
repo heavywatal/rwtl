@@ -24,15 +24,6 @@ grid.draw.list = function(x, recording = FALSE) {
 }
 
 #' @details
-#' `png_grob` creates a grob from a PNG file.
-#' @param file path to PNG file
-#' @rdname grid
-#' @export
-png_grob = function(file) {
-  grid::rasterGrob(png::readPNG(file))
-}
-
-#' @details
 #' `as_gg` converts grob to gg.
 #' @param grob graphical object
 #' @param base_size,base_family see ggplot2::ggtheme
