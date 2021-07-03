@@ -13,6 +13,8 @@ Suggests:
     covr,
     cowplot,
     ggridges,
+    knitr,
+    rmarkdown,
     testthat (>= 2.1.0)
 Imports:
     BiocManager,
