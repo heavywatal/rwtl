@@ -14,7 +14,7 @@
 #' `tibble:::print.tbl` and `data.frame:::print.data.table`.
 #' @rdname print
 #' @export
-printdf = function(x, n = getOption("tibble.print_max", 30L), summarize = getOption("wtl.printdf.summarize", TRUE), ...) {
+printdf = function(x, n = getOption("pillar.print_max", 30L), summarize = getOption("wtl.printdf.summarize", TRUE), ...) {
   if (isTRUE(summarize)) printdf_summary(x)
   if (is.null(dim(x))) {
     return(print(x))
@@ -161,8 +161,8 @@ adjust_print_options = function(n = 30L) {
   if (interactive()) {
     message("datatable.print.nrows: ", getOption("datatable.print.nrows"))
     message("datatable.print.topn: ", getOption("datatable.print.topn"))
-    message("tibble.print_max: ", getOption("tibble.print_max"))
-    message("tibble.print_min: ", getOption("tibble.print_min"))
+    message("pillar.print_max: ", getOption("pillar.print_max"))
+    message("pillar.print_min: ", getOption("pillar.print_min"))
     message("width: ", getOption("width"))
   }
   invisible(opts)
@@ -176,9 +176,9 @@ options_print = function(height, width = NULL, ...) {
   options(
     datatable.print.nrows = height,
     datatable.print.topn = height %/% 2L,
-    tibble.print_max = height,
-    tibble.print_min = height,
-    tibble.width = width,
+    pillar.print_max = height,
+    pillar.print_min = height,
+    pillar.width = width,
     width = sanitize_width(width),
     ...
   )

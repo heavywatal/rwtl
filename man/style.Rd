@@ -29,7 +29,7 @@ further except to construct the argument \code{transformers}. See
 \item{filetype}{Vector of file extensions indicating which file types should
 be styled. Case is ignored, and the \code{.} is optional, e.g.
 \code{c(".R", ".Rmd")}, or \code{c("r", "rmd")}. Supported values (after
-standardization) are: "r", "rprofile", "rmd", "rnw".}
+standardization) are: "r", "rprofile", "rmd", "rmarkdown", "rnw". Rmarkdown is treated as Rmd.}
 
 \item{recursive}{A logical value indicating whether or not files in subdirectories
 of \code{path} should be styled as well.}

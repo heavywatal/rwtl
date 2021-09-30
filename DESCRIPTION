@@ -39,4 +39,4 @@ Imports:
 URL: https://github.com/heavywatal/rwtl
 BugReports: https://github.com/heavywatal/rwtl/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

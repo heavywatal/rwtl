@@ -8,7 +8,7 @@
 \usage{
 printdf(
   x,
-  n = getOption("tibble.print_max", 30L),
+  n = getOption("pillar.print_max", 30L),
   summarize = getOption("wtl.printdf.summarize", TRUE),
   ...
 )
