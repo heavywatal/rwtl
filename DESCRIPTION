@@ -12,6 +12,8 @@ Suggests:
     ape,
     covr,
     cowplot,
+    DiagrammeR,
+    DiagrammeRsvg,
     ggridges,
     knitr,
     rmarkdown,
