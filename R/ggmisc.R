@@ -20,8 +20,7 @@ insert_layer = function(p, ..., after = 0L) {
 #' @inheritParams ggplot2::ggsave
 #' @rdname ggmisc
 #' @export
-ggsave_quartz = function(
-                         filename, plot = ggplot2::last_plot(), device = grDevices::quartz,
+ggsave_quartz = function(filename, plot = ggplot2::last_plot(), device = grDevices::quartz,
                          path = NULL, scale = 1, width = 7, height = 7,
                          units = c("in", "cm", "mm"), dpi = 300, limitsize = TRUE) {
   ext = tools::file_ext(filename)

@@ -26,8 +26,10 @@ df_bars = tidyr::crossing(lambda = c(1, 2, 3), x = seq(0, 8)) \%>\%
   dplyr::mutate(height = dpois(x, lambda)) \%>\%
   ridges2bars(x, height) \%>\%
   print()
-ggplot2::ggplot(df_bars) + ggplot2::aes(x, lambda) +
+ggplot2::ggplot(df_bars) +
+  ggplot2::aes(x, lambda) +
   ggridges::geom_ridgeline(ggplot2::aes(height = height, group = lambda))
-ggplot2::ggplot(df_bars) + ggplot2::aes(lambda, x) +
+ggplot2::ggplot(df_bars) +
+  ggplot2::aes(lambda, x) +
   ggridges::geom_vridgeline(ggplot2::aes(width = height, group = lambda))
 }
