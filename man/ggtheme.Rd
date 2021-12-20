@@ -20,7 +20,9 @@ axis_line(
 )
 }
 \arguments{
-\item{base_size, base_family}{see ggplot2::ggtheme}
+\item{base_size}{base font size, given in pts.}
+
+\item{base_family}{base font family}
 
 \item{...}{elements to be blank}
 
@@ -49,7 +51,7 @@ calculating final element state.}
 Shortcut for ggplot theme
 }
 \details{
-\code{theme_wtl} is a slightly modified \code{theme_bw}.
+\code{theme_wtl} is a slightly modified \link[ggplot2:ggtheme]{ggplot2::theme_bw}.
 
 \code{erase} is a shortcut for \code{theme(... = element_blank())}.
 

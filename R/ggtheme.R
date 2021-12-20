@@ -1,8 +1,8 @@
 #' Shortcut for ggplot theme
 #'
 #' @details
-#' `theme_wtl` is a slightly modified `theme_bw`.
-#' @param base_size,base_family see ggplot2::ggtheme
+#' `theme_wtl` is a slightly modified [ggplot2::theme_bw].
+#' @inheritParams ggplot2::theme_bw
 #' @rdname ggtheme
 #' @export
 theme_wtl = function(base_size = 12, base_family = "") {
@@ -13,7 +13,8 @@ theme_wtl = function(base_size = 12, base_family = "") {
     ggplot2::theme(
       panel.background = ggplot2::element_rect(fill = NA, colour = NA),
       panel.grid.minor = ggplot2::element_blank(),
-      axis.text = ggplot2::element_text(colour = "grey10"),
+      axis.text = ggplot2::element_text(colour = "grey20"),
+      axis.ticks = ggplot2::element_line(colour = "grey50"),
       legend.key = ggplot2::element_rect(fill = NA, colour = NA)
     )
 }
