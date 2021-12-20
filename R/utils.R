@@ -49,3 +49,19 @@ reprex_tidyverse = function(n = 8L, venue = "r", show = FALSE) {
     utils::tail(-4L) %>%
     clipr::write_clip()
 }
+
+clean_histfile = function(dry_run = FALSE) {
+  histfile = tempfile(fileext = ".Rhistory")
+  cat(histfile, "\n")
+  utils::savehistory(histfile)
+  orig = readLines(histfile)
+  res = orig %>%
+    stringr::str_subset("^\\s*#", negate = TRUE) %>%
+    unique(fromLast = TRUE)
+  cat(length(orig), "->", length(res), "lines\n")
+  writeLines(res, histfile)
+  if (!dry_run) {
+    utils::loadhistory(histfile)
+    cat("`quit(runLast = FALSE)` to discard a new history.\n")
+  }
+}
