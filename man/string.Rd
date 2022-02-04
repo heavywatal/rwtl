@@ -2,11 +2,14 @@
 % Please edit documentation in R/string.R
 \name{join}
 \alias{join}
+\alias{str_c_coalesce}
 \alias{split_chr}
 \alias{rsplit}
 \title{String utility}
 \usage{
 join(string, sep = "", na.rm = FALSE)
+
+str_c_coalesce(..., sep = "", collapse = NULL)
 
 split_chr(string, pattern = "\\\\s+", n = Inf)
 
@@ -19,6 +22,18 @@ coercible to one.}
 \item{sep}{String to insert between input vectors.}
 
 \item{na.rm}{logical}
+
+\item{...}{One or more character vectors. Zero length arguments
+are removed. Short arguments are recycled to the length of the
+longest.
+
+Like most other R functions, missing values are "infectious": whenever
+a missing value is combined with another string the result will always
+be missing. Use \code{\link[stringr:str_replace_na]{str_replace_na()}} to convert \code{NA} to
+\code{"NA"}}
+
+\item{collapse}{Optional string used to combine input vectors into single
+string.}
 
 \item{pattern}{Pattern to look for.
 
@@ -46,6 +61,9 @@ String utility
 }
 \details{
 \code{join} concatenats strings in a vector.
+
+\code{str_c_coalesce} tries \code{\link[stringr:str_c]{stringr::str_c()}} first,
+and falls back to \code{\link[dplyr:coalesce]{dplyr::coalesce()}}.
 
 \code{split_chr} splits a string and return a flattened vector.
 

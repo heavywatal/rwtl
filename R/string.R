@@ -12,6 +12,18 @@ join = function(string, sep = "", na.rm = FALSE) {
 }
 
 #' @details
+#' `str_c_coalesce` tries [stringr::str_c()] first,
+#' and falls back to [dplyr::coalesce()].
+#' @rdname string
+#' @export
+str_c_coalesce = function(..., sep = "", collapse = NULL) {
+  dplyr::coalesce(
+    stringr::str_c(..., sep = sep, collapse = collapse),
+    dplyr::coalesce(...)
+  )
+}
+
+#' @details
 #' `split_chr` splits a string and return a flattened vector.
 #' @inheritParams stringr::str_split
 #' @rdname string

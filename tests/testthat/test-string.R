@@ -1,3 +1,15 @@
+test_that("join works", {
+  expect_equal(join(c("a", "b", "c")), "abc")
+  expect_equal(join(c("a", "b", "c"), " "), "a b c")
+})
+
+test_that("str_c_coalesce works", {
+  a = c("a", "b", NA)
+  x = c("x", NA, "z")
+  expect_equal(str_c_coalesce(a, x), c("ax", "b", "z"))
+  expect_equal(str_c_coalesce(a, x, sep = " "), c("a x", "b", "z"))
+})
+
 test_that("split_chr works", {
   expect_equal(split_chr("a  b\tc\nd"), c("a", "b", "c", "d"))
   expect_equal(split_chr("a  b\tc\nd", " "), c("a", "", "b\tc\nd"))
