@@ -62,7 +62,7 @@ bioc_valid = function(..., type = binary_if_macos()) {
 bioc_install = function(..., ask = interactive(), type = binary_if_macos()) {
   original = options(pkgType = type)
   on.exit(options(original))
-  BiocManager::install(..., ask = ask)
+  BiocManager::install(..., update = FALSE, ask = ask)
 }
 
 binary_if_macos = function() {
