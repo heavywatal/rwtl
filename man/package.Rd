@@ -16,7 +16,12 @@ tst(pkg = ".", ...)
 
 bioc_valid(..., type = binary_if_macos())
 
-bioc_install(..., ask = interactive(), type = binary_if_macos())
+bioc_install(
+  ...,
+  update = FALSE,
+  ask = interactive(),
+  type = binary_if_macos()
+)
 }
 \arguments{
 \item{pkg}{The package to use, can be a file path to the package or a

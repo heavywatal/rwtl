@@ -59,10 +59,10 @@ bioc_valid = function(..., type = binary_if_macos()) {
 
 #' @rdname package
 #' @export
-bioc_install = function(..., ask = interactive(), type = binary_if_macos()) {
+bioc_install = function(..., update = FALSE, ask = interactive(), type = binary_if_macos()) {
   original = options(pkgType = type)
   on.exit(options(original))
-  BiocManager::install(..., update = FALSE, ask = ask)
+  BiocManager::install(..., update = update, ask = ask)
 }
 
 binary_if_macos = function() {
