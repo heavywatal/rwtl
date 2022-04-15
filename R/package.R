@@ -42,9 +42,18 @@ has_tests = function(pkg = ".") {
 }
 
 #' @details
-#' `bioc_valid` and `bioc_install` are thin wrappers of BiocManager functions.
-#' @inheritParams utils::update.packages
-#' @rdname package
+#' `bioc_install` and `bioc_valid` are thin wrappers of BiocManager functions.
+#' @inherit BiocManager::install params return title
+#' @rdname bioc
+#' @export
+bioc_install = function(..., update = FALSE, ask = interactive(), type = binary_if_macos()) {
+  original = options(pkgType = type)
+  on.exit(options(original))
+  BiocManager::install(..., update = update, ask = ask)
+}
+
+#' @inheritParams BiocManager::valid
+#' @rdname bioc
 #' @export
 bioc_valid = function(..., type = binary_if_macos()) {
   v = BiocManager::valid(..., type = type)
@@ -55,14 +64,6 @@ bioc_valid = function(..., type = binary_if_macos()) {
   print(v$too_new)
   message("out_of_date:")
   v$out_of_date[, c("LibPath", "Installed", "ReposVer", "Repository")]
-}
-
-#' @rdname package
-#' @export
-bioc_install = function(..., update = FALSE, ask = interactive(), type = binary_if_macos()) {
-  original = options(pkgType = type)
-  on.exit(options(original))
-  BiocManager::install(..., update = update, ask = ask)
 }
 
 binary_if_macos = function() {

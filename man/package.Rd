@@ -4,8 +4,6 @@
 \alias{document_install}
 \alias{chk}
 \alias{tst}
-\alias{bioc_valid}
-\alias{bioc_install}
 \title{Package utilities}
 \usage{
 document_install(pkg = ".", build = FALSE, upgrade = FALSE, ...)
@@ -13,15 +11,6 @@ document_install(pkg = ".", build = FALSE, upgrade = FALSE, ...)
 chk(pkg = ".", install = FALSE, vignettes = FALSE, args = c("--timings"), ...)
 
 tst(pkg = ".", ...)
-
-bioc_valid(..., type = binary_if_macos())
-
-bioc_install(
-  ...,
-  update = FALSE,
-  ask = interactive(),
-  type = binary_if_macos()
-)
 }
 \arguments{
 \item{pkg}{The package to use, can be a file path to the package or a
@@ -50,21 +39,6 @@ when installing dependencies.}
 \item{args}{An optional character vector of additional command line
 arguments to be passed to \verb{R CMD INSTALL}. This defaults to the
 value of the option \code{"devtools.install.args"}.}
-
-\item{type}{character, indicating the type of package to download and
-    install.  See \code{\link[utils]{install.packages}}.
-  }
-
-\item{ask}{logical indicating whether to ask the user to select
-    packages before they are downloaded and installed, or the character
-    string \code{"graphics"}, which brings up a widget to allow the user
-    to (de-)select from the list of packages which could be updated.
-    The latter value only works on systems with a GUI version of
-    \code{\link[utils]{select.list}}, and is otherwise equivalent to
-    \code{ask = TRUE}. \code{ask} does not control questions asked before
-    installing packages from source via \code{type = "both"} (see option
-    \code{"install.packages.compile.from.source"}).
-  }
 }
 \description{
 Package utilities
@@ -74,6 +48,4 @@ Package utilities
 following \code{devtools::document()}.
 
 \code{chk} and \code{tst} are thin wrappers of \code{devtools::check} and \code{testthat::test_package}.
-
-\code{bioc_valid} and \code{bioc_install} are thin wrappers of BiocManager functions.
 }
