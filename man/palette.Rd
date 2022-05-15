@@ -10,7 +10,7 @@ scale_colour_gradientb(palette, n = 5L, direction = 1, ...)
 scale_fill_gradientb(palette, n = 5L, direction = 1, ...)
 }
 \arguments{
-\item{palette}{If a string, will use that named palette.  If a number, will
+\item{palette}{If a string, will use that named palette. If a number, will
 index into the list of palettes of appropriate \code{type}}
 
 \item{n}{Number of colors in the palette.}

@@ -7,7 +7,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 4.0.0)
+    R (>= 4.1.0)
 Suggests:
     ape,
     covr,
@@ -17,7 +17,7 @@ Suggests:
     ggridges,
     knitr,
     rmarkdown,
-    testthat (>= 2.1.0)
+    testthat
 Imports:
     BiocManager,
     clipr,
@@ -25,7 +25,6 @@ Imports:
     dplyr,
     fs,
     ggplot2,
-    lazyeval,
     magrittr,
     pkgbuild,
     purrr,

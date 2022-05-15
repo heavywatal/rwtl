@@ -67,9 +67,9 @@ chr = function(i) {
 #' @rdname chr
 #' @export
 as_chr = function(...) {
-  lazyeval::lazy_dots(...) %>%
-    purrr::map_chr(~ deparse(.x$expr)) %>%
-    stats::setNames(NULL)
+  rlang::quos(...) %>%
+    purrr::map_chr(rlang::as_name) %>%
+    unname()
 }
 
 #' `as_code` converts a vector into R code that generates it.
