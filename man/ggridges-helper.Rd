@@ -21,10 +21,9 @@ Helper functions to enhance ggridges package
 to make bar-shaped ridgelines.
 }
 \examples{
-library(magrittr)
-df_bars = tidyr::crossing(lambda = c(1, 2, 3), x = seq(0, 8)) \%>\%
-  dplyr::mutate(height = dpois(x, lambda)) \%>\%
-  ridges2bars(x, height) \%>\%
+df_bars = tidyr::crossing(lambda = c(1, 2, 3), x = seq(0, 8)) |>
+  dplyr::mutate(height = dpois(x, lambda)) |>
+  ridges2bars(x, height) |>
   print()
 ggplot2::ggplot(df_bars) +
   ggplot2::aes(x, lambda) +

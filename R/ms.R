@@ -21,7 +21,7 @@ ms = function(nsam = 4L, nreps = 2L, theta = 5.0) {
 #' @rdname ms
 #' @export
 parse_ms = function(msout, byrow = FALSE) {
-  split_ms(msout) %>% lapply(as_int_matrix, byrow = byrow)
+  split_ms(msout) |> lapply(as_int_matrix, byrow = byrow)
 }
 
 #' @details
@@ -33,8 +33,8 @@ split_ms = function(msout) {
   sep_pos = which(msout == "//")
   nreps = length(sep_pos)
   nsam = length(msout) - utils::tail(sep_pos, 1L) - 2L
-  utils::tail(msout, -2L) %>%
-    split(rep(seq_len(nreps), each = nsam + 4L)) %>%
+  utils::tail(msout, -2L) |>
+    split(rep(seq_len(nreps), each = nsam + 4L)) |>
     lapply(utils::tail, -4L)
 }
 
@@ -45,8 +45,8 @@ split_ms = function(msout) {
 #' @rdname ms
 #' @export
 as_int_matrix = function(samples, byrow = FALSE) {
-  v = stringr::str_split(samples, "") %>%
-    lapply(as.integer) %>%
+  v = stringr::str_split(samples, "") |>
+    lapply(as.integer) |>
     unlist(recursive = FALSE, use.names = FALSE)
   if (byrow) {
     matrix(v, nrow = length(samples), byrow = TRUE)

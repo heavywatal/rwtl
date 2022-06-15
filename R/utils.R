@@ -43,10 +43,10 @@ reprex_tidyverse = function(n = 8L, venue = "r", show = FALSE) {
     "registerS3method(\"print\", \"tbl_df\", wtl::printdf)",
     sprintf("options(pillar.print_max = %dL)", n),
     "",
-    clipr::read_clip() %>% stringr::str_subset("^#>", negate = TRUE)
+    clipr::read_clip() |> stringr::str_subset("^#>", negate = TRUE)
   ), venue = venue, show = show)
-  clipr::read_clip() %>%
-    utils::tail(-4L) %>%
+  clipr::read_clip() |>
+    utils::tail(-4L) |>
     clipr::write_clip()
 }
 
@@ -55,8 +55,8 @@ clean_histfile = function(dry_run = FALSE) {
   cat(histfile, "\n")
   utils::savehistory(histfile)
   orig = readLines(histfile)
-  res = orig %>%
-    stringr::str_subset("^\\s*#", negate = TRUE) %>%
+  res = orig |>
+    stringr::str_subset("^\\s*#", negate = TRUE) |>
     unique(fromLast = TRUE)
   cat(length(orig), "->", length(res), "lines\n")
   writeLines(res, histfile)

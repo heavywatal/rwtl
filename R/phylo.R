@@ -26,11 +26,11 @@ ape_layout_unrooted = function(phy, centering = TRUE, rotate = 0) {
     nodes = center_range(nodes, c("x", "y"))
   }
   to_nodes = dplyr::rename(nodes, xend = "x", yend = "y")
-  phy$edge %>%
-    tibble::as_tibble(.name_repair = "minimal") %>%
-    stats::setNames(c("from", "to")) %>%
-    dplyr::left_join(nodes %>% dplyr::select(-.data$axis), by = c(from = "id")) %>%
-    dplyr::left_join(to_nodes, by = c(to = "id")) %>%
+  phy$edge |>
+    tibble::as_tibble(.name_repair = "minimal") |>
+    stats::setNames(c("from", "to")) |>
+    dplyr::left_join(nodes |> dplyr::select(-.data$axis), by = c(from = "id")) |>
+    dplyr::left_join(to_nodes, by = c(to = "id")) |>
     dplyr::mutate(label = phy$tip.label[.data$to])
 }
 
@@ -64,9 +64,9 @@ ape_unrooted_xy = function(phy, rotate = 0) {
     id = which.max(node_depth), x = 0, y = 0,
     angle = 2 * pi, axis = rotate, depth = node_depth[.data$id]
   )
-  impl(root) %>%
-    dplyr::bind_rows(root) %>%
-    dplyr::mutate(axis = ifelse(.data$axis > pi, .data$axis - 2 * pi, .data$axis)) %>%
-    dplyr::transmute(.data$id, .data$x, .data$y, .data$axis) %>%
+  impl(root) |>
+    dplyr::bind_rows(root) |>
+    dplyr::mutate(axis = ifelse(.data$axis > pi, .data$axis - 2 * pi, .data$axis)) |>
+    dplyr::transmute(.data$id, .data$x, .data$y, .data$axis) |>
     dplyr::arrange(.data$id)
 }

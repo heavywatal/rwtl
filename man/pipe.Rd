@@ -47,11 +47,10 @@ efficient than \code{page(x, method='print')} that involves a temporary file.
 \code{redirect} evaluates \code{expr} while \code{sink(file)} is in operation.
 }
 \examples{
-`\%>\%` = magrittr::`\%>\%`
-iris \%>\% less()
-iris \%>\% egrep(vir)
-iris \%>\% egrep("vir")
-letters \%>\% pipeshell(cat)
+iris |> less()
+iris |> egrep(vir)
+iris |> egrep("vir")
+letters |> pipeshell(cat)
 
 iris \%P\% wc
 iris \%P\% "wc -l"

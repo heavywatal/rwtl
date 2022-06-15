@@ -1,11 +1,10 @@
 #' Pipe text to system commands
 #'
 #' @examples
-#' `%>%` = magrittr::`%>%`
-#' iris %>% less()
-#' iris %>% egrep(vir)
-#' iris %>% egrep("vir")
-#' letters %>% pipeshell(cat)
+#' iris |> less()
+#' iris |> egrep(vir)
+#' iris |> egrep("vir")
+#' letters |> pipeshell(cat)
 #'
 #' iris %P% wc
 #' iris %P% "wc -l"

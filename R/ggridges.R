@@ -9,10 +9,9 @@
 #' @rdname ggridges-helper
 #' @export
 #' @examples
-#' library(magrittr)
-#' df_bars = tidyr::crossing(lambda = c(1, 2, 3), x = seq(0, 8)) %>%
-#'   dplyr::mutate(height = dpois(x, lambda)) %>%
-#'   ridges2bars(x, height) %>%
+#' df_bars = tidyr::crossing(lambda = c(1, 2, 3), x = seq(0, 8)) |>
+#'   dplyr::mutate(height = dpois(x, lambda)) |>
+#'   ridges2bars(x, height) |>
 #'   print()
 #' ggplot2::ggplot(df_bars) +
 #'   ggplot2::aes(x, lambda) +
@@ -39,7 +38,7 @@ ridges2bars = function(.data, x, height, width = 0.9) {
     TMPh_6 = NA,
     !!name_x := NULL,
     !!name_h := NULL
-  ) %>%
-    tidyr::pivot_longer(tidyselect::starts_with("TMP"), names_to = c(".value", NA), names_sep = "_") %>%
+  ) |>
+    tidyr::pivot_longer(tidyselect::starts_with("TMP"), names_to = c(".value", NA), names_sep = "_") |>
     dplyr::rename(!!name_x := .data$TMPx, !!name_h := .data$TMPh)
 }

@@ -15,7 +15,7 @@ move_left = function(.data, ...) {
 #' @rdname dataframe
 #' @export
 mutate_left = function(.data, ...) {
-  dplyr::mutate(.data, ...) %>%
+  dplyr::mutate(.data, ...) |>
     move_left(names(rlang::quos(...)))
 }
 
@@ -116,7 +116,7 @@ rle_df = function(x, .name = "value") {
     !!.name := x$values,
     start = 0L,
     end = cumsum(x$lengths)
-  ) %>%
+  ) |>
     dplyr::mutate(start = dplyr::lag(.data$end, 1L, 0L) + 1L)
 }
 

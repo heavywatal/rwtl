@@ -25,7 +25,6 @@ Imports:
     dplyr,
     fs,
     ggplot2,
-    magrittr,
     pkgbuild,
     purrr,
     readr,

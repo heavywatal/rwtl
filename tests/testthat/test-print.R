@@ -11,7 +11,7 @@ test_that("printdf works", {
   expect_output(printdf(giris), "Groups: Species \\[3\\]")
   expect_output(printdf(dplyr::starwars), "tbl_df")
   expect_output(printdf(ggplot2::diamonds), "<ord>")
-  potus = ggplot2::presidential %>% dplyr::mutate(end = as.POSIXct(end))
+  potus = ggplot2::presidential |> dplyr::mutate(end = as.POSIXct(end))
   expect_output(printdf(potus), "<date>\\s+<dttm>")
   expect_output(printdf(tibble::tibble(presidents)), "<ts>")
 })

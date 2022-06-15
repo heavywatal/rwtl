@@ -29,7 +29,7 @@ str_c_coalesce = function(..., sep = "", collapse = NULL) {
 #' @rdname string
 #' @export
 split_chr = function(string, pattern = "\\s+", n = Inf) {
-  stringr::str_split(string, pattern, n) %>% purrr::flatten_chr()
+  stringr::str_split(string, pattern, n) |> purrr::flatten_chr()
 }
 
 #' @details
@@ -67,8 +67,8 @@ chr = function(i) {
 #' @rdname chr
 #' @export
 as_chr = function(...) {
-  rlang::quos(...) %>%
-    purrr::map_chr(rlang::as_name) %>%
+  rlang::quos(...) |>
+    purrr::map_chr(rlang::as_name) |>
     unname()
 }
 
