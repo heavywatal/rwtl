@@ -92,7 +92,8 @@ class_at = function(.data, .cols) {
 }
 
 #' Shortcut for tidyr::crossing() with repeats.
-#' @inheritParams base::rep.int
+#' @param x atomic vector
+#' @param times the number of repeats
 #' @return tbl
 #' @rdname itertools
 #' @export

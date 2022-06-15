@@ -15,6 +15,7 @@ axis_line(
   size = NULL,
   linetype = NULL,
   lineend = NULL,
+  color = NULL,
   arrow = NULL,
   inherit.blank = FALSE
 )
@@ -27,6 +28,8 @@ axis_line(
 \item{...}{elements to be blank}
 
 \item{.names}{string vector of element names}
+
+\item{colour, color}{Line/border colour. Color is an alias for colour.}
 
 \item{size}{Line/border size in mm; text size in pts.}
 
