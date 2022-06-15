@@ -28,8 +28,6 @@ axis_line(
 
 \item{.names}{string vector of element names}
 
-\item{colour}{Line/border colour. Color is an alias for colour.}
-
 \item{size}{Line/border size in mm; text size in pts.}
 
 \item{linetype}{Line type. An integer (0:8), a name (blank, solid,
