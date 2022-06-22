@@ -42,11 +42,11 @@ Because \code{across()} is used within functions like \code{summarise()} and
 Utilities for data.frame
 }
 \details{
-\code{move_left} moves specified columns to the left.
+\code{move_left()} moves specified columns to the left.
 
-\code{mutate_left} adds new columns to the left.
+\code{mutate_left()} adds new columns to the left.
 
-\code{dedfcol} and \code{dedfcol_all} dissolve data.frame columns in a tibble.
+\code{dedfcol()} and \code{dedfcol_all()} dissolve data.frame columns in a tibble.
 
-\code{demtrxcol} and \code{demtrxcol_all} dissolve matrix columns in a tibble.
+\code{demtrxcol()} and \code{demtrxcol_all()} dissolve matrix columns in a tibble.
 }

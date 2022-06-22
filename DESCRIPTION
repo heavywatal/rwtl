@@ -17,7 +17,7 @@ Suggests:
     ggridges,
     knitr,
     rmarkdown,
-    testthat,
+    testthat (>= 3.0.0),
     withr
 Imports:
     BiocManager,
@@ -41,3 +41,4 @@ URL: https://github.com/heavywatal/rwtl
 BugReports: https://github.com/heavywatal/rwtl/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
+Config/testthat/edition: 3

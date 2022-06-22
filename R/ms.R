@@ -1,11 +1,11 @@
 #' Functions to run ms and parse ms-like output
 #'
 #' @details
-#' `ms` executes ms as an external program.
+#' `ms()` executes ms as an external program.
 #' @param nsam number of samples
 #' @param nreps number of repeats
 #' @param theta population mutation rate
-#' @return `ms` returns a string vector
+#' @return `ms()` returns a string vector
 #' @rdname ms
 #' @export
 ms = function(nsam = 4L, nreps = 2L, theta = 5.0) {
@@ -14,10 +14,10 @@ ms = function(nsam = 4L, nreps = 2L, theta = 5.0) {
 }
 
 #' @details
-#' `parse_ms` transforms ms-like output into a list of matrices.
+#' `parse_ms()` transforms ms-like output into a list of matrices.
 #' @param msout string vector of ms-like output
 #' @param byrow logical value passed to `matrix`
-#' @return `parse_ms` returns a list of integer matrices
+#' @return `parse_ms()` returns a list of integer matrices
 #' @rdname ms
 #' @export
 parse_ms = function(msout, byrow = FALSE) {
@@ -25,8 +25,8 @@ parse_ms = function(msout, byrow = FALSE) {
 }
 
 #' @details
-#' `split_ms` splits ms-like output by replications.
-#' @return `split_ms` returns a list of string vector
+#' `split_ms()` splits ms-like output by replications.
+#' @return `split_ms()` returns a list of string vector
 #' @rdname ms
 #' @export
 split_ms = function(msout) {
@@ -39,13 +39,13 @@ split_ms = function(msout) {
 }
 
 #' @details
-#' `as_int_matrix` converts a string vector into an integer matrix.
+#' `as_int_matrix()` converts a string vector into an integer matrix.
 #' @param samples string vector
-#' @return `as_int_matrix` returns an integer matrix
+#' @return `as_int_matrix()` returns an integer matrix
 #' @rdname ms
 #' @export
 as_int_matrix = function(samples, byrow = FALSE) {
-  v = stringr::str_split(samples, "") |>
+  v = stringr::str_split(samples, stringr::fixed("")) |>
     lapply(as.integer) |>
     unlist(recursive = FALSE, use.names = FALSE)
   if (byrow) {

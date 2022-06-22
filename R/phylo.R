@@ -3,16 +3,16 @@
 #' @rdname phylo
 #' @export
 node_labels = function(x) {
-  num_tips = length(x$tip.label)
-  labels = as.character(seq_len(num_tips + x$Nnode))
-  labels[seq_len(num_tips)] = x$tip.label
+  num_tips = length(x[["tip.label"]])
+  labels = as.character(seq_len(num_tips + x[["Nnode"]]))
+  labels[seq_len(num_tips)] = x[["tip.label"]]
   labels
 }
 
 #' @rdname phylo
 #' @export
 named_edges = function(x) {
-  matrix(node_labels(x)[x$edge], ncol = 2L)
+  matrix(node_labels(x)[x[["edge"]]], ncol = 2L)
 }
 
 #' @param phy phylo object
@@ -26,24 +26,24 @@ ape_layout_unrooted = function(phy, centering = TRUE, rotate = 0) {
     nodes = center_range(nodes, c("x", "y"))
   }
   to_nodes = dplyr::rename(nodes, xend = "x", yend = "y")
-  phy$edge |>
+  phy[["edge"]] |>
     tibble::as_tibble(.name_repair = "minimal") |>
     stats::setNames(c("from", "to")) |>
     dplyr::left_join(nodes |> dplyr::select(-.data$axis), by = c(from = "id")) |>
     dplyr::left_join(to_nodes, by = c(to = "id")) |>
-    dplyr::mutate(label = phy$tip.label[.data$to])
+    dplyr::mutate(label = phy[["tip.label"]][.data[["to"]]])
 }
 
 # The algorithm was originally implemented in ape:::unrooted.xy()
 # https://cran.r-project.org/package=ape
 ape_unrooted_xy = function(phy, rotate = 0) {
   node_depth = ape::node.depth(phy)
-  edge_from = phy$edge[, 1L]
-  edge_to = phy$edge[, 2L]
-  edge_length = phy$edge.length
+  edge_from = phy[["edge"]][, 1L]
+  edge_to = phy[["edge"]][, 2L]
+  edge_length = phy[["edge.length"]]
   impl = function(parent) {
-    edge_indices = which(edge_from == parent$id)
-    AXIS_BASE = parent$axis - parent$angle / 2
+    edge_indices = which(edge_from == parent[["id"]])
+    AXIS_BASE = parent[["axis"]] - parent[["angle"]] / 2
     output = NULL
     for (edge_i in edge_indices) {
       length_i = edge_length[edge_i]
@@ -52,10 +52,10 @@ ape_unrooted_xy = function(phy, rotate = 0) {
         depth = node_depth[.data$id],
         angle = parent$angle * .data$depth / parent$depth,
         axis = AXIS_BASE + .data$angle / 2,
-        x = length_i * cos(.data$axis) + parent$x,
-        y = length_i * sin(.data$axis) + parent$y,
+        x = length_i * cos(.data$axis) + parent[["x"]],
+        y = length_i * sin(.data$axis) + parent[["y"]]
       )
-      AXIS_BASE = AXIS_BASE + child_df$angle
+      AXIS_BASE = AXIS_BASE + child_df[["angle"]]
       output = dplyr::bind_rows(output, child_df, impl(child_df))
     }
     output

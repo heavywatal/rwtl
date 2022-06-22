@@ -23,9 +23,9 @@ as_chr(...)
 Conversion between character and integer code point
 }
 \details{
-\code{ord} is a pythonic alias of \code{charToRaw()}.
+\code{ord()} is a pythonic alias of \code{charToRaw()}.
 
-\code{chr} is a pythonic alias of \code{intToUtf8()}.
+\code{chr()} is a pythonic alias of \code{intToUtf8()}.
 
-\code{as_chr} converts expr into character vector.
+\code{as_chr()} converts expr into character vector.
 }

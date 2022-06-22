@@ -29,23 +29,23 @@ as_int_matrix(samples, byrow = FALSE)
 \item{samples}{string vector}
 }
 \value{
-\code{ms} returns a string vector
+\code{ms()} returns a string vector
 
-\code{parse_ms} returns a list of integer matrices
+\code{parse_ms()} returns a list of integer matrices
 
-\code{split_ms} returns a list of string vector
+\code{split_ms()} returns a list of string vector
 
-\code{as_int_matrix} returns an integer matrix
+\code{as_int_matrix()} returns an integer matrix
 }
 \description{
 Functions to run ms and parse ms-like output
 }
 \details{
-\code{ms} executes ms as an external program.
+\code{ms()} executes ms as an external program.
 
-\code{parse_ms} transforms ms-like output into a list of matrices.
+\code{parse_ms()} transforms ms-like output into a list of matrices.
 
-\code{split_ms} splits ms-like output by replications.
+\code{split_ms()} splits ms-like output by replications.
 
-\code{as_int_matrix} converts a string vector into an integer matrix.
+\code{as_int_matrix()} converts a string vector into an integer matrix.
 }

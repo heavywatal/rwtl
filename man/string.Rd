@@ -60,12 +60,12 @@ the result will be padded with empty strings.}
 String utility
 }
 \details{
-\code{join} concatenats strings in a vector.
+\code{join()} concatenats strings in a vector.
 
-\code{str_c_coalesce} tries \code{\link[stringr:str_c]{stringr::str_c()}} first,
+\code{str_c_coalesce()} tries \code{\link[stringr:str_c]{stringr::str_c()}} first,
 and falls back to \code{\link[dplyr:coalesce]{dplyr::coalesce()}}.
 
-\code{split_chr} splits a string and return a flattened vector.
+\code{split_chr()} splits a string and return a flattened vector.
 
-\code{rsplit} splits a string from right.
+\code{rsplit()} splits a string from right.
 }

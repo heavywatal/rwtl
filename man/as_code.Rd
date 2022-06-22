@@ -2,7 +2,7 @@
 % Please edit documentation in R/string.R
 \name{as_code}
 \alias{as_code}
-\title{\code{as_code} converts a vector into R code that generates it.}
+\title{\code{as_code()} converts a vector into R code that generates it.}
 \usage{
 as_code(x)
 }
@@ -10,5 +10,5 @@ as_code(x)
 \item{x}{vector}
 }
 \description{
-\code{as_code} converts a vector into R code that generates it.
+\code{as_code()} converts a vector into R code that generates it.
 }

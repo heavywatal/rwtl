@@ -32,12 +32,12 @@ adjust_print_options(n = 30L)
 Utilities for printing
 }
 \details{
-\code{printdf} is a simple cherry-picking from
+\code{printdf()} is a simple cherry-picking from
 \code{tibble:::print.tbl} and \code{data.frame:::print.data.table}.
 
-\code{max_print} prints as many elements in a big tibble as possible.
+\code{max_print()} prints as many elements in a big tibble as possible.
 
-\code{adjust_print_options} sets width and height according to the current environment.
+\code{adjust_print_options()} sets width and height according to the current environment.
 }
 \examples{
 \dontrun{

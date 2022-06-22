@@ -3,5 +3,5 @@ test_that("save_as() works", {
   path = file.path(dir, "mtcars.rds")
   expect_output(save_as(mtcars, dir), path)
   expect_true(file.exists(path))
-  expect_equal(readRDS(path), mtcars)
+  expect_identical(readRDS(path), mtcars)
 })

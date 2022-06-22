@@ -1,7 +1,7 @@
 #' Utilities for data.frame
 #'
 #' @details
-#' `move_left` moves specified columns to the left.
+#' `move_left()` moves specified columns to the left.
 #' @param .data tibble
 #' @param ... colnames or expressions
 #' @rdname dataframe
@@ -11,7 +11,7 @@ move_left = function(.data, ...) {
 }
 
 #' @details
-#' `mutate_left` adds new columns to the left.
+#' `mutate_left()` adds new columns to the left.
 #' @rdname dataframe
 #' @export
 mutate_left = function(.data, ...) {
@@ -20,7 +20,7 @@ mutate_left = function(.data, ...) {
 }
 
 #' @details
-#' `dedfcol` and `dedfcol_all` dissolve data.frame columns in a tibble.
+#' `dedfcol()` and `dedfcol_all()` dissolve data.frame columns in a tibble.
 #' @param at target column
 #' @rdname dataframe
 #' @export
@@ -43,7 +43,7 @@ dedfcol_all = function(.data) {
 }
 
 #' @details
-#' `demtrxcol` and `demtrxcol_all` dissolve matrix columns in a tibble.
+#' `demtrxcol()` and `demtrxcol_all()` dissolve matrix columns in a tibble.
 #' @rdname dataframe
 #' @export
 demtrxcol = function(.data, at) {
@@ -53,7 +53,7 @@ demtrxcol = function(.data, at) {
   cn = names(subdf)
   if (is.null(cn)) cn = seq_along(subdf)
   cn = paste0("[,", cn, "]")
-  names(subdf) = c(paste0(name, cn[1]), cn[-1])
+  names(subdf) = c(paste0(name, cn[[1]]), cn[[-1]])
   at = match(name, names(.data))
   append_df(.data[-at], subdf, at - 1L)
 }
@@ -81,17 +81,17 @@ append_df = function(x, values, after = length(x)) {
 #' @export
 center_range = function(.data, .cols) {
   center = function(x) x - mean(range(x))
-  dplyr::mutate(.data, dplyr::across(.cols, center))
+  dplyr::mutate(.data, dplyr::across({{ .cols }}, center))
 }
 
 #' @rdname dataframe
 #' @export
 class_at = function(.data, .cols) {
-  x = dplyr::summarize(.data, dplyr::across(.cols, class))
+  x = dplyr::summarize(.data, dplyr::across({{ .cols }}, class))
   unlist(x, use.names = TRUE)
 }
 
-#' Shortcut for tidyr::crossing() with repeats.
+#' Shortcut for [tidyr::crossing()] with repeats.
 #' @param x atomic vector
 #' @param times the number of repeats
 #' @return tbl
@@ -113,11 +113,11 @@ crossing_rep = function(x, times = 1L) {
 rle_df = function(x, .name = "value") {
   x = rle(x)
   tibble::tibble(
-    !!.name := x$values,
+    !!.name := x[["values"]],
     start = 0L,
-    end = cumsum(x$lengths)
+    end = cumsum(x[["lengths"]])
   ) |>
-    dplyr::mutate(start = dplyr::lag(.data$end, 1L, 0L) + 1L)
+    dplyr::mutate(start = dplyr::lag(.data[["end"]], 1L, 0L) + 1L)
 }
 
 #' `table_df()` counts elements in a vector.

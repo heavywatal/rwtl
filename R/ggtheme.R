@@ -1,7 +1,7 @@
 #' Shortcut for ggplot theme
 #'
 #' @details
-#' `theme_wtl` is a slightly modified [ggplot2::theme_bw].
+#' `theme_wtl()` is a slightly modified [ggplot2::theme_bw].
 #' @inheritParams ggplot2::theme_bw
 #' @rdname ggtheme
 #' @export
@@ -20,24 +20,28 @@ theme_wtl = function(base_size = 12, base_family = "") {
 }
 
 #' @details
-#' `erase` is a shortcut for `theme(... = element_blank())`.
+#' `erase()` is a shortcut for `theme(... = element_blank())`.
 #' @param ... elements to be blank
 #' @param .names string vector of element names
 #' @rdname ggtheme
 #' @export
 erase = function(..., .names = NULL) {
   quosures = rlang::quos(...)
-  names = c(sapply(quosures, rlang::quo_name), .names)
+  names = c(vapply(quosures, rlang::quo_name, ""), .names)
   elements = rlang::rep_along(names, list(ggplot2::element_blank()))
-  rlang::invoke(ggplot2::theme, rlang::set_names(elements, names))
+  rlang::exec(ggplot2::theme, !!!rlang::set_names(elements, names))
 }
 
 #' @details
-#' `axis_line` sets L-shaped axes.
+#' `axis_line()` sets L-shaped axes.
 #' @inheritParams ggplot2::element_line
 #' @rdname ggtheme
 #' @export
-axis_line = function(colour = NULL, size = NULL, linetype = NULL, lineend = NULL, color = NULL, arrow = NULL, inherit.blank = FALSE) {
-  el = ggplot2::element_line(colour = colour, size = size, linetype = linetype, lineend = lineend, color = color, arrow = arrow, inherit.blank = inherit.blank)
+axis_line = function(colour = NULL, size = NULL, linetype = NULL, lineend = NULL,
+                     color = NULL, arrow = NULL, inherit.blank = FALSE) {
+  el = ggplot2::element_line(
+    colour = colour, size = size, linetype = linetype, lineend = lineend,
+    color = color, arrow = arrow, inherit.blank = inherit.blank
+  )
   ggplot2::theme(panel.border = ggplot2::element_blank(), axis.line = el)
 }

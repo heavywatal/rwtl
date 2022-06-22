@@ -10,11 +10,12 @@
 #' @param summarize print class(x) and dim(x) if TRUE
 #' @param ... further arguments passed to `print`
 #' @details
-#' `printdf` is a simple cherry-picking from
+#' `printdf()` is a simple cherry-picking from
 #' `tibble:::print.tbl` and `data.frame:::print.data.table`.
 #' @rdname print
 #' @export
-printdf = function(x, n = getOption("pillar.print_max", 30L), summarize = getOption("wtl.printdf.summarize", TRUE), ...) {
+printdf = function(x, n = getOption("pillar.print_max", 30L),
+                   summarize = getOption("wtl.printdf.summarize", TRUE), ...) {
   if (isTRUE(summarize)) printdf_summary(x)
   if (is.null(dim(x))) {
     return(print(x))
@@ -91,7 +92,7 @@ array_sum = function(x) {
 }
 
 class_sum = function(x) {
-  switch(class(x)[1L],
+  switch(class(x)[[1L]],
     logical = "lgl",
     integer = "int",
     numeric = "dbl",
@@ -101,7 +102,7 @@ class_sum = function(x) {
     ordered = "ord",
     POSIXct = "dttm",
     Date = "date",
-    class(x)[1L]
+    class(x)[[1L]]
   )
 }
 
@@ -121,13 +122,13 @@ trunc_chr = function(x, n = 60L) {
 printdf_summary = function(x) {
   cat("# ", array_sum(x), "\n", sep = "")
   if (dplyr::is_grouped_df(x)) {
-    gvars = paste0(dplyr::group_vars(x), collapse = ", ")
+    gvars = toString(dplyr::group_vars(x))
     cat("# Groups: ", gvars, " [", dplyr::n_groups(x), "]\n", sep = "")
   }
 }
 
 #' @details
-#' `max_print` prints as many elements in a big tibble as possible.
+#' `max_print()` prints as many elements in a big tibble as possible.
 #' @param width maximum number of columns to print
 #' @rdname print
 #' @export
@@ -138,7 +139,7 @@ max_print = function(x, n = getOption("max.print"), width = Inf, ...) {
 }
 
 #' @details
-#' `adjust_print_options` sets width and height according to the current environment.
+#' `adjust_print_options()` sets width and height according to the current environment.
 #' @rdname print
 #' @export
 adjust_print_options = function(n = 30L) {
@@ -152,8 +153,8 @@ adjust_print_options = function(n = 30L) {
   )
   opts = if (length(console_size) == 2L) {
     options_print(
-      height = min(console_size[1L] - 6L, n),
-      width = console_size[2L]
+      height = min(console_size[[1L]] - 6L, n),
+      width = console_size[[2L]]
     )
   } else {
     options_print(height = n)
@@ -169,7 +170,8 @@ adjust_print_options = function(n = 30L) {
 }
 
 stty_size = function() {
-  as.integer(unlist(strsplit(system2("stty", "size", stdout = TRUE, stderr = FALSE), " ")))
+  stty = system2("stty", "size", stdout = TRUE, stderr = FALSE)
+  as.integer(unlist(strsplit(stty, " ", fixed = TRUE)))
 }
 
 options_print = function(height, width = NULL, ...) {

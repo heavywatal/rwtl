@@ -52,9 +52,9 @@ calculating final element state.}
 Shortcut for ggplot theme
 }
 \details{
-\code{theme_wtl} is a slightly modified \link[ggplot2:ggtheme]{ggplot2::theme_bw}.
+\code{theme_wtl()} is a slightly modified \link[ggplot2:ggtheme]{ggplot2::theme_bw}.
 
-\code{erase} is a shortcut for \code{theme(... = element_blank())}.
+\code{erase()} is a shortcut for \code{theme(... = element_blank())}.
 
-\code{axis_line} sets L-shaped axes.
+\code{axis_line()} sets L-shaped axes.
 }

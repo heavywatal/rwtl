@@ -1,21 +1,21 @@
 test_that("*_left work", {
   x = data.frame(y = 2L, z = 3L)
   e = data.frame(z = 3L, y = 2L)
-  expect_equal(move_left(x, z), e)
+  expect_identical(move_left(x, z), e)
   e = data.frame(x = 1L, y = 2L, z = 3L)
-  expect_equal(mutate_left(x, x = 1L), e)
+  expect_identical(mutate_left(x, x = 1L), e)
 })
 
 test_that("append_df works", {
   x = data.frame(x = 1L, z = 3L)
   values = data.frame(y = 2L)
   e = data.frame(x = 1L, y = 2L, z = 3L)
-  expect_equal(append_df(x, values, 1L), e)
+  expect_identical(append_df(x, values, 1L), e)
 })
 
 test_that("class_at works", {
   e = c(name = "character", height = "integer", mass = "numeric")
-  expect_equal(class_at(dplyr::starwars, 1:3), e)
+  expect_identical(class_at(dplyr::starwars, 1:3), e)
 })
 
 test_that("crossing_rep works", {
@@ -24,7 +24,7 @@ test_that("crossing_rep works", {
   expect_silent({
     y = crossing_rep(x, times)
   })
-  expect_equal(dim(y), c(length(x)**2L, times))
+  expect_identical(dim(y), c(as.integer(length(x)**2L), times))
 })
 
 test_that("rle works", {
