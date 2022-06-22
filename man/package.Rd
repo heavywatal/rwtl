@@ -44,8 +44,8 @@ value of the option \code{"devtools.install.args"}.}
 Package utilities
 }
 \details{
-\code{document_install()} is a quick shortcut of \code{devtools::install()}
+\code{document_install()} is a quick shortcut of \code{\link[devtools:install]{devtools::install()}}
 following \code{devtools::document()}.
 
-\code{chk} and \code{tst} are thin wrappers of \code{devtools::check} and \code{testthat::test_package}.
+\code{chk()} and \code{tst()} are thin wrappers of \code{\link[devtools:check]{devtools::check()}} and \code{\link[testthat:test_package]{testthat::test_local()}}.
 }

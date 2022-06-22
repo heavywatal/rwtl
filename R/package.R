@@ -1,7 +1,7 @@
 #' Package utilities
 #'
 #' @details
-#' `document_install()` is a quick shortcut of `devtools::install()`
+#' `document_install()` is a quick shortcut of [devtools::install()]
 #' following `devtools::document()`.
 #' @inheritParams devtools::install
 #' @rdname package
@@ -13,7 +13,7 @@ document_install = function(pkg = ".", build = FALSE, upgrade = FALSE, ...) {
 }
 
 #' @details
-#' `chk` and `tst` are thin wrappers of `devtools::check` and `testthat::test_package`.
+#' `chk()` and `tst()` are thin wrappers of [devtools::check()] and [testthat::test_local()].
 #' @param install If FALSE, add `--no-install` to `args`
 #' @param vignettes If FALSE, add `--ignore-vignettes` to `args`
 #' @rdname package
@@ -32,8 +32,10 @@ chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = c("--timing
 #' @rdname package
 #' @export
 tst = function(pkg = ".", ...) {
-  package = devtools::as.package(pkg)$package
-  testthat::test_package(package, ...)
+  withr::with_envvar(
+    c(LANG = "en_US.UTF-8"),
+    testthat::test_local(pkg, ...)
+  )
 }
 
 has_tests = function(pkg = ".") {
@@ -42,7 +44,7 @@ has_tests = function(pkg = ".") {
 }
 
 #' @details
-#' `bioc_install` and `bioc_valid` are thin wrappers of BiocManager functions.
+#' `bioc_install()` and `bioc_valid()` are thin wrappers of BiocManager functions.
 #' @inherit BiocManager::install params return title
 #' @rdname bioc
 #' @export

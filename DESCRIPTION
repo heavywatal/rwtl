@@ -17,7 +17,8 @@ Suggests:
     ggridges,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    withr
 Imports:
     BiocManager,
     clipr,

@@ -39,5 +39,5 @@ binary, source) to check validity against; see
 Install or update Bioconductor, CRAN, and GitHub packages
 }
 \details{
-\code{bioc_install} and \code{bioc_valid} are thin wrappers of BiocManager functions.
+\code{bioc_install()} and \code{bioc_valid()} are thin wrappers of BiocManager functions.
 }
