@@ -18,7 +18,7 @@ document_install = function(pkg = ".", build = FALSE, upgrade = FALSE, ...) {
 #' @param vignettes If FALSE, add `--ignore-vignettes` to `args`
 #' @rdname package
 #' @export
-chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = c("--timings"), ...) {
+chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...) {
   if (!install) {
     args = c(args, "--no-install")
     if (has_tests()) on.exit(tst(pkg))
@@ -49,9 +49,10 @@ has_tests = function(pkg = ".") {
 #' @rdname bioc
 #' @export
 bioc_install = function(..., update = FALSE, ask = interactive(), type = binary_if_macos()) {
-  original = options(pkgType = type)
-  on.exit(options(original))
-  BiocManager::install(..., update = update, ask = ask)
+  withr::with_options(
+    pkgType = type,
+    BiocManager::install(..., update = update, ask = ask)
+  )
 }
 
 #' @inheritParams BiocManager::valid

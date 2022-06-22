@@ -8,7 +8,7 @@
 \usage{
 document_install(pkg = ".", build = FALSE, upgrade = FALSE, ...)
 
-chk(pkg = ".", install = FALSE, vignettes = FALSE, args = c("--timings"), ...)
+chk(pkg = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...)
 
 tst(pkg = ".", ...)
 }

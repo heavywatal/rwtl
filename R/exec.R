@@ -9,8 +9,10 @@ exec_knit = function(input, output = NA) {
     output = normalizePath(output)
     knitr::opts_knit$set(base.dir = dirname(output))
   }
-  setwd(dirname(input))
-  knitr::knit(basename(input), output)
+  withr::with_dir(
+    dirname(input),
+    knitr::knit(basename(input), output)
+  )
 }
 
 #' @param output_dir Directory path.

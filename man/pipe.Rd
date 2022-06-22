@@ -37,14 +37,14 @@ redirect(expr, file = "/dev/null")
 Pipe text to system commands
 }
 \details{
-\code{pipeshell} and \verb{\%P\%} send \code{x} to \code{command} via shell.
+\code{pipeshell()} and \verb{\%P\%} send \code{x} to \code{command} via shell.
 
-\code{less} print \code{x} in \code{getOption('pager')}. The operation is in-memory and
+\code{less()} print \code{x} in \code{getOption('pager')}. The operation is in-memory and
 efficient than \code{page(x, method='print')} that involves a temporary file.
 
-\code{egrep} and \verb{\%G\%} are shorthand for \code{x \%P\% "egrep {expr}"}.
+\code{egrep()} and \verb{\%G\%} are shorthand for \code{x \%P\% "egrep {expr}"}.
 
-\code{redirect} evaluates \code{expr} while \code{sink(file)} is in operation.
+\code{redirect()} evaluates \code{expr} while \code{sink(file)} is in operation.
 }
 \examples{
 iris |> less()

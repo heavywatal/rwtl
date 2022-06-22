@@ -16,7 +16,7 @@
 #' iris %G% `-v seto | less`
 #' @inheritParams max_print
 #' @details
-#' `pipeshell` and `%P%` send `x` to `command` via shell.
+#' `pipeshell()` and `%P%` send `x` to `command` via shell.
 #' @param command to which the text is sent; string or expression.
 #' @rdname pipe
 #' @export
@@ -41,7 +41,7 @@ pipeshell.data.frame = function(x, command, ..., n = getOption("max.print"), wid
 }
 
 #' @details
-#' `less` print `x` in `getOption('pager')`. The operation is in-memory and
+#' `less()` print `x` in `getOption('pager')`. The operation is in-memory and
 #' efficient than `page(x, method='print')` that involves a temporary file.
 #' @rdname pipe
 #' @export
@@ -50,7 +50,7 @@ less = function(x, ...) {
 }
 
 #' @details
-#' `egrep` and `%G%` are shorthand for `x %P% "egrep {expr}"`.
+#' `egrep()` and `%G%` are shorthand for `x %P% "egrep {expr}"`.
 #' @param expr arguments to `egrep`; string or expression.
 #' @rdname pipe
 #' @export
@@ -68,18 +68,20 @@ egrep = function(x, expr, ...) {
 
 sinkpipe = function(expr, command) {
   command = rlang::as_name(rlang::enquo(command))
-  file = pipe(command, open = "w")
-  on.exit(close(file))
-  redirect(expr, file)
+  withr::with_connection(
+    list(file = pipe(command, open = "w")),
+    redirect(expr, file)
+  )
 }
 
 #' @details
-#' `redirect` evaluates `expr` while `sink(file)` is in operation.
+#' `redirect()` evaluates `expr` while `sink(file)` is in operation.
 #' @inheritParams base::sink
 #' @rdname pipe
 #' @export
 redirect = function(expr, file = "/dev/null") {
-  on.exit(sink(NULL))
-  sink(file)
-  invisible(eval(expr))
+  withr::with_output_sink(
+    file,
+    invisible(eval(expr))
+  )
 }
