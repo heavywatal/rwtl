@@ -16,7 +16,7 @@ read_pb()
 Functions to read files
 }
 \details{
-\code{read_boost_ini} reads an INI-like config file of boost::program_options.
+\code{read_boost_ini()} reads an INI-like config file of boost::program_options.
 
-\code{read_pb} reads paste board into data.frame.
+\code{read_pb()} reads paste board into data.frame.
 }
