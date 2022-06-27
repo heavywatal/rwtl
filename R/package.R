@@ -50,7 +50,7 @@ has_tests = function(pkg = ".") {
 #' @export
 bioc_install = function(..., update = FALSE, ask = interactive(), type = binary_if_macos()) {
   withr::with_options(
-    pkgType = type,
+    list(pkgType = type),
     BiocManager::install(..., update = update, ask = ask)
   )
 }
