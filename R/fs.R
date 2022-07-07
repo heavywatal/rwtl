@@ -7,15 +7,11 @@
 #' @param prerequisites comparables
 #' @rdname fs
 #' @export
-is_outdated = function(path, prerequisites = fs::path()) {
+is_outdated = function(path, prerequisites = character(0L)) {
   cond_mtime = if (length(prerequisites) > 0L) {
-    mtime(path) < max(mtime(prerequisites))
+    file.mtime(path) < max(file.mtime(prerequisites))
   } else {
     FALSE
   }
-  !fs::file_exists(path) | fs::is_file_empty(path) | cond_mtime
-}
-
-mtime = function(path) {
-  fs::file_info(path)[["modification_time"]]
+  !file.exists(path) | fs::is_file_empty(path) | cond_mtime
 }

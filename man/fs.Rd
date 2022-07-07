@@ -4,7 +4,7 @@
 \alias{is_outdated}
 \title{Functions related to file systems}
 \usage{
-is_outdated(path, prerequisites = fs::path())
+is_outdated(path, prerequisites = character(0L))
 }
 \arguments{
 \item{path}{files to test}
