@@ -26,7 +26,7 @@ test_that("print option works", {
   expect_identical(sanitize_width(42L), 42L)
   expect_identical(sanitize_width(99999L), 10000L)
   expect_identical(sanitize_width(NULL), getOption("width"))
-  opts = suppressMessages(adjust_print_options(6L))
-  on.exit(options(opts))
-  expect_identical(getOption("pillar.print_max"), 6L)
+  withr::with_options(generate_print_options(6L), {
+    expect_identical(getOption("pillar.print_max"), 6L)
+  })
 })

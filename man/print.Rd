@@ -3,7 +3,8 @@
 \name{printdf}
 \alias{printdf}
 \alias{max_print}
-\alias{adjust_print_options}
+\alias{generate_print_options}
+\alias{show_print_options}
 \title{Utilities for printing}
 \usage{
 printdf(
@@ -15,7 +16,9 @@ printdf(
 
 max_print(x, n = getOption("max.print"), width = Inf, ...)
 
-adjust_print_options(n = 30L)
+generate_print_options(n = 30L)
+
+show_print_options()
 }
 \arguments{
 \item{x}{an object to print}
@@ -37,7 +40,9 @@ Utilities for printing
 
 \code{max_print()} prints as many elements in a big tibble as possible.
 
-\code{adjust_print_options()} sets width and height according to the current environment.
+\code{generate_print_options()} translates \code{n} and stty size to a list of options.
+
+\code{show_print_options()} prints the current values of print options.
 }
 \examples{
 \dontrun{

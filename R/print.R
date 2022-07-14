@@ -133,16 +133,17 @@ printdf_summary = function(x) {
 #' @rdname print
 #' @export
 max_print = function(x, n = getOption("max.print"), width = Inf, ...) {
-  opts = options_print(height = n, width = width, max.print = n)
-  on.exit(options(opts))
-  print(x, ...)
+  opts = propagate_print_options(height = n, width = width, max.print = n)
+  withr::with_options(opts, {
+    print(x, ...)
+  })
 }
 
 #' @details
-#' `adjust_print_options()` sets width and height according to the current environment.
+#' `generate_print_options()` translates `n` and stty size to a list of options.
 #' @rdname print
 #' @export
-adjust_print_options = function(n = 30L) {
+generate_print_options = function(n = 30L) {
   # During startup:
   # - COLUMNS and LINES are not available
   # - options("width") is fixed to 80
@@ -151,21 +152,25 @@ adjust_print_options = function(n = 30L) {
     error = as.null,
     warning = as.null
   )
-  opts = if (length(console_size) == 2L) {
-    options_print(
+  if (length(console_size) == 2L) {
+    propagate_print_options(
       height = min(console_size[[1L]] - 6L, n),
       width = console_size[[2L]]
     )
   } else {
-    options_print(height = n)
+    propagate_print_options(height = n)
   }
-  if (interactive()) {
-    message("datatable.print.nrows: ", getOption("datatable.print.nrows"))
-    message("datatable.print.topn: ", getOption("datatable.print.topn"))
-    message("pillar.print_max: ", getOption("pillar.print_max"))
-    message("pillar.print_min: ", getOption("pillar.print_min"))
-    message("width: ", getOption("width"))
-  }
+}
+
+#' @details
+#' `show_print_options()` prints the current values of print options.
+#' @rdname print
+#' @export
+show_print_options = function() {
+  opts = propagate_print_options() |>
+    names() |>
+    getOptions()
+  utils::str(opts, no.list = TRUE)
   invisible(opts)
 }
 
@@ -174,8 +179,8 @@ stty_size = function() {
   as.integer(unlist(strsplit(stty, " ", fixed = TRUE)))
 }
 
-options_print = function(height, width = NULL, ...) {
-  options(
+propagate_print_options = function(height = 20L, width = NULL, ...) {
+  list(
     datatable.print.nrows = height,
     datatable.print.topn = height %/% 2L,
     pillar.print_max = height,
@@ -192,4 +197,8 @@ sanitize_width = function(x) {
   } else {
     getOption("width")
   }
+}
+
+getOptions = function(x) {
+  rlang::set_names(x) |> lapply(getOption)
 }
