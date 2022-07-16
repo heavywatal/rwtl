@@ -13,7 +13,7 @@ annotate_polygon2(
   n = 6L,
   radius = 1,
   stroke = 1,
-  colour = "#666666",
+  color = "#666666",
   linejoin = "mitre",
   ...
 )
@@ -29,7 +29,7 @@ annotate_polygon2(
 
 \item{...}{passed to \code{ggplot2::annotate("polygon")}}
 
-\item{colour, linejoin}{passed to \code{ggplot2::annotate("path")}}
+\item{color, linejoin}{passed to \code{ggplot2::annotate("path")}}
 }
 \description{
 Variations of \code{ggplot2::annotate()}
@@ -41,6 +41,6 @@ Variations of \code{ggplot2::annotate()}
 }
 \examples{
 ggplot2::ggplot() +
-  annotate_polygon2(0, 0, n = 6L, radius = 5, fill = "#ffffff", colour = "#333333", stroke = 6) +
+  annotate_polygon2(0, 0, n = 6L, radius = 5, fill = "#ffffff", color = "#333333", stroke = 6) +
   annotate_polygon(0, 0, n = 6L, radius = 2, fill = "#C41A41")
 }

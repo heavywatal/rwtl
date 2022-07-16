@@ -11,11 +11,11 @@ theme_wtl = function(base_size = 12, base_family = "") {
     base_family = base_family
   ) +
     ggplot2::theme(
-      panel.background = ggplot2::element_rect(fill = NA, colour = NA),
+      panel.background = ggplot2::element_rect(fill = NA, color = NA),
       panel.grid.minor = ggplot2::element_blank(),
-      axis.text = ggplot2::element_text(colour = "grey20"),
-      axis.ticks = ggplot2::element_line(colour = "grey50"),
-      legend.key = ggplot2::element_rect(fill = NA, colour = NA)
+      axis.text = ggplot2::element_text(color = "grey20"),
+      axis.ticks = ggplot2::element_line(color = "grey50"),
+      legend.key = ggplot2::element_rect(fill = NA, color = NA)
     )
 }
 
