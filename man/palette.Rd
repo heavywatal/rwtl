@@ -125,8 +125,9 @@ Colour palette for ggplot2
 \code{scale_fill_gradientn(colours = scales::brewer_pal(...))}
 }
 \examples{
-ggplot2::ggplot(mtcars, ggplot2::aes(disp, mpg, colour = hp, fill = wt)) +
-  ggplot2::geom_point(pch = 22, size = 4, stroke = 2) +
+ggplot2::ggplot(mtcars) +
+  ggplot2::aes(disp, mpg, color = hp, fill = wt) +
+  ggplot2::geom_point(chape = 22, size = 4, stroke = 2) +
   scale_colour_gradientb("RdYlGn", direction = -1) +
   scale_fill_gradientb("Blues", direction = -1)
 }

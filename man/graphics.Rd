@@ -13,11 +13,11 @@ gghist(x, ..., binwidth = NULL, bins = NULL)
 col2hex(color = grDevices::colors())
 }
 \arguments{
-\item{alpha, stroke}{passed to \code{geom_point}}
+\item{alpha, stroke}{passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}}
 
 \item{x}{vector}
 
-\item{...}{passed to geom_*()}
+\item{...}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} or \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}}
 
 \item{binwidth}{The width of the bins. Can be specified as a numeric value
 or as a function that calculates width from unscaled x. Here, "unscaled x"
@@ -37,10 +37,10 @@ bin width of a time variable is the number of seconds.}
 \item{color}{a character vector}
 }
 \description{
-\code{pch_plot} shows pch variations.
+\code{pch_plot()} shows pch variations.
 }
 \details{
-\code{gghist} is a simple alternative to \code{hist()}
+\code{gghist()} is a simple alternative to \code{\link[=hist]{hist()}}
 
-\code{col2hex} translates color name to hex.
+\code{col2hex()} translates color name to hex.
 }
