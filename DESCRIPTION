@@ -15,10 +15,8 @@ Suggests:
     DiagrammeR,
     DiagrammeRsvg,
     ggridges,
-    knitr,
     rmarkdown,
-    testthat (>= 3.0.0),
-    withr
+    testthat (>= 3.0.0)
 Imports:
     BiocManager,
     clipr,
@@ -26,6 +24,7 @@ Imports:
     dplyr,
     fs,
     ggplot2,
+    knitr,
     pkgbuild,
     purrr,
     readr,
@@ -36,7 +35,8 @@ Imports:
     styler,
     tibble,
     tidyr,
-    tidyselect
+    tidyselect,
+    withr
 URL: https://github.com/heavywatal/rwtl
 BugReports: https://github.com/heavywatal/rwtl/issues
 Roxygen: list(markdown = TRUE)
