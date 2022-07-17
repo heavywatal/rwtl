@@ -1,37 +1,42 @@
 #' Variations of `ggplot2::annotate()`
 #'
 #' @description
-#' `annotate_polygon()` is a shortcut of `ggplot2::annotate("polygon")`
+#' `annotate_regpolygon()` is a shortcut of `ggplot2::annotate("polygon")`
 #' to draw a regular polygon.
-#' @param x,y center coordinate
 #' @param n number of sides
 #' @param radius size of polygon
-#' @param stroke line width
-#' @param ... passed to `ggplot2::annotate("polygon")`
+#' @param x,y center coordinate
+#' @param start angle of the starting point
+#' @param linewidth,color passed to `ggplot2::annotate("path")`
+#' @param fill,... passed to `ggplot2::annotate("polygon")`
 #' @examples
 #' ggplot2::ggplot() +
-#'   annotate_polygon2(0, 0, n = 6L, radius = 5, fill = "#ffffff", color = "#333333", stroke = 6) +
-#'   annotate_polygon(0, 0, n = 6L, radius = 2, fill = "#C41A41")
+#'   annotate_regpolygon(6L, radius = 5, linewidth = 6, color = "#333333", fill = "#ffffff") +
+#'   annotate_regpolygon(6L, radius = 2, fill = "#C41A41") +
+#'   ggplot2::coord_fixed()
 #' @rdname ggannotate
 #' @export
-annotate_polygon = function(x, y, n = 6L, radius = 1, stroke = 1, ...) {
-  angle = seq_len(n) * 2 * pi / n + pi / 2
-  x = x + radius * cos(angle)
-  y = y + radius * sin(angle)
-  ggplot2::annotate("polygon", x = x, y = y, size = stroke, ...)
+annotate_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2,
+                               linewidth = 0, color = "#333333", fill = "#666666", ...) {
+  df = make_regpolygon(n, radius, x, y, start)
+  x = df[["x"]]
+  y = df[["y"]]
+  layers = list(
+    ggplot2::annotate("polygon", x = x, y = y, fill = fill, ...)
+  )
+  # linetype = "solid" can draw lines but linejoin is fixed to "round"
+  if (linewidth > 0) {
+    layers[[2]] = ggplot2::annotate("path",
+      x = x, y = y, size = linewidth, color = color, linejoin = "mitre"
+    )
+  }
+  layers
 }
 
-#' @description
-#' `annotate_polygon2()` has more control on line stroke.
-#' @param color,linejoin passed to `ggplot2::annotate("path")`
-#' @rdname ggannotate
-#' @export
-annotate_polygon2 = function(x, y, n = 6L, radius = 1, stroke = 1, color = "#666666", linejoin = "mitre", ...) {
-  angle = seq_len(n + 2L) * 2 * pi / n + pi / 2
-  x = x + radius * cos(angle)
-  y = y + radius * sin(angle)
-  list(
-    ggplot2::annotate("polygon", x = x, y = y, ...),
-    ggplot2::annotate("path", x = x, y = y, size = stroke, color = color, linejoin = linejoin)
+make_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2) {
+  angle = (seq_len(n + 2L) - 1L) * 2 * pi / n + start
+  tibble::tibble(
+    x = x + radius * cos(angle),
+    y = y + radius * sin(angle)
   )
 }
