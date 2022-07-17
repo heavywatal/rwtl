@@ -1,7 +1,7 @@
 #' Misc functions with ggplot2
 #'
-#' @details
-#' `insert_layer` insert layers to an arbitrary position
+#' @description
+#' `insert_layer()` insert layers to an arbitrary position
 #' @param p gg object
 #' @param ... layers to add
 #' @param after position; 0L is back
@@ -15,8 +15,8 @@ insert_layer = function(p, ..., after = 0L) {
   p
 }
 
-#' @details
-#' `ggsave_quartz` is a shortcut of `ggplot2::ggsave()` with quartz device.
+#' @description
+#' `ggsave_quartz()` is a shortcut of [ggplot2::ggsave()] with quartz device.
 #' @inheritParams ggplot2::ggsave
 #' @rdname ggmisc
 #' @export
@@ -32,8 +32,8 @@ ggsave_quartz = function(filename, plot = ggplot2::last_plot(), device = grDevic
   )
 }
 
-#' @details
-#' `mean_sd` calculates mean and sd for `ggplot2::stat_summary()`.
+#' @description
+#' `mean_sd()` calculates mean and sd for [ggplot2::stat_summary()].
 #' @inheritParams ggplot2::mean_se
 #' @rdname ggmisc
 #' @export
@@ -44,8 +44,8 @@ mean_sd = function(x, mult = 1.96) {
   data.frame(y = mu, ymin = mu - div, ymax = mu + div)
 }
 
-#' @details
-#' `label_none` removes `strip.text` while keeping `strip.background`.
+#' @description
+#' `label_none()` removes `strip.text` while keeping `strip.background`.
 #' @inheritParams ggplot2::label_value
 #' @rdname ggmisc
 #' @export

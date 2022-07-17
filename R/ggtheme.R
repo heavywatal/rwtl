@@ -1,6 +1,6 @@
 #' Shortcut for ggplot theme
 #'
-#' @details
+#' @description
 #' `theme_wtl()` is a slightly modified [ggplot2::theme_bw].
 #' @inheritParams ggplot2::theme_bw
 #' @rdname ggtheme
@@ -19,7 +19,7 @@ theme_wtl = function(base_size = 12, base_family = "") {
     )
 }
 
-#' @details
+#' @description
 #' `erase()` is a shortcut for `theme(... = element_blank())`.
 #' @param ... elements to be blank
 #' @param .names string vector of element names
@@ -32,7 +32,7 @@ erase = function(..., .names = NULL) {
   rlang::exec(ggplot2::theme, !!!rlang::set_names(elements, names))
 }
 
-#' @details
+#' @description
 #' `axis_line()` sets L-shaped axes.
 #' @inheritParams ggplot2::element_line
 #' @rdname ggtheme

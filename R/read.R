@@ -1,6 +1,6 @@
 #' Functions to read files
 #'
-#' @details
+#' @description
 #' `read_boost_ini()` reads an INI-like config file of boost::program_options.
 #' @param file filename or text
 #' @rdname read
@@ -12,7 +12,7 @@ read_boost_ini = function(file) {
   readr::read_tsv(I(tsv))
 }
 
-#' @details
+#' @description
 #' `read_pb()` reads paste board into data.frame.
 #' @rdname read
 #' @export

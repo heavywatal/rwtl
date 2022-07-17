@@ -1,6 +1,6 @@
 #' Functions related to file systems
 #'
-#' @details
+#' @description
 #' `is_outdated()` tests existence, size, and modification time of files.
 #' Note that it returns `TRUE` if a file is empty.
 #' @param path files to test

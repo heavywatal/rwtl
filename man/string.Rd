@@ -5,6 +5,8 @@
 \alias{str_c_coalesce}
 \alias{split_chr}
 \alias{rsplit}
+\alias{as_chr}
+\alias{as_code}
 \title{String utility}
 \usage{
 join(string, sep = "", na.rm = FALSE)
@@ -14,6 +16,10 @@ str_c_coalesce(..., sep = "", collapse = NULL)
 split_chr(string, pattern = "\\\\s+", n = Inf)
 
 rsplit(string, pattern = "\\\\s+", n = 42L)
+
+as_chr(...)
+
+as_code(x)
 }
 \arguments{
 \item{string}{Input vector. Either a character vector, or something
@@ -23,14 +29,7 @@ coercible to one.}
 
 \item{na.rm}{logical}
 
-\item{...}{One or more character vectors. Zero length arguments
-are removed. Short arguments are recycled to the length of the
-longest.
-
-Like most other R functions, missing values are "infectious": whenever
-a missing value is combined with another string the result will always
-be missing. Use \code{\link[stringr:str_replace_na]{str_replace_na()}} to convert \code{NA} to
-\code{"NA"}}
+\item{...}{expressions}
 
 \item{collapse}{Optional string used to combine input vectors into single
 string.}
@@ -55,11 +54,10 @@ possible split positions.
 
 For \code{str_split_fixed}, if n is greater than the number of pieces,
 the result will be padded with empty strings.}
+
+\item{x}{vector}
 }
 \description{
-String utility
-}
-\details{
 \code{join()} concatenats strings in a vector.
 
 \code{str_c_coalesce()} tries \code{\link[stringr:str_c]{stringr::str_c()}} first,
@@ -68,4 +66,8 @@ and falls back to \code{\link[dplyr:coalesce]{dplyr::coalesce()}}.
 \code{split_chr()} splits a string and return a flattened vector.
 
 \code{rsplit()} splits a string from right.
+
+\code{as_chr()} converts expr into character vector.
+
+\code{as_code()} converts a vector into R code that generates it.
 }

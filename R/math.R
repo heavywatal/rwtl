@@ -49,7 +49,8 @@ mantissa = function(x, base = exp(1)) {
   x / base**exponent(x, base)
 }
 
-#' `scientific_notation` splits number into mantissa and exponent
+#' @description
+#' `scientific_notation()` splits number into mantissa and exponent.
 #' @rdname math
 #' @export
 scientific_notation = function(x, base = 10) {

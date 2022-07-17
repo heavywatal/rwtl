@@ -15,7 +15,7 @@
 #' iris %G% !!vir
 #' iris %G% `-v seto | less`
 #' @inheritParams max_print
-#' @details
+#' @description
 #' `pipeshell()` and `%P%` send `x` to `command` via shell.
 #' @param command to which the text is sent; string or expression.
 #' @rdname pipe
@@ -40,7 +40,7 @@ pipeshell.data.frame = function(x, command, ..., n = getOption("max.print"), wid
   pipeshell(x, !!rlang::enquo(command))
 }
 
-#' @details
+#' @description
 #' `less()` print `x` in `getOption('pager')`. The operation is in-memory and
 #' efficient than `page(x, method='print')` that involves a temporary file.
 #' @rdname pipe
@@ -49,7 +49,7 @@ less = function(x, ...) {
   pipeshell(x, command = !!getOption("pager"), ...)
 }
 
-#' @details
+#' @description
 #' `egrep()` and `%G%` are shorthand for `x %P% "egrep {expr}"`.
 #' @param expr arguments to `egrep`; string or expression.
 #' @rdname pipe
@@ -74,7 +74,7 @@ sinkpipe = function(expr, command) {
   )
 }
 
-#' @details
+#' @description
 #' `redirect()` evaluates `expr` while `sink(file)` is in operation.
 #' @inheritParams base::sink
 #' @rdname pipe

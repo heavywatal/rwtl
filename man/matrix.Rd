@@ -31,9 +31,6 @@ printmat(
 \item{...}{passed to \code{print()}.}
 }
 \description{
-Utilities for matrix
-}
-\details{
 \code{printmat()} supports triangular printing of a matrix.
 }
 \seealso{

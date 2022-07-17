@@ -21,7 +21,5 @@ evenness(species)
 \item{species}{a factor vector}
 }
 \description{
-Diversity index
-
-\code{evenness} calculates H / H_max
+\code{evenness()} calculates H / H_max
 }

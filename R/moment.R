@@ -19,6 +19,7 @@ skewness = function(x) {
   m3 / (m2**1.5)
 }
 
+#' @description
 #' kurtosis - 3 is called excess kurtosis, which is 0 for normal distribution
 #' @rdname moment
 #' @export

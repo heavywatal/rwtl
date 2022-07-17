@@ -32,11 +32,8 @@ show_print_options()
 \item{width}{maximum number of columns to print}
 }
 \description{
-Utilities for printing
-}
-\details{
 \code{printdf()} is a simple cherry-picking from
-\code{tibble:::print.tbl} and \code{data.frame:::print.data.table}.
+\code{\link[tibble:formatting]{tibble::print.tbl()}} and \code{data.frame:::print.data.table}.
 
 \code{max_print()} prints as many elements in a big tibble as possible.
 

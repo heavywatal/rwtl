@@ -1,6 +1,6 @@
 #' Utilities for matrix
 #'
-#' @details
+#' @description
 #' `printmat()` supports triangular printing of a matrix.
 #' @param x a numeric matrix.
 #' @param upper,lower,diag a logical value.

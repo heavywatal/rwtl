@@ -15,13 +15,10 @@ labels_log10(breaks)
 \item{breaks}{numeric}
 }
 \description{
-Helper functions to make labels in ggplot
-}
-\details{
-\code{breaks_log10} makes powers of ten for
+\code{breaks_log10()} makes powers of ten for
 the \code{breaks} argument of \verb{ggplot2::scale_*_log10()}.
 
-\code{labels_log10} is an axis label formatter to be passed to
+\code{labels_log10()} is an axis label formatter to be passed to
 the \code{labels} argument of \verb{ggplot2::scale_*_log10()}.
 }
 \examples{

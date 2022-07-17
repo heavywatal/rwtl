@@ -1,7 +1,7 @@
 #' Parse command line arguments
 #'
-#' @details
-#' `command_args` is an extention of `commandArgs()`.
+#' @description
+#' `command_args()` is an extention of [base::commandArgs()].
 #' @rdname command
 #' @export
 command_args = function() {

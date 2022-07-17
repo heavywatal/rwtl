@@ -1,6 +1,6 @@
 #' String utility
 #'
-#' @details
+#' @description
 #' `join()` concatenats strings in a vector.
 #' @inheritParams stringr::str_c
 #' @param na.rm logical
@@ -11,7 +11,7 @@ join = function(string, sep = "", na.rm = FALSE) {
   stringr::str_c(string, collapse = sep)
 }
 
-#' @details
+#' @description
 #' `str_c_coalesce()` tries [stringr::str_c()] first,
 #' and falls back to [dplyr::coalesce()].
 #' @rdname string
@@ -23,7 +23,7 @@ str_c_coalesce = function(..., sep = "", collapse = NULL) {
   )
 }
 
-#' @details
+#' @description
 #' `split_chr()` splits a string and return a flattened vector.
 #' @inheritParams stringr::str_split
 #' @rdname string
@@ -32,7 +32,7 @@ split_chr = function(string, pattern = "\\s+", n = Inf) {
   stringr::str_split(string, pattern, n) |> purrr::flatten_chr()
 }
 
-#' @details
+#' @description
 #' `rsplit()` splits a string from right.
 #' @rdname string
 #' @export
@@ -41,9 +41,33 @@ rsplit = function(string, pattern = "\\s+", n = 42L) {
   stringr::str_split(string, pattern)
 }
 
+#' @description
+#' `as_chr()` converts expr into character vector.
+#' @param ... expressions
+#' @rdname string
+#' @export
+as_chr = function(...) {
+  rlang::quos(...) |>
+    purrr::map_chr(rlang::as_name) |>
+    unname()
+}
+
+#' @description
+#' `as_code()` converts a vector into R code that generates it.
+#' @param x vector
+#' @rdname string
+#' @export
+as_code = function(x) {
+  if (is.character(x)) {
+    x = paste0('"', x, '"')
+  }
+  x = toString(x)
+  paste0("c(", x, ")")
+}
+
 #' Conversion between character and integer code point
 #'
-#' @details
+#' @description
 #' `ord()` is a pythonic alias of `charToRaw()`.
 #' @param char character
 #' @rdname chr
@@ -52,34 +76,11 @@ ord = function(char) {
   strtoi(charToRaw(char), 16L)
 }
 
-#' @details
+#' @description
 #' `chr()` is a pythonic alias of `intToUtf8()`.
 #' @param i integer
 #' @rdname chr
 #' @export
 chr = function(i) {
   intToUtf8(i)
-}
-
-#' @details
-#' `as_chr()` converts expr into character vector.
-#' @param ... expressions
-#' @rdname chr
-#' @export
-as_chr = function(...) {
-  rlang::quos(...) |>
-    purrr::map_chr(rlang::as_name) |>
-    unname()
-}
-
-#' `as_code()` converts a vector into R code that generates it.
-#' @param x vector
-#' @rdname as_code
-#' @export
-as_code = function(x) {
-  if (is.character(x)) {
-    x = paste0('"', x, '"')
-  }
-  x = toString(x)
-  paste0("c(", x, ")")
 }

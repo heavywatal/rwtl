@@ -38,9 +38,6 @@ as_int_matrix(samples, byrow = FALSE)
 \code{as_int_matrix()} returns an integer matrix
 }
 \description{
-Functions to run ms and parse ms-like output
-}
-\details{
 \code{ms()} executes ms as an external program.
 
 \code{parse_ms()} transforms ms-like output into a list of matrices.

@@ -34,9 +34,6 @@ redirect(expr, file = "/dev/null")
     file to write to, or \code{NULL} to stop sink-ing.}
 }
 \description{
-Pipe text to system commands
-}
-\details{
 \code{pipeshell()} and \verb{\%P\%} send \code{x} to \code{command} via shell.
 
 \code{less()} print \code{x} in \code{getOption('pager')}. The operation is in-memory and

@@ -1,7 +1,7 @@
 #' Parallel execution in the purrr::map style
 #'
-#' @details
-#' `mcmap` is a variant of `parallel::mclapply` that accepts a formula as `.f`.
+#' @description
+#' `mcmap()` is a variant of [parallel::mclapply()] that accepts a formula as `.f`.
 #' @inheritParams purrr::map
 #' @param .mc.cores integer
 #' @rdname parallel

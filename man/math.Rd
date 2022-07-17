@@ -43,7 +43,5 @@ scientific_notation(x, base = 10)
 \item{x0}{a numeric vector}
 }
 \description{
-Shortcut to mathematical functions
-
-\code{scientific_notation} splits number into mantissa and exponent
+\code{scientific_notation()} splits number into mantissa and exponent.
 }

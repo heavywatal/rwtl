@@ -15,12 +15,9 @@ split_consecutive(x)
 \item{n}{an integer}
 }
 \description{
-Utilities for vector
-}
-\details{
-\code{\link[=twist]{twist()}} cycles a vector
+\code{twist()} cycles a vector.
 
-\code{\link[=split_consecutive]{split_consecutive()}} groups consecutive integers.
+\code{split_consecutive()} groups consecutive integers.
 }
 \seealso{
 \code{\link[dplyr:lead-lag]{dplyr::lead()}}, \code{\link[dplyr:lead-lag]{dplyr::lag()}}

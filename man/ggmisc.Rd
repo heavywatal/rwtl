@@ -66,14 +66,11 @@ element, but faceting over multiple factors entails multiple
 label variables.}
 }
 \description{
-Misc functions with ggplot2
-}
-\details{
-\code{insert_layer} insert layers to an arbitrary position
+\code{insert_layer()} insert layers to an arbitrary position
 
-\code{ggsave_quartz} is a shortcut of \code{ggplot2::ggsave()} with quartz device.
+\code{ggsave_quartz()} is a shortcut of \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}} with quartz device.
 
-\code{mean_sd} calculates mean and sd for \code{ggplot2::stat_summary()}.
+\code{mean_sd()} calculates mean and sd for \code{\link[ggplot2:stat_summary]{ggplot2::stat_summary()}}.
 
-\code{label_none} removes \code{strip.text} while keeping \code{strip.background}.
+\code{label_none()} removes \code{strip.text} while keeping \code{strip.background}.
 }

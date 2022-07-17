@@ -21,19 +21,40 @@ reprex_tidyverse(n = 8L, venue = "r", show = FALSE)
 
 \item{pattern}{R expression}
 
-\item{n}{maximum number of rows to print}
+\item{n}{passed to \code{pillar.print_max}}
 
-\item{venue}{character; see \link[reprex:reprex]{reprex::reprex}}
+\item{venue}{Character. Must be one of the following (case insensitive):
+\itemize{
+\item "gh" for \href{https://github.github.com/gfm/}{GitHub-Flavored Markdown}, the
+default
+\item "r" for a runnable R script, with commented output interleaved. Also useful
+for \href{https://slack.com/intl/en-ca/slack-tips/share-code-snippets}{Slack code snippets};
+select "R" from the "Type" drop-down menu to enjoy nice syntax
+highlighting.
+\item "rtf" for
+\href{https://en.wikipedia.org/wiki/Rich_Text_Format}{Rich Text Format}
+(not supported for un-reprexing)
+\item "html" for an HTML fragment suitable for inclusion in a larger HTML
+document (not supported for un-reprexing)
+\item "slack" for pasting into a Slack message. Works best if you opt out of
+Slack's WYSIWYG interface and, instead, go to \strong{Preferences > Advanced}
+and select "Format messages with markup".
+\item "so" for
+\href{https://stackoverflow.com/editing-help#syntax-highlighting}{Stack Overflow Markdown}.
+Note: this is just an alias for "gh", since Stack Overflow started to
+support CommonMark-style fenced code blocks in January 2019.
+\item "ds" for Discourse, e.g.,
+\href{https://community.rstudio.com}{community.rstudio.com}. Note: this is
+currently just an alias for "gh".
+}}
 
-\item{show}{logical}
+\item{show}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} in favor of \code{html_preview},
+for greater consistency with other R Markdown output formats.}
 }
 \description{
-Utility functions
-}
-\details{
-\code{easierprof} is a simple wrapper of \code{Rprof()} and \code{summaryRprof()}.
+\code{easierprof()} is a simple wrapper of \code{\link[utils:Rprof]{utils::Rprof()}} and \code{\link[utils:summaryRprof]{utils::summaryRprof()}}.
 
-\code{getenv} converts a result of \code{Sys.getenv()} to data.frame.
+\code{getenv()} converts a result of \code{\link[=Sys.getenv]{Sys.getenv()}} to data.frame.
 
-\code{reprex_tidyverse} wraps \link[reprex:reprex]{reprex::reprex}
+\code{reprex_tidyverse()} wraps \code{\link[reprex:reprex]{reprex::reprex()}}
 }

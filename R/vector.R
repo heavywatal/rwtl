@@ -1,7 +1,7 @@
 #' Utilities for vector
 #'
-#' @details
-#' [twist()] cycles a vector
+#' @description
+#' `twist()` cycles a vector.
 #' @param x a vector
 #' @param n an integer
 #' @rdname vector
@@ -16,8 +16,8 @@ twist = function(x, n) {
   }
 }
 
-#' @details
-#' [split_consecutive()] groups consecutive integers.
+#' @description
+#' `split_consecutive()` groups consecutive integers.
 #' @rdname vector
 #' @export
 split_consecutive = function(x) {

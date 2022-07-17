@@ -3,29 +3,19 @@
 \name{ord}
 \alias{ord}
 \alias{chr}
-\alias{as_chr}
 \title{Conversion between character and integer code point}
 \usage{
 ord(char)
 
 chr(i)
-
-as_chr(...)
 }
 \arguments{
 \item{char}{character}
 
 \item{i}{integer}
-
-\item{...}{expressions}
 }
 \description{
-Conversion between character and integer code point
-}
-\details{
 \code{ord()} is a pythonic alias of \code{charToRaw()}.
 
 \code{chr()} is a pythonic alias of \code{intToUtf8()}.
-
-\code{as_chr()} converts expr into character vector.
 }

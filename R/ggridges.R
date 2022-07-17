@@ -1,7 +1,7 @@
 #' Helper functions to enhance ggridges package
 #'
-#' @details
-#' [ridges2bars()] adds data points for [ggridges::geom_ridgeline()]
+#' @description
+#' `ridges2bars()` adds data points for [ggridges::geom_ridgeline()]
 #' to make bar-shaped ridgelines.
 #' @param .data data.frame
 #' @param x,height Columns to transform

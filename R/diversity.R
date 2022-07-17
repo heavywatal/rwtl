@@ -16,7 +16,8 @@ simpson_index = function(freqs) {
   sum(freqs**2)
 }
 
-#' `evenness` calculates H / H_max
+#' @description
+#' `evenness()` calculates H / H_max
 #' @param species a factor vector
 #' @rdname diversity
 #' @export

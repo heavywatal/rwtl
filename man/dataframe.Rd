@@ -39,9 +39,6 @@ Because \code{across()} is used within functions like \code{summarise()} and
 \code{mutate()}, you can't select or compute upon grouping variables.}
 }
 \description{
-Utilities for data.frame
-}
-\details{
 \code{move_left()} moves specified columns to the left.
 
 \code{mutate_left()} adds new columns to the left.

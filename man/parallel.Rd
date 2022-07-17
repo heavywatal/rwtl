@@ -56,8 +56,5 @@ variable will be created.
 Only applies to \verb{_dfr} variant.}
 }
 \description{
-Parallel execution in the purrr::map style
-}
-\details{
-\code{mcmap} is a variant of \code{parallel::mclapply} that accepts a formula as \code{.f}.
+\code{mcmap()} is a variant of \code{\link[parallel:mclapply]{parallel::mclapply()}} that accepts a formula as \code{.f}.
 }

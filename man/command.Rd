@@ -7,8 +7,5 @@
 command_args()
 }
 \description{
-Parse command line arguments
-}
-\details{
-\code{command_args} is an extention of \code{commandArgs()}.
+\code{command_args()} is an extention of \code{\link[base:commandArgs]{base::commandArgs()}}.
 }

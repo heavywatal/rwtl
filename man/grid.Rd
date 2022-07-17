@@ -22,13 +22,14 @@ as_gg(grob, base_size = 12, base_family = "sans")
 
 \item{grob}{graphical object}
 
-\item{base_size, base_family}{see ggplot2::ggtheme}
+\item{base_size}{base font size, given in pts.}
+
+\item{base_family}{base font family}
 }
 \description{
-\code{gprint} is a shortcut for grid::grid.draw().
-}
-\details{
-\code{grid.draw.list} enables writing multi-page PDF via ggsave().
+\code{gprint()} is a shortcut for \code{\link[grid:grid.draw]{grid::grid.draw()}}.
 
-\code{as_gg} converts grob to gg.
+\code{grid.draw.list()} enables writing multi-page PDF via \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}.
+
+\code{as_gg()} converts grob to gg.
 }

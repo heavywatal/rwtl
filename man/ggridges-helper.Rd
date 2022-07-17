@@ -14,10 +14,7 @@ ridges2bars(.data, x, height, width = 0.9)
 \item{width}{Bar width.}
 }
 \description{
-Helper functions to enhance ggridges package
-}
-\details{
-\code{\link[=ridges2bars]{ridges2bars()}} adds data points for \code{\link[ggridges:geom_ridgeline]{ggridges::geom_ridgeline()}}
+\code{ridges2bars()} adds data points for \code{\link[ggridges:geom_ridgeline]{ggridges::geom_ridgeline()}}
 to make bar-shaped ridgelines.
 }
 \examples{

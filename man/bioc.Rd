@@ -36,8 +36,5 @@ binary, source) to check validity against; see
 \code{BiocManager::install()} returns the \code{pkgs} argument, invisibly.
 }
 \description{
-Install or update Bioconductor, CRAN, and GitHub packages
-}
-\details{
 \code{bioc_install()} and \code{bioc_valid()} are thin wrappers of BiocManager functions.
 }

@@ -1,6 +1,7 @@
 #' Wrappers of grid functions
 #'
-#' `gprint` is a shortcut for grid::grid.draw().
+#' @description
+#' `gprint()` is a shortcut for [grid::grid.draw()].
 #' @param newpage logical
 #' @inheritParams grid::grid.draw
 #' @rdname grid
@@ -11,8 +12,8 @@ gprint = function(x, newpage = TRUE, recording = FALSE) {
   invisible(x)
 }
 
-#' @details
-#' `grid.draw.list` enables writing multi-page PDF via ggsave().
+#' @description
+#' `grid.draw.list()` enables writing multi-page PDF via [ggplot2::ggsave()].
 #' @inheritParams grid::grid.draw
 #' @importFrom grid grid.draw
 #' @method grid.draw list
@@ -23,10 +24,10 @@ grid.draw.list = function(x, recording = FALSE) {
   invisible(x)
 }
 
-#' @details
-#' `as_gg` converts grob to gg.
+#' @description
+#' `as_gg()` converts grob to gg.
 #' @param grob graphical object
-#' @param base_size,base_family see ggplot2::ggtheme
+#' @inheritParams ggplot2::theme_void
 #' @rdname grid
 #' @export
 as_gg = function(grob, base_size = 12, base_family = "sans") {

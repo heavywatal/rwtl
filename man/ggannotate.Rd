@@ -32,10 +32,8 @@ annotate_polygon2(
 \item{color, linejoin}{passed to \code{ggplot2::annotate("path")}}
 }
 \description{
-Variations of \code{ggplot2::annotate()}
-}
-\details{
-\code{annotate_polygon()} is a shortcut of \code{ggplot2::annotate("polygon")}.
+\code{annotate_polygon()} is a shortcut of \code{ggplot2::annotate("polygon")}
+to draw a regular polygon.
 
 \code{annotate_polygon2()} has more control on line stroke.
 }

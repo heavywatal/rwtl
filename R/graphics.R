@@ -1,5 +1,6 @@
 #' Utilities for graphics
 #'
+#' @description
 #' `pch_plot()` shows pch variations.
 #' @param alpha,stroke passed to [ggplot2::geom_point()]
 #' @rdname graphics
@@ -20,7 +21,7 @@ pch_plot = function(alpha = 1, stroke = 1) {
     ggplot2::theme_void()
 }
 
-#' @details
+#' @description
 #' `gghist()` is a simple alternative to [hist()]
 #' @param x vector
 #' @param ... passed to [ggplot2::geom_histogram()] or [ggplot2::geom_bar()]
@@ -36,7 +37,7 @@ gghist = function(x, ..., binwidth = NULL, bins = NULL) {
   }
 }
 
-#' @details
+#' @description
 #' `col2hex()` translates color name to hex.
 #' @param color a character vector
 #' @rdname graphics

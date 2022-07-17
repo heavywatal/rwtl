@@ -1,6 +1,6 @@
 #' Utilities for data.frame
 #'
-#' @details
+#' @description
 #' `move_left()` moves specified columns to the left.
 #' @param .data tibble
 #' @param ... colnames or expressions
@@ -10,7 +10,7 @@ move_left = function(.data, ...) {
   dplyr::select(.data, ..., dplyr::everything())
 }
 
-#' @details
+#' @description
 #' `mutate_left()` adds new columns to the left.
 #' @rdname dataframe
 #' @export
@@ -19,7 +19,7 @@ mutate_left = function(.data, ...) {
     move_left(names(rlang::quos(...)))
 }
 
-#' @details
+#' @description
 #' `dedfcol()` and `dedfcol_all()` dissolve data.frame columns in a tibble.
 #' @param at target column
 #' @rdname dataframe
@@ -42,7 +42,7 @@ dedfcol_all = function(.data) {
   .data
 }
 
-#' @details
+#' @description
 #' `demtrxcol()` and `demtrxcol_all()` dissolve matrix columns in a tibble.
 #' @rdname dataframe
 #' @export

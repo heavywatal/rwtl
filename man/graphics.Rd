@@ -38,8 +38,7 @@ bin width of a time variable is the number of seconds.}
 }
 \description{
 \code{pch_plot()} shows pch variations.
-}
-\details{
+
 \code{gghist()} is a simple alternative to \code{\link[=hist]{hist()}}
 
 \code{col2hex()} translates color name to hex.

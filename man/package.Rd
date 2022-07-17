@@ -41,11 +41,8 @@ arguments to be passed to \verb{R CMD INSTALL}. This defaults to the
 value of the option \code{"devtools.install.args"}.}
 }
 \description{
-Package utilities
-}
-\details{
 \code{document_install()} is a quick shortcut of \code{\link[devtools:install]{devtools::install()}}
-following \code{devtools::document()}.
+following \code{\link[devtools:document]{devtools::document()}}.
 
 \code{chk()} and \code{tst()} are thin wrappers of \code{\link[devtools:check]{devtools::check()}} and \code{\link[testthat:test_package]{testthat::test_local()}}.
 }

@@ -23,7 +23,5 @@ bimodality(x)
 \item{n}{length of x}
 }
 \description{
-Moment for arbitrary order
-
 kurtosis - 3 is called excess kurtosis, which is 0 for normal distribution
 }

@@ -9,9 +9,9 @@
 #' @param n maximum number of rows to print
 #' @param summarize print class(x) and dim(x) if TRUE
 #' @param ... further arguments passed to `print`
-#' @details
+#' @description
 #' `printdf()` is a simple cherry-picking from
-#' `tibble:::print.tbl` and `data.frame:::print.data.table`.
+#' [tibble::print.tbl()] and `data.frame:::print.data.table`.
 #' @rdname print
 #' @export
 printdf = function(x, n = getOption("pillar.print_max", 30L),
@@ -127,7 +127,7 @@ printdf_summary = function(x) {
   }
 }
 
-#' @details
+#' @description
 #' `max_print()` prints as many elements in a big tibble as possible.
 #' @param width maximum number of columns to print
 #' @rdname print
@@ -139,7 +139,7 @@ max_print = function(x, n = getOption("max.print"), width = Inf, ...) {
   })
 }
 
-#' @details
+#' @description
 #' `generate_print_options()` translates `n` and stty size to a list of options.
 #' @rdname print
 #' @export
@@ -162,7 +162,7 @@ generate_print_options = function(n = 30L) {
   }
 }
 
-#' @details
+#' @description
 #' `show_print_options()` prints the current values of print options.
 #' @rdname print
 #' @export

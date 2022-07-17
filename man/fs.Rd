@@ -12,9 +12,6 @@ is_outdated(path, prerequisites = character(0L))
 \item{prerequisites}{comparables}
 }
 \description{
-Functions related to file systems
-}
-\details{
 \code{is_outdated()} tests existence, size, and modification time of files.
 Note that it returns \code{TRUE} if a file is empty.
 }

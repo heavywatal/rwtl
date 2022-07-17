@@ -1,7 +1,7 @@
 #' Utility functions
 #'
-#' @details
-#' `easierprof` is a simple wrapper of `Rprof()` and `summaryRprof()`.
+#' @description
+#' `easierprof()` is a simple wrapper of [utils::Rprof()] and [utils::summaryRprof()].
 #' @param expr R expression
 #' @param interval numeric
 #' @param memory logical
@@ -15,8 +15,8 @@ easierprof = function(expr, interval = 0.02, memory = FALSE) {
   utils::summaryRprof(.tmpfile, memory = ifelse(memory, "both", "none"))
 }
 
-#' @details
-#' `getenv` converts a result of `Sys.getenv()` to data.frame.
+#' @description
+#' `getenv()` converts a result of [Sys.getenv()] to data.frame.
 #' @param pattern R expression
 #' @rdname utils
 #' @export
@@ -30,11 +30,10 @@ getenv = function(pattern = NULL) {
   env
 }
 
-#' @details
-#' `reprex_tidyverse` wraps [reprex::reprex]
-#' @inheritParams printdf
-#' @param venue character; see [reprex::reprex]
-#' @param show logical
+#' @description
+#' `reprex_tidyverse()` wraps [reprex::reprex()]
+#' @param n passed to `pillar.print_max`
+#' @inheritParams reprex::reprex
 #' @rdname utils
 #' @export
 reprex_tidyverse = function(n = 8L, venue = "r", show = FALSE) {
