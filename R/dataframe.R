@@ -1,22 +1,12 @@
 #' Utilities for data.frame
 #'
 #' @description
-#' `move_left()` moves specified columns to the left.
-#' @param .data tibble
-#' @param ... colnames or expressions
-#' @rdname dataframe
-#' @export
-move_left = function(.data, ...) {
-  dplyr::select(.data, ..., dplyr::everything())
-}
-
-#' @description
 #' `mutate_left()` adds new columns to the left.
 #' @rdname dataframe
 #' @export
 mutate_left = function(.data, ...) {
   dplyr::mutate(.data, ...) |>
-    move_left(names(rlang::quos(...)))
+    dplyr::relocate(names(rlang::quos(...)))
 }
 
 #' @description

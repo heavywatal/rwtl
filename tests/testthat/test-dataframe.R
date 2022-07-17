@@ -1,9 +1,7 @@
 test_that("*_left work", {
-  x = data.frame(y = 2L, z = 3L)
-  e = data.frame(z = 3L, y = 2L)
-  expect_identical(move_left(x, z), e)
+  d = data.frame(y = 2L, z = 3L)
   e = data.frame(x = 1L, y = 2L, z = 3L)
-  expect_identical(mutate_left(x, x = 1L), e)
+  expect_identical(mutate_left(d, x = 1L), e)
 })
 
 test_that("append_df works", {
