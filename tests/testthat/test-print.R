@@ -14,6 +14,11 @@ test_that("printdf works", {
   potus = ggplot2::presidential |> dplyr::mutate(end = as.POSIXct(end))
   expect_output(printdf(potus), "<date>\\s+<dttm>")
   expect_output(printdf(tibble::tibble(presidents)), "<ts>")
+  m = matrix(seq_len(2L), nrow = 1L)
+  colnames(m) = c("a", "b")
+  packed = tibble::tibble(v = 1, d = data.frame(a = 2, b = 3), m)
+  expect_output(printdf(packed), "tbl_df \\[1 x 3\\]")
+  expect_output(printdf(packed), "v\\s+d\\$a\\s+d\\$b\\s+m\\[,a\\]\\s+\\[,b\\]")
 })
 
 test_that("max_print works", {
