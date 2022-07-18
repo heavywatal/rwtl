@@ -25,10 +25,12 @@ center_range(.data, .cols)
 class_at(.data, .cols)
 }
 \arguments{
+\item{.data}{a data.frame.}
+
 \item{...}{Additional arguments for the function calls in \code{.fns}. Using these
 \code{...} is strongly discouraged because of issues of timing of evaluation.}
 
-\item{at}{target column}
+\item{at}{target column.}
 
 \item{.cols}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> Columns to transform.
 Because \code{across()} is used within functions like \code{summarise()} and

@@ -2,6 +2,7 @@
 #'
 #' @description
 #' `mutate_left()` adds new columns to the left.
+#' @param .data a data.frame.
 #' @rdname dataframe
 #' @export
 mutate_left = function(.data, ...) {
@@ -11,7 +12,7 @@ mutate_left = function(.data, ...) {
 
 #' @description
 #' `dedfcol()` and `dedfcol_all()` dissolve data.frame columns in a tibble.
-#' @param at target column
+#' @param at target column.
 #' @rdname dataframe
 #' @export
 dedfcol = function(.data, at) {
@@ -91,32 +92,4 @@ crossing_rep = function(x, times = 1L) {
   x = rep.int(list(x), times)
   x = stats::setNames(x, paste0("v", seq_len(times)))
   purrr::invoke(tidyr::crossing, x)
-}
-
-#' Get rle (run-length encoding) as tibble.
-#' @param x atomic vector
-#' @param .name column name in output
-#' @return tbl with start and end index columns
-#' @seealso [rle()]
-#' @rdname rle_df
-#' @export
-rle_df = function(x, .name = "value") {
-  x = rle(x)
-  tibble::tibble(
-    !!.name := x[["values"]],
-    start = 0L,
-    end = cumsum(x[["lengths"]])
-  ) |>
-    dplyr::mutate(start = dplyr::lag(.data[["end"]], 1L, 0L) + 1L)
-}
-
-#' `table_df()` counts elements in a vector.
-#' @param ... atomic vector
-#' @rdname rle_df
-#' @export
-#' @seealso [table()]
-table_df = function(..., .name = "n") {
-  ls = list(...)
-  df = tibble::new_tibble(ls, nrow = length(ls[[1L]]))
-  dplyr::count(df, !!!rlang::syms(names(ls)), name = .name)
 }
