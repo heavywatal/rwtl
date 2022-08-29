@@ -10,7 +10,7 @@ easierprof(expr, interval = 0.02, memory = FALSE)
 
 getenv(pattern = NULL)
 
-reprex_tidyverse(n = 8L, venue = "r", show = FALSE)
+reprex_tidyverse(n = 8L, venue = "r", html_preview = FALSE)
 }
 \arguments{
 \item{expr}{R expression}
@@ -36,9 +36,11 @@ highlighting.
 (not supported for un-reprexing)
 \item "html" for an HTML fragment suitable for inclusion in a larger HTML
 document (not supported for un-reprexing)
-\item "slack" for pasting into a Slack message. Works best if you opt out of
-Slack's WYSIWYG interface and, instead, go to \strong{Preferences > Advanced}
-and select "Format messages with markup".
+\item "slack" for pasting into a Slack message. Optimized for people who opt out
+of Slack's WYSIWYG interface. Go to
+\strong{Preferences > Advanced > Input options} and select "Format messages with
+markup". (If there is demand for a second Slack venue optimized for use
+with WYSIWYG, please open an issue to discuss.)
 \item "so" for
 \href{https://stackoverflow.com/editing-help#syntax-highlighting}{Stack Overflow Markdown}.
 Note: this is just an alias for "gh", since Stack Overflow started to
@@ -48,8 +50,9 @@ support CommonMark-style fenced code blocks in January 2019.
 currently just an alias for "gh".
 }}
 
-\item{show}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} in favor of \code{html_preview},
-for greater consistency with other R Markdown output formats.}
+\item{html_preview}{Logical. Whether to show rendered output in a viewer
+(RStudio or browser). Always \code{FALSE} in a noninteractive session. Read more
+about \code{\link[reprex:opt]{opt()}}.}
 }
 \description{
 \code{easierprof()} is a simple wrapper of \code{\link[utils:Rprof]{utils::Rprof()}} and \code{\link[utils:summaryRprof]{utils::summaryRprof()}}.

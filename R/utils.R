@@ -36,14 +36,14 @@ getenv = function(pattern = NULL) {
 #' @inheritParams reprex::reprex
 #' @rdname utils
 #' @export
-reprex_tidyverse = function(n = 8L, venue = "r", show = FALSE) {
+reprex_tidyverse = function(n = 8L, venue = "r", html_preview = FALSE) {
   reprex::reprex(input = c(
     "library(tidyverse)",
     "registerS3method(\"print\", \"tbl_df\", wtl::printdf)",
     sprintf("options(pillar.print_max = %dL)", n),
     "",
     clipr::read_clip() |> stringr::str_subset("^#>", negate = TRUE)
-  ), venue = venue, show = show)
+  ), venue = venue, html_preview = html_preview)
   clipr::read_clip() |>
     utils::tail(-4L) |>
     clipr::write_clip()
