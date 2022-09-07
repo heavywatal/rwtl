@@ -31,6 +31,6 @@ table_df = function(..., name = "n") {
   x = rlang::eval_tidy(qx[[1L]])
   tab = table(x)
   lhs = names(qx)[[1L]]
-  rhs = as.vector(names(tab), mode = mode(x))
+  rhs = as.vector(names(tab), mode = typeof(x))
   tibble::new_tibble(tibble::lst(!!lhs := rhs, !!name := as.integer(tab)))
 }
