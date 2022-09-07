@@ -2,20 +2,27 @@
 % Please edit documentation in R/tibbled.R
 \name{rle_df}
 \alias{rle_df}
+\alias{rle_ranges}
 \alias{table_df}
 \title{Tibbled version of base R functions}
 \usage{
-rle_df(x, name = "value")
+rle_df(x)
 
-table_df(x, name = "n")
+rle_ranges(...)
+
+table_df(..., name = "n")
 }
 \arguments{
-\item{x}{atomic vector}
+\item{x, ...}{Atomic vector}
 
-\item{name}{column name in output}
+\item{name}{The name of the new column in the output.}
 }
 \description{
-Tibbled version of base R functions
+\code{rle_df()} returns a tibbled rle.
+
+\code{rle_ranges()} returns an IRanges-like tibble.
+
+\code{table_df()} returns a tibbled table.
 }
 \seealso{
 \code{\link[=rle]{rle()}}
