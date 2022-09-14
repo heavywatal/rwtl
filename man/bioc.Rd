@@ -2,19 +2,17 @@
 % Please edit documentation in R/package.R
 \name{bioc_install}
 \alias{bioc_install}
-\alias{bioc_valid}
 \title{Install or update Bioconductor, CRAN, and GitHub packages}
 \usage{
-bioc_install(
-  ...,
-  update = FALSE,
-  ask = interactive(),
-  type = binary_if_macos()
-)
-
-bioc_valid(..., type = binary_if_macos())
+bioc_install(pkgs, ..., update = FALSE, ask = interactive())
 }
 \arguments{
+\item{pkgs}{\code{character()} vector of package names to install or
+update.  A missing value updates installed packages according
+to \verb{update =} and \verb{ask =}. Package names containing a '/' are
+treated as GitHub repositories and installed using
+\code{remotes::install_github()}.}
+
 \item{...}{Additional arguments used by \code{install.packages()}.}
 
 \item{update}{\code{logical(1)}. When \code{FALSE}, \code{BiocManager::install()}
@@ -27,14 +25,10 @@ whether to update all outdated packages without further
 prompting, to pick packages to update, or to cancel updating
 (in a non-interactive session, no packages will be updated
 unless \code{ask = FALSE}).}
-
-\item{type}{character(1) The type of available package (e.g.,
-binary, source) to check validity against; see
-\verb{\\link{available.packages}()}.}
 }
 \value{
 \code{BiocManager::install()} returns the \code{pkgs} argument, invisibly.
 }
 \description{
-\code{bioc_install()} and \code{bioc_valid()} are thin wrappers of BiocManager functions.
+\code{bioc_install()} is a thin wrapper of \code{\link[BiocManager:install]{BiocManager::install()}}.
 }

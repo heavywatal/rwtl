@@ -4,6 +4,8 @@
 \alias{document_install}
 \alias{chk}
 \alias{tst}
+\alias{update_packages}
+\alias{old_packages}
 \title{Package utilities}
 \usage{
 document_install(pkg = ".", build = FALSE, upgrade = FALSE, ...)
@@ -11,6 +13,10 @@ document_install(pkg = ".", build = FALSE, upgrade = FALSE, ...)
 chk(pkg = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...)
 
 tst(pkg = ".", ...)
+
+update_packages(..., bioc = FALSE, ask = interactive())
+
+old_packages(..., bioc = FALSE)
 }
 \arguments{
 \item{pkg}{The package to use, can be a file path to the package or a
@@ -39,10 +45,24 @@ when installing dependencies.}
 \item{args}{An optional character vector of additional command line
 arguments to be passed to \verb{R CMD INSTALL}. This defaults to the
 value of the option \code{"devtools.install.args"}.}
+
+\item{bioc}{A logical.}
+
+\item{ask}{Whether to ask for confirmation when installing a different
+version of a package that is already installed. Installations that only
+add new packages never require confirmation.}
 }
 \description{
 \code{document_install()} is a quick shortcut of \code{\link[devtools:install]{devtools::install()}}
 following \code{\link[devtools:document]{devtools::document()}}.
 
 \code{chk()} and \code{tst()} are thin wrappers of \code{\link[devtools:check]{devtools::check()}} and \code{\link[testthat:test_package]{testthat::test_local()}}.
+
+\code{update_packages()} is a stopgap until \code{pak::lib_upgrade()} \url{https://github.com/r-lib/pak/issues/168}.
+Set \code{PKG_PLATFORMS} before loading pak: \url{https://github.com/r-lib/pak/issues/412}.
+There is no direct way to enforce binary for now: \url{https://github.com/r-lib/pak/issues/318}.
+\code{pak::pkg_upgrade()} is not available yet: \url{https://github.com/r-lib/pak/pull/289}.
+Versioned CRAN packages are not implemented yet \url{https://github.com/r-lib/pkgdepends/blob/main/R/type-cran.R}.
+
+\code{old_packages()} is a thin wrapper of \code{\link[utils:update.packages]{utils::old.packages()}}.
 }

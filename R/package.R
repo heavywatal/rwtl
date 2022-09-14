@@ -44,35 +44,54 @@ has_tests = function(pkg = ".") {
 }
 
 #' @description
-#' `bioc_install()` and `bioc_valid()` are thin wrappers of BiocManager functions.
+#' `update_packages()` is a stopgap until `pak::lib_upgrade()` <https://github.com/r-lib/pak/issues/168>.
+#' Set `PKG_PLATFORMS` before loading pak: <https://github.com/r-lib/pak/issues/412>.
+#' There is no direct way to enforce binary for now: <https://github.com/r-lib/pak/issues/318>.
+#' `pak::pkg_upgrade()` is not available yet: <https://github.com/r-lib/pak/pull/289>.
+#' Versioned CRAN packages are not implemented yet <https://github.com/r-lib/pkgdepends/blob/main/R/type-cran.R>.
+#' @param bioc A logical.
+#' @inheritParams pak::pkg_install
+#' @rdname package
+#' @export
+update_packages = function(..., bioc = FALSE, ask = interactive()) {
+  old_pkgs = old_packages(..., bioc = bioc)
+  if (is.null(old_pkgs)) return(invisible())
+  old_pkgs|>
+    dplyr::group_nest(.data$LibPath, .data$Repository) |>
+    purrr::pwalk(function(LibPath, Repository, data) {
+      pkgs = data[["Package"]]
+      cat("LibPath:", LibPath, "\n")
+      cat("Repository:", Repository, "\n")
+      cat("Package:", pkgs, "\n")
+      try(pak::pkg_install(pkgs, lib = LibPath, upgrade = FALSE, ask = ask))
+    })
+}
+
+#' @description
+#' `old_packages()` is a thin wrapper of [utils::old.packages()].
+#' @rdname package
+#' @export
+old_packages = function(..., bioc = FALSE) {
+  if (bioc) {
+    v = BiocManager::valid(...)  # slow
+    if (isTRUE(v)) return(invisible())
+    message("too_new:")
+    print(v$too_new)
+    out_of_date = v$out_of_date
+  } else {
+    out_of_date = utils::old.packages(...)
+  }
+  if (is.null(out_of_date)) return(invisible())
+  as.data.frame(out_of_date) |>
+    tibble::new_tibble() |>
+    dplyr::relocate(.data$Installed, .data$ReposVer, .after = .data$Package)
+}
+
+#' @description
+#' `bioc_install()` is a thin wrapper of [BiocManager::install()].
 #' @inherit BiocManager::install params return title
 #' @rdname bioc
 #' @export
-bioc_install = function(..., update = FALSE, ask = interactive(), type = binary_if_macos()) {
-  withr::with_options(
-    list(pkgType = type),
-    BiocManager::install(..., update = update, ask = ask)
-  )
-}
-
-#' @inheritParams BiocManager::valid
-#' @rdname bioc
-#' @export
-bioc_valid = function(..., type = binary_if_macos()) {
-  v = BiocManager::valid(..., type = type)
-  if (isTRUE(v)) {
-    return(v)
-  }
-  message("too_new:")
-  print(v$too_new)
-  message("out_of_date:")
-  v$out_of_date[, c("LibPath", "Installed", "ReposVer", "Repository")]
-}
-
-binary_if_macos = function() {
-  if (identical(Sys.info()[["sysname"]], "Darwin")) {
-    "binary"
-  } else {
-    getOption("pkgType")
-  }
+bioc_install = function(pkgs, ..., update = FALSE, ask = interactive()) {
+  BiocManager::install(pkgs, ..., update = update, ask = ask)
 }
