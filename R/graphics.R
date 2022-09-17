@@ -14,7 +14,8 @@ pch_plot = function(alpha = 1, stroke = 1) {
   ggplot2::ggplot(df) +
     ggplot2::aes(.data[["x"]], .data[["y"]], label = .data[["pch"]]) +
     ggplot2::geom_point(ggplot2::aes(shape = .data[["pch"]]),
-                        size = 5, alpha = alpha, stroke = stroke, fill = "tomato") +
+      size = 5, alpha = alpha, stroke = stroke, fill = "tomato"
+    ) +
     ggplot2::geom_text(size = 4, position = ggplot2::position_nudge(0, 0.4)) +
     ggplot2::scale_shape_identity() +
     ggplot2::scale_y_reverse() +
@@ -29,7 +30,8 @@ pch_plot = function(alpha = 1, stroke = 1) {
 #' @rdname graphics
 #' @export
 gghist = function(x, ..., binwidth = NULL, bins = NULL) {
-  p = ggplot2::ggplot(tibble::tibble(x = x)) + ggplot2::aes(x)
+  p = ggplot2::ggplot(tibble::tibble(x = x)) +
+    ggplot2::aes(x)
   if (is.double(x)) {
     p + ggplot2::geom_histogram(..., binwidth = binwidth, bins = bins)
   } else {

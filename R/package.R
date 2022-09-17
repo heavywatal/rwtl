@@ -55,8 +55,10 @@ has_tests = function(pkg = ".") {
 #' @export
 update_packages = function(..., bioc = FALSE, ask = interactive()) {
   old_pkgs = old_packages(..., bioc = bioc)
-  if (is.null(old_pkgs)) return(invisible())
-  old_pkgs|>
+  if (is.null(old_pkgs)) {
+    return(invisible())
+  }
+  old_pkgs |>
     dplyr::group_nest(.data$LibPath, .data$Repository) |>
     purrr::pwalk(function(LibPath, Repository, data) {
       pkgs = data[["Package"]]
@@ -73,15 +75,19 @@ update_packages = function(..., bioc = FALSE, ask = interactive()) {
 #' @export
 old_packages = function(..., bioc = FALSE) {
   if (bioc) {
-    v = BiocManager::valid(...)  # slow
-    if (isTRUE(v)) return(invisible())
+    v = BiocManager::valid(...) # slow
+    if (isTRUE(v)) {
+      return(invisible())
+    }
     message("too_new:")
     print(v$too_new)
     out_of_date = v$out_of_date
   } else {
     out_of_date = utils::old.packages(...)
   }
-  if (is.null(out_of_date)) return(invisible())
+  if (is.null(out_of_date)) {
+    return(invisible())
+  }
   as.data.frame(out_of_date) |>
     tibble::new_tibble() |>
     dplyr::relocate(.data$Installed, .data$ReposVer, .after = .data$Package)
