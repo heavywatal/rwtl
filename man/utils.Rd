@@ -10,7 +10,7 @@ easierprof(expr, interval = 0.02, memory = FALSE)
 
 getenv(pattern = NULL)
 
-reprex_tidyverse(n = 8L, venue = "r", html_preview = FALSE)
+reprex_tidyverse(venue = "r", n = 8L, html_preview = FALSE)
 }
 \arguments{
 \item{expr}{R expression}
@@ -20,8 +20,6 @@ reprex_tidyverse(n = 8L, venue = "r", html_preview = FALSE)
 \item{memory}{logical}
 
 \item{pattern}{R expression}
-
-\item{n}{passed to \code{pillar.print_max}}
 
 \item{venue}{Character. Must be one of the following (case insensitive):
 \itemize{
@@ -49,6 +47,8 @@ support CommonMark-style fenced code blocks in January 2019.
 \href{https://community.rstudio.com}{community.rstudio.com}. Note: this is
 currently just an alias for "gh".
 }}
+
+\item{n}{passed to \code{pillar.print_max}}
 
 \item{html_preview}{Logical. Whether to show rendered output in a viewer
 (RStudio or browser). Always \code{FALSE} in a noninteractive session. Read more

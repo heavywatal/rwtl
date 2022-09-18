@@ -36,17 +36,20 @@ getenv = function(pattern = NULL) {
 #' @inheritParams reprex::reprex
 #' @rdname utils
 #' @export
-reprex_tidyverse = function(n = 8L, venue = "r", html_preview = FALSE) {
-  reprex::reprex(input = c(
+reprex_tidyverse = function(venue = "r", n = 8L, html_preview = FALSE) {
+  setup = c(
     "library(tidyverse)",
     "registerS3method(\"print\", \"tbl_df\", wtl::printdf)",
-    sprintf("options(pillar.print_max = %dL)", n),
-    "",
-    clipr::read_clip() |> stringr::str_subset("^#>", negate = TRUE)
-  ), venue = venue, html_preview = html_preview)
-  clipr::read_clip() |>
-    utils::tail(-4L) |>
-    clipr::write_clip()
+    sprintf("options(pillar.print_max = %dL)", n)
+  )
+  code = clipr::read_clip() |> stringr::str_subset("^#>", negate = TRUE)
+  input = c(
+    "#+ setup, include = FALSE",
+    setup,
+    "#+ actual-reprex-code",
+    code
+  )
+  reprex::reprex(input = input, venue = venue, html_preview = html_preview)
 }
 
 clean_histfile = function(dry_run = FALSE) {
