@@ -51,5 +51,5 @@ symlink_executable = function(src = symlink_latest_library(), dst = "~/local/bin
 
 symlink_latest_library = function(src = Sys.getenv("R_LIBS_USER")) {
   target = fs::path(fs::path_dir(src), "latest")
-  symlink(fs::path_file(src), target)
+  symlink(fs::path_file(src), target, follow = FALSE)
 }
