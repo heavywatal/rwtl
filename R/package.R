@@ -1,10 +1,10 @@
-#' Package utilities
+#' Package development utilities
 #'
 #' @description
 #' `document_install()` is a quick shortcut of [devtools::install()]
 #' following [devtools::document()].
 #' @inheritParams devtools::install
-#' @rdname package
+#' @rdname package-dev
 #' @export
 document_install = function(pkg = ".", build = FALSE, upgrade = FALSE, ...) {
   pkgbuild::compile_dll(pkg)
@@ -16,7 +16,7 @@ document_install = function(pkg = ".", build = FALSE, upgrade = FALSE, ...) {
 #' `chk()` and `tst()` are thin wrappers of [devtools::check()] and [testthat::test_local()].
 #' @param install If FALSE, add `--no-install` to `args`
 #' @param vignettes If FALSE, add `--ignore-vignettes` to `args`
-#' @rdname package
+#' @rdname package-dev
 #' @export
 chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...) {
   if (!install) {
@@ -29,7 +29,7 @@ chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = "--timings"
   devtools::check(pkg, vignettes = vignettes, args = args, ...)
 }
 
-#' @rdname package
+#' @rdname package-dev
 #' @export
 tst = function(pkg = ".", ...) {
   withr::with_envvar(
@@ -43,18 +43,21 @@ has_tests = function(pkg = ".") {
   !is.null(pkg) && (system.file("tests", package = pkg$package) != "")
 }
 
+#' Package management utilities
+#'
 #' @description
-#' `update_packages()` is a stopgap until `pak::lib_upgrade()` <https://github.com/r-lib/pak/issues/168>.
+#' `lib_upgrade()` is a stopgap until `pak::lib_upgrade()` <https://github.com/r-lib/pak/issues/168>.
 #' Set `PKG_PLATFORMS` before loading pak: <https://github.com/r-lib/pak/issues/412>.
 #' There is no direct way to enforce binary for now: <https://github.com/r-lib/pak/issues/318>.
 #' `pak::pkg_upgrade()` is not available yet: <https://github.com/r-lib/pak/pull/289>.
 #' Versioned CRAN packages are not implemented yet <https://github.com/r-lib/pkgdepends/blob/main/R/type-cran.R>.
-#' @param bioc A logical.
+#' @param ... Passed to [utils::old.packages()] or [pak::pkg_install()].
+#' @param binary A logical. Set `FALSE` to accept source packages.
 #' @inheritParams pak::pkg_install
 #' @rdname package
 #' @export
-update_packages = function(..., bioc = FALSE, ask = interactive()) {
-  old_pkgs = old_packages(..., bioc = bioc)
+lib_upgrade = function(..., binary = TRUE, ask = interactive()) {
+  old_pkgs = old_packages(..., binary = binary)
   if (is.null(old_pkgs)) {
     return(invisible())
   }
@@ -65,15 +68,24 @@ update_packages = function(..., bioc = FALSE, ask = interactive()) {
       cat("LibPath:", LibPath, "\n")
       cat("Repository:", Repository, "\n")
       cat("Package:", pkgs, "\n")
-      try(pak::pkg_install(pkgs, lib = LibPath, upgrade = FALSE, ask = ask))
+      try(install_packages(pkgs, lib = LibPath, ask = ask, binary = binary))
     })
 }
 
 #' @description
 #' `old_packages()` is a thin wrapper of [utils::old.packages()].
+#' @param bioc A logical. Set `TRUE` to include BioC repositories.
 #' @rdname package
 #' @export
-old_packages = function(..., bioc = FALSE) {
+old_packages = function(..., binary = TRUE, bioc = FALSE) {
+  if (isTRUE(binary)) {
+    # RSPM recommends using the default type (not "binary")
+    withr::local_options(
+      pkgType = .Platform$pkgType,
+      install.packages.check.source = "no",
+      install.packages.compile.from.source = "no"
+    )
+  }
   if (bioc) {
     v = BiocManager::valid(...) # slow
     if (isTRUE(v)) {
@@ -91,6 +103,20 @@ old_packages = function(..., bioc = FALSE) {
   as.data.frame(out_of_date) |>
     tibble::new_tibble() |>
     dplyr::relocate(.data$Installed, .data$ReposVer, .after = .data$Package)
+}
+
+#' @description
+#' `install_packages()` is a thin wrapper of [pak::pkg_install()]
+#' that can temporarily disable forced binary installation with `PKG_PLATFORMS`.
+#' @rdname package
+#' @export
+install_packages = function(pkg, lib = .libPaths()[[1L]], ..., binary = TRUE) {
+  if (isFALSE(binary) && Sys.getenv("PKG_PLATFORMS") != "") {
+    withr::local_envvar(PKG_PLATFORMS = NA)
+    withr::defer(devtools::unload("pak"))
+    try(devtools::unload("pak"))
+  }
+  pak::pkg_install(pkg, lib = lib, ...)
 }
 
 #' @description
