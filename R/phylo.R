@@ -29,7 +29,7 @@ ape_layout_unrooted = function(phy, centering = TRUE, rotate = 0) {
   phy[["edge"]] |>
     tibble::as_tibble(.name_repair = "minimal") |>
     stats::setNames(c("from", "to")) |>
-    dplyr::left_join(nodes |> dplyr::select(-.data$axis), by = c(from = "id")) |>
+    dplyr::left_join(nodes |> dplyr::select(!"axis"), by = c(from = "id")) |>
     dplyr::left_join(to_nodes, by = c(to = "id")) |>
     dplyr::mutate(label = phy[["tip.label"]][.data[["to"]]])
 }
