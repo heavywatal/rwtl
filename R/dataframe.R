@@ -1,17 +1,8 @@
 #' Utilities for data.frame
-#'
-#' @description
-#' `mutate_left()` adds new columns to the left.
-#' @param .data a data.frame.
-#' @rdname dataframe
-#' @export
-mutate_left = function(.data, ...) {
-  dplyr::mutate(.data, ...) |>
-    dplyr::relocate(names(rlang::quos(...)))
-}
 
 #' @description
 #' `dedfcol()` and `dedfcol_all()` dissolve data.frame columns in a tibble.
+#' @param .data A data.frame.
 #' @param at target column.
 #' @rdname dataframe
 #' @export

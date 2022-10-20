@@ -102,7 +102,7 @@ old_packages = function(..., binary = TRUE, bioc = FALSE) {
   }
   as.data.frame(out_of_date) |>
     tibble::new_tibble() |>
-    dplyr::relocate(.data$Installed, .data$ReposVer, .after = .data$Package)
+    dplyr::relocate("Installed", "ReposVer", .after = "Package")
 }
 
 #' @description
