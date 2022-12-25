@@ -13,29 +13,23 @@ mcmap = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
 #' @rdname parallel
 #' @export
 mcmap_lgl = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
-  purrr::as_vector(mcmap(.x, .f, ..., .mc.cores = .mc.cores), logical(1L))
+  purrr::list_simplify(mcmap(.x, .f, ..., .mc.cores = .mc.cores), ptype = logical(1L))
 }
 
 #' @rdname parallel
 #' @export
 mcmap_int = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
-  purrr::as_vector(mcmap(.x, .f, ..., .mc.cores = .mc.cores), integer(1L))
+  purrr::list_simplify(mcmap(.x, .f, ..., .mc.cores = .mc.cores), ptype = integer(1L))
 }
 
 #' @rdname parallel
 #' @export
 mcmap_dbl = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
-  purrr::as_vector(mcmap(.x, .f, ..., .mc.cores = .mc.cores), double(1L))
+  purrr::list_simplify(mcmap(.x, .f, ..., .mc.cores = .mc.cores), ptype = double(1L))
 }
 
 #' @rdname parallel
 #' @export
 mcmap_chr = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
-  purrr::as_vector(mcmap(.x, .f, ..., .mc.cores = .mc.cores), character(1L))
-}
-
-#' @rdname parallel
-#' @export
-mcmap_dfr = function(.x, .f, ..., .id = NULL, .mc.cores = getOption("mc.cores", 2L)) {
-  dplyr::bind_rows(mcmap(.x, .f, ..., .mc.cores = .mc.cores), .id = .id)
+  purrr::list_simplify(mcmap(.x, .f, ..., .mc.cores = .mc.cores), ptype = character(1L))
 }

@@ -6,7 +6,6 @@
 \alias{mcmap_int}
 \alias{mcmap_dbl}
 \alias{mcmap_chr}
-\alias{mcmap_dfr}
 \title{Parallel execution in the purrr::map style}
 \usage{
 mcmap(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
@@ -18,42 +17,38 @@ mcmap_int(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
 mcmap_dbl(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
 
 mcmap_chr(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
-
-mcmap_dfr(.x, .f, ..., .id = NULL, .mc.cores = getOption("mc.cores", 2L))
 }
 \arguments{
 \item{.x}{A list or atomic vector.}
 
-\item{.f}{A function, formula, or vector (not necessarily atomic).
-
-If a \strong{function}, it is used as is.
-
-If a \strong{formula}, e.g. \code{~ .x + 2}, it is converted to a function. There
-are three ways to refer to the arguments:
+\item{.f}{A function, specified in one of the following ways:
 \itemize{
-\item For a single argument function, use \code{.}
-\item For a two argument function, use \code{.x} and \code{.y}
-\item For more arguments, use \code{..1}, \code{..2}, \code{..3} etc
-}
+\item A named function, e.g. \code{mean}.
+\item An anonymous function, e.g. \verb{\\(x) x + 1} or \code{function(x) x + 1}.
+\item A formula, e.g. \code{~ .x + 1}. You must use \code{.x} to refer to the first
+argument. Only recommended if you require backward compatibility with
+older versions of R.
+\item A string, integer, or list, e.g. \code{"idx"}, \code{1}, or \code{list("idx", 1)} which
+are shorthand for \verb{\\(x) pluck(x, "idx")}, \verb{\\(x) pluck(x, 1)}, and
+\verb{\\(x) pluck(x, "idx", 1)} respectively. Optionally supply \code{.default} to
+set a default value if the indexed element is \code{NULL} or does not exist.
+}}
 
-This syntax allows you to create very compact anonymous functions.
+\item{...}{Additional arguments passed on to the mapped function.
 
-If \strong{character vector}, \strong{numeric vector}, or \strong{list}, it is
-converted to an extractor function. Character vectors index by
-name and numeric vectors index by position; use a list to index
-by position and name at different levels. If a component is not
-present, the value of \code{.default} will be returned.}
+We now generally recommend against using \code{...} to pass additional
+(constant) arguments to \code{.f}. Instead use a shorthand anonymous function:
 
-\item{...}{Additional arguments passed on to the mapped function.}
+\if{html}{\out{<div class="sourceCode R">}}\preformatted{# Instead of
+x |> map(f, 1, 2, collapse = ",")
+# do:
+x |> map(\\(x) f(x, 1, 2, collapse = ","))
+}\if{html}{\out{</div>}}
+
+This makes it easier to understand which arguments belong to which
+function and will tend to yield better error messages.}
 
 \item{.mc.cores}{integer}
-
-\item{.id}{Either a string or \code{NULL}. If a string, the output will contain
-a variable with that name, storing either the name (if \code{.x} is named) or
-the index (if \code{.x} is unnamed) of the input. If \code{NULL}, the default, no
-variable will be created.
-
-Only applies to \verb{_dfr} variant.}
 }
 \description{
 \code{mcmap()} is a variant of \code{\link[parallel:mclapply]{parallel::mclapply()}} that accepts a formula as \code{.f}.
