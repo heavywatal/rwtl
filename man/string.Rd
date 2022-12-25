@@ -31,14 +31,15 @@ coercible to one.}
 
 \item{...}{expressions}
 
-\item{collapse}{Optional string used to combine input vectors into single
-string.}
+\item{collapse}{Optional string used to combine output into single
+string. Generally better to use \code{\link[stringr:str_flatten]{str_flatten()}} if you needed this
+behaviour.}
 
 \item{pattern}{Pattern to look for.
 
-The default interpretation is a regular expression, as described
-in \link[stringi:about_search_regex]{stringi::stringi-search-regex}. Control options with
-\code{\link[stringr:regex]{regex()}}.
+The default interpretation is a regular expression, as described in
+\code{vignette("regular-expressions")}. Use \code{\link[stringr:regex]{regex()}} for finer control of the
+matching behaviour.
 
 Match a fixed string (i.e. by comparing only bytes), using
 \code{\link[stringr:fixed]{fixed()}}. This is fast, but approximate. Generally,
@@ -49,11 +50,13 @@ Match character, word, line and sentence boundaries with
 \code{\link[stringr:boundary]{boundary()}}. An empty pattern, "", is equivalent to
 \code{boundary("character")}.}
 
-\item{n}{number of pieces to return.  Default (Inf) uses all
+\item{n}{Maximum number of pieces to return. Default (Inf) uses all
 possible split positions.
 
-For \code{str_split_fixed}, if n is greater than the number of pieces,
-the result will be padded with empty strings.}
+For \code{split_split()}, this determines the maximum length of each element
+of the output. For \code{str_split_fixed()}, this determines the number of
+columns in the output; if an input is too short, the result will be padded
+with \code{""}.}
 
 \item{x}{vector}
 }
