@@ -5,14 +5,18 @@
 #' @rdname exec
 #' @export
 exec_knit = function(input, output = NA) {
-  if (!is.na(output)) {
-    output = normalizePath(output)
-    knitr::opts_knit$set(base.dir = dirname(output))
+  if (is.na(output)) {
+    withr::with_dir(
+      dirname(input),
+      knitr::knit(basename(input))
+    )
+  } else {
+    input = normalizePath(input)
+    withr::with_dir(
+      dirname(output),
+      knitr::knit(input, basename(output))
+    )
   }
-  withr::with_dir(
-    dirname(input),
-    knitr::knit(basename(input), output)
-  )
 }
 
 #' @param output_dir Directory path.
