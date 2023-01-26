@@ -23,12 +23,24 @@ add new packages never require confirmation.}
 
 \item{bioc}{A logical. Set \code{TRUE} to include BioC repositories.}
 
-\item{pkg}{Package names or remote package specifications to install.
-See \link[pak:pak_package_sources]{pak package sources} for details.}
+\item{pkg}{Package names or package references. E.g.
+\itemize{
+\item \code{ggplot2}: package from CRAN, Bioconductor or a CRAN-like repository
+in general,
+\item \code{tidyverse/ggplot2}: package from GitHub,
+\item \code{tidyverse/ggplot2@v3.4.0}: package from GitHub tag or branch,
+\item \verb{https://examples.com/.../ggplot2_3.3.6.tar.gz}: package from URL,
+\item \code{.}: package in the current working directory.
+}
+
+See "\link[pak]{Package sources}" for more details.}
 
 \item{lib}{Package library to install the packages to. Note that \emph{all}
-dependent packages will the be installed here, even if they are
-already installed in another library.}
+dependent packages will be installed here, even if they are
+already installed in another library. The only exceptions are base
+and recommended packages installed in \code{.Library}. These are not
+duplicated in \code{lib}, unless a newer version of a recommemded package
+is needed.}
 }
 \description{
 \code{lib_upgrade()} is a stopgap until \code{pak::lib_upgrade()} \url{https://github.com/r-lib/pak/issues/168}.
