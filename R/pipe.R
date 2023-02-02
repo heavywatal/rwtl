@@ -29,7 +29,7 @@ pipeshell.default = function(x, command, ...) {
 }
 
 #' @export
-pipeshell.data.frame = function(x, command, ..., n = getOption("max.print"), width = Inf) {
+pipeshell.data.frame = function(x, command, ..., n = .Machine$integer.max, width = Inf) {
   command = rlang::enquo(command)
   sinkpipe(max_print(x, n = n, width = width, ...), !!command)
 }

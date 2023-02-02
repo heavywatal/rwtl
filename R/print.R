@@ -49,7 +49,7 @@ printdf = function(x, n = getOption("pillar.print_max", 30L),
     x = rbind(class_row, x)
   }
   row.names(x) = format(rnames, justify = "right")
-  print(x, right = TRUE, quote = FALSE, ...)
+  print(x, right = TRUE, quote = FALSE, max = .Machine$integer.max, ...)
   invisible(original_x)
 }
 
@@ -132,7 +132,7 @@ printdf_summary = function(x) {
 #' @param width maximum number of columns to print
 #' @rdname print
 #' @export
-max_print = function(x, n = getOption("max.print"), width = Inf, ...) {
+max_print = function(x, n = .Machine$integer.max, width = Inf, ...) {
   opts = propagate_print_options(height = n, width = width, max.print = n)
   withr::with_options(opts, {
     print(x, ...)

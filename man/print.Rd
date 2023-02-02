@@ -14,7 +14,7 @@ printdf(
   ...
 )
 
-max_print(x, n = getOption("max.print"), width = Inf, ...)
+max_print(x, n = .Machine$integer.max, width = Inf, ...)
 
 generate_print_options(n = 30L)
 

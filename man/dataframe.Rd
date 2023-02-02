@@ -27,8 +27,8 @@ class_at(.data, .cols)
 \item{at}{target column.}
 
 \item{.cols}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> Columns to transform.
-Because \code{across()} is used within functions like \code{summarise()} and
-\code{mutate()}, you can't select or compute upon grouping variables.}
+You can't select grouping columns because they are already automatically
+handled by the verb (i.e. \code{\link[dplyr:summarise]{summarise()}} or \code{\link[dplyr:mutate]{mutate()}}).}
 }
 \description{
 \code{dedfcol()} and \code{dedfcol_all()} dissolve data.frame columns in a tibble.
