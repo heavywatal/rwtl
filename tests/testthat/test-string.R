@@ -5,12 +5,6 @@ test_that("str_c_coalesce works", {
   expect_identical(str_c_coalesce(a, x, sep = " "), c("a x", "b", "z"))
 })
 
-test_that("split_chr works", {
-  expect_identical(split_chr("a  b\tc\nd"), c("a", "b", "c", "d"))
-  expect_identical(split_chr("a  b\tc\nd", " "), c("a", "", "b\tc\nd"))
-  expect_identical(split_chr("a  b\tc\nd", n = 3), c("a", "b", "c\nd"))
-})
-
 test_that("rsplit works", {
   expect_identical(rsplit("a  b\tc\nd")[[1]], c("a", "b", "c", "d"))
   expect_identical(rsplit("a  b\tc\nd", " ")[[1]], c("a", "", "b\tc\nd"))

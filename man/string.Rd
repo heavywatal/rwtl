@@ -2,15 +2,12 @@
 % Please edit documentation in R/string.R
 \name{str_c_coalesce}
 \alias{str_c_coalesce}
-\alias{split_chr}
 \alias{rsplit}
 \alias{as_chr}
 \alias{as_code}
 \title{String utility}
 \usage{
 str_c_coalesce(..., sep = "", collapse = NULL)
-
-split_chr(string, pattern = "\\\\s+", n = Inf)
 
 rsplit(string, pattern = "\\\\s+", n = 42L)
 
@@ -58,8 +55,6 @@ with \code{""}.}
 \description{
 \code{str_c_coalesce()} tries \code{\link[stringr:str_c]{stringr::str_c()}} first,
 and falls back to \code{\link[dplyr:coalesce]{dplyr::coalesce()}}.
-
-\code{split_chr()} splits a string and return a flattened vector.
 
 \code{rsplit()} splits a string from right.
 

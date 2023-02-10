@@ -14,16 +14,8 @@ str_c_coalesce = function(..., sep = "", collapse = NULL) {
 }
 
 #' @description
-#' `split_chr()` splits a string and return a flattened vector.
-#' @inheritParams stringr::str_split
-#' @rdname string
-#' @export
-split_chr = function(string, pattern = "\\s+", n = Inf) {
-  stringr::str_split(string, pattern, n) |> purrr::flatten_chr()
-}
-
-#' @description
 #' `rsplit()` splits a string from right.
+#' @inheritParams stringr::str_split
 #' @rdname string
 #' @export
 rsplit = function(string, pattern = "\\s+", n = 42L) {
