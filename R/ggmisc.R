@@ -16,23 +16,6 @@ insert_layer = function(p, ..., after = 0L) {
 }
 
 #' @description
-#' `ggsave_quartz()` is a shortcut of [ggplot2::ggsave()] with quartz device.
-#' @inheritParams ggplot2::ggsave
-#' @rdname ggmisc
-#' @export
-ggsave_quartz = function(filename, plot = ggplot2::last_plot(), device = grDevices::quartz,
-                         path = NULL, scale = 1, width = 7, height = 7,
-                         units = c("in", "cm", "mm"), dpi = 300, limitsize = TRUE) {
-  ext = tools::file_ext(filename)
-  stopifnot(ext %in% c("png", "pdf"))
-  ggplot2::ggsave(
-    filename, plot, device, path,
-    scale, width, height, units, dpi, limitsize,
-    type = ext
-  )
-}
-
-#' @description
 #' `mean_sd()` calculates mean and sd for [ggplot2::stat_summary()].
 #' @inheritParams ggplot2::mean_se
 #' @rdname ggmisc
