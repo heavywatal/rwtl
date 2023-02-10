@@ -6,11 +6,8 @@
 #' @rdname graphics
 #' @export
 pch_plot = function(alpha = 1, stroke = 1) {
-  df = tibble::tibble(
-    pch = seq_len(128L) - 1L,
-    x = .data[["pch"]] %% 16L,
-    y = .data[["pch"]] %/% 16L
-  )
+  pch = seq_len(128L) - 1L
+  df = data.frame(pch, x = pch %% 16L, y = pch %/% 16L)
   ggplot2::ggplot(df) +
     ggplot2::aes(.data[["x"]], .data[["y"]], label = .data[["pch"]]) +
     ggplot2::geom_point(ggplot2::aes(shape = .data[["pch"]]),
@@ -30,13 +27,14 @@ pch_plot = function(alpha = 1, stroke = 1) {
 #' @rdname graphics
 #' @export
 gghist = function(x, ..., binwidth = NULL, bins = NULL) {
-  p = ggplot2::ggplot(tibble::tibble(x = x)) +
-    ggplot2::aes(x)
-  if (is.double(x)) {
-    p + ggplot2::geom_histogram(..., binwidth = binwidth, bins = bins)
+  geom = if (is.double(x)) {
+    ggplot2::geom_histogram(..., binwidth = binwidth, bins = bins)
   } else {
-    p + ggplot2::geom_bar(...)
+    ggplot2::geom_bar(...)
   }
+  ggplot2::ggplot(tibble::tibble(x = x)) +
+    ggplot2::aes(x) +
+    geom
 }
 
 #' @description
@@ -45,5 +43,5 @@ gghist = function(x, ..., binwidth = NULL, bins = NULL) {
 #' @rdname graphics
 #' @export
 col2hex = function(color = grDevices::colors()) {
-  grDevices::rgb(t(grDevices::col2rgb(color)), max = 255)
+  grDevices::rgb(t(grDevices::col2rgb(color)), maxColorValue = 255)
 }

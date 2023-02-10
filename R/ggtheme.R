@@ -5,10 +5,13 @@
 #' @inheritParams ggplot2::theme_bw
 #' @rdname ggtheme
 #' @export
-theme_wtl = function(base_size = 12, base_family = "") {
+theme_wtl = function(base_size = 12, base_family = "",
+                     base_line_size = base_size / 22, base_rect_size = base_size / 22) {
   ggplot2::theme_bw(
     base_size = base_size,
-    base_family = base_family
+    base_family = base_family,
+    base_line_size = base_line_size,
+    base_rect_size = base_rect_size
   ) +
     ggplot2::theme(
       panel.background = ggplot2::element_rect(fill = NA, color = NA),
@@ -37,10 +40,10 @@ erase = function(..., .names = NULL) {
 #' @inheritParams ggplot2::element_line
 #' @rdname ggtheme
 #' @export
-axis_line = function(colour = NULL, size = NULL, linetype = NULL, lineend = NULL,
+axis_line = function(colour = NULL, linewidth = NULL, linetype = NULL, lineend = NULL,
                      color = NULL, arrow = NULL, inherit.blank = FALSE) {
   el = ggplot2::element_line(
-    colour = colour, size = size, linetype = linetype, lineend = lineend,
+    colour = colour, linewidth = linewidth, linetype = linetype, lineend = lineend,
     color = color, arrow = arrow, inherit.blank = inherit.blank
   )
   ggplot2::theme(panel.border = ggplot2::element_blank(), axis.line = el)

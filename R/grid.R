@@ -27,13 +27,11 @@ grid.draw.list = function(x, recording = FALSE) {
 #' @description
 #' `as_gg()` converts grob to gg.
 #' @param grob graphical object
-#' @inheritParams ggplot2::theme_void
 #' @rdname grid
 #' @export
-as_gg = function(grob, base_size = 12, base_family = "sans") {
+as_gg = function(grob) {
   ggplot2::ggplot(data.frame(x = 0:1, y = 0:1)) +
     ggplot2::annotation_custom(grob) +
     ggplot2::scale_x_continuous(limits = 0:1, expand = c(0, 0)) +
-    ggplot2::scale_y_continuous(limits = 0:1, expand = c(0, 0)) +
-    ggplot2::theme_void(base_size, base_family)
+    ggplot2::scale_y_continuous(limits = 0:1, expand = c(0, 0))
 }

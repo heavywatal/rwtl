@@ -8,7 +8,7 @@
 \usage{
 insert_layer(p, ..., after = 0L)
 
-mean_sd(x, mult = 1.96)
+mean_sd(x, mult = 1)
 
 label_none(labels, ...)
 }
@@ -33,4 +33,13 @@ label variables.}
 \code{mean_sd()} calculates mean and sd for \code{\link[ggplot2:stat_summary]{ggplot2::stat_summary()}}.
 
 \code{label_none()} removes \code{strip.text} while keeping \code{strip.background}.
+}
+\examples{
+(ggplot2::ggplot(ggplot2::mpg) +
+  ggplot2::aes(drv, hwy) +
+  ggplot2::geom_boxplot(fill = "gold") +
+  ggplot2::geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 1, stackratio = 0.5) +
+  ggplot2::stat_summary(fun.data = mean_sd, color = "red", size = 2, linewidth = 2) +
+  ggplot2::facet_wrap(ggplot2::vars(drv), scale = "free_x", label = label_none)) |>
+  insert_layer(ggplot2::geom_violin(fill = "darkorange"), after = 1L)
 }

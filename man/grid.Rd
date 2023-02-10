@@ -10,7 +10,7 @@ gprint(x, newpage = TRUE, recording = FALSE)
 
 \method{grid.draw}{list}(x, recording = FALSE)
 
-as_gg(grob, base_size = 12, base_family = "sans")
+as_gg(grob)
 }
 \arguments{
 \item{x}{An object of class \code{"grob"} or NULL.}
@@ -21,10 +21,6 @@ as_gg(grob, base_size = 12, base_family = "sans")
     operation should be recorded on the Grid display list.}
 
 \item{grob}{graphical object}
-
-\item{base_size}{base font size, given in pts.}
-
-\item{base_family}{base font family}
 }
 \description{
 \code{gprint()} is a shortcut for \code{\link[grid:grid.draw]{grid::grid.draw()}}.

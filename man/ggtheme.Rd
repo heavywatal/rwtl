@@ -6,13 +6,18 @@
 \alias{axis_line}
 \title{Shortcut for ggplot theme}
 \usage{
-theme_wtl(base_size = 12, base_family = "")
+theme_wtl(
+  base_size = 12,
+  base_family = "",
+  base_line_size = base_size/22,
+  base_rect_size = base_size/22
+)
 
 erase(..., .names = NULL)
 
 axis_line(
   colour = NULL,
-  size = NULL,
+  linewidth = NULL,
   linetype = NULL,
   lineend = NULL,
   color = NULL,
@@ -25,13 +30,17 @@ axis_line(
 
 \item{base_family}{base font family}
 
+\item{base_line_size}{base size for line elements}
+
+\item{base_rect_size}{base size for rect elements}
+
 \item{...}{elements to be blank}
 
 \item{.names}{string vector of element names}
 
 \item{colour, color}{Line/border colour. Color is an alias for colour.}
 
-\item{size}{text size in pts.}
+\item{linewidth}{Line/border size in mm.}
 
 \item{linetype}{Line type. An integer (0:8), a name (blank, solid,
 dashed, dotted, dotdash, longdash, twodash), or a string with

@@ -27,7 +27,7 @@ annotate_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2,
   # linetype = "solid" can draw lines but linejoin is fixed to "round"
   if (linewidth > 0) {
     layers[[2]] = ggplot2::annotate("path",
-      x = x, y = y, size = linewidth, color = color, linejoin = "mitre"
+      x = x, y = y, linewidth = linewidth, color = color, linejoin = "mitre"
     )
   }
   layers
