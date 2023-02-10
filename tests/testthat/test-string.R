@@ -1,3 +1,11 @@
+test_that("glue works", {
+  expect_identical(glue("a {b}\n", b = "b"), "a b\n")
+  expect_identical(stringr::str_glue("a {b}\n", b = "b"), "a b")
+  dat = list(c = "c")
+  expect_identical(glue_data(dat, "a {b} {c}\n", b = "b"), "a b c\n")
+  expect_identical(stringr::str_glue_data(dat, "a {b} {c}\n", b = "b"), "a b c")
+})
+
 test_that("str_c_coalesce works", {
   a = c("a", "b", NA)
   x = c("x", NA, "z")

@@ -1,5 +1,20 @@
 #' String utility
 #'
+#' `glue()` is a shortcut of [stringr::str_glue()] without trimming.
+#' @inheritParams stringr::str_glue
+#' @rdname string
+#' @export
+glue = function(..., .sep = "", .envir = parent.frame()) {
+  stringr::str_glue(..., .sep = .sep, .envir = .envir, .trim = FALSE)
+}
+
+#' @inheritParams stringr::str_glue_data
+#' @rdname string
+#' @export
+glue_data = function (.x, ..., .sep = "", .envir = parent.frame(), .na = "NA") {
+  stringr::str_glue_data(.x, ..., .sep = .sep, .envir = .envir, .na = .na, .trim = FALSE)
+}
+
 #' @description
 #' `str_c_coalesce()` tries [stringr::str_c()] first,
 #' and falls back to [dplyr::coalesce()].
