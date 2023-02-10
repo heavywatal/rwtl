@@ -1,8 +1,3 @@
-test_that("join works", {
-  expect_identical(join(c("a", "b", "c")), "abc")
-  expect_identical(join(c("a", "b", "c"), " "), "a b c")
-})
-
 test_that("str_c_coalesce works", {
   a = c("a", "b", NA)
   x = c("x", NA, "z")

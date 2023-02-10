@@ -1,19 +1,9 @@
 #' String utility
 #'
 #' @description
-#' `join()` concatenats strings in a vector.
-#' @inheritParams stringr::str_c
-#' @param na.rm logical
-#' @rdname string
-#' @export
-join = function(string, sep = "", na.rm = FALSE) {
-  if (isTRUE(na.rm)) string = stats::na.omit(string)
-  stringr::str_c(string, collapse = sep)
-}
-
-#' @description
 #' `str_c_coalesce()` tries [stringr::str_c()] first,
 #' and falls back to [dplyr::coalesce()].
+#' @inheritParams stringr::str_c
 #' @rdname string
 #' @export
 str_c_coalesce = function(..., sep = "", collapse = NULL) {
