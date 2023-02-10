@@ -31,7 +31,6 @@ Imports:
     readr,
     reprex,
     rlang,
-    scales,
     stringr,
     styler,
     tibble,
