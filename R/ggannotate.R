@@ -19,22 +19,13 @@
 annotate_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2,
                                linewidth = 0, color = "#333333", fill = "#666666", ...) {
   df = make_regpolygon(n, radius, x, y, start)
-  x = df[["x"]]
-  y = df[["y"]]
-  layers = list(
-    ggplot2::annotate("polygon", x = x, y = y, fill = fill, ...)
+  ggplot2::annotate("polygon",
+    x = df[["x"]], y = df[["y"]], linewidth = linewidth, color = color, fill = fill, ..., linejoin = "mitre"
   )
-  # linetype = "solid" can draw lines but linejoin is fixed to "round"
-  if (linewidth > 0) {
-    layers[[2]] = ggplot2::annotate("path",
-      x = x, y = y, linewidth = linewidth, color = color, linejoin = "mitre"
-    )
-  }
-  layers
 }
 
 make_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2) {
-  angle = (seq_len(n + 2L) - 1L) * 2 * pi / n + start
+  angle = (seq_len(n) - 1L) * 2 * pi / n + start
   tibble::tibble(
     x = x + radius * cos(angle),
     y = y + radius * sin(angle)
