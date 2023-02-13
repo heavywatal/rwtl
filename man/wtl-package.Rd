@@ -6,6 +6,8 @@
 \alias{wtl-package}
 \title{wtl: Personal R package}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Personal R package.
 }
 \seealso{
