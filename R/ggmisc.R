@@ -11,7 +11,7 @@
 #'   ggplot2::geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 1, stackratio = 0.5) +
 #'   ggplot2::stat_summary(fun.data = mean_sd, color = "red", size = 2, linewidth = 2) +
 #'   ggplot2::facet_wrap(ggplot2::vars(drv), scale = "free_x", label = label_none)) |>
-#'   insert_layer(ggplot2::geom_violin(fill = "darkorange"), after = 1L)
+#'   insert_layer(ggplot2::geom_violin(fill = "darkorange"), after = -2L)
 #' @rdname ggmisc
 #' @export
 insert_layer = function(p, ..., after = 0L) {
