@@ -3,19 +3,26 @@
 \name{center_range}
 \alias{center_range}
 \alias{class_at}
+\alias{filter_duplicated}
 \title{Utilities for data.frame}
 \usage{
 center_range(.data, .cols)
 
 class_at(.data, .cols)
+
+filter_duplicated(.data, ...)
 }
 \arguments{
 \item{.data}{A data.frame.}
 
-\item{.cols}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> Columns to transform.
-You can't select grouping columns because they are already automatically
-handled by the verb (i.e. \code{\link[dplyr:summarise]{summarise()}} or \code{\link[dplyr:mutate]{mutate()}}).}
+\item{.cols}{tidy-select passed to \code{\link[dplyr:across]{dplyr::across()}}}
+
+\item{...}{tidy-select passed to \code{\link[dplyr:select]{dplyr::select()}}}
 }
 \description{
-Utilities for data.frame
+\code{center_range()} mutates the selected columns for zero-centered plot.
+
+\code{class_at()} summarizes the class of the selected columns.
+
+\code{filter_duplicated()} extracts duplicated rows including first occurrences.
 }

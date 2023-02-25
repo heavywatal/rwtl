@@ -1,7 +1,8 @@
 #' Utilities for data.frame
 #'
+#' `center_range()` mutates the selected columns for zero-centered plot.
 #' @param .data A data.frame.
-#' @inheritParams dplyr::across
+#' @param .cols tidy-select passed to [dplyr::across()]
 #' @rdname dataframe
 #' @export
 center_range = function(.data, .cols) {
@@ -9,11 +10,27 @@ center_range = function(.data, .cols) {
   dplyr::mutate(.data, dplyr::across({{ .cols }}, center))
 }
 
+#' @description
+#' `class_at()` summarizes the class of the selected columns.
 #' @rdname dataframe
 #' @export
 class_at = function(.data, .cols) {
   x = dplyr::summarize(.data, dplyr::across({{ .cols }}, class))
   unlist(x, use.names = TRUE)
+}
+
+#' @description
+#' `filter_duplicated()` extracts duplicated rows including first occurrences.
+#' @param ...  tidy-select passed to [dplyr::select()]
+#' @rdname dataframe
+#' @export
+filter_duplicated = function(.data, ...) {
+  x = if (missing(...)) {
+    .data
+  } else {
+    dplyr::select(.data, ...)
+  }
+  .data[duplicated(x) | duplicated(x, fromLast = TRUE), ]
 }
 
 #' Shortcut for [tidyr::crossing()] with repeats.
