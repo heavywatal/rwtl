@@ -1,14 +1,14 @@
 #' Functions to run ms and parse ms-like output
 #'
 #' @description
-#' `ms()` executes ms as an external program.
+#' `run_ms()` executes ms as an external program.
 #' @param nsam number of samples
 #' @param nreps number of repeats
 #' @param theta population mutation rate
-#' @return `ms()` returns a string vector
+#' @return `run_ms()` returns a string vector
 #' @rdname ms
 #' @export
-ms = function(nsam = 4L, nreps = 2L, theta = 5.0) {
+run_ms = function(nsam = 4L, nreps = 2L, theta = 5.0) {
   args = paste(nsam, nreps, "-t", theta)
   system2("ms", args, stdout = TRUE, stderr = FALSE)
 }
