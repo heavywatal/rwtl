@@ -11,6 +11,7 @@ printdf(
   x,
   n = getOption("pillar.print_max", 30L),
   summarize = getOption("wtl.printdf.summarize", TRUE),
+  classes = getOption("wtl.printdf.classes", TRUE),
   ...
 )
 
@@ -26,6 +27,8 @@ show_print_options()
 \item{n}{maximum number of rows to print}
 
 \item{summarize}{print class(x) and dim(x) if TRUE}
+
+\item{classes}{print class of each column if TRUE}
 
 \item{...}{further arguments passed to \code{print}}
 

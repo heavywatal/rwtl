@@ -8,6 +8,7 @@
 #' @param x an object to print
 #' @param n maximum number of rows to print
 #' @param summarize print class(x) and dim(x) if TRUE
+#' @param classes print class of each column if TRUE
 #' @param ... further arguments passed to `print`
 #' @description
 #' `printdf()` is a simple cherry-picking from
@@ -15,7 +16,8 @@
 #' @rdname print
 #' @export
 printdf = function(x, n = getOption("pillar.print_max", 30L),
-                   summarize = getOption("wtl.printdf.summarize", TRUE), ...) {
+                   summarize = getOption("wtl.printdf.summarize", TRUE),
+                   classes = getOption("wtl.printdf.classes", TRUE), ...) {
   if (isTRUE(summarize)) printdf_summary(x)
   if (is.null(dim(x))) {
     return(print(x))
@@ -24,32 +26,38 @@ printdf = function(x, n = getOption("pillar.print_max", 30L),
     return(invisible(x))
   }
   if (is.matrix(x)) x = as.data.frame(x)
+  nrow_x = nrow(x)
   original_x = x
   class(x) = "data.frame" # remove tbl_df
   x = dedfcol_all(x)
   x = demtrxcol_all(x)
-  class_row = vapply(x, class_sum, "", USE.NAMES = FALSE)
-  class_row = paste0("<", class_row, ">")
-  truncated = nrow(x) > n
+  truncated = nrow_x > n
+  y = x
   if (truncated) {
     head_n = as.integer(ceiling(n / 2))
     tail_n = n - head_n
     head_idx = seq_len(head_n)
-    tail_idx = seq.int(to = nrow(x), length.out = tail_n)
-    x = x[c(head_idx, tail_idx), , drop = FALSE]
+    tail_idx = seq.int(to = nrow_x, length.out = tail_n)
+    y = y[c(head_idx, tail_idx), , drop = FALSE]
+    # subsetting changes class <ts>
   }
-  x = do.call(cbind, lapply(x, format_column))
+  y = do.call(cbind, lapply(y, format_column))
   # now x is a data.frame of formatted strings.
   if (truncated) {
-    rnames = c("", head_idx, "--", tail_idx)
-    tail_idx = seq.int(to = nrow(x), length.out = tail_n)
-    x = rbind(class_row, x[head_idx, , drop = FALSE], "", x[tail_idx, , drop = FALSE])
+    rnames = c(head_idx, "--", tail_idx)
+    tail_idx = seq.int(to = n, length.out = tail_n)
+    y = rbind(y[head_idx, , drop = FALSE], "", y[tail_idx, , drop = FALSE])
   } else {
-    rnames = c("", seq_len(nrow(x)))
-    x = rbind(class_row, x)
+    rnames = seq_len(nrow_x)
   }
-  row.names(x) = format(rnames, justify = "right")
-  print(x, right = TRUE, quote = FALSE, max = .Machine$integer.max, ...)
+  if (isTRUE(classes)) {
+    class_row = vapply(x, class_sum, "", USE.NAMES = FALSE)
+    class_row = paste0("<", class_row, ">")
+    y = rbind(class_row, y)
+    rnames = c("", rnames)
+  }
+  row.names(y) = format(rnames, justify = "right")
+  print(y, right = TRUE, quote = FALSE, max = .Machine$integer.max, ...)
   invisible(original_x)
 }
 
