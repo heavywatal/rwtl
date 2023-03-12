@@ -11,7 +11,7 @@ glue = function(..., .sep = "", .envir = parent.frame()) {
 #' @inheritParams stringr::str_glue_data
 #' @rdname string
 #' @export
-glue_data = function (.x, ..., .sep = "", .envir = parent.frame(), .na = "NA") {
+glue_data = function(.x, ..., .sep = "", .envir = parent.frame(), .na = "NA") {
   stringr::str_glue_data(.x, ..., .sep = .sep, .envir = .envir, .na = .na, .trim = FALSE)
 }
 
