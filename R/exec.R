@@ -5,6 +5,7 @@
 #' @rdname exec
 #' @export
 exec_knit = function(input, output = NA) {
+  knitr::opts_chunk$set(cache.path = ".cache/")
   if (is.na(output)) {
     withr::with_dir(
       dirname(input),
