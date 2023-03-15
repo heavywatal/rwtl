@@ -14,7 +14,10 @@ Suggests:
     cowplot,
     DiagrammeR,
     DiagrammeRsvg,
+    gargle,
     ggridges,
+    googledrive,
+    googlesheets4,
     rmarkdown,
     testthat (>= 3.0.0)
 Imports:
