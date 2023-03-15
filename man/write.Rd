@@ -2,15 +2,70 @@
 % Please edit documentation in R/write.R
 \name{save_as}
 \alias{save_as}
-\title{Save R object with its name}
+\alias{write_table}
+\title{Write R objects to files}
 \usage{
 save_as(obj, dir = ".")
+
+write_table(x, file, delim = "\\t", na = "", quote = "needed", ...)
 }
 \arguments{
-\item{obj}{R object}
+\item{obj}{An R object.}
 
-\item{dir}{a string}
+\item{dir}{A string.}
+
+\item{x}{A data frame or tibble to write to disk.}
+
+\item{file}{File or connection to write to.}
+
+\item{delim}{Delimiter used to separate values. Defaults to \code{" "} for \code{write_delim()}, \code{","} for \code{write_excel_csv()} and
+\code{";"} for \code{write_excel_csv2()}. Must be a single character.}
+
+\item{na}{String used for missing values. Defaults to NA. Missing values
+will never be quoted; strings with the same value as \code{na} will
+always be quoted.}
+
+\item{quote}{How to handle fields which contain characters that need to be
+quoted.
+\itemize{
+\item \code{needed} - Values are only quoted if needed: if they contain a delimiter,
+quote, or newline.
+\item \code{all} - Quote all fields.
+\item \code{none} - Never quote fields.
+}}
+
+\item{...}{
+  Arguments passed on to \code{\link[readr:write_delim]{readr::write_delim}}
+  \describe{
+    \item{\code{append}}{If \code{FALSE}, will overwrite existing file. If \code{TRUE},
+will append to existing file. In both cases, if the file does not exist a new
+file is created.}
+    \item{\code{col_names}}{If \code{FALSE}, column names will not be included at the top of the file. If \code{TRUE},
+column names will be included. If not specified, \code{col_names} will take the opposite value given to \code{append}.}
+    \item{\code{escape}}{The type of escape to use when quotes are in the data.
+\itemize{
+\item \code{double} - quotes are escaped by doubling them.
+\item \code{backslash} - quotes are escaped by a preceding backslash.
+\item \code{none} - quotes are not escaped.
+}}
+    \item{\code{eol}}{The end of line character to use. Most commonly either \code{"\n"} for
+Unix style newlines, or \code{"\r\n"} for Windows style newlines.}
+    \item{\code{num_threads}}{Number of threads to use when reading and materializing
+vectors. If your data contains newlines within fields the parser will
+automatically be forced to use a single thread only.}
+    \item{\code{progress}}{Display a progress bar? By default it will only display
+in an interactive session and not while knitting a document. The display
+is updated every 50,000 values and will only display if estimated reading
+time is 5 seconds or more. The automatic progress bar can be disabled by
+setting option \code{readr.show_progress} to \code{FALSE}.}
+    \item{\code{path}}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use the \code{file} argument
+instead.}
+    \item{\code{quote_escape}}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use the \code{escape}
+argument instead.}
+  }}
 }
 \description{
-Save R object with its name
+\code{save_as()} saves R object with its name.
+
+\code{write_table()} is a shortcut of \code{\link[readr:write_delim]{readr::write_delim()}} with decent default options.
 }
