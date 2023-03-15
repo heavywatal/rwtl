@@ -5,7 +5,6 @@ Authors@R: person("Watal M.", "Iwasaki", email = "heavywatal@gmail.com", role = 
 Description: Personal R package.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Depends:
     R (>= 4.1.0)
 Suggests:
