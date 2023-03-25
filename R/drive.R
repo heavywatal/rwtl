@@ -4,7 +4,7 @@
 #' @rdname drive
 #' @export
 gs4_read_sheet = function(..., path = NULL, email = gargle::gargle_oauth_email()) {
-  if (is.null(googledrive::drive_oauth_app())) {
+  if (is.null(googledrive::drive_oauth_client())) {
     gs4_auth_json(path, email)
   }
   googlesheets4::read_sheet(...)
