@@ -5,7 +5,8 @@
 #' @rdname exec
 #' @export
 exec_knit = function(input, output = NA) {
-  knitr::opts_chunk$set(cache.path = ".cache/")
+  label = basename(input) |> stringr::str_replace_all("\\W+", "-")
+  knitr::opts_chunk$set(cache.path = glue(".cache/{label}/"))
   if (is.na(output)) {
     withr::with_dir(
       dirname(input),
