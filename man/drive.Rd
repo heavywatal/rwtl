@@ -15,7 +15,7 @@ gs4_auth_json(path = NULL, email = gargle::gargle_oauth_email())
   \describe{
     \item{\code{ss}}{Something that identifies a Google Sheet:
 \itemize{
-\item its file id as a string or \code{\link[googledrive:as_id]{drive_id}}
+\item its file id as a string or \code{\link[googledrive:drive_id]{drive_id}}
 \item a URL from which we can recover the id
 \item a one-row \code{\link[googledrive:dribble]{dribble}}, which is how googledrive
 represents Drive files
