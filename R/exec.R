@@ -1,24 +1,30 @@
 #' Shortcut to use knitr and rmarkdown from commandline
 #'
 #' @param input File path.
-#' @param output File path.
+#' @param output File or directory path.
 #' @rdname exec
 #' @export
 exec_knit = function(input, output = NA) {
-  label = basename(input) |> stringr::str_replace_all("\\W+", "-")
-  knitr::opts_chunk$set(cache.path = glue(".cache/{label}/"))
   if (is.na(output)) {
-    withr::with_dir(
-      dirname(input),
-      knitr::knit(basename(input))
-    )
+    withr::local_dir(dirname(input))
+    input = basename(input)
+    output = NULL
   } else {
     input = normalizePath(input)
-    withr::with_dir(
-      dirname(output),
-      knitr::knit(input, basename(output))
-    )
+    if (dir.exists(output)) {
+      withr::local_dir(output)
+      output = NULL
+    } else {
+      withr::local_dir(dirname(output))
+      output = basename(output)
+    }
   }
+  inputname = stringr::str_replace_all(basename(input), "\\W+", "-")
+  knitr::opts_knit$set(unnamed.chunk.label = glue("_{inputname}"))
+  knitr::opts_chunk$set(cache.path = glue(".cache/{inputname}/"))
+  knitr::opts_chunk$set(error = FALSE)
+  withr::local_options(knitr.progress.fun = knitr_progress)
+  invisible(knitr::knit(input, output))
 }
 
 #' @param output_dir Directory path.
@@ -44,4 +50,14 @@ DiagrammeR_dot2svg = function(input, output_dir = NA) {
   svg = stringr::str_replace(svg, pattern, "")
   outfile = stringr::str_replace(input, "\\.dot$|\\.gr$", ".svg")
   cat(svg, file = fs::path(output_dir, outfile))
+}
+
+knitr_progress = function(total, labels) {
+  envir = parent.frame()
+  list(
+    update = \(i) if (nzchar(labels[i])) {
+      cli::cli_progress_step(labels[i], .envir = envir)
+    },
+    done = \() cli::cli_process_done(.envir = envir)
+  )
 }

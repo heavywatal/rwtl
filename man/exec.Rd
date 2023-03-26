@@ -15,7 +15,7 @@ DiagrammeR_dot2svg(input, output_dir = NA)
 \arguments{
 \item{input}{File path.}
 
-\item{output}{File path.}
+\item{output}{File or directory path.}
 
 \item{output_dir}{Directory path.}
 }
