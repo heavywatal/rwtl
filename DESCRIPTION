@@ -30,6 +30,7 @@ Imports:
     fs,
     ggplot2,
     knitr,
+    lubridate,
     pak,
     purrr,
     readr,
