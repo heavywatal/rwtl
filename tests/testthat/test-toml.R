@@ -1,5 +1,5 @@
 test_that("toTOML work", {
-  withr::local_options(readr.default_locale = locale(tz = "Asia/Tokyo"))
+  withr::local_options(readr.default_locale = readr::locale(tz = "Asia/Tokyo"))
   lst = list(
     integer = 42L,
     double = 42,
