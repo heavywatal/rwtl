@@ -15,5 +15,5 @@ read_pb()
 \description{
 \code{read_boost_ini()} reads an INI-like config file of boost::program_options.
 
-\code{read_pb()} reads paste board into data.frame.
+\code{read_pb()} reads paste board to a character.
 }

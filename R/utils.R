@@ -42,7 +42,7 @@ reprex_tidyverse = function(venue = "r", n = 8L, html_preview = FALSE) {
     "registerS3method(\"print\", \"tbl_df\", wtl::printdf)",
     sprintf("options(pillar.print_max = %dL)", n)
   )
-  code = clipr::read_clip() |> stringr::str_subset("^#>", negate = TRUE)
+  code = read_pb() |> stringr::str_subset("^#>", negate = TRUE)
   input = c(
     "#+ setup, include = FALSE",
     setup,

@@ -13,9 +13,9 @@ read_boost_ini = function(file) {
 }
 
 #' @description
-#' `read_pb()` reads paste board into data.frame.
+#' `read_pb()` reads paste board to a character.
 #' @rdname read
 #' @export
 read_pb = function() {
-  readr::read_file(pipe("pbpaste"))
+  readr::read_file(I(pipe("pbpaste")))
 }

@@ -22,7 +22,6 @@ Suggests:
 Imports:
     BiocManager,
     cli,
-    clipr,
     devtools,
     dplyr,
     fs,
