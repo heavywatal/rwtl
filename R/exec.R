@@ -24,6 +24,7 @@ exec_knit = function(input, output = NA) {
   knitr::opts_chunk$set(cache.path = glue(".cache/{inputname}/"))
   knitr::opts_chunk$set(error = FALSE)
   withr::local_options(knitr.progress.fun = knitr_progress)
+  knit_engines_set_cache_stan()
   invisible(knitr::knit(input, output))
 }
 
