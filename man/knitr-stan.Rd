@@ -19,6 +19,7 @@ to facilitate showing the usage of \code{\link[cmdstanr:cmdstan_model]{cmdstanr:
 Stan file is automatically named after the chunk label, .i.e.,
 \code{"{cache_stan_prefix}{label}.stan"}.
 
-Set a chunk option \code{cache_stan} to \code{TRUE} or \code{FALSE} so that
-\code{output.var} can be omitted.
+Set \code{cache_stan} to \code{TRUE} or \code{FALSE} for stan chunks so that
+\code{output.var} can be omitted. Then set it to the chunk label of stan code
+for dependent R chunks.
 }

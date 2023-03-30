@@ -8,8 +8,9 @@
 #' Stan file is automatically named after the chunk label, .i.e.,
 #' `"{cache_stan_prefix}{label}.stan"`.
 #'
-#' Set a chunk option `cache_stan` to `TRUE` or `FALSE` so that
-#' `output.var` can be omitted.
+#' Set `cache_stan` to `TRUE` or `FALSE` for stan chunks so that
+#' `output.var` can be omitted. Then set it to the chunk label of stan code
+#' for dependent R chunks.
 #'
 #' @param cache_stan_prefix Prefix for output files.
 #' A relative path is evaluated from the source file.
@@ -48,10 +49,18 @@ eng_cache_stan = function(opts) {
 # Option hooks seem to be the only way to go for now.
 # See `knitr:::block_exec()` in `block.R`.
 hook_cache_stan = function(opts) {
-  stan_file = stan_file_cache(opts)
-  opts$cache = opts$cache_stan
-  opts$cache.rebuild = opts$cache && !file.exists(stan_file)
-  opts$output.var = paste0(".md5_", basename(stan_file))
+  if (is.character(opts$cache_stan)) {
+    # {r} with cmdstan_model()
+    objname = paste0(".md5_", opts$cache_stan)
+    opts$cache.extra = paste0(get(objname, envir = knitr_chunk_envir()))
+    opts$cache = TRUE
+  } else {
+    # {stan}
+    stan_file = stan_file_cache(opts)
+    opts$cache = as.logical(opts$cache_stan)
+    opts$cache.rebuild = opts$cache && !file.exists(stan_file)
+    opts$output.var = paste0(".md5_", opts$label)
+  }
   opts
 }
 
