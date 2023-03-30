@@ -9,7 +9,6 @@ Depends:
     R (>= 4.1.0)
 Suggests:
     ape,
-    cmdstanr,
     covr,
     cowplot,
     DiagrammeR,
