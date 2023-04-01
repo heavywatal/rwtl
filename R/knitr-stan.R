@@ -20,6 +20,7 @@ knit_engines_set_cache_stan = function(cache_stan_prefix = NULL) {
   knitr::knit_engines$set(stan = eng_cache_stan)
   knitr::opts_chunk$set(cache_stan_prefix = cache_stan_prefix)
   knitr::opts_hooks$set(cache_stan = hook_cache_stan)
+  knitr::knit_hooks$set(stan_save_output_files = hook_save_output_files)
 }
 
 # @param opts options.
@@ -62,6 +63,23 @@ hook_cache_stan = function(opts) {
     opts$output.var = paste0(".md5_", opts$label)
   }
   opts
+}
+
+# Cached `fit` objects are usually not usable in other R sessions because they
+# only store paths to CSV files, which are written to `tempdir()` by default.
+# This hook moves files to a better place and sets internal paths to them.
+hook_save_output_files = function(before, options, envir) {
+  if (!before) {
+    outdir = file.path(options$cache.path, "stan")
+    fs::dir_create(outdir)
+    objname = options$stan_save_output_files
+    fit = get(objname, envir = knitr_chunk_envir())
+    new_path = suppressMessages(
+      fit$save_output_files(outdir, timestamp = FALSE, random = FALSE)
+    )
+    message("save_output_files: ", new_path[1])
+  }
+  invisible()
 }
 
 stan_file_cache = function(opts) {
