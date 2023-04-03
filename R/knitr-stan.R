@@ -21,6 +21,8 @@ knit_engines_set_cache_stan = function(cache_stan_prefix = NULL) {
   knitr::opts_chunk$set(cache_stan_prefix = cache_stan_prefix)
   knitr::opts_hooks$set(cache_stan = hook_cache_stan)
   knitr::knit_hooks$set(stan_save_output_files = hook_save_output_files)
+  # to suppress "warning: jobserver unavailable: using -j1" from cmdstanr
+  withr::local_envvar(MAKEFLAGS = "-j1", .local_envir = knitr_chunk_envir())
 }
 
 # @param opts options.
@@ -55,6 +57,8 @@ hook_cache_stan = function(opts) {
     objname = paste0(".md5_", opts$cache_stan)
     opts$cache.extra = paste0(get(objname, envir = knitr_chunk_envir()))
     opts$cache = TRUE
+    opts$message = NA
+    opts$warning = NA
   } else {
     # {stan}
     stan_file = stan_file_cache(opts)
