@@ -11,3 +11,20 @@ test_that("is_outdated works", {
     expect_true(is_outdated(this_file, new_file))
   })
 })
+
+test_that("file_copy_try works", {
+  dstdir = fs::path(tempdir())
+  this_file = "test-fs.R"
+  dstfile = dstdir / this_file
+  expect_identical(file_copy_try(this_file, dstdir), dstfile)
+  expect_identical(file_copy_try(this_file, dstdir), dstfile)
+})
+
+test_that("path_destination works", {
+  srcs = c("file", "rel/file", "/abs/file")
+  dstdir = fs::path(tempdir())
+  dstfiles = dstdir / basename(srcs)
+  expect_identical(path_destination(srcs, dstdir), dstfiles)
+  expect_identical(path_destination(srcs, dstfiles), dstfiles)
+  expect_error(path_destination(srcs, dstdir / "noexist"), "length")
+})

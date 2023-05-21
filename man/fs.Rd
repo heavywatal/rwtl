@@ -2,16 +2,29 @@
 % Please edit documentation in R/fs.R
 \name{is_outdated}
 \alias{is_outdated}
+\alias{file_copy_try}
+\alias{path_destination}
 \title{Functions related to file systems}
 \usage{
 is_outdated(path, prerequisites = character(0L))
+
+file_copy_try(path, new_path)
+
+path_destination(path, new_path)
 }
 \arguments{
 \item{path}{files to test}
 
 \item{prerequisites}{comparables}
+
+\item{new_path}{path to the new file or target directory.}
 }
 \description{
 \code{is_outdated()} tests existence, size, and modification time of files.
 Note that it returns \code{TRUE} if a file is empty.
+
+\code{file_copy_try()} is a modified version of \code{\link[fs:copy]{fs::file_copy()}} not to raise
+errors when targets exist.
+
+\code{path_destination()} normalizes destination paths.
 }
