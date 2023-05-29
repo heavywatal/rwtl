@@ -70,8 +70,7 @@ test_that("symlink with relative paths works", {
     expect_warning("broken link")
   expect_warning(link_resolve(lnk), "broken link")
   expect_true(fs::link_exists(lnk))
-  skip("r-lib/fs#394")
-  expect_false(fs::dir_exists(lnk))
+  expect_false(dir.exists(lnk))  # cannot use fs::dir_exists (r-lib/fs#394)
 })
 
 test_that("symlink with a target directory works", {
@@ -89,7 +88,6 @@ test_that("symlink_latest_library works", {
   parent = fs::path_dir(x)
   lnk = symlink_latest_library(x)
   expect_true(fs::link_exists(lnk))
-  skip("r-lib/fs#395")
-  expect_true(fs::dir_exists(lnk))
+  expect_true(dir.exists(lnk))  # cannot use fs::dir_exists (r-lib/fs#395)
   fs::link_delete(lnk)
 })
