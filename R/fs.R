@@ -1,31 +1,43 @@
 #' Functions related to file systems
 #'
 #' @description
-#' `is_outdated()` tests existence, size, and modification time of files.
-#' Note that it returns `TRUE` if a file is empty.
+#' `is_outdated()` tests existence and modification time of files.
 #' @param path files to test
 #' @param prerequisites comparables
 #' @rdname fs
 #' @export
 is_outdated = function(path, prerequisites = character(0L)) {
-  cond_mtime = if (length(prerequisites) > 0L) {
-    file.mtime(path) < max(file.mtime(prerequisites))
+  pre_time = if (length(prerequisites) == 0L) {
+    -Inf
   } else {
-    FALSE
+    file.mtime(prerequisites)
   }
-  !file.exists(path) | fs::is_file_empty(path) | cond_mtime
+  if (length(path) == 1L) {
+    pre_time = max(pre_time)
+  }
+  stopifnot(length(pre_time) %in% c(1L, length(path)))
+  !file.exists(path) | (file.mtime(path) < pre_time)
 }
 
 #' @description
-#' `file_copy_try()` is a modified version of [fs::file_copy()] not to raise
-#' errors when targets exist.
+#' `file_copy_try()` is a modified version of [fs::file_copy()] to copy only new files.
 #' @param new_path path to the new file or target directory.
+#' @param overwrite If this is FALSE and the file is outdated, a message will be shown.
 #' @rdname fs
 #' @export
-file_copy_try = function(path, new_path) {
+file_copy_try = function(path, new_path, overwrite = FALSE) {
   new_path = path_destination(path, new_path)
-  outdated = is_outdated(new_path)
-  fs::file_copy(path[outdated], new_path[outdated])
+  outdated = is_outdated(new_path, path)
+  if (isTRUE(overwrite)) {
+    idx = outdated
+  } else {
+    idx = is_outdated(new_path)
+    left_outdated = outdated & !idx
+    if (any(left_outdated)) {
+      message("outdated: ", toString(new_path[left_outdated]))
+    }
+  }
+  fs::file_copy(path[idx], new_path[idx], overwrite = overwrite)
   invisible(new_path)
 }
 

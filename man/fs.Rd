@@ -8,7 +8,7 @@
 \usage{
 is_outdated(path, prerequisites = character(0L))
 
-file_copy_try(path, new_path)
+file_copy_try(path, new_path, overwrite = FALSE)
 
 path_destination(path, new_path)
 }
@@ -18,13 +18,13 @@ path_destination(path, new_path)
 \item{prerequisites}{comparables}
 
 \item{new_path}{path to the new file or target directory.}
+
+\item{overwrite}{If this is FALSE and the file is outdated, a message will be shown.}
 }
 \description{
-\code{is_outdated()} tests existence, size, and modification time of files.
-Note that it returns \code{TRUE} if a file is empty.
+\code{is_outdated()} tests existence and modification time of files.
 
-\code{file_copy_try()} is a modified version of \code{\link[fs:copy]{fs::file_copy()}} not to raise
-errors when targets exist.
+\code{file_copy_try()} is a modified version of \code{\link[fs:copy]{fs::file_copy()}} to copy only new files.
 
 \code{path_destination()} normalizes destination paths.
 }

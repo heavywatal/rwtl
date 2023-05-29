@@ -1,23 +1,30 @@
 test_that("is_outdated works", {
-  this_file = "test-fs.R"
-  expect_false(is_outdated(this_file))
-  expect_true(is_outdated("NOEXIST"))
-  withr::with_tempfile("new_file", {
-    fs::file_create(new_file)
-    expect_true(is_outdated(new_file))
-    writeLines("hello", new_file)
-    expect_false(is_outdated(new_file))
-    expect_false(is_outdated(new_file, this_file))
-    expect_true(is_outdated(this_file, new_file))
-  })
+  expect_identical(is_outdated(character(0L)), logical(0L))
+  old = withr::local_tempfile() |> fs::file_create()
+  new = withr::local_tempfile()
+  expect_true(is_outdated(new))
+  fs::file_create(new)
+  expect_false(is_outdated(new))
+  expect_false(is_outdated(new, old))
+  expect_true(is_outdated(old, new))
+  expect_true(is_outdated(old, c(new, old)))
+  expect_false(is_outdated(new, c(new, old)))
+  expect_identical(is_outdated(c(old, new), c(new, old)), c(TRUE, FALSE))
+  expect_identical(is_outdated(c(old, new), new), c(TRUE, FALSE))
+  expect_identical(is_outdated(c(old, new), old), c(FALSE, FALSE))
 })
 
 test_that("file_copy_try works", {
-  dstdir = fs::path(tempdir())
-  this_file = "test-fs.R"
-  dstfile = dstdir / this_file
-  expect_identical(file_copy_try(this_file, dstdir), dstfile)
-  expect_identical(file_copy_try(this_file, dstdir), dstfile)
+  src = withr::local_tempfile() |> fs::file_create()
+  dstdir = withr::local_tempdir("test_fs_")
+  dstfile = fs::path(dstdir, fs::path_file(src))
+  expect_identical(file_copy_try(src, dstdir), dstfile)
+  expect_identical(file_copy_try(src, dstdir), dstfile)
+  writeLines("hello", src)
+  expect_message(file_copy_try(src, dstdir, overwrite = FALSE), "outdated")
+  expect_identical(readLines(dstfile), character(0L))
+  expect_silent(file_copy_try(src, dstdir, overwrite = TRUE))
+  expect_identical(readLines(dstfile), "hello")
 })
 
 test_that("path_destination works", {
