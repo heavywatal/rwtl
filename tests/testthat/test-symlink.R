@@ -1,7 +1,7 @@
 test_that("symlink with absolute paths works", {
-  x = fs::dir_create(tempfile())
-  src = fs::dir_create(fs::path(x, "src"))
-  dst = fs::path(x, "dst")
+  root = withr::local_tempdir()
+  src = fs::dir_create(fs::path(root, "src"))
+  dst = fs::path(root, "dst")
   symlink(src, dst) |>
     expect_identical(dst) |>
     expect_silent()
@@ -13,17 +13,17 @@ test_that("symlink with absolute paths works", {
   symlink(src, dst, follow = FALSE) |>
     expect_identical(dst) |>
     expect_message("already exists")
-  expect_false(fs::file_exists(fs::path(x, "dst", "src")))
+  expect_false(fs::file_exists(fs::path(root, "dst", "src")))
 
   # follow = TRUE by default; x/dst@/src@ -> /path/to/x/src
   lnk = symlink(src, dst) |>
-    expect_identical(fs::path(x, "dst", "src")) |>
+    expect_identical(fs::path(root, "dst", "src")) |>
     expect_silent()
   expect_true(fs::link_exists(lnk))
   expect_true(fs::dir_exists(lnk))
   expect_identical(link_resolve(lnk), src)
 
-  new = fs::dir_create(fs::path(x, "new"))
+  new = fs::dir_create(fs::path(root, "new"))
   symlink(new, dst, follow = FALSE) |>
     expect_identical(dst) |>
     expect_message("already exists") |>
@@ -33,18 +33,17 @@ test_that("symlink with absolute paths works", {
   expect_identical(link_resolve(dst), new)
 
   {
-    lnk = symlink("noexist", fs::path(x, "broken")) |>
-      expect_identical(fs::path(x, "broken"))
+    lnk = symlink("noexist", fs::path(root, "broken")) |>
+      expect_identical(fs::path(root, "broken"))
   } |>
     expect_warning("broken link")
   link_resolve(lnk) |>
-    expect_identical(fs::path(x, "noexist")) |>
+    expect_identical(fs::path(root, "noexist")) |>
     expect_warning("broken link")
 })
 
 test_that("symlink with relative paths works", {
-  x = fs::dir_create(tempfile())
-  withr::local_dir(x)
+  withr::local_dir(withr::local_tempdir())
   src = fs::dir_create("src")
   dst = symlink("src", "dst") |>
     expect_identical(fs::path("dst")) |>
@@ -70,13 +69,13 @@ test_that("symlink with relative paths works", {
     expect_warning("broken link")
   expect_warning(link_resolve(lnk), "broken link")
   expect_true(fs::link_exists(lnk))
-  expect_false(dir.exists(lnk))  # cannot use fs::dir_exists (r-lib/fs#394)
+  expect_false(dir.exists(lnk)) # cannot use fs::dir_exists (r-lib/fs#394)
 })
 
 test_that("symlink with a target directory works", {
-  x = fs::dir_create(tempfile())
-  src = fs::dir_create(fs::path(x, paste0("src", 1:3)))
-  dir = fs::dir_create(fs::path(x, "dir"))
+  root = withr::local_tempdir()
+  src = fs::dir_create(fs::path(root, paste0("src", 1:3)))
+  dir = fs::dir_create(fs::path(root, "dir"))
   dst = symlink(src, dir) |>
     expect_identical(fs::path(dir, fs::path_file(src)))
   expect_true(all(fs::link_exists(dst)))
@@ -84,10 +83,10 @@ test_that("symlink with a target directory works", {
 })
 
 test_that("symlink_latest_library works", {
-  x = fs::dir_create(tempfile())
+  x = withr::local_tempdir()
   parent = fs::path_dir(x)
   lnk = symlink_latest_library(x)
   expect_true(fs::link_exists(lnk))
-  expect_true(dir.exists(lnk))  # cannot use fs::dir_exists (r-lib/fs#395)
+  expect_true(dir.exists(lnk)) # cannot use fs::dir_exists (r-lib/fs#395)
   fs::link_delete(lnk)
 })
