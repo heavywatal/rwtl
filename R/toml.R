@@ -6,7 +6,7 @@
 toTOML = function(data, usetz = TRUE) {
   v = data |>
     purrr::compact() |>
-    purrr::keep(\(x) !is.na(x)) |>
+    purrr::discard(is.na) |>
     purrr::modify_if(is.character, \(x) paste0('"', x, '"')) |>
     purrr::modify_if(is_datetime, format_iso8601) |>
     purrr::modify_if(is.logical, tolower)

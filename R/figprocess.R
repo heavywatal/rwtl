@@ -29,7 +29,7 @@ figprocess = function(input, command, options = NULL, defaults = NULL, prefix = 
   pattern = paste0("^", command, "\\.")
   options = setdefault(options, defaults) |>
     select_list(tidyselect::matches(pattern)) |>
-    purrr::keep(~ !isFALSE(.x))
+    purrr::discard(isFALSE)
   keys = stringr::str_replace(names(options), pattern, prefix)
   values = as.character(options)
   args = matrix(c(keys, values), nrow = 2L, byrow = TRUE) |>
