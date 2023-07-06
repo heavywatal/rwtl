@@ -55,11 +55,9 @@ as_chr = function(...) {
 #' @rdname string
 #' @export
 as_code = function(x) {
-  if (is.character(x)) {
-    x = paste0('"', x, '"')
-  }
-  x = toString(x)
-  paste0("c(", x, ")")
+  conn = withr::local_connection(textConnection(NULL, "w"))
+  dput(x, conn)
+  textConnectionValue(conn) |> paste0(collapse = "")
 }
 
 #' Conversion between character and integer code point

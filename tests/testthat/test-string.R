@@ -32,7 +32,8 @@ test_that("as_chr works", {
 
 test_that("as_code works", {
   x = 1:3
-  expect_identical(as_code(x), "c(1, 2, 3)")
+  expect_identical(as_code(x), "1:3")
+  expect_identical(as_code(as.numeric(x)), "c(1, 2, 3)")
   x = letters[x]
   expect_identical(as_code(x), 'c("a", "b", "c")')
 })
