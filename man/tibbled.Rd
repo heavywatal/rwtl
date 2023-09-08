@@ -4,6 +4,8 @@
 \alias{rle_df}
 \alias{rle_ranges}
 \alias{table_df}
+\alias{tabulate0_df}
+\alias{tabulate0}
 \title{Tibbled version of base R functions}
 \usage{
 rle_df(x)
@@ -11,11 +13,20 @@ rle_df(x)
 rle_ranges(...)
 
 table_df(..., name = "n")
+
+tabulate0_df(..., name = "n")
+
+tabulate0(bin, nbins = max(1L, bin, na.rm = TRUE))
 }
 \arguments{
 \item{x, ...}{Atomic vector}
 
 \item{name}{The name of the new column in the output.}
+
+\item{bin}{a numeric vector (of positive integers), or a factor.
+      \link[base]{Long vectors} are supported.}
+
+\item{nbins}{the number of bins to be used.}
 }
 \description{
 \code{rle_df()} returns a tibbled rle.
@@ -23,9 +34,15 @@ table_df(..., name = "n")
 \code{rle_ranges()} returns an IRanges-like tibble.
 
 \code{table_df()} returns a tibbled table.
+
+\code{tabulate0_df()} is a tabulated variant of \code{table_df()}.
+
+\code{tabulate0()} is a variant of \code{\link[=tabulate]{tabulate()}} to count integers including zero.
 }
 \seealso{
 \code{\link[=rle]{rle()}}
 
 \code{\link[=table]{table()}}, \code{\link[dplyr:count]{dplyr::count()}}
+
+\code{\link[=tabulate]{tabulate()}}
 }
