@@ -2,10 +2,16 @@
 % Please edit documentation in R/vector.R
 \name{twist}
 \alias{twist}
+\alias{sort_numeric}
+\alias{as_factor_numeric}
 \alias{split_consecutive}
 \title{Utilities for vector}
 \usage{
 twist(x, n)
+
+sort_numeric(x, width = 3L)
+
+as_factor_numeric(x, width = 3L, ordered = is.ordered(x))
 
 split_consecutive(x)
 }
@@ -13,9 +19,17 @@ split_consecutive(x)
 \item{x}{a vector}
 
 \item{n}{an integer}
+
+\item{width}{the number of digits for zero-padding.}
+
+\item{ordered}{a logical flag passed to \code{factor()}.}
 }
 \description{
 \code{twist()} cycles a vector.
+
+\code{sort_numeric()} sorts strings numerically.
+
+\code{as_factor_numeric()} is a variant of \code{as.factor()} to sort levels numerically.
 
 \code{split_consecutive()} groups consecutive integers.
 }
