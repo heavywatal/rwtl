@@ -8,14 +8,28 @@ as_paf = function(x) UseMethod("as_paf")
 
 #' @export
 as_paf.default = function(x) {
-  columns = c(
-    "qchr", "qsize", "qstart", "qend", "strand", "chr", "size", "start", "end", "match", "width", "score"
-  )
   res = x |>
-    dplyr::select(dplyr::all_of(columns)) |>
+    dplyr::select(dplyr::all_of(paf_columns)) |>
     dplyr::mutate(chr = as_factor_numeric(.data$chr), qchr = as_factor_numeric(.data$qchr))
   class(res) = paf_class
   res
+}
+
+paf_columns = c(
+  "qchr", "qsize", "qstart", "qend", "strand", "chr", "size", "start", "end", "match", "width", "score"
+)
+
+#' @rdname paf
+#' @export
+read_paf = function(file) {
+  readr::read_tsv(file, col_names = paf_columns, col_types = "ciiicciiiiii") |>
+    as_paf()
+}
+
+#' @rdname paf
+#' @export
+write_paf = function(x, file) {
+  readr::write_tsv(x, file, na = "", col_names = FALSE)
 }
 
 #' @param file paths to alignment files.

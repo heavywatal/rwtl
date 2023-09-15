@@ -2,6 +2,8 @@
 % Please edit documentation in R/paf.R
 \name{as_paf}
 \alias{as_paf}
+\alias{read_paf}
+\alias{write_paf}
 \alias{read_axt}
 \alias{read_chain}
 \alias{read_net}
@@ -9,6 +11,10 @@
 \title{Unify pairwise alignment files to Pairwise mApping Format (PAF)}
 \usage{
 as_paf(x)
+
+read_paf(file)
+
+write_paf(x, file)
 
 read_axt(file)
 
