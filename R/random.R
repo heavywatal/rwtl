@@ -1,4 +1,4 @@
-#' Generate random integers between a and b
+#' Generate random integers between `min` and `max`.
 #' @param n number of observations
 #' @param min,max lower and upper limits of the distribution
 #' @rdname random
@@ -6,7 +6,7 @@
 #' @seealso purrr::rdunif
 #' @examples
 #' table(runif.int(600L, 1L, 6L))
-runif.int = function(n, min = 0L, max = .Machine$integer.max - 1L) {
-  min_1 = min - 1L
-  sample.int(max - min_1, n, replace = TRUE) + min_1
+runif.int = function(n, min = -.Machine$integer.max, max = .Machine$integer.max) {
+  offset = min - 1.0
+  as.integer(sample.int(max - offset, n, replace = TRUE) + offset)
 }

@@ -2,9 +2,9 @@
 % Please edit documentation in R/random.R
 \name{runif.int}
 \alias{runif.int}
-\title{Generate random integers between a and b}
+\title{Generate random integers between \code{min} and \code{max}.}
 \usage{
-runif.int(n, min = 0L, max = .Machine$integer.max - 1L)
+runif.int(n, min = -.Machine$integer.max, max = .Machine$integer.max)
 }
 \arguments{
 \item{n}{number of observations}
@@ -12,7 +12,7 @@ runif.int(n, min = 0L, max = .Machine$integer.max - 1L)
 \item{min, max}{lower and upper limits of the distribution}
 }
 \description{
-Generate random integers between a and b
+Generate random integers between \code{min} and \code{max}.
 }
 \examples{
 table(runif.int(600L, 1L, 6L))
