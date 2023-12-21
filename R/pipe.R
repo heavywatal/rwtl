@@ -50,13 +50,13 @@ less = function(x, ...) {
 }
 
 #' @description
-#' `egrep()` and `%G%` are shorthand for `x %P% "egrep {expr}"`.
-#' @param expr arguments to `egrep`; string or expression.
+#' `egrep()` and `%G%` are shorthand for `x %P% "grep -E {expr}"`.
+#' @param expr arguments to `grep -E`; string or expression.
 #' @rdname pipe
 #' @export
 egrep = function(x, expr, ...) {
   expr = rlang::as_name(rlang::enquo(expr))
-  command = paste("egrep", expr)
+  command = paste("grep", "-E", expr)
   pipeshell(x, command = !!command, ...)
 }
 
@@ -79,7 +79,7 @@ sinkpipe = function(expr, command) {
 #' @inheritParams base::sink
 #' @rdname pipe
 #' @export
-redirect = function(expr, file = "/dev/null") {
+redirect = function(expr, file = nullfile()) {
   withr::with_output_sink(
     file,
     invisible(eval(expr))

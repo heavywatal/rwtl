@@ -19,7 +19,7 @@ egrep(x, expr, ...)
 
 x \%G\% expr
 
-redirect(expr, file = "/dev/null")
+redirect(expr, file = nullfile())
 }
 \arguments{
 \item{x}{an object to print}
@@ -28,7 +28,7 @@ redirect(expr, file = "/dev/null")
 
 \item{...}{further arguments passed to \code{print}}
 
-\item{expr}{arguments to \code{egrep}; string or expression.}
+\item{expr}{arguments to \code{grep -E}; string or expression.}
 
 \item{file}{a writable \link[base]{connection} or a character string naming the
     file to write to, or \code{NULL} to stop sink-ing.}
@@ -39,7 +39,7 @@ redirect(expr, file = "/dev/null")
 \code{less()} print \code{x} in \code{getOption('pager')}. The operation is in-memory and
 efficient than \code{page(x, method='print')} that involves a temporary file.
 
-\code{egrep()} and \verb{\%G\%} are shorthand for \code{x \%P\% "egrep {expr}"}.
+\code{egrep()} and \verb{\%G\%} are shorthand for \code{x \%P\% "grep -E {expr}"}.
 
 \code{redirect()} evaluates \code{expr} while \code{sink(file)} is in operation.
 }
