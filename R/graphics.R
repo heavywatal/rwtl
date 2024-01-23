@@ -32,7 +32,7 @@ gghist = function(x, ..., binwidth = NULL, bins = NULL) {
   } else {
     ggplot2::geom_bar(...)
   }
-  ggplot2::ggplot(tibble::tibble(x = x)) +
+  ggplot2::ggplot(data.frame(x = x)) +
     ggplot2::aes(x) +
     geom
 }

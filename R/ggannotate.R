@@ -26,8 +26,8 @@ annotate_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2,
 
 make_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2) {
   angle = (seq_len(n) - 1L) * 2 * pi / n + start
-  tibble::tibble(
+  tibble::new_tibble(list(
     x = x + radius * cos(angle),
     y = y + radius * sin(angle)
-  )
+  ))
 }

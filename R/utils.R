@@ -25,10 +25,10 @@ getenv = function(pattern = NULL) {
   class(env) = "character"
   key = names(env)
   if (is.null(pattern)) {
-    tibble::tibble(key, value = env)
+    tibble::new_tibble(list(key = key, value = env))
   } else {
     idx = stringr::str_detect(key, pattern)
-    tibble::tibble(key = key[idx], value = env[idx])
+    tibble::new_tibble(list(key = key[idx], value = env[idx]))
   }
 }
 
