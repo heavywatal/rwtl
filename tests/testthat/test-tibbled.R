@@ -30,3 +30,12 @@ test_that("table_df works", {
   expect_identical(table_df(v), tibble::new_tibble(list(v = x, n = n)))
   expect_identical(table_df(value = v), tibble::new_tibble(list(value = x, n = n)))
 })
+
+test_that("tabulate0 works", {
+  x = c(2L, 3L, 3L, 5L)
+  expect_identical(tabulate(x), c(0L, 1L, 2L, 0L, 1L))
+  expect_identical(tabulate0(x), c(0L, tabulate(x)))
+  expect_identical(tabulate0(x, nbins = 6L), c(0L, tabulate(x), 0L))
+  e = tibble::new_tibble(list(x = seq.int(0L, max(x)), n = c(0L, tabulate(x))))
+  expect_identical(tabulate0_df(x), e)
+})
