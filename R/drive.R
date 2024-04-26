@@ -23,9 +23,6 @@ gs4_auth_json = function(path = NULL, email = gargle::gargle_oauth_email()) {
 }
 
 drive_auth_json = function(path, email) {
-  if (is.null(path)) {
-    path = Sys.getenv("GOOGLE_OAUTH_JSON")
-  }
-  googledrive::drive_auth_configure(path = path)
+  googledrive::drive_auth_configure(path = path %||% Sys.getenv("GOOGLE_OAUTH_JSON"))
   googledrive::drive_auth(email = email)
 }

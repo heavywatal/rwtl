@@ -31,8 +31,7 @@ demtrxcol = function(.data, at) {
   name = rlang::as_name(rlang::enquo(at))
   mtrx = .data[[name]]
   subdf = split(mtrx, col(mtrx, as.factor = TRUE))
-  cn = names(subdf)
-  if (is.null(cn)) cn = seq_along(subdf)
+  cn = names(subdf) %||% seq_along(subdf)
   cn = paste0("[,", cn, "]")
   names(subdf) = c(paste0(name, cn[[1]]), cn[[-1]])
   at = match(name, names(.data))
