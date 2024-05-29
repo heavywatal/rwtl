@@ -40,5 +40,5 @@ mean_sd = function(x, mult = 1) {
 #' @rdname ggmisc
 #' @export
 label_none = function(labels, ...) {
-  lapply(labels, function(x) character(length(x)))
+  lapply(labels, \(x) character(length(x)))
 }

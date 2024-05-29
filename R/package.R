@@ -39,7 +39,7 @@ tst = function(pkg = ".", ...) {
 }
 
 has_tests = function(pkg = ".") {
-  pkg = tryCatch(devtools::as.package(pkg), error = function(e) NULL)
+  pkg = tryCatch(devtools::as.package(pkg), error = \(e) NULL)
   !is.null(pkg) && (system.file("tests", package = pkg$package) != "")
 }
 

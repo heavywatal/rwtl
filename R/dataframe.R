@@ -6,7 +6,7 @@
 #' @rdname dataframe
 #' @export
 center_range = function(.data, .cols) {
-  center = function(x) x - mean(range(x))
+  center = \(x) x - mean(range(x))
   dplyr::mutate(.data, dplyr::across({{ .cols }}, center))
 }
 
