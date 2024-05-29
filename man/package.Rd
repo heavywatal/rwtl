@@ -44,7 +44,6 @@ is needed.}
 }
 \description{
 \code{lib_upgrade()} is a stopgap until \code{pak::lib_upgrade()} \url{https://github.com/r-lib/pak/issues/168}.
-Set \code{PKG_PLATFORMS} before loading pak: \url{https://github.com/r-lib/pak/issues/412}.
 There is no direct way to enforce binary for now: \url{https://github.com/r-lib/pak/issues/318}.
 \code{pak::pkg_upgrade()} is not available yet: \url{https://github.com/r-lib/pak/pull/289}.
 Versioned CRAN packages are not implemented yet \url{https://github.com/r-lib/pkgdepends/blob/main/R/type-cran.R}.
@@ -52,5 +51,5 @@ Versioned CRAN packages are not implemented yet \url{https://github.com/r-lib/pk
 \code{old_packages()} is a thin wrapper of \code{\link[utils:update.packages]{utils::old.packages()}}.
 
 \code{install_packages()} is a thin wrapper of \code{\link[pak:pkg_install]{pak::pkg_install()}}
-that can temporarily disable forced binary installation with \code{PKG_PLATFORMS}.
+to temporarily force binary installation.
 }

@@ -47,7 +47,6 @@ has_tests = function(pkg = ".") {
 #'
 #' @description
 #' `lib_upgrade()` is a stopgap until `pak::lib_upgrade()` <https://github.com/r-lib/pak/issues/168>.
-#' Set `PKG_PLATFORMS` before loading pak: <https://github.com/r-lib/pak/issues/412>.
 #' There is no direct way to enforce binary for now: <https://github.com/r-lib/pak/issues/318>.
 #' `pak::pkg_upgrade()` is not available yet: <https://github.com/r-lib/pak/pull/289>.
 #' Versioned CRAN packages are not implemented yet <https://github.com/r-lib/pkgdepends/blob/main/R/type-cran.R>.
@@ -107,14 +106,14 @@ old_packages = function(..., binary = TRUE, bioc = FALSE) {
 
 #' @description
 #' `install_packages()` is a thin wrapper of [pak::pkg_install()]
-#' that can temporarily disable forced binary installation with `PKG_PLATFORMS`.
+#' to temporarily force binary installation.
 #' @rdname package
 #' @export
 install_packages = function(pkg, lib = .libPaths()[[1L]], ..., binary = TRUE) {
-  if (isFALSE(binary) && Sys.getenv("PKG_PLATFORMS") != "") {
-    withr::local_envvar(PKG_PLATFORMS = NA)
+  if (isTRUE(binary) && grepl("binary", .Platform$pkgType, fixed = TRUE)) {
+    withr::local_options(pkg.platforms = R.version$platform)
     withr::defer(devtools::unload("pak"))
-    try(devtools::unload("pak"))
+    if ("pak" %in% loadedNamespaces()) devtools::unload("pak")
   }
   pak::pkg_install(pkg, lib = lib, ...)
 }
