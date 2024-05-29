@@ -1,6 +1,6 @@
 test_that("is_outdated works", {
   expect_identical(is_outdated(character(0L)), logical(0L))
-  old = withr::local_tempfile() |> fs::file_create()
+  old = getwd()
   new = withr::local_tempfile()
   expect_true(is_outdated(new))
   fs::file_create(new)
