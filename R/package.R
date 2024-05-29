@@ -1,19 +1,8 @@
 #' Package development utilities
 #'
 #' @description
-#' `document_install()` is a quick shortcut of [devtools::install()]
-#' following [devtools::document()].
+#' `chk()` is a thin wrapper of [devtools::check()].
 #' @inheritParams devtools::install
-#' @rdname package-dev
-#' @export
-document_install = function(pkg = ".", build = FALSE, upgrade = FALSE, ...) {
-  pkgbuild::compile_dll(pkg)
-  devtools::document(pkg)
-  devtools::install(pkg, build = build, upgrade = upgrade, ...)
-}
-
-#' @description
-#' `chk()` and `tst()` are thin wrappers of [devtools::check()] and [testthat::test_local()].
 #' @param install If FALSE, add `--no-install` to `args`
 #' @param vignettes If FALSE, add `--ignore-vignettes` to `args`
 #' @rdname package-dev
@@ -21,21 +10,12 @@ document_install = function(pkg = ".", build = FALSE, upgrade = FALSE, ...) {
 chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...) {
   if (!install) {
     args = c(args, "--no-install")
-    if (has_tests()) on.exit(tst(pkg))
+    if (has_tests()) on.exit(devtools::test(pkg))
   }
   if (!vignettes) {
     args = c(args, "--ignore-vignettes")
   }
   devtools::check(pkg, vignettes = vignettes, args = args, ...)
-}
-
-#' @rdname package-dev
-#' @export
-tst = function(pkg = ".", ...) {
-  withr::with_envvar(
-    c(LANG = "en_US.UTF-8"),
-    testthat::test_local(pkg, ...)
-  )
 }
 
 has_tests = function(pkg = ".") {

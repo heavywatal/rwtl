@@ -15,7 +15,6 @@ Suggests:
     ggridges,
     googledrive,
     googlesheets4,
-    pkgbuild,
     reprex,
     rmarkdown,
     styler,
