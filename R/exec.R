@@ -38,21 +38,6 @@ exec_render = function(input, output_dir = NA) {
   rmarkdown::render(input, output_dir = output_dir)
 }
 
-#' @rdname exec
-#' @export
-DiagrammeR_dot2svg = function(input, output_dir = NA) {
-  stopifnot(file.exists(input))
-  if (is.na(output_dir)) {
-    output_dir = getwd()
-  }
-  widget = DiagrammeR::grViz(input)
-  svg = DiagrammeRsvg::export_svg(widget)
-  pattern = stringr::regex(".+(?=<svg)", dotall = TRUE)
-  svg = stringr::str_replace(svg, pattern, "")
-  outfile = stringr::str_replace(input, "\\.dot$|\\.gr$", ".svg")
-  cat(svg, file = fs::path(output_dir, outfile))
-}
-
 knitr_progress = function(total, labels) {
   envir = parent.frame()
   list(

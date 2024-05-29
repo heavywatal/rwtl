@@ -11,8 +11,6 @@ Suggests:
     ape,
     covr,
     cowplot,
-    DiagrammeR,
-    DiagrammeRsvg,
     gargle,
     ggridges,
     googledrive,

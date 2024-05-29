@@ -3,14 +3,11 @@
 \name{exec_knit}
 \alias{exec_knit}
 \alias{exec_render}
-\alias{DiagrammeR_dot2svg}
 \title{Shortcut to use knitr and rmarkdown from commandline}
 \usage{
 exec_knit(input, output = NA)
 
 exec_render(input, output_dir = NA)
-
-DiagrammeR_dot2svg(input, output_dir = NA)
 }
 \arguments{
 \item{input}{File path.}
