@@ -110,11 +110,9 @@ old_packages = function(..., binary = TRUE, bioc = FALSE) {
 #' @rdname package
 #' @export
 install_packages = function(pkg, lib = .libPaths()[[1L]], ..., binary = TRUE) {
-  if (isTRUE(binary) && grepl("binary", .Platform$pkgType, fixed = TRUE)) {
-    withr::local_options(pkg.platforms = R.version$platform)
-    withr::defer(devtools::unload("pak"))
-    if ("pak" %in% loadedNamespaces()) devtools::unload("pak")
-  }
+  binary = binary && grepl("binary", .Platform$pkgType, fixed = TRUE)
+  platform = if (binary) R.version$platform else NULL
+  withr::local_options(pkg.platforms = platform)
   pak::pkg_install(pkg, lib = lib, ...)
 }
 
