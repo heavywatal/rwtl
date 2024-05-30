@@ -3,7 +3,6 @@
 #' @param min,max lower and upper limits of the distribution
 #' @rdname random
 #' @export
-#' @seealso purrr::rdunif
 #' @examples
 #' table(runif.int(600L, 1L, 6L))
 runif.int = function(n, min = -.Machine$integer.max, max = .Machine$integer.max) {

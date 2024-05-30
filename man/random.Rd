@@ -17,6 +17,3 @@ Generate random integers between \code{min} and \code{max}.
 \examples{
 table(runif.int(600L, 1L, 6L))
 }
-\seealso{
-purrr::rdunif
-}
