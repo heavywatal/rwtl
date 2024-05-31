@@ -1,6 +1,6 @@
 # wtl <img src="man/figures/logo.svg" align="right" height=140/>
 
-[![Build status](https://github.com/heavywatal/rwtl/workflows/R-CMD-check/badge.svg)](https://github.com/heavywatal/rwtl/actions)
-[![Codecov](https://codecov.io/gh/heavywatal/rwtl/branch/master/graph/badge.svg)](https://app.codecov.io/gh/heavywatal/rwtl?branch=master)
+[![R-CMD-check](https://github.com/heavywatal/rwtl/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/heavywatal/rwtl/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/gh/heavywatal/rwtl/graph/badge.svg?token=gugNe2Dq2l)](https://codecov.io/gh/heavywatal/rwtl)
 
 Personal R package.
