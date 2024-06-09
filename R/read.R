@@ -17,5 +17,5 @@ read_boost_ini = function(file) {
 #' @rdname read
 #' @export
 read_pb = function() {
-  readr::read_file(I(pipe("pbpaste")))
+  readr::read_lines(I(pipe("pbpaste")))
 }
