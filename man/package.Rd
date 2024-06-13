@@ -8,7 +8,7 @@
 \usage{
 lib_upgrade(..., binary = TRUE, ask = interactive())
 
-old_packages(..., binary = TRUE, bioc = FALSE)
+old_packages(..., binary = TRUE)
 
 install_packages(pkg, lib = .libPaths()[[1L]], ..., binary = TRUE)
 }
@@ -20,8 +20,6 @@ install_packages(pkg, lib = .libPaths()[[1L]], ..., binary = TRUE)
 \item{ask}{Whether to ask for confirmation when installing a different
 version of a package that is already installed. Installations that only
 add new packages never require confirmation.}
-
-\item{bioc}{A logical. Set \code{TRUE} to include BioC repositories.}
 
 \item{pkg}{Package names or package references. E.g.
 \itemize{

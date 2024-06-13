@@ -20,7 +20,6 @@ Suggests:
     styler,
     testthat (>= 3.0.0)
 Imports:
-    BiocManager,
     cli,
     devtools,
     dplyr,

@@ -53,10 +53,9 @@ lib_upgrade = function(..., binary = TRUE, ask = interactive()) {
 
 #' @description
 #' `old_packages()` is a thin wrapper of [utils::old.packages()].
-#' @param bioc A logical. Set `TRUE` to include BioC repositories.
 #' @rdname package
 #' @export
-old_packages = function(..., binary = TRUE, bioc = FALSE) {
+old_packages = function(..., binary = TRUE) {
   if (isTRUE(binary)) {
     # RSPM recommends using the default type (not "binary")
     withr::local_options(
@@ -65,17 +64,7 @@ old_packages = function(..., binary = TRUE, bioc = FALSE) {
       install.packages.compile.from.source = "no"
     )
   }
-  if (bioc) {
-    v = BiocManager::valid(...) # slow
-    if (isTRUE(v)) {
-      return(invisible())
-    }
-    message("too_new:")
-    print(v$too_new)
-    out_of_date = v$out_of_date
-  } else {
-    out_of_date = utils::old.packages(...)
-  }
+  out_of_date = utils::old.packages(...)
   if (is.null(out_of_date)) {
     return(invisible())
   }
@@ -94,13 +83,4 @@ install_packages = function(pkg, lib = .libPaths()[[1L]], ..., binary = TRUE) {
   platform = if (binary) R.version$platform else NULL
   withr::local_options(pkg.platforms = platform)
   pak::pkg_install(pkg, lib = lib, ...)
-}
-
-#' @description
-#' `bioc_install()` is a thin wrapper of [BiocManager::install()].
-#' @inherit BiocManager::install params return title
-#' @rdname bioc
-#' @export
-bioc_install = function(pkgs, ..., update = FALSE, ask = interactive()) {
-  BiocManager::install(pkgs, ..., update = update, ask = ask)
 }
