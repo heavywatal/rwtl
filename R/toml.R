@@ -8,7 +8,7 @@ toTOML = function(data, usetz = TRUE) {
     purrr::compact() |>
     purrr::discard(is.na) |>
     purrr::modify_if(is.character, \(x) paste0('"', x, '"')) |>
-    purrr::modify_if(is_datetime, format_iso8601) |>
+    purrr::modify_if(is_datetime, \(x) format_iso8601(x, usetz = usetz)) |>
     purrr::modify_if(is.logical, tolower)
   paste0(names(v), " = ", v, collapse = "\n")
 }
