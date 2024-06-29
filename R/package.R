@@ -82,5 +82,8 @@ install_packages = function(pkg, lib = .libPaths()[[1L]], ..., binary = TRUE) {
   binary = binary && grepl("binary", .Platform$pkgType, fixed = TRUE)
   platform = if (binary) R.version$platform else NULL
   withr::local_options(pkg.platforms = platform)
+  if ("cmdstanr" %in% pkg) {
+    pak::repo_add(stan = "https://stan-dev.r-universe.dev")
+  }
   pak::pkg_install(pkg, lib = lib, ...)
 }
