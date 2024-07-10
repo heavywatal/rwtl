@@ -1,24 +1,15 @@
 Package: wtl
 Title: Personal R package
 Version: 0.0.0.9000
-Authors@R: person("Watal M.", "Iwasaki", email = "heavywatal@gmail.com", role = c("aut", "cre"), comment = c(ORCID="0000-0002-4718-7605"))
+Authors@R:
+    person("Watal M.", "Iwasaki", , "heavywatal@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-4718-7605"))
 Description: Personal R package.
 License: MIT + file LICENSE
-Encoding: UTF-8
+URL: https://github.com/heavywatal/rwtl
+BugReports: https://github.com/heavywatal/rwtl/issues
 Depends:
     R (>= 4.4.0)
-Suggests:
-    ape,
-    covr,
-    cowplot,
-    gargle,
-    ggridges,
-    googledrive,
-    googlesheets4,
-    reprex,
-    rmarkdown,
-    styler,
-    testthat (>= 3.0.0)
 Imports:
     cli,
     devtools,
@@ -36,8 +27,19 @@ Imports:
     tidyr,
     tidyselect,
     withr
-URL: https://github.com/heavywatal/rwtl
-BugReports: https://github.com/heavywatal/rwtl/issues
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+Suggests:
+    ape,
+    covr,
+    cowplot,
+    gargle,
+    ggridges,
+    googledrive,
+    googlesheets4,
+    reprex,
+    rmarkdown,
+    styler,
+    testthat
 Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
