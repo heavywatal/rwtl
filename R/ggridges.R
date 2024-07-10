@@ -24,12 +24,12 @@ ridges2bars = function(.data, x, height, width = 0.9) {
   name_h = substitute(height)
   offset = 0.5 * width
   dplyr::mutate(.data,
-    TMPx_1 = !!name_x - offset * (1 + 2e-8),
-    TMPx_2 = !!name_x - offset * (1 + 1e-8),
+    TMPx_1 = !!name_x - offset,
+    TMPx_2 = !!name_x - offset,
     TMPx_3 = !!name_x - offset,
     TMPx_4 = !!name_x + offset,
-    TMPx_5 = !!name_x + offset * (1 + 1e-8),
-    TMPx_6 = !!name_x + offset * (1 + 2e-8),
+    TMPx_5 = !!name_x + offset,
+    TMPx_6 = !!name_x + offset,
     TMPh_1 = NA,
     TMPh_2 = 0,
     TMPh_3 = !!name_h,
@@ -39,6 +39,6 @@ ridges2bars = function(.data, x, height, width = 0.9) {
     !!name_x := NULL,
     !!name_h := NULL
   ) |>
-    tidyr::pivot_longer(tidyselect::starts_with("TMP"), names_to = c(".value", NA), names_sep = "_") |>
+    tidyr::pivot_longer(tidyr::starts_with("TMP"), names_to = c(".value", NA), names_sep = "_") |>
     dplyr::rename(!!name_x := .data$TMPx, !!name_h := .data$TMPh)
 }
