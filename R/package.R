@@ -2,25 +2,27 @@
 #'
 #' @description
 #' `chk()` is a thin wrapper of [devtools::check()].
-#' @inheritParams devtools::install
+#' @inheritParams rcmdcheck::rcmdcheck
 #' @param install If FALSE, add `--no-install` to `args`
 #' @param vignettes If FALSE, add `--ignore-vignettes` to `args`
+#' @param ... Passed to [rcmdcheck::rcmdcheck()].
 #' @rdname package-dev
 #' @export
-chk = function(pkg = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...) {
+chk = function(path = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...) {
   if (!install) {
     args = c(args, "--no-install")
-    if (has_tests()) on.exit(devtools::test(pkg))
+    if (has_tests(path)) on.exit(testthat::test_local(path))
   }
   if (!vignettes) {
     args = c(args, "--ignore-vignettes")
   }
-  devtools::check(pkg, vignettes = vignettes, args = args, ...)
+  rcmdcheck::rcmdcheck(path, args = args, ...)
 }
 
-has_tests = function(pkg = ".") {
-  pkg = tryCatch(devtools::as.package(pkg), error = \(e) NULL)
-  !is.null(pkg) && (system.file("tests", package = pkg$package) != "")
+has_tests = function(path = ".") {
+  withr::local_dir(path)
+  res = tryCatch(testthat::test_path("_"), error = \(e) NULL)
+  !is.null(res)
 }
 
 #' Package management utilities

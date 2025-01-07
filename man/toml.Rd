@@ -20,9 +20,9 @@ the time zone is indicated with "Z" ISO8601 notation.}
 \item{x}{An object to convert to ISO8601 character format.}
 
 \item{precision}{The amount of precision to represent with
-substrings of "ymdhms", as "y"ear, "m"onth, "d"ay, "h"our,
-"m"inute, and "s"econd. (e.g. "ymdhm" would show precision
-through minutes.  When \code{NULL}, full precision for the object
+substrings of "ymdhms", as year, month, day, hour,
+minute, and second. (e.g. "ymd" is days precision, "ymdhm" is minute precision.
+When \code{NULL}, full precision for the object
 is shown.}
 
 \item{...}{Additional arguments to methods.}

@@ -4,22 +4,24 @@
 \alias{chk}
 \title{Package development utilities}
 \usage{
-chk(pkg = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...)
+chk(path = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...)
 }
 \arguments{
-\item{pkg}{The package to use, can be a file path to the package or a
-package object.  See \code{\link[devtools:as.package]{as.package()}} for more information.}
+\item{path}{Path to a package tarball or a directory.}
 
 \item{install}{If FALSE, add \code{--no-install} to \code{args}}
 
 \item{vignettes}{If FALSE, add \code{--ignore-vignettes} to \code{args}}
 
-\item{args}{An optional character vector of additional command line
-arguments to be passed to \verb{R CMD INSTALL}. This defaults to the
-value of the option \code{"devtools.install.args"}.}
+\item{args}{Character vector of arguments to pass to \verb{R CMD check}. Pass each
+argument as a single element of this character vector (do not use spaces to
+delimit arguments like you would in the shell). For example, to skip
+running of examples and tests, use \code{args = c("--no-examples", "--no-tests")} and not \code{args = "--no-examples --no-tests"}. (Note that
+instead of the \code{--output} option you should use the \code{check_dir} argument,
+because  \code{--output} cannot deal with spaces and other special characters on
+Windows.)}
 
-\item{...}{additional arguments passed to \code{\link[remotes:install_deps]{remotes::install_deps()}}
-when installing dependencies.}
+\item{...}{Passed to \code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck()}}.}
 }
 \description{
 \code{chk()} is a thin wrapper of \code{\link[devtools:check]{devtools::check()}}.
