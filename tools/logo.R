@@ -19,9 +19,9 @@ save_sticker("heavywatal-hex.svg") |>
 fs::dir_create("web")
 save_logo("web/favicon.svg")
 save_logo("web/favicon.png", 1, 32) |> oxipng()
-save_logo("web/icon-192.png", 1, 192) |> oxipng()
-save_logo("web/icon-512.png", 1, 512) |> oxipng()
-save_logo("web/apple-touch-icon.png", 1, 180, bg = "#ffffff") |> oxipng()
+save_logo("web/icon-192.png", 1, 192, expand = 0.125) |> oxipng()
+save_logo("web/icon-512.png", 1, 512, expand = 0.125) |> oxipng()
+save_logo("web/apple-touch-icon.png", 1, 180, expand = 0.125, bg = "#ffffff") |> oxipng()
 
 ukraine_layers = function(x = c(-Inf, 0.5), y = 0.5) {
   list(
