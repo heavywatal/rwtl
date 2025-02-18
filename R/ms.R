@@ -9,8 +9,8 @@
 #' @rdname ms
 #' @export
 run_ms = function(nsam = 4L, nreps = 2L, theta = 5.0) {
-  args = paste(nsam, nreps, "-t", theta)
-  system2("ms", args, stdout = TRUE, stderr = FALSE)
+  .args = paste(nsam, nreps, "-t", theta)
+  system2("ms", .args, stdout = TRUE, stderr = FALSE)
 }
 
 #' @description

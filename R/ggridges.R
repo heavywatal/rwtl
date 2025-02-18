@@ -22,14 +22,14 @@
 ridges2bars = function(.data, x, height, width = 0.9) {
   name_x = substitute(x)
   name_h = substitute(height)
-  offset = 0.5 * width
+  .offset = 0.5 * width
   dplyr::mutate(.data,
-    TMPx_1 = !!name_x - offset,
-    TMPx_2 = !!name_x - offset,
-    TMPx_3 = !!name_x - offset,
-    TMPx_4 = !!name_x + offset,
-    TMPx_5 = !!name_x + offset,
-    TMPx_6 = !!name_x + offset,
+    TMPx_1 = !!name_x - .offset,
+    TMPx_2 = !!name_x - .offset,
+    TMPx_3 = !!name_x - .offset,
+    TMPx_4 = !!name_x + .offset,
+    TMPx_5 = !!name_x + .offset,
+    TMPx_6 = !!name_x + .offset,
     TMPh_1 = NA,
     TMPh_2 = 0,
     TMPh_3 = !!name_h,

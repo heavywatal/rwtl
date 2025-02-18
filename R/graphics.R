@@ -7,8 +7,8 @@
 #' @export
 pch_plot = function(alpha = 1, stroke = 1) {
   pch = seq_len(128L) - 1L
-  df = data.frame(pch, x = pch %% 16L, y = pch %/% 16L)
-  ggplot2::ggplot(df) +
+  .df = data.frame(pch, x = pch %% 16L, y = pch %/% 16L)
+  ggplot2::ggplot(.df) +
     ggplot2::aes(.data[["x"]], .data[["y"]], label = .data[["pch"]]) +
     ggplot2::geom_point(ggplot2::aes(shape = .data[["pch"]]),
       size = 5, alpha = alpha, stroke = stroke, fill = "tomato"

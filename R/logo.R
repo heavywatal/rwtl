@@ -12,11 +12,11 @@ plot_logo = function(devsize = grDevices::dev.size(), expand = 0,
     devsize = rep(devsize, 2L)
   }
   stopifnot(length(expand) == 1L)
-  lengths = (1 + 2 * expand) * (devsize / min(devsize))
-  margin = (lengths - 1) / 2
-  xlim = c(0, lengths[1]) - margin[1]
-  ylim = c(0, lengths[2]) - margin[2]
-  scale = min(devsize) / min(lengths)
+  .lengths = (1 + 2 * expand) * (devsize / min(devsize))
+  margin = (.lengths - 1) / 2
+  xlim = c(0, .lengths[1]) - margin[1]
+  ylim = c(0, .lengths[2]) - margin[2]
+  .scale = min(devsize) / min(.lengths)
   d_swoosh = data.frame(
     x = c(0.01, 0.07, 0.99),
     y = c(0.36, 0.20, 0.72)
@@ -29,8 +29,8 @@ plot_logo = function(devsize = grDevices::dev.size(), expand = 0,
   ggplot2::ggplot() +
     ggplot2::aes(.data[["x"]], .data[["y"]]) +
     ggplot2::geom_polygon(data = d_swoosh, fill = swoosh) +
-    ggplot2::geom_path(data = d_path, linewidth = 2 * scale, linejoin = "bevel", color = path) +
-    ggplot2::geom_point(data = d_dot, size = 5 * scale, shape = 16, stroke = FALSE, color = dot) +
+    ggplot2::geom_path(data = d_path, linewidth = 2 * .scale, linejoin = "bevel", color = path) +
+    ggplot2::geom_point(data = d_dot, size = 5 * .scale, shape = 16, stroke = FALSE, color = dot) +
     ggplot2::coord_fixed(xlim = xlim, ylim = ylim, expand = FALSE) +
     ggplot2::theme_void()
 }
@@ -43,11 +43,11 @@ plot_logo = function(devsize = grDevices::dev.size(), expand = 0,
 save_logo = function(filename, height = 4, dpi = 300, ..., expand = 0,
                      bg = NULL, midground = NULL, width = height,
                      swoosh = "#e08010", dot = "#a4321a", path = "#222222") {
-  basename = fs::path_file(filename)
-  if (stringr::str_detect(basename, "\\bwhite\\b")) {
+  .basename = fs::path_file(filename)
+  if (stringr::str_detect(.basename, "\\bwhite\\b")) {
     bg = "#ffffff"
   }
-  if (stringr::str_detect(basename, "\\bcircle\\b")) {
+  if (stringr::str_detect(.basename, "\\bcircle\\b")) {
     expand = max(expand, 0.125)
   }
   p = plot_logo(c(width, height), expand, swoosh = swoosh, dot = dot, path = path)

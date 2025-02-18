@@ -4,9 +4,9 @@
 #' @export
 node_labels = function(x) {
   num_tips = length(x[["tip.label"]])
-  labels = as.character(seq_len(num_tips + x[["Nnode"]]))
-  labels[seq_len(num_tips)] = x[["tip.label"]]
-  labels
+  .labels = as.character(seq_len(num_tips + x[["Nnode"]]))
+  .labels[seq_len(num_tips)] = x[["tip.label"]]
+  .labels
 }
 
 #' @rdname phylo
@@ -29,7 +29,7 @@ ape_layout_unrooted = function(phy, centering = TRUE, rotate = 0) {
   as.data.frame(phy[["edge"]]) |>
     tibble::new_tibble() |>
     stats::setNames(c("from", "to")) |>
-    dplyr::left_join(nodes |> dplyr::select(!"axis"), by = c(from = "id")) |>
+    dplyr::left_join(dplyr::select(nodes, !"axis"), by = c(from = "id")) |>
     dplyr::left_join(to_nodes, by = c(to = "id")) |>
     dplyr::mutate(label = phy[["tip.label"]][.data[["to"]]])
 }

@@ -30,9 +30,9 @@ theme_wtl = function(base_size = 12, base_family = "",
 #' @export
 erase = function(..., .names = NULL) {
   quosures = rlang::quos(...)
-  names = c(vapply(quosures, rlang::quo_name, ""), .names)
-  elements = rlang::rep_along(names, list(ggplot2::element_blank()))
-  rlang::exec(ggplot2::theme, !!!rlang::set_names(elements, names))
+  .names = c(vapply(quosures, rlang::quo_name, ""), .names)
+  elements = rlang::rep_along(.names, list(ggplot2::element_blank()))
+  rlang::exec(ggplot2::theme, !!!rlang::set_names(elements, .names))
 }
 
 #' @description
@@ -42,9 +42,9 @@ erase = function(..., .names = NULL) {
 #' @export
 axis_line = function(colour = NULL, linewidth = NULL, linetype = NULL, lineend = NULL,
                      color = NULL, arrow = NULL, inherit.blank = FALSE) {
-  el = ggplot2::element_line(
+  elem = ggplot2::element_line(
     colour = colour, linewidth = linewidth, linetype = linetype, lineend = lineend,
     color = color, arrow = arrow, inherit.blank = inherit.blank
   )
-  ggplot2::theme(panel.border = ggplot2::element_blank(), axis.line = el)
+  ggplot2::theme(panel.border = ggplot2::element_blank(), axis.line = elem)
 }

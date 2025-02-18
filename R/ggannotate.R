@@ -18,9 +18,9 @@
 #' @export
 annotate_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2,
                                linewidth = 0, color = "#333333", fill = "#666666", ...) {
-  df = make_regpolygon(n, radius, x, y, start)
+  .df = make_regpolygon(n, radius, x, y, start)
   ggplot2::annotate("polygon",
-    x = df[["x"]], y = df[["y"]], linewidth = linewidth, color = color, fill = fill, ..., linejoin = "mitre"
+    x = .df[["x"]], y = .df[["y"]], linewidth = linewidth, color = color, fill = fill, ..., linejoin = "mitre"
   )
 }
 

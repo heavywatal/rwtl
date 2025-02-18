@@ -14,13 +14,13 @@ symlink = function(path, target, follow = TRUE) {
   }
   new_path = ifelse(fs::dir_exists(target) & follow, fs::path(target, fs::path_file(path)), target)
   on.exit(link_resolve(new_path))
-  exists = fs::link_exists(new_path)
-  if (any(exists)) {
-    existing_target = new_path[exists]
+  existing = fs::link_exists(new_path)
+  if (any(existing)) {
+    existing_target = new_path[existing]
     ln_path = fs::link_path(existing_target)
-    lines = paste0(existing_target, "@ -> ", ln_path, collapse = "\n")
-    message("Link already exists:\n", lines, "\n")
-    is_different = (path[exists] != ln_path)
+    msg_lines = paste0(existing_target, "@ -> ", ln_path, collapse = "\n")
+    message("Link already exists:\n", msg_lines, "\n")
+    is_different = (path[existing] != ln_path)
     if (any(is_different)) {
       message("Replacing: ", toString(existing_target[is_different]))
       fs::link_delete(existing_target[is_different])
@@ -38,7 +38,7 @@ link_resolve = function(path) {
   is_abs = fs::is_absolute_path(ln_path)
   resolved = ifelse(is_abs, ln_path, fs::path(fs::path_dir(path), ln_path))
   for (i in which(!fs::file_exists(resolved))) {
-    warning("broken link: ", path[i], "@ -> ", ln_path[i])
+    warning("broken link: ", path[i], "@ -> ", ln_path[i], call. = FALSE)
   }
   fs::path_norm(resolved)
 }

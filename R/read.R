@@ -7,8 +7,8 @@
 #' @export
 read_boost_ini = function(file) {
   tsv = readr::read_delim(file, "=", col_names = c("key", "val"), comment = "#", trim_ws = TRUE) |>
-    dplyr::summarize(dplyr::across(tidyselect::everything(), \(x) paste0(x, collapse = "\t"))) |>
-    paste0(collapse = "\n")
+    dplyr::summarize(dplyr::across(tidyselect::everything(), \(x) paste(x, collapse = "\t"))) |>
+    paste(collapse = "\n")
   readr::read_tsv(I(tsv))
 }
 

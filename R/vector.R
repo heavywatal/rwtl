@@ -38,11 +38,11 @@ sort_numeric = function(x, width = 3L) {
 #' @export
 as_factor_numeric = function(x, width = 3L, ordered = is.ordered(x)) {
   if (is.factor(x)) {
-    levels = levels(x)
+    .levels = levels(x)
   } else {
-    levels = unique(x)
+    .levels = unique(x)
   }
-  factor(x, levels = sort_numeric(levels, width = width), ordered = ordered)
+  factor(x, levels = sort_numeric(.levels, width = width), ordered = ordered)
 }
 
 #' @description

@@ -95,7 +95,7 @@ format_list_item = function(x) {
 }
 
 array_sum = function(x) {
-  d = paste0(DIM(x), collapse = " x ")
+  d = paste(DIM(x), collapse = " x ")
   paste0(class_sum(x), " [", d, "]")
 }
 

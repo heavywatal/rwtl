@@ -6,6 +6,6 @@
 #' @examples
 #' table(runif.int(600L, 1L, 6L))
 runif.int = function(n, min = -.Machine$integer.max, max = .Machine$integer.max) {
-  offset = min - 1.0
-  as.integer(sample.int(max - offset, n, replace = TRUE) + offset)
+  .offset = min - 1.0
+  as.integer(sample.int(max - .offset, n, replace = TRUE) + .offset)
 }

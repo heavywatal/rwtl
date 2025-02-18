@@ -12,8 +12,8 @@ hook_time_chunk = function(before, options, envir) {
   if (before) {
     envir$.start = proc.time()
   } else {
-    dt = round(proc.time() - envir$.start, 2)
-    msg = paste0(options$label, ": ", dt[3], " (", toString(dt[-3]), ")")
+    .dt = round(proc.time() - envir$.start, 2)
+    msg = paste0(options$label, ": ", .dt[3], " (", toString(.dt[-3]), ")")
     cat(msg, file = stderr(), sep = "\n")
   }
 }

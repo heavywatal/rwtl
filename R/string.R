@@ -57,7 +57,7 @@ as_chr = function(...) {
 as_code = function(x) {
   conn = withr::local_connection(textConnection(NULL, "w"))
   dput(x, conn)
-  textConnectionValue(conn) |> paste0(collapse = "")
+  textConnectionValue(conn) |> paste(collapse = "")
 }
 
 #' Conversion between character and integer code point

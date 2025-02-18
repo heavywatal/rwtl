@@ -32,9 +32,9 @@ figprocess = function(input, command, options = NULL, defaults = NULL, prefix = 
     purrr::discard(isFALSE)
   keys = stringr::str_replace(names(options), pattern, prefix)
   values = as.character(options)
-  args = matrix(c(keys, values), nrow = 2L, byrow = TRUE) |>
+  .args = matrix(c(keys, values), nrow = 2L, byrow = TRUE) |>
     as.vector() |>
     stringr::str_subset("^TRUE$", negate = TRUE)
-  system2(command, c(args, input))
+  system2(command, c(.args, input))
   options
 }
