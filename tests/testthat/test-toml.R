@@ -11,7 +11,7 @@ test_that("toTOML work", {
     null = character(),
     na = NA
   )
-  toml = '
+  toml = trimws('
 integer = 42
 double = 42
 logical = true
@@ -19,7 +19,7 @@ character = "char"
 date = 2006-01-02
 datetime = 2006-01-02T{time}
 zchar = ""
-' |> trimws()
+')
   expect_identical(toTOML(lst), glue(toml, time = "15:04:05+09:00"))
   expect_identical(toTOML(lst, usetz = FALSE), glue(toml, time = "15:04:05"))
   expect_identical(toTOML(lst, usetz = "Z"), glue(toml, time = "06:04:05Z"))

@@ -66,7 +66,7 @@ format_column = function(x) {
     if (inherits(x, "bench_expr")) {
       keys = names(x)
       values = vapply(x, deparse, "", width.cutoff = 500L, USE.NAMES = FALSE)
-      trunc_chr(ifelse(keys == "", values, keys), 32L)
+      trunc_chr(ifelse(nzchar(keys), keys, values), 32L)
     } else {
       vapply(x, format_list_item, "", USE.NAMES = FALSE)
     }

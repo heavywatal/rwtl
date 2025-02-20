@@ -17,14 +17,12 @@ test_that("as_factor_inseq() works", {
   as.factor(x) |>
     levels() |>
     expect_identical(x)
-  as_factor_numeric(x) |>
-    expect_equal(c(2L, 1L, 3L, 4L), ignore_attr = TRUE) |>
-    levels() |>
-    expect_identical(c("chr9", "chr10", "chrMt", "chrPt"))
-  as_factor_numeric(as.factor(x)) |>
-    expect_equal(c(2L, 1L, 3L, 4L), ignore_attr = TRUE) |>
-    levels() |>
-    expect_identical(c("chr9", "chr10", "chrMt", "chrPt"))
+  y = as_factor_numeric(x)
+  expect_equal(y, c(2L, 1L, 3L, 4L), ignore_attr = TRUE)
+  expect_identical(levels(y), c("chr9", "chr10", "chrMt", "chrPt"))
+  y = as_factor_numeric(as.factor(x))
+  expect_equal(y, c(2L, 1L, 3L, 4L), ignore_attr = TRUE)
+  expect_identical(levels(y), c("chr9", "chr10", "chrMt", "chrPt"))
 })
 
 test_that("split_consecutive() works", {

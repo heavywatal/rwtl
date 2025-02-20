@@ -16,9 +16,12 @@ rle_ranges = function(...) {
   qx = rlang::enquos(..., .named = TRUE)
   name = names(qx)[[1L]]
   x = rle(c(..., use.names = FALSE))
-  end = cumsum(x[["lengths"]])
-  start = c(0L, end[-length(end)]) + 1L
-  tibble::new_tibble(tibble::lst(start, end, {{ name }} := x[["values"]]))
+  .end = cumsum(x[["lengths"]])
+  tibble::new_tibble(tibble::lst(
+    start = c(0L, .end[-length(.end)]) + 1L,
+    end = .end,
+    {{ name }} := x[["values"]]
+  ))
 }
 
 #' @description `table_df()` returns a tibbled table.
