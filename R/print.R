@@ -29,7 +29,7 @@ printdf = function(x, n = getOption("pillar.print_max", 30L),
   nrow_x = nrow(x)
   original_x = x
   class(x) = "data.frame" # remove tbl_df
-  x = dedfcol_all(x)
+  x = dedfcol_all(x, names_sep = "$")
   x = demtrxcol_all(x)
   truncated = nrow_x > n
   y = x

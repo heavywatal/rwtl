@@ -7,9 +7,9 @@
 \alias{demtrxcol_all}
 \title{Handle columns with data.frame and matrix}
 \usage{
-dedfcol(.data, at)
+dedfcol(.data, at, names_sep = NULL)
 
-dedfcol_all(.data)
+dedfcol_all(.data, names_sep = NULL)
 
 demtrxcol(.data, at)
 
@@ -19,9 +19,12 @@ demtrxcol_all(.data)
 \item{.data}{A data.frame.}
 
 \item{at}{target column.}
+
+\item{names_sep}{A separator for the new column names.}
 }
 \description{
 \code{dedfcol()} and \code{dedfcol_all()} dissolve data.frame columns in a tibble.
+They are functionally-limited and faster variants of \code{\link[tidyr:pack]{tidyr::unpack()}}.
 
 \code{demtrxcol()} and \code{demtrxcol_all()} dissolve matrix columns in a tibble.
 }
