@@ -1,35 +1,55 @@
-#' Parallel execution in the purrr::map style
+#' Parallel execution in the purrr style
 #'
-#' @description
-#' `mcmap()` is a variant of [parallel::mclapply()] that accepts a formula as `.f`.
-#' @inheritParams purrr::map
-#' @param .mc.cores integer
+#' `mcmap*()` are simple wrappers around [parallel::mclapply()] that allow the
+#' usage similar to the [purrr::map()] family.
+#' @param .x A vector or list to be mapped over.
+#' @param .f A function or formula to be applied to each element of `.x`.
+#' @param ... Additional arguments passed to [parallel::mclapply()].
+#' @returns A list or vector of the same length as `.x`.
+#' [purrr::list_simplify()] is used to convert the result to a vector.
+#' `mcwalk()` returns the input `.x` invisibly.
+#' @seealso <https://furrr.futureverse.org/>
 #' @rdname parallel
 #' @export
-mcmap = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
-  parallel::mclapply(.x, rlang::as_function(.f), ..., mc.cores = .mc.cores)
+mcmap = function(.x, .f, ...) {
+  parallel::mclapply(.x, purrr::as_mapper(.f), ...)
 }
 
 #' @rdname parallel
 #' @export
-mcmap_lgl = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
-  purrr::list_simplify(mcmap(.x, .f, ..., .mc.cores = .mc.cores), ptype = logical(1L))
+mcmap_lgl = function(.x, .f, ...) {
+  mcmap_vec(.x, .f, ..., .ptype = logical(0L))
 }
 
 #' @rdname parallel
 #' @export
-mcmap_int = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
-  purrr::list_simplify(mcmap(.x, .f, ..., .mc.cores = .mc.cores), ptype = integer(1L))
+mcmap_int = function(.x, .f, ...) {
+  mcmap_vec(.x, .f, ..., .ptype = integer(0L))
 }
 
 #' @rdname parallel
 #' @export
-mcmap_dbl = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
-  purrr::list_simplify(mcmap(.x, .f, ..., .mc.cores = .mc.cores), ptype = double(1L))
+mcmap_dbl = function(.x, .f, ...) {
+  mcmap_vec(.x, .f, ..., .ptype = double(0L))
 }
 
 #' @rdname parallel
 #' @export
-mcmap_chr = function(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L)) {
-  purrr::list_simplify(mcmap(.x, .f, ..., .mc.cores = .mc.cores), ptype = character(1L))
+mcmap_chr = function(.x, .f, ...) {
+  mcmap_vec(.x, .f, ..., .ptype = character(0L))
+}
+
+#' @param .ptype A prototype to specify the output type.
+#' @rdname parallel
+#' @export
+mcmap_vec = function(.x, .f, ..., .ptype = NULL) {
+  out = mcmap(.x, .f, ...)
+  purrr::list_simplify(out, ptype = .ptype)
+}
+
+#' @rdname parallel
+#' @export
+mcwalk = function(.x, .f, ...) {
+  mcmap(.x, .f, ...)
+  invisible(.x)
 }

@@ -6,50 +6,42 @@
 \alias{mcmap_int}
 \alias{mcmap_dbl}
 \alias{mcmap_chr}
-\title{Parallel execution in the purrr::map style}
+\alias{mcmap_vec}
+\alias{mcwalk}
+\title{Parallel execution in the purrr style}
 \usage{
-mcmap(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+mcmap(.x, .f, ...)
 
-mcmap_lgl(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+mcmap_lgl(.x, .f, ...)
 
-mcmap_int(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+mcmap_int(.x, .f, ...)
 
-mcmap_dbl(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+mcmap_dbl(.x, .f, ...)
 
-mcmap_chr(.x, .f, ..., .mc.cores = getOption("mc.cores", 2L))
+mcmap_chr(.x, .f, ...)
+
+mcmap_vec(.x, .f, ..., .ptype = NULL)
+
+mcwalk(.x, .f, ...)
 }
 \arguments{
-\item{.x}{A list or atomic vector.}
+\item{.x}{A vector or list to be mapped over.}
 
-\item{.f}{A function, specified in one of the following ways:
-\itemize{
-\item A named function, e.g. \code{mean}.
-\item An anonymous function, e.g. \verb{\\(x) x + 1} or \code{function(x) x + 1}.
-\item A formula, e.g. \code{~ .x + 1}. You must use \code{.x} to refer to the first
-argument. Only recommended if you require backward compatibility with
-older versions of R.
-\item A string, integer, or list, e.g. \code{"idx"}, \code{1}, or \code{list("idx", 1)} which
-are shorthand for \verb{\\(x) pluck(x, "idx")}, \verb{\\(x) pluck(x, 1)}, and
-\verb{\\(x) pluck(x, "idx", 1)} respectively. Optionally supply \code{.default} to
-set a default value if the indexed element is \code{NULL} or does not exist.
-}}
+\item{.f}{A function or formula to be applied to each element of \code{.x}.}
 
-\item{...}{Additional arguments passed on to the mapped function.
+\item{...}{Additional arguments passed to \code{\link[parallel:mclapply]{parallel::mclapply()}}.}
 
-We now generally recommend against using \code{...} to pass additional
-(constant) arguments to \code{.f}. Instead use a shorthand anonymous function:
-
-\if{html}{\out{<div class="sourceCode R">}}\preformatted{# Instead of
-x |> map(f, 1, 2, collapse = ",")
-# do:
-x |> map(\\(x) f(x, 1, 2, collapse = ","))
-}\if{html}{\out{</div>}}
-
-This makes it easier to understand which arguments belong to which
-function and will tend to yield better error messages.}
-
-\item{.mc.cores}{integer}
+\item{.ptype}{A prototype to specify the output type.}
+}
+\value{
+A list or vector of the same length as \code{.x}.
+\code{\link[purrr:list_simplify]{purrr::list_simplify()}} is used to convert the result to a vector.
+\code{mcwalk()} returns the input \code{.x} invisibly.
 }
 \description{
-\code{mcmap()} is a variant of \code{\link[parallel:mclapply]{parallel::mclapply()}} that accepts a formula as \code{.f}.
+\verb{mcmap*()} are simple wrappers around \code{\link[parallel:mclapply]{parallel::mclapply()}} that allow the
+usage similar to the \code{\link[purrr:map]{purrr::map()}} family.
+}
+\seealso{
+\url{https://furrr.futureverse.org/}
 }
