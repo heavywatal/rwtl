@@ -14,24 +14,24 @@ plot_logo = function(devsize = grDevices::dev.size(), expand = 0,
   stopifnot(length(expand) == 1L)
   .lengths = (1 + 2 * expand) * (devsize / min(devsize))
   margin = (.lengths - 1) / 2
-  xlim = c(0, .lengths[1]) - margin[1]
-  ylim = c(0, .lengths[2]) - margin[2]
+  xlim = 108 * (c(0, .lengths[1]) - margin[1])
+  ylim = 108 * (c(0, .lengths[2]) - margin[2])
   .scale = min(devsize) / min(.lengths)
   d_swoosh = data.frame(
-    x = c(0.01, 0.07, 0.99),
-    y = c(0.36, 0.20, 0.72)
+    x = c(5, 11, 103),
+    y = c(68, 84, 32)
   )
   d_path = data.frame(
-    x = c(0.35, 0.11, 0.55, 0.41, 0.75, 0.71, 0.95),
-    y = c(0.95, 0.05, 0.73, 0.05, 0.51, 0.05, 0.29)
+    x = c(39, 15, 59, 45, 79, 75, 99),
+    y = c(9, 99, 31, 99, 53, 99, 75)
   )
-  d_dot = data.frame(x = 0.77, y = 0.77)
+  d_dot = data.frame(x = 81, y = 27)
   ggplot2::ggplot() +
     ggplot2::aes(.data[["x"]], .data[["y"]]) +
-    ggplot2::geom_polygon(data = d_swoosh, fill = swoosh) +
+    ggplot2::geom_polygon(data = d_swoosh, fill = swoosh, linetype = 0, linewidth = 0) +
     ggplot2::geom_path(data = d_path, linewidth = 2 * .scale, linejoin = "bevel", color = path) +
-    ggplot2::geom_point(data = d_dot, size = 5 * .scale, shape = 16, stroke = FALSE, color = dot) +
-    ggplot2::coord_fixed(xlim = xlim, ylim = ylim, expand = FALSE) +
+    ggplot2::geom_point(data = d_dot, size = 4.65 * .scale, shape = 16, stroke = FALSE, color = dot) +
+    ggplot2::coord_fixed(xlim = xlim, ylim = rev(ylim), expand = FALSE) +
     ggplot2::theme_void()
 }
 
