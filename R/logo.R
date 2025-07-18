@@ -6,8 +6,8 @@
 #' @param swoosh,dot,path Color
 #' @rdname logo
 #' @export
-plot_logo = function(devsize = grDevices::dev.size(), expand = 0,
-                     swoosh = "#e08010", dot = "#a4321a", path = "#222222") {
+logo_plot = function(devsize = grDevices::dev.size(), expand = 0,
+                     swoosh = "#E08010", dot = "#A4321A", path = "#202020") {
   if (length(devsize) == 1L) {
     devsize = rep(devsize, 2L)
   }
@@ -31,6 +31,7 @@ plot_logo = function(devsize = grDevices::dev.size(), expand = 0,
     ggplot2::geom_polygon(data = d_swoosh, fill = swoosh, linetype = 0, linewidth = 0) +
     ggplot2::geom_path(data = d_path, linewidth = 2 * .scale, linejoin = "bevel", color = path) +
     ggplot2::geom_point(data = d_dot, size = 4.65 * .scale, shape = 16, stroke = FALSE, color = dot) +
+    ggplot2::scale_y_reverse() +
     ggplot2::coord_fixed(xlim = xlim, ylim = rev(ylim), expand = FALSE) +
     ggplot2::theme_void()
 }
@@ -40,17 +41,17 @@ plot_logo = function(devsize = grDevices::dev.size(), expand = 0,
 #' @inheritParams ggplot2::ggsave
 #' @rdname logo
 #' @export
-save_logo = function(filename, height = 4, dpi = 300, ..., expand = 0,
+logo_save = function(filename, height = 1.5, dpi = 300, ..., expand = 0,
                      bg = NULL, midground = NULL, width = height,
-                     swoosh = "#e08010", dot = "#a4321a", path = "#222222") {
+                     swoosh = "#E08010", dot = "#A4321A", path = "#202020") {
   .basename = fs::path_file(filename)
   if (stringr::str_detect(.basename, "\\bwhite\\b")) {
-    bg = "#ffffff"
+    bg = "#FFFFFF"
   }
   if (stringr::str_detect(.basename, "\\bcircle\\b")) {
     expand = max(expand, 0.125)
   }
-  p = plot_logo(c(width, height), expand, swoosh = swoosh, dot = dot, path = path)
+  p = logo_plot(c(width, height), expand, swoosh = swoosh, dot = dot, path = path)
   if (!is.null(midground)) {
     p = insert_layer(p, midground)
   }
@@ -59,11 +60,62 @@ save_logo = function(filename, height = 4, dpi = 300, ..., expand = 0,
 
 #' @rdname logo
 #' @export
-save_sticker = function(filename, height = 4, dpi = 300, ...) {
+logo_save_sticker = function(filename, height = 4, dpi = 300, ...) {
+  z = 54
+  r = 80
+  delta_r = 6
+  height = height * r / z
   width = height * sqrt(3) / 2
-  hex = annotate_regpolygon(6L, 0.77,
-    x = 0.5, y = 0.5, linewidth = height,
-    fill = "#ffffff", color = "#888888"
+  xp = (r / z * sqrt(3) / 2 - 1) / 2
+  hex_outer = annotate_regpolygon(6L, r,
+    x = z, y = z, linewidth = 0, fill = "#808080", color = NA
   )
-  save_logo(filename, width = width, height = height, expand = 0.191, dpi = dpi, midground = hex, ...)
+  hex_inner = annotate_regpolygon(6L, r - delta_r,
+    x = z, y = z, linewidth = 0, fill = "#FFFFFF", color = NA
+  )
+  hex = list(hex_outer, hex_inner)
+  logo_save(filename, width = width, height = height, expand = xp, dpi = dpi, midground = hex, ...)
+}
+
+#' @rdname logo
+#' @export
+logo_svg_optimize = function(filename, path = "#F0F0F0") {
+  lns = readr::read_lines(filename) |>
+    stringr::str_subset("^<rect ", negate = TRUE) |>
+    stringr::str_flatten(collapse = "\n") |>
+    stringr::str_remove_all("\\.00\\b") |>
+    stringr::str_remove_all("\\.0000\\d+") |>
+    stringr::str_remove_all("pt\\b") |>
+    .svg_remove_clip_path() |>
+    .svg_replace_style(stroke_dark = path)
+  readr::write_lines(lns, filename)
+  invisible(filename)
+}
+
+.svg_remove_clip_path = function(x) {
+  patt = stringr::regex("<defs>\\s*<clipPath.+?/clipPath>\\s*</defs>\n*", dotall = TRUE)
+  x = stringr::str_remove(x, patt)
+  x = stringr::str_remove(x, " clip-path='[^']+'")
+  x
+}
+
+.svg_replace_style = function(x, stroke_dark) {
+  patt = "(<polyline.+?) *stroke: *([^;]+);"
+  mat = stringr::str_match(x, patt)
+  stroke = mat[1, 3]
+  x = stringr::str_replace(x, patt, "\\1")
+  repl = glue("
+  .svglite polyline {{
+    fill: none;
+    stroke: {stroke};
+  }}
+  @media (prefers-color-scheme: dark) {{
+    .svglite polyline {{
+      stroke: {stroke_dark};
+    }}
+  }}
+  ")
+  patt = stringr::regex("(?<=\\[CDATA\\[).+?(?=\\]\\])", dotall = TRUE)
+  x = stringr::str_replace(x, patt, repl)
+  x
 }

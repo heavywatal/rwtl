@@ -1,27 +1,30 @@
-plot_logo()
-plot_logo() + ggplot2::theme_bw() + erase(axis.title, axis.ticks, title)
+logo_plot()
+logo_plot() +
+  ggplot2::annotate("path", x = c(4, 4, 104, 104, 4), y = c(4, 104, 104, 4, 4)) +
+  ggplot2::theme_bw() + erase(axis.title, axis.ticks, title)
 
-save_logo("heavywatal.svg", height = 1.5)
-save_logo("heavywatal.png") |> oxipng()
-save_logo("heavywatal-white.png") |> oxipng()
-save_logo("heavywatal-circle.png") |> oxipng()
-save_logo("heavywatal-circle-white.png") |> oxipng()
-save_sticker("heavywatal-hex.png") |>
+logo_save("heavywatal.svg") |> logo_svg_optimize()
+logo_save("heavywatal.png", height = 4) |> oxipng()
+logo_save("heavywatal-white.png", height = 4) |> oxipng()
+logo_save("heavywatal-circle.png", height = 4) |> oxipng()
+logo_save("heavywatal-circle-white.png", height = 4) |> oxipng()
+logo_save_sticker("heavywatal-hex.png", height = 2.432) |>
   oxipng() |>
   fs::file_copy("../man/figures/logo.png", overwrite = TRUE)
-save_sticker("heavywatal-hex.svg", height = 1.5) |>
+logo_save_sticker("heavywatal-hex.svg") |>
+  logo_svg_optimize("#202020") |>
   fs::file_copy("../man/figures/logo.svg", overwrite = TRUE)
 
 "heavywatal-tohoku_ac_jp-circle-white.png" |>
-  save_logo(swoosh = "#3e1686", dot = "#3e1686") |>
+  logo_save(swoosh = "#3e1686", dot = "#3e1686") |>
   oxipng()
 
 fs::dir_create("web")
-save_logo("web/favicon.svg")
-save_logo("web/favicon.png", 1, 32) |> oxipng()
-save_logo("web/icon-192.png", 1, 192, expand = 0.125) |> oxipng()
-save_logo("web/icon-512.png", 1, 512, expand = 0.125) |> oxipng()
-save_logo("web/apple-touch-icon.png", 1, 180, expand = 0.125, bg = "#ffffff") |> oxipng()
+logo_save("web/heavywatal.svg") |> logo_svg_optimize()
+logo_save("web/favicon.png", 1, 32) |> oxipng() |> fs::file_move("web/favicon.ico")
+logo_save("web/icon-192.png", 1, 192, expand = 0.125) |> oxipng()
+logo_save("web/icon-512.png", 1, 512, expand = 0.125) |> oxipng()
+logo_save("web/apple-touch-icon.png", 1, 180, expand = 0.125, bg = "#FFFFFF") |> oxipng()
 
 ukraine_layers = function(x = c(-Inf, 54), y = 54) {
   list(
@@ -34,11 +37,17 @@ mg = c(
   ukraine_layers(),
   wtl::annotate_regpolygon(180L, radius = 64, x = 54, y = 54, alpha = 0.66, fill = "#ffffff")
 )
-save_logo("heavywatal-ua-circle-white.png", midground = mg) |> oxipng()
-save_logo("heavywatal-ua-white.png", midground = ukraine_layers()) |> oxipng()
+logo_save("heavywatal-ua-circle-white.png", midground = mg) |> oxipng()
+logo_save("heavywatal-ua-white.png", midground = ukraine_layers()) |> oxipng()
+logo_save("heavywatal-ua-circle-white-github.png", 1, 460, midground = mg) |> oxipng()
+logo_save("heavywatal-ua-circle-white-twitter.png", 1, 400, midground = mg) |> oxipng()
+
+logo_save("heavywatal-circle-white-github.png", 1, 460) |> oxipng()
+logo_save("heavywatal-circle-white-twitter.png", 1, 400) |> oxipng()
+logo_save("heavywatal-white-garmin.png", 2, 200, expand = 0.3) |> oxipng()
 
 fs::dir_create("test")
 c(1, 2, 4, 6, 12) |> purrr::walk(\(height) {
-  save_logo(wtl::glue("test/png-heavywatal-white-{height}.png"), height, dpi = 1200 / height)
-  save_logo(wtl::glue("test/svg-heavywatal-white-{height}.svg"), height)
+  logo_save(wtl::glue("test/png-heavywatal-white-{height}.png"), height, dpi = 1200 / height)
+  logo_save(wtl::glue("test/svg-heavywatal-white-{height}.svg"), height)
 })
