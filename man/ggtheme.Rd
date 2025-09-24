@@ -9,8 +9,12 @@
 theme_wtl(
   base_size = 12,
   base_family = "",
+  header_family = NULL,
   base_line_size = base_size/22,
-  base_rect_size = base_size/22
+  base_rect_size = base_size/22,
+  ink = "black",
+  paper = "white",
+  accent = "#3366FF"
 )
 
 erase(..., .names = NULL)
@@ -22,6 +26,7 @@ axis_line(
   lineend = NULL,
   color = NULL,
   arrow = NULL,
+  arrow.fill = NULL,
   inherit.blank = FALSE
 )
 }
@@ -30,26 +35,30 @@ axis_line(
 
 \item{base_family}{base font family}
 
+\item{header_family}{font family for titles and headers. The default, \code{NULL},
+uses theme inheritance to set the font. This setting affects axis titles,
+legend titles, the plot title and tag text.}
+
 \item{base_line_size}{base size for line elements}
 
 \item{base_rect_size}{base size for rect elements}
 
-\item{...}{elements to be blank}
+\item{ink, paper, accent}{colour for foreground, background, and accented elements respectively.}
 
-\item{.names}{string vector of element names}
+\item{...}{The elements to get blank.}
 
-\item{colour, color}{Line/border colour. Color is an alias for colour.}
+\item{.names}{A string vector of element names.}
 
-\item{linewidth}{Line/border size in mm.}
+\item{colour, color}{Line/border colour. Color is an alias for colour.
+\code{alpha()} can be used to set the transparency of the colour.}
 
-\item{linetype}{Line type. An integer (0:8), a name (blank, solid,
-dashed, dotted, dotdash, longdash, twodash), or a string with
-an even number (up to eight) of hexadecimal digits which give the
-lengths in consecutive positions in the string.}
+\item{linewidth, linetype}{Passed to \code{\link[ggplot2:element]{ggplot2::element_line()}}.}
 
-\item{lineend}{Line end Line end style (round, butt, square)}
+\item{lineend}{Line end style, one of \code{"round"}, \code{"butt"} or \code{"square"}.}
 
 \item{arrow}{Arrow specification, as created by \code{\link[grid:arrow]{grid::arrow()}}}
+
+\item{arrow.fill}{Fill colour for arrows.}
 
 \item{inherit.blank}{Should this element inherit the existence of an
 \code{element_blank} among its parents? If \code{TRUE} the existence of
@@ -58,9 +67,27 @@ well. If \code{FALSE} any blank parent element will be ignored when
 calculating final element state.}
 }
 \description{
-\code{theme_wtl()} is a slightly modified \link[ggplot2:ggtheme]{ggplot2::theme_bw}.
+\code{theme_wtl()} is a slightly modified variant of \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}.
+\itemize{
+\item Increase \code{base_size} default to 12.
+\item Increase the small text size from \code{rel(0.8)} to \code{rel(1.0/1.2)}.
+\item Increase the color contrast of \code{axis.text}.
+\item Decrease the color contrast of \code{axis.ticks}.
+\item Remove \code{panel.grid.minor}.
+\item Remove \code{legend.key} background.
+\item Set default color palettes to \code{viridis} and \code{Okabe-Ito}.
+}
 
 \code{erase()} is a shortcut for \code{theme(... = element_blank())}.
 
 \code{axis_line()} sets L-shaped axes.
+}
+\examples{
+p = ggplot2::ggplot(ggplot2::mpg) +
+  ggplot2::aes(displ, hwy, color = displ, fill = class) +
+  ggplot2::geom_point(shape = 21, size = 3, stroke = 2)
+
+p + ggplot2::theme_bw()
+p + theme_wtl()
+p + theme_wtl() + erase(axis.ticks) + axis_line()
 }

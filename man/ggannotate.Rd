@@ -10,24 +10,20 @@ annotate_regpolygon(
   x = 0,
   y = 0,
   start = pi/2,
-  linewidth = 0,
-  color = "#333333",
-  fill = "#666666",
+  linejoin = "mitre",
   ...
 )
 }
 \arguments{
-\item{n}{number of sides}
+\item{n}{The number of sides.}
 
-\item{radius}{size of polygon}
+\item{radius}{The distance from the center to a vertex.}
 
-\item{x, y}{center coordinate}
+\item{x, y}{The center coordinates.}
 
-\item{start}{angle of the starting point}
+\item{start}{The angle of the starting point.}
 
-\item{linewidth, color}{passed to \code{ggplot2::annotate("path")}}
-
-\item{fill, ...}{passed to \code{ggplot2::annotate("polygon")}}
+\item{linejoin, ...}{Extra arguments passed to \code{ggplot2::annotate("polygon")}.}
 }
 \description{
 \code{annotate_regpolygon()} is a shortcut of \code{ggplot2::annotate("polygon")}
@@ -36,6 +32,6 @@ to draw a regular polygon.
 \examples{
 ggplot2::ggplot() +
   annotate_regpolygon(6L, radius = 5, linewidth = 6, color = "#333333", fill = "#ffffff") +
-  annotate_regpolygon(6L, radius = 2, fill = "#C41A41") +
+  annotate_regpolygon(6L, radius = 2, fill = "#C41A41", linetype = 0, linewidth = 0) +
   ggplot2::coord_fixed()
 }

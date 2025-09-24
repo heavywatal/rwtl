@@ -43,7 +43,8 @@ logo_svg_optimize(filename, path = "#F0F0F0")
 \item{filename}{File name to create on disk.}
 
 \item{dpi}{Plot resolution. Also accepts a string input: "retina" (320),
-"print" (300), or "screen" (72). Applies only to raster output types.}
+"print" (300), or "screen" (72). Only applies when converting pixel units,
+as is typical for raster output types.}
 
 \item{...}{Other arguments passed on to the graphics device function,
 as specified by \code{device}.}
