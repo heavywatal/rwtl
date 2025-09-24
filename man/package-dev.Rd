@@ -4,14 +4,23 @@
 \alias{chk}
 \title{Package development utilities}
 \usage{
-chk(path = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...)
+chk(
+  path = ".",
+  install = FALSE,
+  manual = FALSE,
+  vignettes = FALSE,
+  args = "--timings",
+  ...
+)
 }
 \arguments{
 \item{path}{Path to a package tarball or a directory.}
 
-\item{install}{If FALSE, add \code{--no-install} to \code{args}}
+\item{install}{Add \code{--no-install} to \code{args} if FALSE.}
 
-\item{vignettes}{If FALSE, add \code{--ignore-vignettes} to \code{args}}
+\item{manual}{Add \code{--no-manual} to \code{args} if FALSE.}
+
+\item{vignettes}{Add \code{--ignore-vignettes} to \code{args} if FALSE.}
 
 \item{args}{Character vector of arguments to pass to \verb{R CMD check}. Pass each
 argument as a single element of this character vector (do not use spaces to

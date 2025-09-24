@@ -3,15 +3,19 @@
 #' @description
 #' `chk()` is a thin wrapper of [devtools::check()].
 #' @inheritParams rcmdcheck::rcmdcheck
-#' @param install If FALSE, add `--no-install` to `args`
-#' @param vignettes If FALSE, add `--ignore-vignettes` to `args`
+#' @param install Add `--no-install` to `args` if FALSE.
+#' @param manual Add `--no-manual` to `args` if FALSE.
+#' @param vignettes Add `--ignore-vignettes` to `args` if FALSE.
 #' @param ... Passed to [rcmdcheck::rcmdcheck()].
 #' @rdname package-dev
 #' @export
-chk = function(path = ".", install = FALSE, vignettes = FALSE, args = "--timings", ...) {
+chk = function(path = ".", install = FALSE, manual = FALSE, vignettes = FALSE, args = "--timings", ...) {
   if (!install) {
     args = c(args, "--no-install")
     if (has_tests(path)) on.exit(testthat::test_local(path))
+  }
+  if (!manual) {
+    args = c(args, "--no-manual")
   }
   if (!vignettes) {
     args = c(args, "--ignore-vignettes")
