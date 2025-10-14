@@ -36,10 +36,8 @@ theme_wtl = function(base_size = 12, base_family = "", header_family = NULL,
     theme_sub_wtl(ink = ink, paper = paper)
 }
 
-theme_sub_wtl = function(
-    ink = "black", paper = "white",
-    rel = 1.0 / 1.2,
-    continuous = NULL, discrete = NULL) {
+theme_sub_wtl = function(ink = "black", paper = "white",
+                         rel = 1.0 / 1.2, continuous = NULL, discrete = NULL) {
   theme_sub_misc(ink = ink, paper = paper) +
     theme_sub_text_small(rel = rel) +
     theme_sub_palette(continuous = continuous, discrete = discrete)
