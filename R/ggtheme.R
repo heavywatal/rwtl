@@ -45,6 +45,7 @@ theme_sub_wtl = function(ink = "black", paper = "white",
 
 theme_sub_misc = function(ink = "black", paper = "white") {
   ggplot2::theme(
+    geom = ggplot2::element_geom(pointshape = 16),
     panel.grid.minor = ggplot2::element_blank(),
     axis.text = ggplot2::element_text(color = scales::col_mix(ink, paper, 0.25)),
     axis.ticks = ggplot2::element_line(color = scales::col_mix(ink, paper, 0.5)),
