@@ -2,7 +2,9 @@
 #'
 #' @description
 #' `read_boost_ini()` reads an INI-like config file of boost::program_options.
+#' @source <https://www.boost.org/doc/libs/latest/doc/html/program_options.html>
 #' @param file filename or text
+#' @returns A tibble or character vector.
 #' @rdname read
 #' @export
 read_boost_ini = function(file) {
@@ -13,7 +15,17 @@ read_boost_ini = function(file) {
 }
 
 #' @description
-#' `read_pb()` reads paste board to a character.
+#' `read_fai()` reads a FASTA/FASTQ index file.
+#' @source <https://www.htslib.org/doc/faidx.html>
+#' @rdname read
+#' @export
+read_fai = function(file) {
+  cn = c("name", "length", "offset", "linebases", "linewidth", "qualoffset")
+  readr::read_tsv(file, col_names = cn)
+}
+
+#' @description
+#' `read_pb()` reads paste board to a character vector.
 #' @rdname read
 #' @export
 read_pb = function() {

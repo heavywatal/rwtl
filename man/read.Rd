@@ -2,18 +2,31 @@
 % Please edit documentation in R/read.R
 \name{read_boost_ini}
 \alias{read_boost_ini}
+\alias{read_fai}
 \alias{read_pb}
 \title{Functions to read files}
+\source{
+\url{https://www.boost.org/doc/libs/latest/doc/html/program_options.html}
+
+\url{https://www.htslib.org/doc/faidx.html}
+}
 \usage{
 read_boost_ini(file)
+
+read_fai(file)
 
 read_pb()
 }
 \arguments{
 \item{file}{filename or text}
 }
+\value{
+A tibble or character vector.
+}
 \description{
 \code{read_boost_ini()} reads an INI-like config file of boost::program_options.
 
-\code{read_pb()} reads paste board to a character.
+\code{read_fai()} reads a FASTA/FASTQ index file.
+
+\code{read_pb()} reads paste board to a character vector.
 }
