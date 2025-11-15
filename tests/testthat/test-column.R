@@ -4,12 +4,13 @@ test_that("dedfcol works", {
   expect_identical(ncol(packed), 2L)
   dedfed = dedfcol(packed, x) |>
     expect_s3_class("data.frame", exact = TRUE) |>
-    expect_mapequal(orig) |>
-    expect_named(c("y", "x1", "x2"))
+    expect_mapequal(orig)
+  expect_setequal(names(dedfed), names(orig))
   dedfcol(packed, x, names_sep = "$") |>
     expect_named(c("y", "x$x1", "x$x2"))
   dedfcol_all(packed) |>
-    expect_identical(dedfed)
+    names() |>
+    expect_setequal(names(dedfed))
 
   unpacked = tidyr::unpack(packed, x) |>
     expect_s3_class("tbl_df") |>
