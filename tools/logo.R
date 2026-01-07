@@ -1,7 +1,8 @@
 logo_plot()
 logo_plot() +
   ggplot2::annotate("path", x = c(4, 4, 104, 104, 4), y = c(4, 104, 104, 4, 4)) +
-  ggplot2::theme_bw() + erase(axis.title, axis.ticks, title)
+  ggplot2::theme_bw() +
+  erase(axis.title, axis.ticks, title)
 
 logo_save("heavywatal.svg") |> logo_svg_optimize()
 logo_save("heavywatal.png", height = 4) |> oxipng()
@@ -47,7 +48,8 @@ logo_save("heavywatal-circle-white-twitter.png", 1, 400) |> oxipng()
 logo_save("heavywatal-white-garmin.png", 2, 200, expand = 0.3) |> oxipng()
 
 fs::dir_create("test")
-c(1, 2, 4, 6, 12) |> purrr::walk(\(height) {
-  logo_save(wtl::glue("test/png-heavywatal-white-{height}.png"), height, dpi = 1200 / height)
-  logo_save(wtl::glue("test/svg-heavywatal-white-{height}.svg"), height)
-})
+c(1, 2, 4, 6, 12) |>
+  purrr::walk(\(height) {
+    logo_save(wtl::glue("test/png-heavywatal-white-{height}.png"), height, dpi = 1200 / height)
+    logo_save(wtl::glue("test/svg-heavywatal-white-{height}.svg"), height)
+  })

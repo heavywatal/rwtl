@@ -6,8 +6,13 @@
 #' @param swoosh,dot,path Color
 #' @rdname logo
 #' @export
-logo_plot = function(devsize = grDevices::dev.size(), expand = 0,
-                     swoosh = "#E08010", dot = "#A4321A", path = "#202020") {
+logo_plot = function(
+  devsize = grDevices::dev.size(),
+  expand = 0,
+  swoosh = "#E08010",
+  dot = "#A4321A",
+  path = "#202020"
+) {
   if (length(devsize) == 1L) {
     devsize = rep(devsize, 2L)
   }
@@ -41,9 +46,19 @@ logo_plot = function(devsize = grDevices::dev.size(), expand = 0,
 #' @inheritParams ggplot2::ggsave
 #' @rdname logo
 #' @export
-logo_save = function(filename, height = 1.5, dpi = 300, ..., expand = 0,
-                     bg = NULL, midground = NULL, width = height,
-                     swoosh = "#E08010", dot = "#A4321A", path = "#202020") {
+logo_save = function(
+  filename,
+  height = 1.5,
+  dpi = 300,
+  ...,
+  expand = 0,
+  bg = NULL,
+  midground = NULL,
+  width = height,
+  swoosh = "#E08010",
+  dot = "#A4321A",
+  path = "#202020"
+) {
   .basename = fs::path_file(filename)
   if (stringr::str_detect(.basename, "\\bwhite\\b")) {
     bg = "#FFFFFF"
@@ -67,12 +82,8 @@ logo_save_sticker = function(filename, height = 4, dpi = 300, ...) {
   height = height * r / z
   width = height * sqrt(3) / 2
   xp = (r / z * sqrt(3) / 2 - 1) / 2
-  hex_outer = annotate_regpolygon(6L, r,
-    x = z, y = z, linewidth = 0, fill = "#808080", color = NA
-  )
-  hex_inner = annotate_regpolygon(6L, r - delta_r,
-    x = z, y = z, linewidth = 0, fill = "#FFFFFF", color = NA
-  )
+  hex_outer = annotate_regpolygon(6L, r, x = z, y = z, linewidth = 0, fill = "#808080", color = NA)
+  hex_inner = annotate_regpolygon(6L, r - delta_r, x = z, y = z, linewidth = 0, fill = "#FFFFFF", color = NA)
   hex = list(hex_outer, hex_inner)
   logo_save(filename, width = width, height = height, expand = xp, dpi = dpi, midground = hex, ...)
 }
@@ -104,6 +115,7 @@ logo_svg_optimize = function(filename, path = "#F0F0F0") {
   mat = stringr::str_match(x, patt)
   stroke = mat[1, 3]
   x = stringr::str_replace(x, patt, "\\1")
+  # fmt: skip
   repl = glue("
   .svglite polyline {{
     fill: none;

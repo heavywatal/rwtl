@@ -11,6 +11,7 @@ test_that("toTOML work", {
     null = character(),
     na = NA
   )
+  # fmt: skip
   toml = trimws('
 integer = 42
 double = 42

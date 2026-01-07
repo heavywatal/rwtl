@@ -10,8 +10,12 @@ pch_plot = function(alpha = 1, stroke = 1) {
   .df = data.frame(pch, x = pch %% 16L, y = pch %/% 16L)
   ggplot2::ggplot(.df) +
     ggplot2::aes(.data[["x"]], .data[["y"]], label = .data[["pch"]]) +
-    ggplot2::geom_point(ggplot2::aes(shape = .data[["pch"]]),
-      size = 5, alpha = alpha, stroke = stroke, fill = "tomato"
+    ggplot2::geom_point(
+      ggplot2::aes(shape = .data[["pch"]]),
+      size = 5,
+      alpha = alpha,
+      stroke = stroke,
+      fill = "tomato"
     ) +
     ggplot2::geom_text(size = 4, position = ggplot2::position_nudge(0, 0.4)) +
     ggplot2::scale_shape_identity() +

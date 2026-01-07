@@ -61,8 +61,12 @@ ape_unrooted_xy = function(phy, rotate = 0) {
     output
   }
   root = tibble::new_tibble(tibble::lst(
-    id = which.max(node_depth), x = 0, y = 0,
-    angle = 2 * pi, axis = rotate, depth = node_depth[.data$id]
+    id = which.max(node_depth),
+    x = 0,
+    y = 0,
+    angle = 2 * pi,
+    axis = rotate,
+    depth = node_depth[.data$id]
   ))
   impl(root) |>
     dplyr::bind_rows(root) |>

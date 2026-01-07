@@ -15,17 +15,25 @@
 #' [tibble::print.tbl()] and `data.frame:::print.data.table`.
 #' @rdname print
 #' @export
-printdf = function(x, n = getOption("pillar.print_max", 30L),
-                   summarize = getOption("wtl.printdf.summarize", TRUE),
-                   classes = getOption("wtl.printdf.classes", TRUE), ...) {
-  if (isTRUE(summarize)) printdf_summary(x)
+printdf = function(
+  x,
+  n = getOption("pillar.print_max", 30L),
+  summarize = getOption("wtl.printdf.summarize", TRUE),
+  classes = getOption("wtl.printdf.classes", TRUE),
+  ...
+) {
+  if (isTRUE(summarize)) {
+    printdf_summary(x)
+  }
   if (is.null(dim(x))) {
     return(print(x))
   }
   if (ncol(x) == 0L) {
     return(invisible(x))
   }
-  if (is.matrix(x)) x = as.data.frame(x)
+  if (is.matrix(x)) {
+    x = as.data.frame(x)
+  }
   nrow_x = nrow(x)
   original_x = x
   class(x) = "data.frame" # remove tbl_df
@@ -100,7 +108,8 @@ array_sum = function(x) {
 }
 
 class_sum = function(x) {
-  switch(class(x)[[1L]],
+  switch(
+    class(x)[[1L]],
     logical = "lgl",
     integer = "int",
     numeric = "dbl",

@@ -17,7 +17,10 @@ oxipng = function(input, options = NULL) {
 #' @export
 cwebp = function(input, options = NULL) {
   defaults = list(
-    quiet = TRUE, mt = TRUE, lossless = TRUE, o = fs::path_ext_set(input, "webp")
+    quiet = TRUE,
+    mt = TRUE,
+    lossless = TRUE,
+    o = fs::path_ext_set(input, "webp")
   )
   opts = figprocess(input, "cwebp", options, defaults, "-")
   fs::file_delete(input)

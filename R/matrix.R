@@ -10,8 +10,16 @@
 #' @seealso [printdf()]
 #' @rdname matrix
 #' @export
-printmat = function(x, fmt = "", upper = TRUE, lower = TRUE, diag = TRUE,
-                    digits = getOption("digits"), right = TRUE, ...) {
+printmat = function(
+  x,
+  fmt = "",
+  upper = TRUE,
+  lower = TRUE,
+  diag = TRUE,
+  digits = getOption("digits"),
+  right = TRUE,
+  ...
+) {
   if (nzchar(fmt)) {
     m = sprintf(fmt, x) |>
       matrix(nrow = nrow(x), dimnames = dimnames(x))

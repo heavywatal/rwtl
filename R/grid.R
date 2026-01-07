@@ -7,7 +7,9 @@
 #' @rdname grid
 #' @export
 gprint = function(x, newpage = TRUE, recording = FALSE) {
-  if (newpage) grid::grid.newpage(recording)
+  if (newpage) {
+    grid::grid.newpage(recording)
+  }
   grid::grid.draw(x, recording)
   invisible(x)
 }

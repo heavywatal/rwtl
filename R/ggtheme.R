@@ -20,9 +20,16 @@
 #' p + theme_wtl() + erase(axis.ticks) + axis_line()
 #' @rdname ggtheme
 #' @export
-theme_wtl = function(base_size = 12, base_family = "", header_family = NULL,
-                     base_line_size = base_size / 22, base_rect_size = base_size / 22,
-                     ink = "black", paper = "white", accent = "#3366FF") {
+theme_wtl = function(
+  base_size = 12,
+  base_family = "",
+  header_family = NULL,
+  base_line_size = base_size / 22,
+  base_rect_size = base_size / 22,
+  ink = "black",
+  paper = "white",
+  accent = "#3366FF"
+) {
   ggplot2::theme_bw(
     base_size = base_size,
     base_family = base_family,
@@ -36,8 +43,7 @@ theme_wtl = function(base_size = 12, base_family = "", header_family = NULL,
     theme_sub_wtl(ink = ink, paper = paper)
 }
 
-theme_sub_wtl = function(ink = "black", paper = "white",
-                         rel = 1.0 / 1.2, continuous = NULL, discrete = NULL) {
+theme_sub_wtl = function(ink = "black", paper = "white", rel = 1.0 / 1.2, continuous = NULL, discrete = NULL) {
   theme_sub_misc(ink = ink, paper = paper) +
     theme_sub_text_small(rel = rel) +
     theme_sub_palette(continuous = continuous, discrete = discrete)
@@ -63,7 +69,9 @@ theme_sub_text_small = function(rel = 1.0 / 1.2) {
 }
 
 theme_sub_palette = function(continuous = NULL, discrete = NULL) {
-  if (is.null(continuous)) continuous = "viridis"
+  if (is.null(continuous)) {
+    continuous = "viridis"
+  }
   if (is.null(discrete)) {
     discrete = grDevices::palette.colors(palette = "Okabe-Ito")[-1]
   }
@@ -94,11 +102,25 @@ erase = function(..., .names = NULL) {
 #' @inheritParams ggplot2::element_line
 #' @rdname ggtheme
 #' @export
-axis_line = function(colour = NULL, linewidth = NULL, linetype = NULL, lineend = NULL,
-                     color = NULL, arrow = NULL, arrow.fill = NULL, inherit.blank = FALSE) {
+axis_line = function(
+  colour = NULL,
+  linewidth = NULL,
+  linetype = NULL,
+  lineend = NULL,
+  color = NULL,
+  arrow = NULL,
+  arrow.fill = NULL,
+  inherit.blank = FALSE
+) {
   elem = ggplot2::element_line(
-    colour = colour, linewidth = linewidth, linetype = linetype, lineend = lineend,
-    color = color, arrow = arrow, arrow.fill = arrow.fill, inherit.blank = inherit.blank
+    colour = colour,
+    linewidth = linewidth,
+    linetype = linetype,
+    lineend = lineend,
+    color = color,
+    arrow = arrow,
+    arrow.fill = arrow.fill,
+    inherit.blank = inherit.blank
   )
   ggplot2::theme(panel.border = ggplot2::element_blank(), axis.line = elem)
 }

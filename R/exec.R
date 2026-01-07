@@ -41,8 +41,10 @@ exec_render = function(input, output_dir = NA) {
 knitr_progress = function(total, labels) {
   envir = parent.frame()
   list(
-    update = \(i) if (nzchar(labels[i])) {
-      cli::cli_progress_step(labels[i], .envir = envir)
+    update = \(i) {
+      if (nzchar(labels[i])) {
+        cli::cli_progress_step(labels[i], .envir = envir)
+      }
     },
     done = \() cli::cli_process_done(.envir = envir)
   )

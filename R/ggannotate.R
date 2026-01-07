@@ -17,9 +17,7 @@
 #' @export
 annotate_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2, linejoin = "mitre", ...) {
   .df = make_regpolygon(n, radius, x, y, start)
-  ggplot2::annotate("polygon",
-    x = .df[["x"]], y = .df[["y"]], linejoin = linejoin, ...
-  )
+  ggplot2::annotate("polygon", x = .df[["x"]], y = .df[["y"]], linejoin = linejoin, ...)
 }
 
 make_regpolygon = function(n, radius = 1, x = 0, y = 0, start = pi / 2) {
