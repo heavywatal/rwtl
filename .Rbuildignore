@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml$
+^[.]?air[.]toml$
 ^codecov\.yml$
 ^\.github$
 ^LICENSE\.md$
