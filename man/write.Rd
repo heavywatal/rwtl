@@ -54,14 +54,9 @@ Unix style newlines, or \code{"\r\n"} for Windows style newlines.}
 vectors. If your data contains newlines within fields the parser will
 automatically be forced to use a single thread only.}
     \item{\code{progress}}{Display a progress bar? By default it will only display
-in an interactive session and not while knitting a document. The display
-is updated every 50,000 values and will only display if estimated reading
-time is 5 seconds or more. The automatic progress bar can be disabled by
-setting option \code{readr.show_progress} to \code{FALSE}.}
-    \item{\code{path}}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use the \code{file} argument
-instead.}
-    \item{\code{quote_escape}}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use the \code{escape}
-argument instead.}
+in an interactive session and not while executing in an RStudio notebook
+chunk. The display of the progress bar can be disabled by setting the
+environment variable \code{VROOM_SHOW_PROGRESS} to \code{"false"}.}
   }}
 }
 \description{

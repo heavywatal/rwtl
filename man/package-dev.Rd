@@ -2,6 +2,7 @@
 % Please edit documentation in R/package.R
 \name{chk}
 \alias{chk}
+\alias{lall}
 \title{Package development utilities}
 \usage{
 chk(
@@ -12,6 +13,8 @@ chk(
   args = "--timings",
   ...
 )
+
+lall(path = ".", ..., compile = NA, debug = FALSE)
 }
 \arguments{
 \item{path}{Path to a package tarball or a directory.}
@@ -30,8 +33,15 @@ instead of the \code{--output} option you should use the \code{check_dir} argume
 because  \code{--output} cannot deal with spaces and other special characters on
 Windows.)}
 
-\item{...}{Passed to \code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck()}}.}
+\item{...}{Passed to \code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck()}} or \code{\link[pkgload:load_all]{pkgload::load_all()}}.}
+
+\item{compile}{Passed to \code{\link[pkgload:load_all]{pkgload::load_all()}}.}
+
+\item{debug}{The default is \code{FALSE} to avoid \code{-O0} compilation.
+See \href{https://github.com/r-lib/pkgload/issues/224}{r-lib/pkgload#224}.}
 }
 \description{
-\code{chk()} is a thin wrapper of \code{\link[devtools:check]{devtools::check()}}.
+\code{chk()} is a lightweight alternative to \code{\link[devtools:check]{devtools::check()}}.
+
+\code{lall()} is a thin wrapper of \code{\link[pkgload:load_all]{pkgload::load_all()}} with \code{debug = FALSE} by default.
 }

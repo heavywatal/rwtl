@@ -1,12 +1,12 @@
 #' Package development utilities
 #'
 #' @description
-#' `chk()` is a thin wrapper of [devtools::check()].
+#' `chk()` is a lightweight alternative to [devtools::check()].
 #' @inheritParams rcmdcheck::rcmdcheck
 #' @param install Add `--no-install` to `args` if FALSE.
 #' @param manual Add `--no-manual` to `args` if FALSE.
 #' @param vignettes Add `--ignore-vignettes` to `args` if FALSE.
-#' @param ... Passed to [rcmdcheck::rcmdcheck()].
+#' @param ... Passed to [rcmdcheck::rcmdcheck()] or [pkgload::load_all()].
 #' @rdname package-dev
 #' @export
 chk = function(path = ".", install = FALSE, manual = FALSE, vignettes = FALSE, args = "--timings", ...) {
@@ -29,6 +29,17 @@ has_tests = function(path = ".") {
   !is.null(res)
 }
 
+#' @description
+#' `lall()` is a thin wrapper of [pkgload::load_all()] with `debug = FALSE` by default.
+#' @param compile Passed to [pkgload::load_all()].
+#' @param debug The default is `FALSE` to avoid `-O0` compilation.
+#'   See [r-lib/pkgload#224](https://github.com/r-lib/pkgload/issues/224).
+#' @rdname package-dev
+#' @export
+lall = function(path = ".", ..., compile = NA, debug = FALSE) {
+  pkgload::load_all(path, compile = compile, debug = debug, ...)
+}
+
 #' Package management utilities
 #'
 #' @description
@@ -47,6 +58,7 @@ lib_upgrade = function(..., binary = TRUE, ask = interactive()) {
     return(invisible())
   }
   old_pkgs |>
+    dplyr::filter(!.data$Package %in% getOptions("pkg.pinned")) |>
     dplyr::group_nest(.data$LibPath, .data$Repository) |>
     purrr::pwalk(function(LibPath, Repository, data) {
       pkgs = data[["Package"]]
