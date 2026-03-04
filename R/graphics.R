@@ -4,14 +4,16 @@
 #' `pch_plot()` shows pch variations.
 #' @param alpha,stroke passed to [ggplot2::geom_point()]
 #' @rdname graphics
+#' @seealso [graphics::points()]
 #' @export
 pch_plot = function(alpha = 1, stroke = 1) {
   pch = seq_len(128L) - 1L
   .df = data.frame(pch, x = pch %% 16L, y = pch %/% 16L)
   ggplot2::ggplot(.df) +
-    ggplot2::aes(.data[["x"]], .data[["y"]], label = .data[["pch"]]) +
+    ggplot2::aes(.data$x, .data$y, label = .data$pch) +
     ggplot2::geom_point(
-      ggplot2::aes(shape = .data[["pch"]]),
+      ggplot2::aes(shape = .data$pch),
+      data = \(d) dplyr::filter_out(d, pch %in% seq.int(26L, 31L)),
       size = 5,
       alpha = alpha,
       stroke = stroke,

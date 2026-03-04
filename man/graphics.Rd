@@ -42,3 +42,6 @@ bin width of a time variable is the number of seconds.}
 
 \code{col2hex()} translates color name to hex.
 }
+\seealso{
+\code{\link[graphics:points]{graphics::points()}}
+}
