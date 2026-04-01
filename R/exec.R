@@ -15,7 +15,9 @@ exec_knit = function(input, output = NA) {
       withr::local_dir(output)
       output = NULL
     } else {
-      withr::local_dir(dirname(output))
+      outdir = dirname(output)
+      fs::dir_create(outdir)
+      withr::local_dir(outdir)
       output = basename(output)
     }
   }
