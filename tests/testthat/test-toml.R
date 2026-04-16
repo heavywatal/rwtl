@@ -7,6 +7,7 @@ test_that("toTOML work", {
     character = "char",
     date = readr::parse_date("2006-01-02"),
     datetime = readr::parse_datetime("2006-01-02 15:04:05"),
+    list = list(i = 42L, d = 42),
     zchar = "",
     null = character(),
     na = NA
@@ -20,6 +21,9 @@ character = "char"
 date = 2006-01-02
 datetime = 2006-01-02T{time}
 zchar = ""
+[list]
+i = 42
+d = 42
 ')
   expect_identical(toTOML(lst), glue(toml, time = "15:04:05+09:00"))
   expect_identical(toTOML(lst, usetz = FALSE), glue(toml, time = "15:04:05"))
