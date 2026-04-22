@@ -16,6 +16,18 @@ exec_render(input, output_dir = NA)
 
 \item{output_dir}{Directory path.}
 }
+\value{
+\code{exec_knit()} returns the output from \code{knitr::knit()}.
+
+\code{exec_render()} returns the output from \code{rmarkdown::render()}.
+}
 \description{
-Shortcut to use knitr and rmarkdown from commandline
+\code{exec_knit()} temporarily modifies the environment before knitting:
+\itemize{
+\item Set the working directory to the output directory as recommended by knitr.
+\item Set \code{unnamed.chunk.label} and \code{cache.path} using the input file name to avoid conflicts.
+\item Set \code{error = FALSE}, \code{message = NA}, and \code{warning = NA} for easier debugging.
+\item Customize \code{knitr.progress.fun} for better progress display.
+\item Enable caching for the Stan engine.
+}
 }
