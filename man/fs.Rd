@@ -24,7 +24,7 @@ path_destination(path, new_path)
 \description{
 \code{is_outdated()} tests existence and modification time of files.
 
-\code{file_copy_try()} is a modified version of \code{\link[fs:copy]{fs::file_copy()}} to copy only new files.
+\code{file_copy_try()} is a modified version of \code{\link[fs:file_copy]{fs::file_copy()}} to copy only new files.
 
 \code{path_destination()} normalizes destination paths.
 }

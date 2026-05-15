@@ -24,7 +24,7 @@ demtrxcol_all(.data)
 }
 \description{
 \code{dedfcol()} and \code{dedfcol_all()} dissolve data.frame columns in a tibble.
-They are functionally-limited and faster variants of \code{\link[tidyr:pack]{tidyr::unpack()}}.
+They are functionally-limited and faster variants of \code{\link[tidyr:unpack]{tidyr::unpack()}}.
 
 \code{demtrxcol()} and \code{demtrxcol_all()} dissolve matrix columns in a tibble.
 }

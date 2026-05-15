@@ -6,7 +6,7 @@
 \alias{wtl-package}
 \title{wtl: Personal R package}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+\if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
 
 Personal R package.
 }
@@ -20,6 +20,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Watal M. Iwasaki \email{heavywatal@gmail.com} (\href{https://orcid.org/0000-0002-4718-7605}{ORCID})
+
+Authors:
+\itemize{
+  \item Watal M. Iwasaki \email{heavywatal@gmail.com} (\href{https://orcid.org/0000-0002-4718-7605}{ORCID})
+}
 
 }
 \keyword{internal}

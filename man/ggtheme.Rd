@@ -52,7 +52,7 @@ legend titles, the plot title and tag text.}
 \item{colour, color}{Line/border colour. Color is an alias for colour.
 \code{alpha()} can be used to set the transparency of the colour.}
 
-\item{linewidth, linetype}{Passed to \code{\link[ggplot2:element]{ggplot2::element_line()}}.}
+\item{linewidth, linetype}{Passed to \code{\link[ggplot2:element_line]{ggplot2::element_line()}}.}
 
 \item{lineend}{Line end style, one of \code{"round"}, \code{"butt"} or \code{"square"}.}
 
@@ -67,7 +67,7 @@ well. If \code{FALSE} any blank parent element will be ignored when
 calculating final element state.}
 }
 \description{
-\code{theme_wtl()} is a slightly modified variant of \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}.
+\code{theme_wtl()} is a slightly modified variant of \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}.
 \itemize{
 \item Increase \code{base_size} default to 12.
 \item Increase the small text size from \code{rel(0.8)} to \code{rel(1.0/1.2)}.

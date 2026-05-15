@@ -13,7 +13,7 @@ old_packages(..., binary = TRUE)
 install_packages(pkg, lib = .libPaths()[[1L]], ..., binary = TRUE)
 }
 \arguments{
-\item{...}{Passed to \code{\link[utils:update.packages]{utils::old.packages()}} or \code{\link[pak:pkg_install]{pak::pkg_install()}}.}
+\item{...}{Passed to \code{\link[utils:old.packages]{utils::old.packages()}} or \code{\link[pak:pkg_install]{pak::pkg_install()}}.}
 
 \item{binary}{A logical. Set \code{FALSE} to accept source packages.}
 
@@ -33,12 +33,18 @@ in general,
 
 See "\link[pak]{Package sources}" for more details.}
 
-\item{lib}{Package library to install the packages to. Note that \emph{all}
-dependent packages will be installed here, even if they are
-already installed in another library. The only exceptions are base
-and recommended packages installed in \code{.Library}. These are not
-duplicated in \code{lib}, unless a newer version of a recommended package
-is needed.}
+\item{lib}{Character vector of library paths to consider when creating the
+installation plan.
+\itemize{
+\item The first library path is the target where packages will be installed.
+\item Additional library paths, if provided, are visible to the solver as
+candidates for satisfying dependency requirements. If a needed package is
+found here at an acceptable version, it won't be re-installed in
+\code{lib[1]}.
+\item Base and recommended packages in \code{.Library} are always considered, i.e.
+a recommended package is only duplicated in \code{lib[1]} if a newer version
+is required.
+}}
 }
 \description{
 \code{lib_upgrade()} is a stopgap until \code{pak::lib_upgrade()} \url{https://github.com/r-lib/pak/issues/168}.
@@ -46,7 +52,7 @@ There is no direct way to enforce binary for now: \url{https://github.com/r-lib/
 \code{pak::pkg_upgrade()} is not available yet: \url{https://github.com/r-lib/pak/pull/289}.
 Versioned CRAN packages are not implemented yet \url{https://github.com/r-lib/pkgdepends/blob/main/R/type-cran.R}.
 
-\code{old_packages()} is a thin wrapper of \code{\link[utils:update.packages]{utils::old.packages()}}.
+\code{old_packages()} is a thin wrapper of \code{\link[utils:old.packages]{utils::old.packages()}}.
 
 \code{install_packages()} is a thin wrapper of \code{\link[pak:pkg_install]{pak::pkg_install()}}
 to temporarily force binary installation.

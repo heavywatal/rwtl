@@ -11,7 +11,7 @@ gs4_auth_json(path = NULL, email = gargle::gargle_oauth_email())
 }
 \arguments{
 \item{...}{
-  Arguments passed on to \code{\link[googlesheets4:range_read]{googlesheets4::read_sheet}}
+  Arguments passed on to \code{\link[googlesheets4:read_sheet]{googlesheets4::read_sheet}}
   \describe{
     \item{\code{ss}}{Something that identifies a Google Sheet:
 \itemize{

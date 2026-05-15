@@ -17,8 +17,8 @@ link_resolve(path)
 \item{follow}{A logical vector. \code{FALSE} means \code{ln -h} on macOS and \code{ln -n} on Linux.}
 }
 \description{
-\code{symlink()} is a simple wrapper of \code{\link[fs:create]{fs::link_create()}}.
+\code{symlink()} is a simple wrapper of \code{\link[fs:link_create]{fs::link_create()}}.
 Existing links are replaced if link paths are different.
 
-\code{link_resolve()} is a non-stop variant of \code{\link[fs:path_math]{fs::path_real()}}.
+\code{link_resolve()} is a non-stop variant of \code{\link[fs:path_real]{fs::path_real()}}.
 }

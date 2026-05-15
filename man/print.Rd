@@ -36,7 +36,7 @@ show_print_options()
 }
 \description{
 \code{printdf()} is a simple cherry-picking from
-\code{\link[tibble:formatting]{tibble::print.tbl()}} and \code{data.frame:::print.data.table}.
+\code{\link[tibble:print.tbl]{tibble::print.tbl()}} and \code{data.frame:::print.data.table}.
 
 \code{max_print()} prints as many elements in a big tibble as possible.
 
