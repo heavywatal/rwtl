@@ -123,5 +123,7 @@ export(twist)
 export(update_)
 export(write_table)
 importFrom(grid,grid.draw)
-importFrom(rlang,":=")
-importFrom(rlang,.data)
+importFrom(rlang,
+  ":=",
+  .data
+)
