@@ -5,10 +5,10 @@ logo_plot() +
   erase(axis.title, axis.ticks, title)
 
 logo_save("heavywatal.svg") |> logo_svg_optimize()
-logo_save("heavywatal.png", height = 4) |> oxipng()
-logo_save("heavywatal-white.png", height = 4) |> oxipng()
-logo_save("heavywatal-circle.png", height = 4) |> oxipng()
-logo_save("heavywatal-circle-white.png", height = 4) |> oxipng()
+logo_save("heavywatal.png", height = 4) |> oxipng() |> cwebp(keep = TRUE)
+logo_save("heavywatal-white.png", height = 4) |> oxipng() |> cwebp(keep = TRUE)
+logo_save("heavywatal-circle.png", height = 4) |> oxipng() |> cwebp(keep = TRUE)
+logo_save("heavywatal-circle-white.png", height = 4) |> oxipng() |> cwebp(keep = TRUE)
 logo_save_sticker("heavywatal-hex.png", height = 2.432) |>
   oxipng() |>
   fs::file_copy("../man/figures/logo.png", overwrite = TRUE)
@@ -18,7 +18,8 @@ logo_save_sticker("heavywatal-hex.svg") |>
 
 "heavywatal-tohoku_ac_jp-circle-white.png" |>
   logo_save(swoosh = "#3e1686", dot = "#3e1686") |>
-  oxipng()
+  oxipng() |>
+  cwebp(keep = TRUE)
 
 fs::dir_create("web")
 logo_save("web/heavywatal.svg") |> logo_svg_optimize()

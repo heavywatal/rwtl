@@ -3,19 +3,33 @@
 \name{oxipng}
 \alias{oxipng}
 \alias{cwebp}
+\alias{avifenc}
 \title{Functions for knitr fig.process}
 \usage{
 oxipng(input, options = NULL)
 
-cwebp(input, options = NULL)
+cwebp(input, options = NULL, keep = FALSE)
+
+avifenc(input, options = NULL, keep = FALSE)
 }
 \arguments{
 \item{input}{A path to an image file.}
 
 \item{options}{A list.}
+
+\item{keep}{A logical value. Set to \code{TRUE} to keep the original file.}
+}
+\value{
+Path to the output file.
 }
 \description{
 \code{oxipng()} losslessly improves compression of PNG files.
 
 \code{cwebp()} compresses a raster image to WebP format.
+
+\code{avifenc()} compresses a raster image to AVIF format.
+}
+\details{
+WebP is the most efficient format for lossless compression of plots and diagrams.
+AVIF is primarily used for lossy compression of photographic images.
 }
