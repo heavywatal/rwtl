@@ -16,8 +16,9 @@ logo_save_sticker("heavywatal-hex.svg") |>
   logo_svg_optimize("#202020") |>
   fs::file_copy("../man/figures/logo.svg", overwrite = TRUE)
 
-"heavywatal-tohoku_ac_jp-circle-white.png" |>
-  logo_save(swoosh = "#3e1686", dot = "#3e1686") |>
+mg = wtl::annotate_regpolygon(180L, radius = 64, x = 54, y = 54, fill = "#FFFFFF", color = "#3E1485", linewidth = 6)
+"heavywatal-tohoku_ac_jp-circle.png" |>
+  logo_save(height = 4, midground = mg, bg = "#3E1485") |>
   oxipng() |>
   cwebp(keep = TRUE)
 
